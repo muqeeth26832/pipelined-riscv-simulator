@@ -1,0 +1,51 @@
+\doxysection{control\+\_\+unit\+\_\+base.\+h}
+\hypertarget{control__unit__base_8h_source}{}\label{control__unit__base_8h_source}\index{include/vm/control\_unit\_base.h@{include/vm/control\_unit\_base.h}}
+\mbox{\hyperlink{control__unit__base_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#ifndef\ CONTROL\_UNIT\_BASE\_H}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#define\ CONTROL\_UNIT\_BASE\_H}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{registers_8h}{registers.h}}"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{alu_8h}{alu.h}}"{}}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classControlUnit}{ControlUnit}}\ \{}
+\DoxyCodeLine{00016\ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00017\ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classControlUnit_ae22f4411723f65396af44292cf4f2309}{\string~ControlUnit}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classControlUnit_a9fedc1442f71ebdb9b19ff4d5a7d9210}{Reset}}()\ \{}
+\DoxyCodeLine{00020\ \ \ \ \ \mbox{\hyperlink{classControlUnit_a16e4ce45d89331b1c262236d22ebc489}{alu\_src\_}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00021\ \ \ \ \ \mbox{\hyperlink{classControlUnit_a80bef90d076351b9740b4f0fa0325ab0}{mem\_to\_reg\_}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00022\ \ \ \ \ \mbox{\hyperlink{classControlUnit_a5b002e22ea0e96d2d2ce24daf74a1e8b}{reg\_write\_}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00023\ \ \ \ \ \mbox{\hyperlink{classControlUnit_a6d1d34ad63bc2e32c483f81bdba4e769}{mem\_read\_}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00024\ \ \ \ \ \mbox{\hyperlink{classControlUnit_ad4ef5caa495fc8f3b03c4149c7fb2809}{mem\_write\_}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00025\ \ \ \ \ \mbox{\hyperlink{classControlUnit_aa6c5d30456a87d6b4454772d35770145}{branch\_}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00026\ \ \ \ \ \mbox{\hyperlink{classControlUnit_a01a24f57f9f0513287383d400d6a4824}{alu\_op\_}}\ =\ 0;}
+\DoxyCodeLine{00027\ \ \ \}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classControlUnit_a0f833e38023892becb4e17884e6bf25f}{SetControlSignals}}(uint32\_t\ instruction)\ =\ 0;}
+\DoxyCodeLine{00030\ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985}{alu::AluOp}}\ \mbox{\hyperlink{classControlUnit_a1afc2ad8d7fbf319ad99c0e6ea79f5be}{GetAluSignal}}(uint32\_t\ instruction,\ \textcolor{keywordtype}{bool}\ ALUOp)\ =\ 0;}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ [[nodiscard]]\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classControlUnit_acd431538d9150b789bfc7bc9a2f472ff}{GetAluSrc}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00033\ \ \ [[nodiscard]]\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classControlUnit_ad9b4db62cc16d6b84dcd4e151e833827}{GetMemToReg}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00034\ \ \ [[nodiscard]]\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classControlUnit_a227e2639cc27b79d0d6b75b56484bce4}{GetRegWrite}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00035\ \ \ [[nodiscard]]\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classControlUnit_a80b4ea7f72df18dd6f131d3df78b53bc}{GetMemRead}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00036\ \ \ [[nodiscard]]\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classControlUnit_aba7acd531c64f7437878c58405e3c9dc}{GetMemWrite}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00037\ \ \ [[nodiscard]]\ uint8\_t\ \mbox{\hyperlink{classControlUnit_a565e160c83b2eb0df2b1d3dea39bd020}{GetAluOp}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00038\ \ \ [[nodiscard]]\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classControlUnit_a04a26bf58d120d77849b9e6eeb0bdeec}{GetBranch}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00041\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classControlUnit_a5b002e22ea0e96d2d2ce24daf74a1e8b}{reg\_write\_}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00042\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classControlUnit_aa6c5d30456a87d6b4454772d35770145}{branch\_}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00043\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classControlUnit_a16e4ce45d89331b1c262236d22ebc489}{alu\_src\_}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00044\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classControlUnit_a6d1d34ad63bc2e32c483f81bdba4e769}{mem\_read\_}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00045\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classControlUnit_ad4ef5caa495fc8f3b03c4149c7fb2809}{mem\_write\_}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00046\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classControlUnit_a80bef90d076351b9740b4f0fa0325ab0}{mem\_to\_reg\_}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00047\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classControlUnit_a53da51422d76b66d1dee86fd80e4ae28}{pc\_src\_}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ uint8\_t\ \mbox{\hyperlink{classControlUnit_a01a24f57f9f0513287383d400d6a4824}{alu\_op\_}}\{\};}
+\DoxyCodeLine{00050\ \};}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ CONTROL\_UNIT\_BASE\_H}}
+
+\end{DoxyCode}

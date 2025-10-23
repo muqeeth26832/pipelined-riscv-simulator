@@ -1,11 +1,11 @@
-\hypertarget{registers_8cpp}{}\doxysection{src/vm/registers.cpp File Reference}
-\label{registers_8cpp}\index{src/vm/registers.cpp@{src/vm/registers.cpp}}
+\doxysection{src/vm/registers.cpp File Reference}
+\hypertarget{registers_8cpp}{}\label{registers_8cpp}\index{src/vm/registers.cpp@{src/vm/registers.cpp}}
 
 
-Contains the implementation of the \mbox{\hyperlink{classRegisterFile}{Register\+File}} class and related.  
+Contains the implementation of the \doxylink{classRegisterFile}{Register\+File} class and related.  
 
 
-{\ttfamily \#include \char`\"{}vm/registers.\+h\char`\"{}}\newline
+{\ttfamily \#include "{}vm/registers.\+h"{}}\newline
 {\ttfamily \#include $<$stdexcept$>$}\newline
 {\ttfamily \#include $<$unordered\+\_\+set$>$}\newline
 {\ttfamily \#include $<$unordered\+\_\+map$>$}\newline
@@ -19,7 +19,7 @@ Include dependency graph for registers.\+cpp\+:
 \includegraphics[width=350pt]{registers_8cpp__incl}
 \end{center}
 \end{figure}
-\doxysubsection*{Functions}
+\doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
 bool \mbox{\hyperlink{registers_8cpp_ac5db3171f17fd09e341027d11d438649}{Is\+Valid\+General\+Purpose\+Register}} (const std\+::string \&reg)
@@ -28,7 +28,7 @@ bool \mbox{\hyperlink{registers_8cpp_aa1a257a2fc15d22847dad688c8b3bedd}{Is\+Vali
 \item 
 bool \mbox{\hyperlink{registers_8cpp_aca47a0deb2cf271388bcba061c11ba94}{Is\+Valid\+Csr}} (const std\+::string \&reg)
 \end{DoxyCompactItemize}
-\doxysubsection*{Variables}
+\doxysubsubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
 const std\+::unordered\+\_\+set$<$ std\+::string $>$ \mbox{\hyperlink{registers_8cpp_a0528a55c986b4b9e8717e14eeebeb7df}{valid\+\_\+general\+\_\+purpose\+\_\+registers}}
@@ -44,7 +44,7 @@ const std\+::unordered\+\_\+map$<$ std\+::string, std\+::string $>$ \mbox{\hyper
 
 
 \doxysubsection{Detailed Description}
-Contains the implementation of the \mbox{\hyperlink{classRegisterFile}{Register\+File}} class and related. 
+Contains the implementation of the \doxylink{classRegisterFile}{Register\+File} class and related. 
 
 \begin{DoxyAuthor}{Author}
 Vishank Singh, \href{https://github.com/VishankSingh}{\texttt{ https\+://github.\+com/\+Vishank\+Singh}} 
@@ -52,19 +52,19 @@ Vishank Singh, \href{https://github.com/VishankSingh}{\texttt{ https\+://github.
 
 
 \doxysubsection{Function Documentation}
-\mbox{\Hypertarget{registers_8cpp_aca47a0deb2cf271388bcba061c11ba94}\label{registers_8cpp_aca47a0deb2cf271388bcba061c11ba94}} 
+\Hypertarget{registers_8cpp_aca47a0deb2cf271388bcba061c11ba94}\label{registers_8cpp_aca47a0deb2cf271388bcba061c11ba94} 
 \index{registers.cpp@{registers.cpp}!IsValidCsr@{IsValidCsr}}
 \index{IsValidCsr@{IsValidCsr}!registers.cpp@{registers.cpp}}
 \doxysubsubsection{\texorpdfstring{IsValidCsr()}{IsValidCsr()}}
 {\footnotesize\ttfamily bool Is\+Valid\+Csr (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{reg }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{registers_8cpp_aa1a257a2fc15d22847dad688c8b3bedd}\label{registers_8cpp_aa1a257a2fc15d22847dad688c8b3bedd}} 
+\Hypertarget{registers_8cpp_aa1a257a2fc15d22847dad688c8b3bedd}\label{registers_8cpp_aa1a257a2fc15d22847dad688c8b3bedd} 
 \index{registers.cpp@{registers.cpp}!IsValidFloatingPointRegister@{IsValidFloatingPointRegister}}
 \index{IsValidFloatingPointRegister@{IsValidFloatingPointRegister}!registers.cpp@{registers.cpp}}
 \doxysubsubsection{\texorpdfstring{IsValidFloatingPointRegister()}{IsValidFloatingPointRegister()}}
 {\footnotesize\ttfamily bool Is\+Valid\+Floating\+Point\+Register (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{reg }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{registers_8cpp_ac5db3171f17fd09e341027d11d438649}\label{registers_8cpp_ac5db3171f17fd09e341027d11d438649}} 
+\Hypertarget{registers_8cpp_ac5db3171f17fd09e341027d11d438649}\label{registers_8cpp_ac5db3171f17fd09e341027d11d438649} 
 \index{registers.cpp@{registers.cpp}!IsValidGeneralPurposeRegister@{IsValidGeneralPurposeRegister}}
 \index{IsValidGeneralPurposeRegister@{IsValidGeneralPurposeRegister}!registers.cpp@{registers.cpp}}
 \doxysubsubsection{\texorpdfstring{IsValidGeneralPurposeRegister()}{IsValidGeneralPurposeRegister()}}
@@ -73,7 +73,7 @@ Vishank Singh, \href{https://github.com/VishankSingh}{\texttt{ https\+://github.
 
 
 \doxysubsection{Variable Documentation}
-\mbox{\Hypertarget{registers_8cpp_a64b23cb5af0e49d9fb7135500caf6d4f}\label{registers_8cpp_a64b23cb5af0e49d9fb7135500caf6d4f}} 
+\Hypertarget{registers_8cpp_a64b23cb5af0e49d9fb7135500caf6d4f}\label{registers_8cpp_a64b23cb5af0e49d9fb7135500caf6d4f} 
 \index{registers.cpp@{registers.cpp}!csr\_to\_address@{csr\_to\_address}}
 \index{csr\_to\_address@{csr\_to\_address}!registers.cpp@{registers.cpp}}
 \doxysubsubsection{\texorpdfstring{csr\_to\_address}{csr\_to\_address}}
@@ -82,13 +82,13 @@ Vishank Singh, \href{https://github.com/VishankSingh}{\texttt{ https\+://github.
 {\bfseries Initial value\+:}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{\{}
-\DoxyCodeLine{    \{\textcolor{stringliteral}{"{}fflags"{}}, 0x001\},}
-\DoxyCodeLine{    \{\textcolor{stringliteral}{"{}frm"{}}, 0x002\},}
-\DoxyCodeLine{    \{\textcolor{stringliteral}{"{}fcsr"{}}, 0x003\},}
+\DoxyCodeLine{\ \ \ \ \{\textcolor{stringliteral}{"{}fflags"{}},\ 0x001\},}
+\DoxyCodeLine{\ \ \ \ \{\textcolor{stringliteral}{"{}frm"{}},\ 0x002\},}
+\DoxyCodeLine{\ \ \ \ \{\textcolor{stringliteral}{"{}fcsr"{}},\ 0x003\},}
 \DoxyCodeLine{\}}
 
 \end{DoxyCode}
-\mbox{\Hypertarget{registers_8cpp_af4ede5aac2f7597ad13f0a67cb8b13b5}\label{registers_8cpp_af4ede5aac2f7597ad13f0a67cb8b13b5}} 
+\Hypertarget{registers_8cpp_af4ede5aac2f7597ad13f0a67cb8b13b5}\label{registers_8cpp_af4ede5aac2f7597ad13f0a67cb8b13b5} 
 \index{registers.cpp@{registers.cpp}!reg\_alias\_to\_name@{reg\_alias\_to\_name}}
 \index{reg\_alias\_to\_name@{reg\_alias\_to\_name}!registers.cpp@{registers.cpp}}
 \doxysubsubsection{\texorpdfstring{reg\_alias\_to\_name}{reg\_alias\_to\_name}}
@@ -98,7 +98,7 @@ Vishank Singh, \href{https://github.com/VishankSingh}{\texttt{ https\+://github.
 
 Map of register aliases to their actual names. 
 
-\mbox{\Hypertarget{registers_8cpp_ac8b865efc7bd31cca9d4e9b718cd6e46}\label{registers_8cpp_ac8b865efc7bd31cca9d4e9b718cd6e46}} 
+\Hypertarget{registers_8cpp_ac8b865efc7bd31cca9d4e9b718cd6e46}\label{registers_8cpp_ac8b865efc7bd31cca9d4e9b718cd6e46} 
 \index{registers.cpp@{registers.cpp}!valid\_csr\_registers@{valid\_csr\_registers}}
 \index{valid\_csr\_registers@{valid\_csr\_registers}!registers.cpp@{registers.cpp}}
 \doxysubsubsection{\texorpdfstring{valid\_csr\_registers}{valid\_csr\_registers}}
@@ -106,12 +106,12 @@ Map of register aliases to their actual names.
 
 {\bfseries Initial value\+:}
 \begin{DoxyCode}{0}
-\DoxyCodeLine{= \{}
-\DoxyCodeLine{    \textcolor{stringliteral}{"{}fflags"{}}, \textcolor{stringliteral}{"{}frm"{}}, \textcolor{stringliteral}{"{}fcsr"{}}}
+\DoxyCodeLine{=\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}fflags"{}},\ \textcolor{stringliteral}{"{}frm"{}},\ \textcolor{stringliteral}{"{}fcsr"{}}}
 \DoxyCodeLine{\}}
 
 \end{DoxyCode}
-\mbox{\Hypertarget{registers_8cpp_ac416af250858196829ea943e606823b7}\label{registers_8cpp_ac416af250858196829ea943e606823b7}} 
+\Hypertarget{registers_8cpp_ac416af250858196829ea943e606823b7}\label{registers_8cpp_ac416af250858196829ea943e606823b7} 
 \index{registers.cpp@{registers.cpp}!valid\_floating\_point\_registers@{valid\_floating\_point\_registers}}
 \index{valid\_floating\_point\_registers@{valid\_floating\_point\_registers}!registers.cpp@{registers.cpp}}
 \doxysubsubsection{\texorpdfstring{valid\_floating\_point\_registers}{valid\_floating\_point\_registers}}
@@ -119,23 +119,23 @@ Map of register aliases to their actual names.
 
 {\bfseries Initial value\+:}
 \begin{DoxyCode}{0}
-\DoxyCodeLine{= \{}
-\DoxyCodeLine{    \textcolor{stringliteral}{"{}f0"{}}, \textcolor{stringliteral}{"{}f1"{}}, \textcolor{stringliteral}{"{}f2"{}}, \textcolor{stringliteral}{"{}f3"{}}, \textcolor{stringliteral}{"{}f4"{}}, \textcolor{stringliteral}{"{}f5"{}}, \textcolor{stringliteral}{"{}f6"{}}, \textcolor{stringliteral}{"{}f7"{}}, \textcolor{stringliteral}{"{}f8"{}}, \textcolor{stringliteral}{"{}f9"{}},}
-\DoxyCodeLine{    \textcolor{stringliteral}{"{}f10"{}}, \textcolor{stringliteral}{"{}f11"{}}, \textcolor{stringliteral}{"{}f12"{}}, \textcolor{stringliteral}{"{}f13"{}}, \textcolor{stringliteral}{"{}f14"{}}, \textcolor{stringliteral}{"{}f15"{}}, \textcolor{stringliteral}{"{}f16"{}}, \textcolor{stringliteral}{"{}f17"{}}, \textcolor{stringliteral}{"{}f18"{}}, \textcolor{stringliteral}{"{}f19"{}},}
-\DoxyCodeLine{    \textcolor{stringliteral}{"{}f20"{}}, \textcolor{stringliteral}{"{}f21"{}}, \textcolor{stringliteral}{"{}f22"{}}, \textcolor{stringliteral}{"{}f23"{}}, \textcolor{stringliteral}{"{}f24"{}}, \textcolor{stringliteral}{"{}f25"{}}, \textcolor{stringliteral}{"{}f26"{}}, \textcolor{stringliteral}{"{}f27"{}}, \textcolor{stringliteral}{"{}f28"{}}, \textcolor{stringliteral}{"{}f29"{}},}
-\DoxyCodeLine{    \textcolor{stringliteral}{"{}f30"{}}, \textcolor{stringliteral}{"{}f31"{}},}
+\DoxyCodeLine{=\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}f0"{}},\ \textcolor{stringliteral}{"{}f1"{}},\ \textcolor{stringliteral}{"{}f2"{}},\ \textcolor{stringliteral}{"{}f3"{}},\ \textcolor{stringliteral}{"{}f4"{}},\ \textcolor{stringliteral}{"{}f5"{}},\ \textcolor{stringliteral}{"{}f6"{}},\ \textcolor{stringliteral}{"{}f7"{}},\ \textcolor{stringliteral}{"{}f8"{}},\ \textcolor{stringliteral}{"{}f9"{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}f10"{}},\ \textcolor{stringliteral}{"{}f11"{}},\ \textcolor{stringliteral}{"{}f12"{}},\ \textcolor{stringliteral}{"{}f13"{}},\ \textcolor{stringliteral}{"{}f14"{}},\ \textcolor{stringliteral}{"{}f15"{}},\ \textcolor{stringliteral}{"{}f16"{}},\ \textcolor{stringliteral}{"{}f17"{}},\ \textcolor{stringliteral}{"{}f18"{}},\ \textcolor{stringliteral}{"{}f19"{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}f20"{}},\ \textcolor{stringliteral}{"{}f21"{}},\ \textcolor{stringliteral}{"{}f22"{}},\ \textcolor{stringliteral}{"{}f23"{}},\ \textcolor{stringliteral}{"{}f24"{}},\ \textcolor{stringliteral}{"{}f25"{}},\ \textcolor{stringliteral}{"{}f26"{}},\ \textcolor{stringliteral}{"{}f27"{}},\ \textcolor{stringliteral}{"{}f28"{}},\ \textcolor{stringliteral}{"{}f29"{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}f30"{}},\ \textcolor{stringliteral}{"{}f31"{}},}
 \DoxyCodeLine{}
-\DoxyCodeLine{    \textcolor{stringliteral}{"{}ft0"{}}, \textcolor{stringliteral}{"{}ft1"{}}, \textcolor{stringliteral}{"{}ft2"{}}, \textcolor{stringliteral}{"{}ft3"{}}, \textcolor{stringliteral}{"{}ft4"{}}, \textcolor{stringliteral}{"{}ft5"{}}, \textcolor{stringliteral}{"{}ft6"{}}, \textcolor{stringliteral}{"{}ft7"{}},}
-\DoxyCodeLine{    \textcolor{stringliteral}{"{}fs0"{}}, \textcolor{stringliteral}{"{}fs1"{}}, \textcolor{stringliteral}{"{}fa0"{}}, \textcolor{stringliteral}{"{}fa1"{}}, \textcolor{stringliteral}{"{}fa2"{}}, \textcolor{stringliteral}{"{}fa3"{}}, \textcolor{stringliteral}{"{}fa4"{}}, \textcolor{stringliteral}{"{}fa5"{}},}
-\DoxyCodeLine{    \textcolor{stringliteral}{"{}fa6"{}}, \textcolor{stringliteral}{"{}fa7"{}}, \textcolor{stringliteral}{"{}fs2"{}}, \textcolor{stringliteral}{"{}fs3"{}}, \textcolor{stringliteral}{"{}fs4"{}}, \textcolor{stringliteral}{"{}fs5"{}}, \textcolor{stringliteral}{"{}fs6"{}}, \textcolor{stringliteral}{"{}fs7"{}},}
-\DoxyCodeLine{    \textcolor{stringliteral}{"{}fs8"{}}, \textcolor{stringliteral}{"{}fs9"{}}, \textcolor{stringliteral}{"{}fs10"{}}, \textcolor{stringliteral}{"{}fs11"{}}, \textcolor{stringliteral}{"{}ft8"{}}, \textcolor{stringliteral}{"{}ft9"{}}, \textcolor{stringliteral}{"{}ft10"{}}, \textcolor{stringliteral}{"{}ft11"{}},}
-\DoxyCodeLine{    \textcolor{stringliteral}{"{}ft12"{}}, \textcolor{stringliteral}{"{}ft13"{}}, \textcolor{stringliteral}{"{}ft14"{}}, \textcolor{stringliteral}{"{}ft15"{}}, \textcolor{stringliteral}{"{}ft16"{}}, \textcolor{stringliteral}{"{}ft17"{}}, \textcolor{stringliteral}{"{}ft18"{}}, \textcolor{stringliteral}{"{}ft19"{}},}
-\DoxyCodeLine{    \textcolor{stringliteral}{"{}ft20"{}}, \textcolor{stringliteral}{"{}ft21"{}}, \textcolor{stringliteral}{"{}ft22"{}}, \textcolor{stringliteral}{"{}ft23"{}}, \textcolor{stringliteral}{"{}ft24"{}}, \textcolor{stringliteral}{"{}ft25"{}}, \textcolor{stringliteral}{"{}ft26"{}}, \textcolor{stringliteral}{"{}ft27"{}},}
-\DoxyCodeLine{    \textcolor{stringliteral}{"{}ft28"{}}, \textcolor{stringliteral}{"{}ft29"{}}, \textcolor{stringliteral}{"{}ft30"{}}, \textcolor{stringliteral}{"{}ft31"{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}ft0"{}},\ \textcolor{stringliteral}{"{}ft1"{}},\ \textcolor{stringliteral}{"{}ft2"{}},\ \textcolor{stringliteral}{"{}ft3"{}},\ \textcolor{stringliteral}{"{}ft4"{}},\ \textcolor{stringliteral}{"{}ft5"{}},\ \textcolor{stringliteral}{"{}ft6"{}},\ \textcolor{stringliteral}{"{}ft7"{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}fs0"{}},\ \textcolor{stringliteral}{"{}fs1"{}},\ \textcolor{stringliteral}{"{}fa0"{}},\ \textcolor{stringliteral}{"{}fa1"{}},\ \textcolor{stringliteral}{"{}fa2"{}},\ \textcolor{stringliteral}{"{}fa3"{}},\ \textcolor{stringliteral}{"{}fa4"{}},\ \textcolor{stringliteral}{"{}fa5"{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}fa6"{}},\ \textcolor{stringliteral}{"{}fa7"{}},\ \textcolor{stringliteral}{"{}fs2"{}},\ \textcolor{stringliteral}{"{}fs3"{}},\ \textcolor{stringliteral}{"{}fs4"{}},\ \textcolor{stringliteral}{"{}fs5"{}},\ \textcolor{stringliteral}{"{}fs6"{}},\ \textcolor{stringliteral}{"{}fs7"{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}fs8"{}},\ \textcolor{stringliteral}{"{}fs9"{}},\ \textcolor{stringliteral}{"{}fs10"{}},\ \textcolor{stringliteral}{"{}fs11"{}},\ \textcolor{stringliteral}{"{}ft8"{}},\ \textcolor{stringliteral}{"{}ft9"{}},\ \textcolor{stringliteral}{"{}ft10"{}},\ \textcolor{stringliteral}{"{}ft11"{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}ft12"{}},\ \textcolor{stringliteral}{"{}ft13"{}},\ \textcolor{stringliteral}{"{}ft14"{}},\ \textcolor{stringliteral}{"{}ft15"{}},\ \textcolor{stringliteral}{"{}ft16"{}},\ \textcolor{stringliteral}{"{}ft17"{}},\ \textcolor{stringliteral}{"{}ft18"{}},\ \textcolor{stringliteral}{"{}ft19"{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}ft20"{}},\ \textcolor{stringliteral}{"{}ft21"{}},\ \textcolor{stringliteral}{"{}ft22"{}},\ \textcolor{stringliteral}{"{}ft23"{}},\ \textcolor{stringliteral}{"{}ft24"{}},\ \textcolor{stringliteral}{"{}ft25"{}},\ \textcolor{stringliteral}{"{}ft26"{}},\ \textcolor{stringliteral}{"{}ft27"{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}ft28"{}},\ \textcolor{stringliteral}{"{}ft29"{}},\ \textcolor{stringliteral}{"{}ft30"{}},\ \textcolor{stringliteral}{"{}ft31"{}},}
 \DoxyCodeLine{\}}
 
 \end{DoxyCode}
-\mbox{\Hypertarget{registers_8cpp_a0528a55c986b4b9e8717e14eeebeb7df}\label{registers_8cpp_a0528a55c986b4b9e8717e14eeebeb7df}} 
+\Hypertarget{registers_8cpp_a0528a55c986b4b9e8717e14eeebeb7df}\label{registers_8cpp_a0528a55c986b4b9e8717e14eeebeb7df} 
 \index{registers.cpp@{registers.cpp}!valid\_general\_purpose\_registers@{valid\_general\_purpose\_registers}}
 \index{valid\_general\_purpose\_registers@{valid\_general\_purpose\_registers}!registers.cpp@{registers.cpp}}
 \doxysubsubsection{\texorpdfstring{valid\_general\_purpose\_registers}{valid\_general\_purpose\_registers}}
@@ -143,17 +143,17 @@ Map of register aliases to their actual names.
 
 {\bfseries Initial value\+:}
 \begin{DoxyCode}{0}
-\DoxyCodeLine{= \{}
-\DoxyCodeLine{    \textcolor{stringliteral}{"{}x0"{}}, \textcolor{stringliteral}{"{}x1"{}}, \textcolor{stringliteral}{"{}x2"{}}, \textcolor{stringliteral}{"{}x3"{}}, \textcolor{stringliteral}{"{}x4"{}}, \textcolor{stringliteral}{"{}x5"{}}, \textcolor{stringliteral}{"{}x6"{}}, \textcolor{stringliteral}{"{}x7"{}}, \textcolor{stringliteral}{"{}x8"{}}, \textcolor{stringliteral}{"{}x9"{}},}
-\DoxyCodeLine{    \textcolor{stringliteral}{"{}x10"{}}, \textcolor{stringliteral}{"{}x11"{}}, \textcolor{stringliteral}{"{}x12"{}}, \textcolor{stringliteral}{"{}x13"{}}, \textcolor{stringliteral}{"{}x14"{}}, \textcolor{stringliteral}{"{}x15"{}}, \textcolor{stringliteral}{"{}x16"{}}, \textcolor{stringliteral}{"{}x17"{}}, \textcolor{stringliteral}{"{}x18"{}}, \textcolor{stringliteral}{"{}x19"{}},}
-\DoxyCodeLine{    \textcolor{stringliteral}{"{}x20"{}}, \textcolor{stringliteral}{"{}x21"{}}, \textcolor{stringliteral}{"{}x22"{}}, \textcolor{stringliteral}{"{}x23"{}}, \textcolor{stringliteral}{"{}x24"{}}, \textcolor{stringliteral}{"{}x25"{}}, \textcolor{stringliteral}{"{}x26"{}}, \textcolor{stringliteral}{"{}x27"{}}, \textcolor{stringliteral}{"{}x28"{}}, \textcolor{stringliteral}{"{}x29"{}},}
-\DoxyCodeLine{    \textcolor{stringliteral}{"{}x30"{}}, \textcolor{stringliteral}{"{}x31"{}},}
+\DoxyCodeLine{=\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}x0"{}},\ \textcolor{stringliteral}{"{}x1"{}},\ \textcolor{stringliteral}{"{}x2"{}},\ \textcolor{stringliteral}{"{}x3"{}},\ \textcolor{stringliteral}{"{}x4"{}},\ \textcolor{stringliteral}{"{}x5"{}},\ \textcolor{stringliteral}{"{}x6"{}},\ \textcolor{stringliteral}{"{}x7"{}},\ \textcolor{stringliteral}{"{}x8"{}},\ \textcolor{stringliteral}{"{}x9"{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}x10"{}},\ \textcolor{stringliteral}{"{}x11"{}},\ \textcolor{stringliteral}{"{}x12"{}},\ \textcolor{stringliteral}{"{}x13"{}},\ \textcolor{stringliteral}{"{}x14"{}},\ \textcolor{stringliteral}{"{}x15"{}},\ \textcolor{stringliteral}{"{}x16"{}},\ \textcolor{stringliteral}{"{}x17"{}},\ \textcolor{stringliteral}{"{}x18"{}},\ \textcolor{stringliteral}{"{}x19"{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}x20"{}},\ \textcolor{stringliteral}{"{}x21"{}},\ \textcolor{stringliteral}{"{}x22"{}},\ \textcolor{stringliteral}{"{}x23"{}},\ \textcolor{stringliteral}{"{}x24"{}},\ \textcolor{stringliteral}{"{}x25"{}},\ \textcolor{stringliteral}{"{}x26"{}},\ \textcolor{stringliteral}{"{}x27"{}},\ \textcolor{stringliteral}{"{}x28"{}},\ \textcolor{stringliteral}{"{}x29"{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}x30"{}},\ \textcolor{stringliteral}{"{}x31"{}},}
 \DoxyCodeLine{}
-\DoxyCodeLine{    \textcolor{stringliteral}{"{}zero"{}},}
-\DoxyCodeLine{    \textcolor{stringliteral}{"{}ra"{}}, \textcolor{stringliteral}{"{}sp"{}}, \textcolor{stringliteral}{"{}gp"{}}, \textcolor{stringliteral}{"{}tp"{}}, \textcolor{stringliteral}{"{}t0"{}}, \textcolor{stringliteral}{"{}t1"{}}, \textcolor{stringliteral}{"{}t2"{}}, \textcolor{stringliteral}{"{}s0"{}}, \textcolor{stringliteral}{"{}s1"{}},}
-\DoxyCodeLine{    \textcolor{stringliteral}{"{}a0"{}}, \textcolor{stringliteral}{"{}a1"{}}, \textcolor{stringliteral}{"{}a2"{}}, \textcolor{stringliteral}{"{}a3"{}}, \textcolor{stringliteral}{"{}a4"{}}, \textcolor{stringliteral}{"{}a5"{}}, \textcolor{stringliteral}{"{}a6"{}}, \textcolor{stringliteral}{"{}a7"{}}, \textcolor{stringliteral}{"{}s2"{}},}
-\DoxyCodeLine{    \textcolor{stringliteral}{"{}s3"{}}, \textcolor{stringliteral}{"{}s4"{}}, \textcolor{stringliteral}{"{}s5"{}}, \textcolor{stringliteral}{"{}s6"{}}, \textcolor{stringliteral}{"{}s7"{}}, \textcolor{stringliteral}{"{}s8"{}}, \textcolor{stringliteral}{"{}s9"{}}, \textcolor{stringliteral}{"{}s10"{}}, \textcolor{stringliteral}{"{}s11"{}},}
-\DoxyCodeLine{    \textcolor{stringliteral}{"{}t3"{}}, \textcolor{stringliteral}{"{}t4"{}}, \textcolor{stringliteral}{"{}t5"{}}, \textcolor{stringliteral}{"{}t6"{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}zero"{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}ra"{}},\ \textcolor{stringliteral}{"{}sp"{}},\ \textcolor{stringliteral}{"{}gp"{}},\ \textcolor{stringliteral}{"{}tp"{}},\ \textcolor{stringliteral}{"{}t0"{}},\ \textcolor{stringliteral}{"{}t1"{}},\ \textcolor{stringliteral}{"{}t2"{}},\ \textcolor{stringliteral}{"{}s0"{}},\ \textcolor{stringliteral}{"{}s1"{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}a0"{}},\ \textcolor{stringliteral}{"{}a1"{}},\ \textcolor{stringliteral}{"{}a2"{}},\ \textcolor{stringliteral}{"{}a3"{}},\ \textcolor{stringliteral}{"{}a4"{}},\ \textcolor{stringliteral}{"{}a5"{}},\ \textcolor{stringliteral}{"{}a6"{}},\ \textcolor{stringliteral}{"{}a7"{}},\ \textcolor{stringliteral}{"{}s2"{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}s3"{}},\ \textcolor{stringliteral}{"{}s4"{}},\ \textcolor{stringliteral}{"{}s5"{}},\ \textcolor{stringliteral}{"{}s6"{}},\ \textcolor{stringliteral}{"{}s7"{}},\ \textcolor{stringliteral}{"{}s8"{}},\ \textcolor{stringliteral}{"{}s9"{}},\ \textcolor{stringliteral}{"{}s10"{}},\ \textcolor{stringliteral}{"{}s11"{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}t3"{}},\ \textcolor{stringliteral}{"{}t4"{}},\ \textcolor{stringliteral}{"{}t5"{}},\ \textcolor{stringliteral}{"{}t6"{}},}
 \DoxyCodeLine{\}}
 
 \end{DoxyCode}

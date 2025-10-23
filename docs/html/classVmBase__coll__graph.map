@@ -1,7 +1,11 @@
 <map id="VmBase" name="VmBase">
-<area shape="rect" id="node1" title=" " alt="" coords="231,95,307,121"/>
-<area shape="rect" id="node2" href="$classRegisterFile.html" title="Represents a register file containing integer, floating&#45;point, and vector registers." alt="" coords="5,5,104,32"/>
-<area shape="rect" id="node3" href="$structAssembledProgram.html" title=" " alt="" coords="128,5,277,32"/>
-<area shape="rect" id="node4" href="$classalu_1_1Alu.html" title="The alu class is responsible for performing arithmetic and logic operations." alt="" coords="302,5,373,32"/>
-<area shape="rect" id="node5" href="$classMemoryController.html" title="The MemoryController class is responsible for managing memory in the VM." alt="" coords="397,5,537,32"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="294,93,370,119"/>
+<area shape="rect" id="Node000002" href="$structAssembledProgram.html" title=" " alt="" coords="5,5,155,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="111,36,174,67,237,85,294,97,293,102,236,90,172,72,109,40"/>
+<area shape="rect" id="Node000003" href="$classMemoryController.html" title="The MemoryController class is responsible for managing memory in the VM." alt="" coords="179,5,319,31"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="247,44,248,57,253,68,271,85,295,95,293,100,268,89,248,71,243,58,242,44"/>
+<area shape="rect" id="Node000004" href="$classRegisterFile.html" title="Represents a register file containing integer, floating&#45;point, and vector registers." alt="" coords="367,5,465,31"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="407,45,389,71,356,95,353,91,385,67,403,42"/>
+<area shape="rect" id="Node000005" href="$classalu_1_1Alu.html" title="The alu class is responsible for performing arithmetic and logic operations." alt="" coords="490,5,561,31"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="509,43,492,58,473,72,421,92,371,103,370,98,419,87,471,67,489,54,505,39"/>
 </map>

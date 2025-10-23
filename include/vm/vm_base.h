@@ -36,7 +36,10 @@ enum SyscallCode {
 class VmBase {
 public:
     VmBase() = default;
-    ~VmBase() = default;
+    virtual ~VmBase() = default;  // Virtual destructor for proper deletion of derived classes
+    
+    virtual void RequestStop() = 0;
+    virtual bool IsStopRequested() const = 0;
 
     AssembledProgram program_;
     std::atomic<bool> stop_requested_ = false;

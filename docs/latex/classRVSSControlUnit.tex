@@ -1,12 +1,13 @@
-\hypertarget{classRVSSControlUnit}{}\doxysection{RVSSControl\+Unit Class Reference}
-\label{classRVSSControlUnit}\index{RVSSControlUnit@{RVSSControlUnit}}
+\doxysection{RVSSControl\+Unit Class Reference}
+\hypertarget{classRVSSControlUnit}{}\label{classRVSSControlUnit}\index{RVSSControlUnit@{RVSSControlUnit}}
 
 
 {\ttfamily \#include $<$rvss\+\_\+control\+\_\+unit.\+h$>$}
 
 
 
-Inheritance diagram for RVSSControl\+Unit\+:\nopagebreak
+Inheritance diagram for RVSSControl\+Unit\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -15,25 +16,66 @@ Inheritance diagram for RVSSControl\+Unit\+:\nopagebreak
 \end{figure}
 
 
-Collaboration diagram for RVSSControl\+Unit\+:\nopagebreak
+Collaboration diagram for RVSSControl\+Unit\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=178pt]{classRVSSControlUnit__coll__graph}
 \end{center}
 \end{figure}
-\doxysubsection*{Public Member Functions}
+\doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 void \mbox{\hyperlink{classRVSSControlUnit_adf26df59ddd8b4e69e94ed8b881127bc}{Set\+Control\+Signals}} (uint32\+\_\+t instruction) override
 \item 
 \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985}{alu\+::\+Alu\+Op}} \mbox{\hyperlink{classRVSSControlUnit_a779395276e46b48b9a7865fc34ae9833}{Get\+Alu\+Signal}} (uint32\+\_\+t instruction, bool ALUOp) override
 \end{DoxyCompactItemize}
-\doxysubsection*{Additional Inherited Members}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classControlUnit}{Control\+Unit}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classControlUnit_ae22f4411723f65396af44292cf4f2309}{\texorpdfstring{$\sim$}{\string~}\+Control\+Unit}} ()=default
+\item 
+void \mbox{\hyperlink{classControlUnit_a9fedc1442f71ebdb9b19ff4d5a7d9210}{Reset}} ()
+\item 
+bool \mbox{\hyperlink{classControlUnit_acd431538d9150b789bfc7bc9a2f472ff}{Get\+Alu\+Src}} () const
+\item 
+bool \mbox{\hyperlink{classControlUnit_ad9b4db62cc16d6b84dcd4e151e833827}{Get\+Mem\+To\+Reg}} () const
+\item 
+bool \mbox{\hyperlink{classControlUnit_a227e2639cc27b79d0d6b75b56484bce4}{Get\+Reg\+Write}} () const
+\item 
+bool \mbox{\hyperlink{classControlUnit_a80b4ea7f72df18dd6f131d3df78b53bc}{Get\+Mem\+Read}} () const
+\item 
+bool \mbox{\hyperlink{classControlUnit_aba7acd531c64f7437878c58405e3c9dc}{Get\+Mem\+Write}} () const
+\item 
+uint8\+\_\+t \mbox{\hyperlink{classControlUnit_a565e160c83b2eb0df2b1d3dea39bd020}{Get\+Alu\+Op}} () const
+\item 
+bool \mbox{\hyperlink{classControlUnit_a04a26bf58d120d77849b9e6eeb0bdeec}{Get\+Branch}} () const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classControlUnit}{Control\+Unit}}}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{classControlUnit_a5b002e22ea0e96d2d2ce24daf74a1e8b}{reg\+\_\+write\+\_\+}} = false
+\item 
+bool \mbox{\hyperlink{classControlUnit_aa6c5d30456a87d6b4454772d35770145}{branch\+\_\+}} = false
+\item 
+bool \mbox{\hyperlink{classControlUnit_a16e4ce45d89331b1c262236d22ebc489}{alu\+\_\+src\+\_\+}} = false
+\item 
+bool \mbox{\hyperlink{classControlUnit_a6d1d34ad63bc2e32c483f81bdba4e769}{mem\+\_\+read\+\_\+}} = false
+\item 
+bool \mbox{\hyperlink{classControlUnit_ad4ef5caa495fc8f3b03c4149c7fb2809}{mem\+\_\+write\+\_\+}} = false
+\item 
+bool \mbox{\hyperlink{classControlUnit_a80bef90d076351b9740b4f0fa0325ab0}{mem\+\_\+to\+\_\+reg\+\_\+}} = false
+\item 
+bool \mbox{\hyperlink{classControlUnit_a53da51422d76b66d1dee86fd80e4ae28}{pc\+\_\+src\+\_\+}} = false
+\item 
+uint8\+\_\+t \mbox{\hyperlink{classControlUnit_a01a24f57f9f0513287383d400d6a4824}{alu\+\_\+op\+\_\+}} \{\}
+\end{DoxyCompactItemize}
 
 
 \doxysubsection{Member Function Documentation}
-\mbox{\Hypertarget{classRVSSControlUnit_a779395276e46b48b9a7865fc34ae9833}\label{classRVSSControlUnit_a779395276e46b48b9a7865fc34ae9833}} 
+\Hypertarget{classRVSSControlUnit_a779395276e46b48b9a7865fc34ae9833}\label{classRVSSControlUnit_a779395276e46b48b9a7865fc34ae9833} 
 \index{RVSSControlUnit@{RVSSControlUnit}!GetAluSignal@{GetAluSignal}}
 \index{GetAluSignal@{GetAluSignal}!RVSSControlUnit@{RVSSControlUnit}}
 \doxysubsubsection{\texorpdfstring{GetAluSignal()}{GetAluSignal()}}
@@ -43,7 +85,7 @@ void \mbox{\hyperlink{classRVSSControlUnit_adf26df59ddd8b4e69e94ed8b881127bc}{Se
 
 Implements \mbox{\hyperlink{classControlUnit_a1afc2ad8d7fbf319ad99c0e6ea79f5be}{Control\+Unit}}.
 
-\mbox{\Hypertarget{classRVSSControlUnit_adf26df59ddd8b4e69e94ed8b881127bc}\label{classRVSSControlUnit_adf26df59ddd8b4e69e94ed8b881127bc}} 
+\Hypertarget{classRVSSControlUnit_adf26df59ddd8b4e69e94ed8b881127bc}\label{classRVSSControlUnit_adf26df59ddd8b4e69e94ed8b881127bc} 
 \index{RVSSControlUnit@{RVSSControlUnit}!SetControlSignals@{SetControlSignals}}
 \index{SetControlSignals@{SetControlSignals}!RVSSControlUnit@{RVSSControlUnit}}
 \doxysubsubsection{\texorpdfstring{SetControlSignals()}{SetControlSignals()}}

@@ -1,11 +1,19 @@
 <map id="RVSSVM" name="RVSSVM">
-<area shape="rect" id="node1" title=" " alt="" coords="501,184,579,211"/>
-<area shape="rect" id="node2" href="$classVmBase.html" title=" " alt="" coords="299,95,375,121"/>
-<area shape="rect" id="node3" href="$classRegisterFile.html" title="Represents a register file containing integer, floating&#45;point, and vector registers." alt="" coords="5,5,104,32"/>
-<area shape="rect" id="node4" href="$structAssembledProgram.html" title=" " alt="" coords="128,5,277,32"/>
-<area shape="rect" id="node5" href="$classalu_1_1Alu.html" title="The alu class is responsible for performing arithmetic and logic operations." alt="" coords="302,5,373,32"/>
-<area shape="rect" id="node6" href="$classMemoryController.html" title="The MemoryController class is responsible for managing memory in the VM." alt="" coords="397,5,537,32"/>
-<area shape="rect" id="node7" href="$classRVSSControlUnit.html" title=" " alt="" coords="475,95,605,121"/>
-<area shape="rect" id="node8" href="$classControlUnit.html" title="The ControlUnit class is the base class for the control unit of the CPU." alt="" coords="568,5,664,32"/>
-<area shape="rect" id="node9" href="$structStepDelta.html" title=" " alt="" coords="630,95,717,121"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="549,181,627,207"/>
+<area shape="rect" id="Node000002" href="$classVmBase.html" title=" " alt="" coords="378,93,454,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="452,122,566,179,563,183,450,127"/>
+<area shape="rect" id="Node000003" href="$structAssembledProgram.html" title=" " alt="" coords="5,5,155,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="114,35,151,52,191,67,292,89,378,99,378,104,291,94,190,72,149,57,112,40"/>
+<area shape="rect" id="Node000004" href="$classMemoryController.html" title="The MemoryController class is responsible for managing memory in the VM." alt="" coords="179,5,319,31"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="259,43,265,56,275,67,299,82,325,92,378,101,377,107,324,97,296,87,272,71,261,59,254,46"/>
+<area shape="rect" id="Node000005" href="$classRegisterFile.html" title="Represents a register file containing integer, floating&#45;point, and vector registers." alt="" coords="363,5,461,31"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="416,44,418,93,413,93,411,45"/>
+<area shape="rect" id="Node000006" href="$classalu_1_1Alu.html" title="The alu class is responsible for performing arithmetic and logic operations." alt="" coords="486,5,557,31"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="512,45,491,71,471,85,451,96,448,91,469,81,487,67,508,42"/>
+<area shape="rect" id="Node000007" href="$classRVSSControlUnit.html" title=" " alt="" coords="523,93,653,119"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="591,133,591,181,585,181,585,133"/>
+<area shape="rect" id="Node000008" href="$classControlUnit.html" title="The ControlUnit class is the base class for the control unit of the CPU." alt="" coords="581,5,677,31"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="620,44,596,94,591,92,615,42"/>
+<area shape="rect" id="Node000009" href="$structStepDelta.html" title=" " alt="" coords="678,93,765,119"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="709,132,684,159,656,175,628,186,626,181,654,170,681,155,705,129"/>
 </map>

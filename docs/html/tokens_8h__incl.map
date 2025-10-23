@@ -1,4 +1,5 @@
 <map id="include/assembler/tokens.h" name="include/assembler/tokens.h">
-<area shape="rect" id="node1" title="Contains the definition of the TokenType enum and the Token struct." alt="" coords="5,5,205,32"/>
-<area shape="rect" id="node2" title=" " alt="" coords="76,80,135,107"/>
+<area shape="rect" id="Node000001" title="Contains the definition of the TokenType enum and the Token struct." alt="" coords="5,5,205,31"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="76,79,135,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="108,31,108,65,103,65,103,31"/>
 </map>

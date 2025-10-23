@@ -1,0 +1,131 @@
+\doxysection{cache Namespace Reference}
+\hypertarget{namespacecache}{}\label{namespacecache}\index{cache@{cache}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classcache_1_1Cache}{Cache}}
+\item 
+struct \mbox{\hyperlink{structcache_1_1CacheConfig}{Cache\+Config}}
+\item 
+struct \mbox{\hyperlink{structcache_1_1CacheLine}{Cache\+Line}}
+\item 
+struct \mbox{\hyperlink{structcache_1_1CacheSet}{Cache\+Set}}
+\item 
+struct \mbox{\hyperlink{structcache_1_1CacheStats}{Cache\+Stats}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum class \mbox{\hyperlink{namespacecache_afdbade0aa5657d2124a87a5dbc578c8c}{Replacement\+Policy}} \{ \mbox{\hyperlink{namespacecache_afdbade0aa5657d2124a87a5dbc578c8ca875ecb34f6d21d13d4b9fd4980a8b5af}{LRU}}
+, \mbox{\hyperlink{namespacecache_afdbade0aa5657d2124a87a5dbc578c8cac589858dbe1d06c46544266ae4cd2c6f}{FIFO}}
+, \mbox{\hyperlink{namespacecache_afdbade0aa5657d2124a87a5dbc578c8ca64663f4646781c9c0110838b905daa23}{Random}}
+ \}
+\item 
+enum class \mbox{\hyperlink{namespacecache_ae31cc2b6d2558063b5cbcf25e728033b}{Cache\+Type}} \{ \mbox{\hyperlink{namespacecache_ae31cc2b6d2558063b5cbcf25e728033bac742c5a36b6307267bb709355feb2c41}{Instruction}}
+, \mbox{\hyperlink{namespacecache_ae31cc2b6d2558063b5cbcf25e728033baf6068daa29dbb05a7ead1e3b5a48bbee}{Data}}
+ \}
+\item 
+enum class \mbox{\hyperlink{namespacecache_a528c5a7abaa3626760c8a7d9fde3504a}{Cache\+Line\+State}} \{ \mbox{\hyperlink{namespacecache_a528c5a7abaa3626760c8a7d9fde3504aa3ac705f2acd51a4613f9188c05c91d0d}{Valid}}
+, \mbox{\hyperlink{namespacecache_a528c5a7abaa3626760c8a7d9fde3504aa4bbb8f967da6d1a610596d7257179c2b}{Invalid}}
+, \mbox{\hyperlink{namespacecache_a528c5a7abaa3626760c8a7d9fde3504aa99feffc57dae9a01652065178fae5b19}{Dirty}}
+ \}
+\item 
+enum class \mbox{\hyperlink{namespacecache_adcc53b3341665657755dcce49e18bff1}{Write\+Hit\+Policy}} \{ \mbox{\hyperlink{namespacecache_adcc53b3341665657755dcce49e18bff1aacb7820573f20d69befb56e41f440549}{Write\+Through}}
+, \mbox{\hyperlink{namespacecache_adcc53b3341665657755dcce49e18bff1adf8e90f657c55cab67bfd1f1b91ba573}{Write\+Back}}
+ \}
+\item 
+enum class \mbox{\hyperlink{namespacecache_a96693233da29e228d4c68f157eecc765}{Write\+Miss\+Policy}} \{ \mbox{\hyperlink{namespacecache_a96693233da29e228d4c68f157eecc765aed392887039a647270157cc450df5caa}{No\+Write\+Allocate}}
+, \mbox{\hyperlink{namespacecache_a96693233da29e228d4c68f157eecc765a1a6b4e0b6b341b150140eb67e627f3ad}{Write\+Allocate}}
+ \}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{namespacecache_a528c5a7abaa3626760c8a7d9fde3504a}\label{namespacecache_a528c5a7abaa3626760c8a7d9fde3504a} 
+\index{cache@{cache}!CacheLineState@{CacheLineState}}
+\index{CacheLineState@{CacheLineState}!cache@{cache}}
+\doxysubsubsection{\texorpdfstring{CacheLineState}{CacheLineState}}
+{\footnotesize\ttfamily enum class \mbox{\hyperlink{namespacecache_a528c5a7abaa3626760c8a7d9fde3504a}{cache\+::\+Cache\+Line\+State}}\hspace{0.3cm}{\ttfamily [strong]}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Valid@{Valid}!cache@{cache}}\index{cache@{cache}!Valid@{Valid}}}\Hypertarget{namespacecache_a528c5a7abaa3626760c8a7d9fde3504aa3ac705f2acd51a4613f9188c05c91d0d}\label{namespacecache_a528c5a7abaa3626760c8a7d9fde3504aa3ac705f2acd51a4613f9188c05c91d0d} 
+Valid&\doxylink{classcache_1_1Cache}{Cache} line is valid. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Invalid@{Invalid}!cache@{cache}}\index{cache@{cache}!Invalid@{Invalid}}}\Hypertarget{namespacecache_a528c5a7abaa3626760c8a7d9fde3504aa4bbb8f967da6d1a610596d7257179c2b}\label{namespacecache_a528c5a7abaa3626760c8a7d9fde3504aa4bbb8f967da6d1a610596d7257179c2b} 
+Invalid&\doxylink{classcache_1_1Cache}{Cache} line is invalid. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Dirty@{Dirty}!cache@{cache}}\index{cache@{cache}!Dirty@{Dirty}}}\Hypertarget{namespacecache_a528c5a7abaa3626760c8a7d9fde3504aa99feffc57dae9a01652065178fae5b19}\label{namespacecache_a528c5a7abaa3626760c8a7d9fde3504aa99feffc57dae9a01652065178fae5b19} 
+Dirty&\doxylink{classcache_1_1Cache}{Cache} line has been modified. \\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{namespacecache_ae31cc2b6d2558063b5cbcf25e728033b}\label{namespacecache_ae31cc2b6d2558063b5cbcf25e728033b} 
+\index{cache@{cache}!CacheType@{CacheType}}
+\index{CacheType@{CacheType}!cache@{cache}}
+\doxysubsubsection{\texorpdfstring{CacheType}{CacheType}}
+{\footnotesize\ttfamily enum class \mbox{\hyperlink{namespacecache_ae31cc2b6d2558063b5cbcf25e728033b}{cache\+::\+Cache\+Type}}\hspace{0.3cm}{\ttfamily [strong]}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Instruction@{Instruction}!cache@{cache}}\index{cache@{cache}!Instruction@{Instruction}}}\Hypertarget{namespacecache_ae31cc2b6d2558063b5cbcf25e728033bac742c5a36b6307267bb709355feb2c41}\label{namespacecache_ae31cc2b6d2558063b5cbcf25e728033bac742c5a36b6307267bb709355feb2c41} 
+Instruction&\doxylink{classcache_1_1Cache}{Cache} for instructions. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Data@{Data}!cache@{cache}}\index{cache@{cache}!Data@{Data}}}\Hypertarget{namespacecache_ae31cc2b6d2558063b5cbcf25e728033baf6068daa29dbb05a7ead1e3b5a48bbee}\label{namespacecache_ae31cc2b6d2558063b5cbcf25e728033baf6068daa29dbb05a7ead1e3b5a48bbee} 
+Data&\doxylink{classcache_1_1Cache}{Cache} for data. \\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{namespacecache_afdbade0aa5657d2124a87a5dbc578c8c}\label{namespacecache_afdbade0aa5657d2124a87a5dbc578c8c} 
+\index{cache@{cache}!ReplacementPolicy@{ReplacementPolicy}}
+\index{ReplacementPolicy@{ReplacementPolicy}!cache@{cache}}
+\doxysubsubsection{\texorpdfstring{ReplacementPolicy}{ReplacementPolicy}}
+{\footnotesize\ttfamily enum class \mbox{\hyperlink{namespacecache_afdbade0aa5657d2124a87a5dbc578c8c}{cache\+::\+Replacement\+Policy}}\hspace{0.3cm}{\ttfamily [strong]}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{LRU@{LRU}!cache@{cache}}\index{cache@{cache}!LRU@{LRU}}}\Hypertarget{namespacecache_afdbade0aa5657d2124a87a5dbc578c8ca875ecb34f6d21d13d4b9fd4980a8b5af}\label{namespacecache_afdbade0aa5657d2124a87a5dbc578c8ca875ecb34f6d21d13d4b9fd4980a8b5af} 
+LRU&Least Recently Used. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FIFO@{FIFO}!cache@{cache}}\index{cache@{cache}!FIFO@{FIFO}}}\Hypertarget{namespacecache_afdbade0aa5657d2124a87a5dbc578c8cac589858dbe1d06c46544266ae4cd2c6f}\label{namespacecache_afdbade0aa5657d2124a87a5dbc578c8cac589858dbe1d06c46544266ae4cd2c6f} 
+FIFO&First In First Out. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Random@{Random}!cache@{cache}}\index{cache@{cache}!Random@{Random}}}\Hypertarget{namespacecache_afdbade0aa5657d2124a87a5dbc578c8ca64663f4646781c9c0110838b905daa23}\label{namespacecache_afdbade0aa5657d2124a87a5dbc578c8ca64663f4646781c9c0110838b905daa23} 
+Random&Random replacement. \\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{namespacecache_adcc53b3341665657755dcce49e18bff1}\label{namespacecache_adcc53b3341665657755dcce49e18bff1} 
+\index{cache@{cache}!WriteHitPolicy@{WriteHitPolicy}}
+\index{WriteHitPolicy@{WriteHitPolicy}!cache@{cache}}
+\doxysubsubsection{\texorpdfstring{WriteHitPolicy}{WriteHitPolicy}}
+{\footnotesize\ttfamily enum class \mbox{\hyperlink{namespacecache_adcc53b3341665657755dcce49e18bff1}{cache\+::\+Write\+Hit\+Policy}}\hspace{0.3cm}{\ttfamily [strong]}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{WriteThrough@{WriteThrough}!cache@{cache}}\index{cache@{cache}!WriteThrough@{WriteThrough}}}\Hypertarget{namespacecache_adcc53b3341665657755dcce49e18bff1aacb7820573f20d69befb56e41f440549}\label{namespacecache_adcc53b3341665657755dcce49e18bff1aacb7820573f20d69befb56e41f440549} 
+Write\+Through&Write through policy. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{WriteBack@{WriteBack}!cache@{cache}}\index{cache@{cache}!WriteBack@{WriteBack}}}\Hypertarget{namespacecache_adcc53b3341665657755dcce49e18bff1adf8e90f657c55cab67bfd1f1b91ba573}\label{namespacecache_adcc53b3341665657755dcce49e18bff1adf8e90f657c55cab67bfd1f1b91ba573} 
+Write\+Back&Write back policy. \\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{namespacecache_a96693233da29e228d4c68f157eecc765}\label{namespacecache_a96693233da29e228d4c68f157eecc765} 
+\index{cache@{cache}!WriteMissPolicy@{WriteMissPolicy}}
+\index{WriteMissPolicy@{WriteMissPolicy}!cache@{cache}}
+\doxysubsubsection{\texorpdfstring{WriteMissPolicy}{WriteMissPolicy}}
+{\footnotesize\ttfamily enum class \mbox{\hyperlink{namespacecache_a96693233da29e228d4c68f157eecc765}{cache\+::\+Write\+Miss\+Policy}}\hspace{0.3cm}{\ttfamily [strong]}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{NoWriteAllocate@{NoWriteAllocate}!cache@{cache}}\index{cache@{cache}!NoWriteAllocate@{NoWriteAllocate}}}\Hypertarget{namespacecache_a96693233da29e228d4c68f157eecc765aed392887039a647270157cc450df5caa}\label{namespacecache_a96693233da29e228d4c68f157eecc765aed392887039a647270157cc450df5caa} 
+No\+Write\+Allocate&Do not allocate on write miss. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{WriteAllocate@{WriteAllocate}!cache@{cache}}\index{cache@{cache}!WriteAllocate@{WriteAllocate}}}\Hypertarget{namespacecache_a96693233da29e228d4c68f157eecc765a1a6b4e0b6b341b150140eb67e627f3ad}\label{namespacecache_a96693233da29e228d4c68f157eecc765a1a6b4e0b6b341b150140eb67e627f3ad} 
+Write\+Allocate&Allocate on write miss. \\
+\hline
+
+\end{DoxyEnumFields}

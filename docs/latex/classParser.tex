@@ -1,20 +1,20 @@
-\hypertarget{classParser}{}\doxysection{Parser Class Reference}
-\label{classParser}\index{Parser@{Parser}}
+\doxysection{Parser Class Reference}
+\hypertarget{classParser}{}\label{classParser}\index{Parser@{Parser}}
 
 
-The \mbox{\hyperlink{classParser}{Parser}} class is responsible for parsing tokens and generating intermediate code and symbol tables.  
+The \doxylink{classParser}{Parser} class is responsible for parsing tokens and generating intermediate code and symbol tables.  
 
 
 
 
 {\ttfamily \#include $<$parser.\+h$>$}
 
-\doxysubsection*{Public Member Functions}
+\doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{classParser_a8a9cd855b28f41749b42a028c4aa370a}{Parser}} (std\+::string filename, const std\+::vector$<$ \mbox{\hyperlink{structToken}{Token}} $>$ \&tokens)
-\begin{DoxyCompactList}\small\item\em Constructs a \mbox{\hyperlink{classParser}{Parser}} instance. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classParser_a95734193a58a199b4c6d820a6a730c42}{$\sim$\+Parser}} ()=default
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{classParser}{Parser} instance. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classParser_a95734193a58a199b4c6d820a6a730c42}{\texorpdfstring{$\sim$}{\string~}\+Parser}} ()=default
 \item 
 void \mbox{\hyperlink{classParser_ad941a297e9f6abb39271090806a6be33}{parse}} ()
 \begin{DoxyCompactList}\small\item\em Parses the tokens to generate intermediate code and symbol tables. \end{DoxyCompactList}\item 
@@ -41,10 +41,10 @@ void \mbox{\hyperlink{classParser_aca38c04f09c91ee2323f9da27f06126d}{print\+Inte
 
 
 \doxysubsection{Detailed Description}
-The \mbox{\hyperlink{classParser}{Parser}} class is responsible for parsing tokens and generating intermediate code and symbol tables. 
+The \doxylink{classParser}{Parser} class is responsible for parsing tokens and generating intermediate code and symbol tables. 
 
 \doxysubsection{Constructor \& Destructor Documentation}
-\mbox{\Hypertarget{classParser_a8a9cd855b28f41749b42a028c4aa370a}\label{classParser_a8a9cd855b28f41749b42a028c4aa370a}} 
+\Hypertarget{classParser_a8a9cd855b28f41749b42a028c4aa370a}\label{classParser_a8a9cd855b28f41749b42a028c4aa370a} 
 \index{Parser@{Parser}!Parser@{Parser}}
 \index{Parser@{Parser}!Parser@{Parser}}
 \doxysubsubsection{\texorpdfstring{Parser()}{Parser()}}
@@ -52,7 +52,7 @@ The \mbox{\hyperlink{classParser}{Parser}} class is responsible for parsing toke
 
 
 
-Constructs a \mbox{\hyperlink{classParser}{Parser}} instance. 
+Constructs a \doxylink{classParser}{Parser} instance. 
 
 
 \begin{DoxyParams}{Parameters}
@@ -61,16 +61,16 @@ Constructs a \mbox{\hyperlink{classParser}{Parser}} instance.
 {\em tokens} & The list of tokens to parse. \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{classParser_a95734193a58a199b4c6d820a6a730c42}\label{classParser_a95734193a58a199b4c6d820a6a730c42}} 
-\index{Parser@{Parser}!````~Parser@{$\sim$Parser}}
-\index{````~Parser@{$\sim$Parser}!Parser@{Parser}}
-\doxysubsubsection{\texorpdfstring{$\sim$Parser()}{~Parser()}}
-{\footnotesize\ttfamily Parser\+::$\sim$\+Parser (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+\Hypertarget{classParser_a95734193a58a199b4c6d820a6a730c42}\label{classParser_a95734193a58a199b4c6d820a6a730c42} 
+\index{Parser@{Parser}!````~Parser@{\texorpdfstring{$\sim$}{\string~}Parser}}
+\index{````~Parser@{\texorpdfstring{$\sim$}{\string~}Parser}!Parser@{Parser}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Parser()}{\string~Parser()}}
+{\footnotesize\ttfamily Parser\+::\texorpdfstring{$\sim$}{\string~}\+Parser (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
 
 
 
 \doxysubsection{Member Function Documentation}
-\mbox{\Hypertarget{classParser_a2a9e753b21da475990d24d6cc76df432}\label{classParser_a2a9e753b21da475990d24d6cc76df432}} 
+\Hypertarget{classParser_a2a9e753b21da475990d24d6cc76df432}\label{classParser_a2a9e753b21da475990d24d6cc76df432} 
 \index{Parser@{Parser}!getDataBuffer@{getDataBuffer}}
 \index{getDataBuffer@{getDataBuffer}!Parser@{Parser}}
 \doxysubsubsection{\texorpdfstring{getDataBuffer()}{getDataBuffer()}}
@@ -83,13 +83,13 @@ Returns the data buffer.
 \begin{DoxyReturn}{Returns}
 A reference to the data buffer. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classParser_a77be2d371758afe4ce067b3bd73f5693}\label{classParser_a77be2d371758afe4ce067b3bd73f5693}} 
+\Hypertarget{classParser_a77be2d371758afe4ce067b3bd73f5693}\label{classParser_a77be2d371758afe4ce067b3bd73f5693} 
 \index{Parser@{Parser}!getErrorCount@{getErrorCount}}
 \index{getErrorCount@{getErrorCount}!Parser@{Parser}}
 \doxysubsubsection{\texorpdfstring{getErrorCount()}{getErrorCount()}}
 {\footnotesize\ttfamily unsigned int Parser\+::get\+Error\+Count (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
 
-\mbox{\Hypertarget{classParser_a3013f3bc6bb73bffe54413d7d6e24d3c}\label{classParser_a3013f3bc6bb73bffe54413d7d6e24d3c}} 
+\Hypertarget{classParser_a3013f3bc6bb73bffe54413d7d6e24d3c}\label{classParser_a3013f3bc6bb73bffe54413d7d6e24d3c} 
 \index{Parser@{Parser}!getErrors@{getErrors}}
 \index{getErrors@{getErrors}!Parser@{Parser}}
 \doxysubsubsection{\texorpdfstring{getErrors()}{getErrors()}}
@@ -102,13 +102,13 @@ Returns the list of parse errors.
 \begin{DoxyReturn}{Returns}
 A const reference to the vector of parse errors. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classParser_ab87f4b382a805319397f0dc334cb6846}\label{classParser_ab87f4b382a805319397f0dc334cb6846}} 
+\Hypertarget{classParser_ab87f4b382a805319397f0dc334cb6846}\label{classParser_ab87f4b382a805319397f0dc334cb6846} 
 \index{Parser@{Parser}!getInstructionNumberLineNumberMapping@{getInstructionNumberLineNumberMapping}}
 \index{getInstructionNumberLineNumberMapping@{getInstructionNumberLineNumberMapping}!Parser@{Parser}}
 \doxysubsubsection{\texorpdfstring{getInstructionNumberLineNumberMapping()}{getInstructionNumberLineNumberMapping()}}
 {\footnotesize\ttfamily const std\+::map$<$ unsigned int, unsigned int $>$ \& Parser\+::get\+Instruction\+Number\+Line\+Number\+Mapping (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
 
-\mbox{\Hypertarget{classParser_ab107a7fe36c012612760c415b45ce30d}\label{classParser_ab107a7fe36c012612760c415b45ce30d}} 
+\Hypertarget{classParser_ab107a7fe36c012612760c415b45ce30d}\label{classParser_ab107a7fe36c012612760c415b45ce30d} 
 \index{Parser@{Parser}!getIntermediateCode@{getIntermediateCode}}
 \index{getIntermediateCode@{getIntermediateCode}!Parser@{Parser}}
 \doxysubsubsection{\texorpdfstring{getIntermediateCode()}{getIntermediateCode()}}
@@ -121,13 +121,13 @@ Returns the generated intermediate code.
 \begin{DoxyReturn}{Returns}
 A const reference to the intermediate code vector. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classParser_a55ac3e96e11c10a98adedfb0c7abdb70}\label{classParser_a55ac3e96e11c10a98adedfb0c7abdb70}} 
+\Hypertarget{classParser_a55ac3e96e11c10a98adedfb0c7abdb70}\label{classParser_a55ac3e96e11c10a98adedfb0c7abdb70} 
 \index{Parser@{Parser}!getSymbolTable@{getSymbolTable}}
 \index{getSymbolTable@{getSymbolTable}!Parser@{Parser}}
 \doxysubsubsection{\texorpdfstring{getSymbolTable()}{getSymbolTable()}}
 {\footnotesize\ttfamily const std\+::map$<$ std\+::string, \mbox{\hyperlink{structSymbolData}{Symbol\+Data}} $>$ \& Parser\+::get\+Symbol\+Table (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
 
-\mbox{\Hypertarget{classParser_ad941a297e9f6abb39271090806a6be33}\label{classParser_ad941a297e9f6abb39271090806a6be33}} 
+\Hypertarget{classParser_ad941a297e9f6abb39271090806a6be33}\label{classParser_ad941a297e9f6abb39271090806a6be33} 
 \index{Parser@{Parser}!parse@{parse}}
 \index{parse@{parse}!Parser@{Parser}}
 \doxysubsubsection{\texorpdfstring{parse()}{parse()}}
@@ -137,7 +137,7 @@ A const reference to the intermediate code vector.
 
 Parses the tokens to generate intermediate code and symbol tables. 
 
-\mbox{\Hypertarget{classParser_a7162a9d0b66118b676ab3b7a47b3b385}\label{classParser_a7162a9d0b66118b676ab3b7a47b3b385}} 
+\Hypertarget{classParser_a7162a9d0b66118b676ab3b7a47b3b385}\label{classParser_a7162a9d0b66118b676ab3b7a47b3b385} 
 \index{Parser@{Parser}!printDataBuffers@{printDataBuffers}}
 \index{printDataBuffers@{printDataBuffers}!Parser@{Parser}}
 \doxysubsubsection{\texorpdfstring{printDataBuffers()}{printDataBuffers()}}
@@ -147,7 +147,7 @@ Parses the tokens to generate intermediate code and symbol tables.
 
 Prints the data buffers to the console. 
 
-\mbox{\Hypertarget{classParser_a1ffb6b698c06e6f28ebebcbb84c3d839}\label{classParser_a1ffb6b698c06e6f28ebebcbb84c3d839}} 
+\Hypertarget{classParser_a1ffb6b698c06e6f28ebebcbb84c3d839}\label{classParser_a1ffb6b698c06e6f28ebebcbb84c3d839} 
 \index{Parser@{Parser}!printErrors@{printErrors}}
 \index{printErrors@{printErrors}!Parser@{Parser}}
 \doxysubsubsection{\texorpdfstring{printErrors()}{printErrors()}}
@@ -157,7 +157,7 @@ Prints the data buffers to the console.
 
 Prints the list of errors to the console. 
 
-\mbox{\Hypertarget{classParser_aca38c04f09c91ee2323f9da27f06126d}\label{classParser_aca38c04f09c91ee2323f9da27f06126d}} 
+\Hypertarget{classParser_aca38c04f09c91ee2323f9da27f06126d}\label{classParser_aca38c04f09c91ee2323f9da27f06126d} 
 \index{Parser@{Parser}!printIntermediateCode@{printIntermediateCode}}
 \index{printIntermediateCode@{printIntermediateCode}!Parser@{Parser}}
 \doxysubsubsection{\texorpdfstring{printIntermediateCode()}{printIntermediateCode()}}
@@ -167,7 +167,7 @@ Prints the list of errors to the console.
 
 Prints the intermediate code to the console. 
 
-\mbox{\Hypertarget{classParser_a0a98612e5aaa33a123ad4e6dc41ef615}\label{classParser_a0a98612e5aaa33a123ad4e6dc41ef615}} 
+\Hypertarget{classParser_a0a98612e5aaa33a123ad4e6dc41ef615}\label{classParser_a0a98612e5aaa33a123ad4e6dc41ef615} 
 \index{Parser@{Parser}!printSymbolTable@{printSymbolTable}}
 \index{printSymbolTable@{printSymbolTable}!Parser@{Parser}}
 \doxysubsubsection{\texorpdfstring{printSymbolTable()}{printSymbolTable()}}

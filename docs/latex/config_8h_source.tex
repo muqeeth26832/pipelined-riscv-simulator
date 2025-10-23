@@ -1,0 +1,201 @@
+\doxysection{config.\+h}
+\hypertarget{config_8h_source}{}\label{config_8h_source}\index{include/config.h@{include/config.h}}
+\mbox{\hyperlink{config_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#ifndef\ CONFIG\_H}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#define\ CONFIG\_H}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{globals_8h}{globals.h}}"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <stdexcept>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <cstdint>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <sstream>}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00021\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacevm__config}{vm\_config}}\ \{}
+\DoxyCodeLine{00022\ \textcolor{keyword}{enum\ class}\ \mbox{\hyperlink{namespacevm__config_aa4eeb50c28c404f656938f58b44562b5}{VmTypes}}\ \{}
+\DoxyCodeLine{00023\ \ \ \mbox{\hyperlink{namespacevm__config_aa4eeb50c28c404f656938f58b44562b5a2c4a0af0ffe5afecf34ef3401408722c}{SINGLE\_STAGE}},}
+\DoxyCodeLine{00024\ \ \ \mbox{\hyperlink{namespacevm__config_aa4eeb50c28c404f656938f58b44562b5ad300fd0998c340710fb890f72de460b1}{MULTI\_STAGE}}}
+\DoxyCodeLine{00025\ \};}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structvm__config_1_1VmConfig}{VmConfig}}\ \{}
+\DoxyCodeLine{00028\ \ \ \mbox{\hyperlink{namespacevm__config_aa4eeb50c28c404f656938f58b44562b5}{VmTypes}}\ \mbox{\hyperlink{structvm__config_1_1VmConfig_ae04b975893d08f77ca2938aeda35cc77}{vm\_type}}\ =\ \mbox{\hyperlink{namespacevm__config_aa4eeb50c28c404f656938f58b44562b5a2c4a0af0ffe5afecf34ef3401408722c}{VmTypes::SINGLE\_STAGE}};}
+\DoxyCodeLine{00029\ \ \ uint64\_t\ \mbox{\hyperlink{structvm__config_1_1VmConfig_a9438d71dc02eca394d21d60da75d50f9}{run\_step\_delay}}\ =\ 300;}
+\DoxyCodeLine{00030\ \ \ uint64\_t\ \mbox{\hyperlink{structvm__config_1_1VmConfig_aba5da01f8429f6ba898d6f7bfa3bf7e7}{memory\_size}}\ =\ 0xffffffffffffffff;\ \textcolor{comment}{//\ 64-\/bit\ address\ space}}
+\DoxyCodeLine{00031\ \ \ uint64\_t\ \mbox{\hyperlink{structvm__config_1_1VmConfig_abefd6f4d54119fc2ce2c9c34c1b0466d}{memory\_block\_size}}\ =\ 1024;\ \textcolor{comment}{//\ 1\ KB\ blocks}}
+\DoxyCodeLine{00032\ \ \ uint64\_t\ \mbox{\hyperlink{structvm__config_1_1VmConfig_a46ea0d10309513ccb96d323625f80e3a}{data\_section\_start}}\ =\ 0x10000000;\ \textcolor{comment}{//\ Default\ start\ address\ for\ data\ section}}
+\DoxyCodeLine{00033\ \ \ uint64\_t\ \mbox{\hyperlink{structvm__config_1_1VmConfig_ab53ccaee75a3aa6e97ee56a7d5c7bbf3}{text\_section\_start}}\ =\ 0x0;\ \textcolor{comment}{//\ Default\ start\ address\ for\ text\ section}}
+\DoxyCodeLine{00034\ \ \ uint64\_t\ \mbox{\hyperlink{structvm__config_1_1VmConfig_a219e9e3f1ddeb1535d0eed15ec59895f}{bss\_section\_start}}\ =\ 0x11000000;\ \textcolor{comment}{//\ Default\ start\ address\ for\ BSS\ section}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ uint64\_t\ \mbox{\hyperlink{structvm__config_1_1VmConfig_ac0d144a1121e7463a694c58a6c2d12ca}{instruction\_execution\_limit}}\ =\ 100;}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structvm__config_1_1VmConfig_aae91f1d83ed1b2af2435f6d4a8ec343a}{m\_extension\_enabled}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00039\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structvm__config_1_1VmConfig_a68bd987c508ae6f5b47bd9cff87c1daf}{f\_extension\_enabled}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00040\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structvm__config_1_1VmConfig_a180f3d1f68cc8ee848e837efa1def3f5}{d\_extension\_enabled}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{structvm__config_1_1VmConfig_abb8a00c8652daed6dfa60eba3c042f68}{setVmType}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespacevm__config_aa4eeb50c28c404f656938f58b44562b5}{VmTypes}}\ \&type)\ \{}
+\DoxyCodeLine{00043\ \ \ \ \ \mbox{\hyperlink{structvm__config_1_1VmConfig_ae04b975893d08f77ca2938aeda35cc77}{vm\_type}}\ =\ type;}
+\DoxyCodeLine{00044\ \ \ \}}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \mbox{\hyperlink{namespacevm__config_aa4eeb50c28c404f656938f58b44562b5}{VmTypes}}\ \mbox{\hyperlink{structvm__config_1_1VmConfig_aebb2b9192cf97c6c5f996c355fe52e5d}{getVmType}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structvm__config_1_1VmConfig_ae04b975893d08f77ca2938aeda35cc77}{vm\_type}};}
+\DoxyCodeLine{00048\ \ \ \}}
+\DoxyCodeLine{00049\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{structvm__config_1_1VmConfig_a2de4c51b360792be181645482b79d6e1}{setRunStepDelay}}(uint64\_t\ delay)\ \{}
+\DoxyCodeLine{00050\ \ \ \ \ \mbox{\hyperlink{structvm__config_1_1VmConfig_a9438d71dc02eca394d21d60da75d50f9}{run\_step\_delay}}\ =\ delay;}
+\DoxyCodeLine{00051\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Run\ step\ delay\ set\ to:\ "{}}\ <<\ \mbox{\hyperlink{structvm__config_1_1VmConfig_a9438d71dc02eca394d21d60da75d50f9}{run\_step\_delay}}\ <<\ \textcolor{stringliteral}{"{}\ ms"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00052\ \ \ \}}
+\DoxyCodeLine{00053\ \ \ uint64\_t\ \mbox{\hyperlink{structvm__config_1_1VmConfig_a1362515d9135ef841481091006ba0200}{getRunStepDelay}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structvm__config_1_1VmConfig_a9438d71dc02eca394d21d60da75d50f9}{run\_step\_delay}};}
+\DoxyCodeLine{00055\ \ \ \}}
+\DoxyCodeLine{00056\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{structvm__config_1_1VmConfig_a8bc0665349553003a77e7ffb7fc695ac}{setMemorySize}}(uint64\_t\ size)\ \{}
+\DoxyCodeLine{00057\ \ \ \ \ \mbox{\hyperlink{structvm__config_1_1VmConfig_aba5da01f8429f6ba898d6f7bfa3bf7e7}{memory\_size}}\ =\ size;}
+\DoxyCodeLine{00058\ \ \ \}}
+\DoxyCodeLine{00059\ \ \ uint64\_t\ \mbox{\hyperlink{structvm__config_1_1VmConfig_a659405ba2c6bba936a3b9aeb83048624}{getMemorySize}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structvm__config_1_1VmConfig_aba5da01f8429f6ba898d6f7bfa3bf7e7}{memory\_size}};}
+\DoxyCodeLine{00061\ \ \ \}}
+\DoxyCodeLine{00062\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{structvm__config_1_1VmConfig_a44f1922ab068f74985fde26a0900f071}{setMemoryBlockSize}}(uint64\_t\ size)\ \{}
+\DoxyCodeLine{00063\ \ \ \ \ \mbox{\hyperlink{structvm__config_1_1VmConfig_abefd6f4d54119fc2ce2c9c34c1b0466d}{memory\_block\_size}}\ =\ size;}
+\DoxyCodeLine{00064\ \ \ \}}
+\DoxyCodeLine{00065\ \ \ uint64\_t\ \mbox{\hyperlink{structvm__config_1_1VmConfig_a2dcb5a8dd0a4ae911fea084c2f300ada}{getMemoryBlockSize}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structvm__config_1_1VmConfig_abefd6f4d54119fc2ce2c9c34c1b0466d}{memory\_block\_size}};}
+\DoxyCodeLine{00067\ \ \ \}}
+\DoxyCodeLine{00068\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{structvm__config_1_1VmConfig_a348dde0e252bab4136c92f29c8eb1a19}{setDataSectionStart}}(uint64\_t\ start)\ \{}
+\DoxyCodeLine{00069\ \ \ \ \ \mbox{\hyperlink{structvm__config_1_1VmConfig_a46ea0d10309513ccb96d323625f80e3a}{data\_section\_start}}\ =\ start;}
+\DoxyCodeLine{00070\ \ \ \}}
+\DoxyCodeLine{00071\ \ \ uint64\_t\ \mbox{\hyperlink{structvm__config_1_1VmConfig_ad0e10a53f879c0e238cad84910424999}{getDataSectionStart}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structvm__config_1_1VmConfig_a46ea0d10309513ccb96d323625f80e3a}{data\_section\_start}};}
+\DoxyCodeLine{00073\ \ \ \}}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{structvm__config_1_1VmConfig_af406d40769fc5eac2781670afd7dfe1b}{setTextSectionStart}}(uint64\_t\ start)\ \{}
+\DoxyCodeLine{00076\ \ \ \ \ \mbox{\hyperlink{structvm__config_1_1VmConfig_ab53ccaee75a3aa6e97ee56a7d5c7bbf3}{text\_section\_start}}\ =\ start;}
+\DoxyCodeLine{00077\ \ \ \}}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \ \ uint64\_t\ \mbox{\hyperlink{structvm__config_1_1VmConfig_a8957ed6ce1a78c46440ddd4a6a59558b}{getTextSectionStart}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structvm__config_1_1VmConfig_ab53ccaee75a3aa6e97ee56a7d5c7bbf3}{text\_section\_start}};}
+\DoxyCodeLine{00081\ \ \ \}}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{structvm__config_1_1VmConfig_aa81411167ed2848f96178becea4f8a03}{setBssSectionStart}}(uint64\_t\ start)\ \{}
+\DoxyCodeLine{00084\ \ \ \ \ \mbox{\hyperlink{structvm__config_1_1VmConfig_a219e9e3f1ddeb1535d0eed15ec59895f}{bss\_section\_start}}\ =\ start;}
+\DoxyCodeLine{00085\ \ \ \}}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \ \ uint64\_t\ \mbox{\hyperlink{structvm__config_1_1VmConfig_a0e7ae7889bdc62a23cbc66fad14e35f2}{getBssSectionStart}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structvm__config_1_1VmConfig_a219e9e3f1ddeb1535d0eed15ec59895f}{bss\_section\_start}};}
+\DoxyCodeLine{00089\ \ \ \}}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{structvm__config_1_1VmConfig_aa5affaa167a74613d7b51825537ab7e1}{setInstructionExecutionLimit}}(uint64\_t\ limit)\ \{}
+\DoxyCodeLine{00092\ \ \ \ \ \mbox{\hyperlink{structvm__config_1_1VmConfig_ac0d144a1121e7463a694c58a6c2d12ca}{instruction\_execution\_limit}}\ =\ limit;}
+\DoxyCodeLine{00093\ \ \ \}}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \ \ uint64\_t\ \mbox{\hyperlink{structvm__config_1_1VmConfig_a3341fe1ac073ccc13a7b9e9103994fc6}{getInstructionExecutionLimit}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structvm__config_1_1VmConfig_ac0d144a1121e7463a694c58a6c2d12ca}{instruction\_execution\_limit}};}
+\DoxyCodeLine{00097\ \ \ \}}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{structvm__config_1_1VmConfig_af3674e7d55f82d1f29d1986575e4816e}{setMExtensionEnabled}}(\textcolor{keywordtype}{bool}\ enabled)\ \{}
+\DoxyCodeLine{00100\ \ \ \ \ \mbox{\hyperlink{structvm__config_1_1VmConfig_aae91f1d83ed1b2af2435f6d4a8ec343a}{m\_extension\_enabled}}\ =\ enabled;}
+\DoxyCodeLine{00101\ \ \ \}}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structvm__config_1_1VmConfig_ab1035ae84e70eb89712b0788673a32f7}{getMExtensionEnabled}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structvm__config_1_1VmConfig_aae91f1d83ed1b2af2435f6d4a8ec343a}{m\_extension\_enabled}};}
+\DoxyCodeLine{00105\ \ \ \}}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{structvm__config_1_1VmConfig_a4806e401e3052fbfe78b6a3b55775b32}{setFExtensionEnabled}}(\textcolor{keywordtype}{bool}\ enabled)\ \{}
+\DoxyCodeLine{00108\ \ \ \ \ \mbox{\hyperlink{structvm__config_1_1VmConfig_a68bd987c508ae6f5b47bd9cff87c1daf}{f\_extension\_enabled}}\ =\ enabled;}
+\DoxyCodeLine{00109\ \ \ \}}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structvm__config_1_1VmConfig_a502220057b8677707eed567cb7320c0d}{getFExtensionEnabled}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structvm__config_1_1VmConfig_a68bd987c508ae6f5b47bd9cff87c1daf}{f\_extension\_enabled}};}
+\DoxyCodeLine{00113\ \ \ \}}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{structvm__config_1_1VmConfig_ae14743af1c84b866787d10f90a7da797}{setDExtensionEnabled}}(\textcolor{keywordtype}{bool}\ enabled)\ \{}
+\DoxyCodeLine{00116\ \ \ \ \ \mbox{\hyperlink{structvm__config_1_1VmConfig_a180f3d1f68cc8ee848e837efa1def3f5}{d\_extension\_enabled}}\ =\ enabled;}
+\DoxyCodeLine{00117\ \ \ \}}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structvm__config_1_1VmConfig_a8948f3a0ddc738450f732b86e5f32ff9}{getDExtensionEnabled}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00120\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structvm__config_1_1VmConfig_a180f3d1f68cc8ee848e837efa1def3f5}{d\_extension\_enabled}};}
+\DoxyCodeLine{00121\ \ \ \}}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00123\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{structvm__config_1_1VmConfig_a294ab0dd2f427bdcb05292a9d6beb555}{modifyConfig}}(\textcolor{keyword}{const}\ std::string\ \&section,\ \textcolor{keyword}{const}\ std::string\ \&key,\ \textcolor{keyword}{const}\ std::string\ \&value)\ \{}
+\DoxyCodeLine{00124\ \ \ \ \ \textcolor{keywordflow}{if}\ (section\ ==\ \textcolor{stringliteral}{"{}Execution"{}})\ \{}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (key\ ==\ \textcolor{stringliteral}{"{}processor\_type"{}})\ \{}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (value\ ==\ \textcolor{stringliteral}{"{}single\_stage"{}})\ \{}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structvm__config_1_1VmConfig_abb8a00c8652daed6dfa60eba3c042f68}{setVmType}}(\mbox{\hyperlink{namespacevm__config_aa4eeb50c28c404f656938f58b44562b5a2c4a0af0ffe5afecf34ef3401408722c}{VmTypes::SINGLE\_STAGE}});}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (value\ ==\ \textcolor{stringliteral}{"{}multi\_stage"{}})\ \{}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structvm__config_1_1VmConfig_abb8a00c8652daed6dfa60eba3c042f68}{setVmType}}(\mbox{\hyperlink{namespacevm__config_aa4eeb50c28c404f656938f58b44562b5ad300fd0998c340710fb890f72de460b1}{VmTypes::MULTI\_STAGE}});}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::invalid\_argument(\textcolor{stringliteral}{"{}Unknown\ VM\ type:\ "{}}\ +\ value);}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (key\ ==\ \textcolor{stringliteral}{"{}run\_step\_delay"{}})\ \{}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structvm__config_1_1VmConfig_a2de4c51b360792be181645482b79d6e1}{setRunStepDelay}}(std::stoull(value));}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (key\ ==\ \textcolor{stringliteral}{"{}instruction\_execution\_limit"{}})\ \{}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structvm__config_1_1VmConfig_aa5affaa167a74613d7b51825537ab7e1}{setInstructionExecutionLimit}}(std::stoull(value));}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ }
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::invalid\_argument(\textcolor{stringliteral}{"{}Unknown\ key:\ "{}}\ +\ key);}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00142\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (section\ ==\ \textcolor{stringliteral}{"{}Memory"{}})\ \{}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (key\ ==\ \textcolor{stringliteral}{"{}memory\_size"{}})\ \{}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structvm__config_1_1VmConfig_a8bc0665349553003a77e7ffb7fc695ac}{setMemorySize}}(std::stoull(value));}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (key\ ==\ \textcolor{stringliteral}{"{}memory\_block\_size"{}})\ \{}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structvm__config_1_1VmConfig_a44f1922ab068f74985fde26a0900f071}{setMemoryBlockSize}}(std::stoull(value));}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (key\ ==\ \textcolor{stringliteral}{"{}data\_section\_start"{}})\ \{}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structvm__config_1_1VmConfig_a348dde0e252bab4136c92f29c8eb1a19}{setDataSectionStart}}(std::stoull(value,\ \textcolor{keyword}{nullptr},\ 16));}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (key\ ==\ \textcolor{stringliteral}{"{}text\_section\_start"{}})\ \{}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structvm__config_1_1VmConfig_af406d40769fc5eac2781670afd7dfe1b}{setTextSectionStart}}(std::stoull(value,\ \textcolor{keyword}{nullptr},\ 16));}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (key\ ==\ \textcolor{stringliteral}{"{}bss\_section\_start"{}})\ \{}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structvm__config_1_1VmConfig_aa81411167ed2848f96178becea4f8a03}{setBssSectionStart}}(std::stoull(value,\ \textcolor{keyword}{nullptr},\ 16));}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ }
+\DoxyCodeLine{00155\ \ \ \ \ \ \ }
+\DoxyCodeLine{00156\ \ \ \ \ \ \ }
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::invalid\_argument(\textcolor{stringliteral}{"{}Unknown\ key:\ "{}}\ +\ key);}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00160\ \ \ \ \ \}\ }
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00162\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (section\ ==\ \textcolor{stringliteral}{"{}Assembler"{}})\ \{}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (key\ ==\ \textcolor{stringliteral}{"{}m\_extension\_enabled"{}})\ \{}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (value\ ==\ \textcolor{stringliteral}{"{}true"{}})\ \{}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structvm__config_1_1VmConfig_af3674e7d55f82d1f29d1986575e4816e}{setMExtensionEnabled}}(\textcolor{keyword}{true});}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (value\ ==\ \textcolor{stringliteral}{"{}false"{}})\ \{}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structvm__config_1_1VmConfig_af3674e7d55f82d1f29d1986575e4816e}{setMExtensionEnabled}}(\textcolor{keyword}{false});}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::invalid\_argument(\textcolor{stringliteral}{"{}Unknown\ value:\ "{}}\ +\ value);}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (key\ ==\ \textcolor{stringliteral}{"{}f\_extension\_enabled"{}})\ \{}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (value\ ==\ \textcolor{stringliteral}{"{}true"{}})\ \{}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structvm__config_1_1VmConfig_a4806e401e3052fbfe78b6a3b55775b32}{setFExtensionEnabled}}(\textcolor{keyword}{true});}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (value\ ==\ \textcolor{stringliteral}{"{}false"{}})\ \{}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structvm__config_1_1VmConfig_a4806e401e3052fbfe78b6a3b55775b32}{setFExtensionEnabled}}(\textcolor{keyword}{false});\ \ }
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::invalid\_argument(\textcolor{stringliteral}{"{}Unknown\ value:\ "{}}\ +\ value);}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (key\ ==\ \textcolor{stringliteral}{"{}d\_extension\_enabled"{}})\ \{}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (value\ ==\ \textcolor{stringliteral}{"{}true"{}})\ \{}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structvm__config_1_1VmConfig_ae14743af1c84b866787d10f90a7da797}{setDExtensionEnabled}}(\textcolor{keyword}{true});}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (value\ ==\ \textcolor{stringliteral}{"{}false"{}})\ \{}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structvm__config_1_1VmConfig_ae14743af1c84b866787d10f90a7da797}{setDExtensionEnabled}}(\textcolor{keyword}{false});}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::invalid\_argument(\textcolor{stringliteral}{"{}Unknown\ value:\ "{}}\ +\ value);}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00188\ \ \ \ \ \}}
+\DoxyCodeLine{00189\ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::invalid\_argument(\textcolor{stringliteral}{"{}Unknown\ section:\ "{}}\ +\ section);}
+\DoxyCodeLine{00191\ \ \ \ \ \}}
+\DoxyCodeLine{00192\ \ \ \}}
+\DoxyCodeLine{00193\ }
+\DoxyCodeLine{00194\ }
+\DoxyCodeLine{00195\ \};}
+\DoxyCodeLine{00196\ }
+\DoxyCodeLine{00197\ \textcolor{keyword}{extern}\ VmConfig\ \mbox{\hyperlink{namespacevm__config_a69afb29f3814a3526848dae1dfbd07c4}{config}};}
+\DoxyCodeLine{00198\ }
+\DoxyCodeLine{00199\ }
+\DoxyCodeLine{00200\ \}\ \textcolor{comment}{//\ namespace\ vm\_config}}
+\DoxyCodeLine{00201\ }
+\DoxyCodeLine{00202\ }
+\DoxyCodeLine{00203\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ CONFIG\_H}}
+
+\end{DoxyCode}

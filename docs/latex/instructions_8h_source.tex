@@ -1,0 +1,677 @@
+\doxysection{instructions.\+h}
+\hypertarget{instructions_8h_source}{}\label{instructions_8h_source}\index{include/common/instructions.h@{include/common/instructions.h}}
+\mbox{\hyperlink{instructions_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#ifndef\ INSTRUCTIONS\_H}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#define\ INSTRUCTIONS\_H}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <bitset>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <cstdint>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <unordered\_map>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <array>}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <type\_traits>}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceinstruction__set}{instruction\_set}}\ \{}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980}{Instruction}}\ \{}
+\DoxyCodeLine{00022\ \ \ \textcolor{comment}{//\ Utility\ categorical\ encodings}}
+\DoxyCodeLine{00023\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980ac9324857055d881d311d4db5425c2f5e}{kRtype}},\ }
+\DoxyCodeLine{00024\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980aa914aafea39c6cfc12479e2ba50fad99}{kItype}},\ }
+\DoxyCodeLine{00025\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a7284ec4873dcea6be5634f00dedd8a52}{kStype}},\ }
+\DoxyCodeLine{00026\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980aebebf9621888579629cc0e7e9783c187}{kBtype}},\ }
+\DoxyCodeLine{00027\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a06bb27cce21a93d282cbfdac2a04d41a}{kJtype}},\ }
+\DoxyCodeLine{00028\ \ \ \textcolor{comment}{//\ kUtype,}}
+\DoxyCodeLine{00029\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980ac4c891124005659ba531b4aaf98552ac}{kLoadType}},}
+\DoxyCodeLine{00030\ \ \ }
+\DoxyCodeLine{00031\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980ae7bf121a6fa636cedc89ab18f0ed06ba}{kCsrType}},\ \textcolor{comment}{//\ CSR\ type\ instructions}}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \textcolor{comment}{//\ Real\ instructions}}
+\DoxyCodeLine{00035\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980ac438479d1cfd3633860f11c0f4303115}{kadd}},\ }
+\DoxyCodeLine{00036\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a5b786add7d030a9aed2977c105ca3118}{ksub}},\ }
+\DoxyCodeLine{00037\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980ad4ccbfce3b074e56364aa8c1a00523a0}{ksll}},\ }
+\DoxyCodeLine{00038\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980ac181debd6036554a0cab6b8166daca27}{kslt}},\ }
+\DoxyCodeLine{00039\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a91411c836e5bcea565532386876d50ba}{ksltu}},}
+\DoxyCodeLine{00040\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980ae374b3602c959c58697207d2277e0d61}{kxor}},\ }
+\DoxyCodeLine{00041\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a357a0b1dcebc27c1c56740ae03d468eb}{ksrl}},\ }
+\DoxyCodeLine{00042\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980ae676ed16d4fdfa03e4d41cf6859c79e4}{ksra}},\ }
+\DoxyCodeLine{00043\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a524f20086b2a5232211d49da424eb021}{kor}},\ }
+\DoxyCodeLine{00044\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a4552bc22d9b6788fbe32abcf431dc9f9}{kand}},}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a44592b4f64c6cd57399bfb5c0261c666}{kaddw}},\ }
+\DoxyCodeLine{00047\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a37638b0a0b0e0236bb6a9004987f95e7}{ksubw}},\ }
+\DoxyCodeLine{00048\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a06544675b45a6af0af02134928d72025}{ksllw}},\ }
+\DoxyCodeLine{00049\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a01ba80b7c5495187208e934353126074}{ksrlw}},\ }
+\DoxyCodeLine{00050\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a9553aaca416113c4c9c00e970a8cf6d7}{ksraw}},}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a6ac6b80ae93058357c7830519ec3ceaa}{kaddi}},\ }
+\DoxyCodeLine{00053\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980aded185724bfff21a7eda68db23ddc795}{kxori}},\ }
+\DoxyCodeLine{00054\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a5e20bcc67d5cbb2f3ee96e8b8d6c7ab0}{kori}},\ }
+\DoxyCodeLine{00055\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a670686b8964454b801b320f16a91ee99}{kandi}},\ }
+\DoxyCodeLine{00056\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a32657cbfaab74e8d8c5ff58cb22e4e96}{kslli}},\ }
+\DoxyCodeLine{00057\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a4d35627f6baeef7720b365595fb69ef4}{ksrli}},\ }
+\DoxyCodeLine{00058\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a67fde271abfcf549014a7d8f01098738}{ksrai}},\ }
+\DoxyCodeLine{00059\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a475efdbdaab15dd303f73220d4e86ba9}{kslti}},\ }
+\DoxyCodeLine{00060\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a08e7326bdad567235eb20abaf834e56d}{ksltiu}},}
+\DoxyCodeLine{00061\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a9cde7663ed1249cce6d1e0afbe369de0}{kaddiw}},\ }
+\DoxyCodeLine{00062\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980ae86c1cd33f01aeef4bc7ed248998f374}{kslliw}},\ }
+\DoxyCodeLine{00063\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980ab65f9c187165c8d913971e382b9cadf0}{ksrliw}},\ }
+\DoxyCodeLine{00064\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a63f50b08fb105193c7a2d1361a6837be}{ksraiw}},}
+\DoxyCodeLine{00065\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980af6b6404ace3b4c57d755ec88aa635fea}{klb}},\ }
+\DoxyCodeLine{00066\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a99b7b94ee44a515881afb97b90dfba18}{klh}},\ }
+\DoxyCodeLine{00067\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980ae7eedadc76e2f3ffb84e41928fa9b526}{klw}},\ }
+\DoxyCodeLine{00068\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a59ef541f710be4e720d504715e1a6831}{kld}},\ }
+\DoxyCodeLine{00069\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a8cc103c645169444fb92f1498ddb40bd}{klbu}},\ }
+\DoxyCodeLine{00070\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980af75a319cf81a7045437e0aec0a9fda90}{klhu}},\ }
+\DoxyCodeLine{00071\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980aab20867cd821fb0480f777f4b1c23ce2}{klwu}},}
+\DoxyCodeLine{00072\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a5e41b4d0cc520b5862c3e56361b4931e}{ksb}},\ }
+\DoxyCodeLine{00073\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a1348b458efe72d142bf10319789aae07}{ksh}},\ }
+\DoxyCodeLine{00074\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a880d60c4e270cf58189ca502ece5dcfa}{ksw}},\ }
+\DoxyCodeLine{00075\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980adbf30f970e8a51154664d0b82b9fe97a}{ksd}},}
+\DoxyCodeLine{00076\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980ac048b512e0f924a4c3ace218c5a3e27b}{kbeq}},\ }
+\DoxyCodeLine{00077\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980aa5e9cc9322b759b0374d8dd36f27041a}{kbne}},\ }
+\DoxyCodeLine{00078\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a43e53aeddfa15f33728b61d381c42ad6}{kblt}},\ }
+\DoxyCodeLine{00079\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980acbddca10947a185290ff79190dcfcd25}{kbge}},\ }
+\DoxyCodeLine{00080\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a3102a9776633f8b3670720982de9f37e}{kbltu}},\ }
+\DoxyCodeLine{00081\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a53dfe2f693012ace73cf256b50a1923e}{kbgeu}},}
+\DoxyCodeLine{00082\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a4491c1a9fe5d7619c6445662dd2fa216}{klui}},\ }
+\DoxyCodeLine{00083\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a77b4cbfe1f27d26152e6425cb065c173}{kauipc}},}
+\DoxyCodeLine{00084\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a57d72eeebdbd7fc5b902ce57cbbcb7e1}{kjal}},\ }
+\DoxyCodeLine{00085\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a8eee36ca620ee3fe4f282f3dd95bdbc8}{kjalr}},}
+\DoxyCodeLine{00086\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980ae6c81577a797484ad005e91795dbf453}{kecall}},}
+\DoxyCodeLine{00087\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980af608d8c6965a4e7d1a3e2f8a500f737f}{kcsrrw}},\ }
+\DoxyCodeLine{00088\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980af6d42226b73e98d032b77c095ba56f12}{kcsrrs}},\ }
+\DoxyCodeLine{00089\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a74970a380d6e0580c995f5b576c7c6df}{kcsrrc}},\ }
+\DoxyCodeLine{00090\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a4200803ca310ef52a61879b08c700e21}{kcsrrwi}},\ }
+\DoxyCodeLine{00091\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a295629c46e8bde46d1f8997a1f7c33e3}{kcsrrsi}},\ }
+\DoxyCodeLine{00092\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a5202c5af3b441759358f0cfbdb0db5a1}{kcsrrci}},}
+\DoxyCodeLine{00093\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980aef01abaad85a5f1460f89cbf6b15c890}{kla}},\ }
+\DoxyCodeLine{00094\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a23264b7f3feb968197677caa62f75100}{knop}},\ }
+\DoxyCodeLine{00095\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a546a14bc4215d0f9ee91be2ac4d7d0e7}{kli}},\ }
+\DoxyCodeLine{00096\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a5df51242f6bc4063a984be6f7d15daa6}{kmv}},\ }
+\DoxyCodeLine{00097\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a0100666efbb48827f7013eb96ca05c21}{knot}},\ }
+\DoxyCodeLine{00098\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980ae8c99623cbb9b2a1ec04e8ffe226b06e}{kneg}},\ }
+\DoxyCodeLine{00099\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a8eac4963607421fffaa2c65a08aa0962}{knegw}},}
+\DoxyCodeLine{00100\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a8e1bac446149dbea3ca82f49c11c2786}{ksextw}},\ }
+\DoxyCodeLine{00101\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980aadc7062325030007e0fc3b38575114b0}{kseqz}},\ }
+\DoxyCodeLine{00102\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980adf6100e931c9297ae1f077cb344572a1}{ksnez}},\ }
+\DoxyCodeLine{00103\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a650211f099ccb232c20f3c804585d095}{ksltz}},\ }
+\DoxyCodeLine{00104\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980afaf9855c9c70a3e945b712d6d5ae4892}{ksgtz}},}
+\DoxyCodeLine{00105\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a35999b804497bbfe22deb5b935865647}{kbeqz}},\ }
+\DoxyCodeLine{00106\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a0f002116a36e16a468ca2456f16b6571}{kbnez}},\ }
+\DoxyCodeLine{00107\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a0992ea456fc73f71ffd10d6b0b7997b6}{kblez}},\ }
+\DoxyCodeLine{00108\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980ac63bfca7bc62e56e68ce3e7adcdcfe8f}{kbgez}},\ }
+\DoxyCodeLine{00109\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a0d49f189a1985fabc6f5d1985dd4f0ce}{kbltz}},\ }
+\DoxyCodeLine{00110\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980adc2d56f53116d35de6d6481a07c0773e}{kbgtz}},}
+\DoxyCodeLine{00111\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a90b0e92f5c3e33ca804e78e3e8eb5f21}{kbgt}},\ }
+\DoxyCodeLine{00112\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a6634405cf1cfd5d987bc491bf0c54b89}{kble}},\ }
+\DoxyCodeLine{00113\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980af9bcb0b1c1a8e0b673bba58a11672adc}{kbgtu}},\ }
+\DoxyCodeLine{00114\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980aff14808e94d03bf9ac79a2e94b1d1377}{kbleu}},}
+\DoxyCodeLine{00115\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a765761e20777fa9112a9d26604910737}{kj}},\ }
+\DoxyCodeLine{00116\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980ab260327c5f283bb851227b8f2e0803f6}{kjr}},\ }
+\DoxyCodeLine{00117\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a80a07f5b606bbaada72c66264a5975c8}{kret}},\ }
+\DoxyCodeLine{00118\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a3d3bab67ed920f16c643455886916299}{kcall}},\ }
+\DoxyCodeLine{00119\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980ab5edaf5243975a3df8b899f7d4897c93}{ktail}},\ }
+\DoxyCodeLine{00120\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980afaeb45b865b99383810352358edf0ef5}{kfence}},\ }
+\DoxyCodeLine{00121\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a1496e1da4b6a76118a754641e73f497e}{kfence\_i}},}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00123\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a65f607351a37184e8da30f45e7b13737}{kmul}},\ }
+\DoxyCodeLine{00124\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980aace183690ee69c878353be9114940f8a}{kmulh}},\ }
+\DoxyCodeLine{00125\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a8feaa3b2f5daa3741892b5a66d21ffc1}{kmulhsu}},\ }
+\DoxyCodeLine{00126\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a0170ffe440f8e6d1483f740c2ab67d89}{kmulhu}},\ }
+\DoxyCodeLine{00127\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a3eacd7c6931f7cd897d9b7f6532e5c8c}{kdiv}},\ }
+\DoxyCodeLine{00128\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980af128a77af616c79cd4c23a8adc67ee17}{kdivu}},\ }
+\DoxyCodeLine{00129\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a83458c730e1c94d8752e63f4a3dc38b7}{krem}},\ }
+\DoxyCodeLine{00130\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a1f8e7a90d28efd99fe32c3defd84cf48}{kremu}},}
+\DoxyCodeLine{00131\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a4d68368826e85b515c3ec3eed74e20a2}{kmulw}},\ }
+\DoxyCodeLine{00132\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a08ef400e411a76dd4c5f1272e4263df7}{kdivw}},\ }
+\DoxyCodeLine{00133\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980ab63dc37f11dc73aa42c9dca21c71c1bf}{kdivuw}},\ }
+\DoxyCodeLine{00134\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a7d399412da559a8b4856520f973302bf}{kremw}},\ }
+\DoxyCodeLine{00135\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980ad6bb3be2197973350e01161f3ba45434}{kremuw}},}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00137\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a62cd50bf9d3f0a947fd3321676496db1}{kflw}},\ }
+\DoxyCodeLine{00138\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a84792e98e98619ea87756bfbd0f67c77}{kfsw}},\ }
+\DoxyCodeLine{00139\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980aeac58195154575342ad3aec9f19961ef}{kfmadd\_s}},\ }
+\DoxyCodeLine{00140\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a3169694b712a063b3d79d8d4543d5288}{kfmsub\_s}},\ }
+\DoxyCodeLine{00141\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980abb6b7e784a56c2d3377ef78e364d71e0}{kfnmsub\_s}},\ }
+\DoxyCodeLine{00142\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a36574fa6e9cbd4bc6bab665ada6edbf2}{kfnmadd\_s}},}
+\DoxyCodeLine{00143\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980acc8359d6902d9adb49e22414e8b10f67}{kfadd\_s}},\ }
+\DoxyCodeLine{00144\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a25c0c697d468474153dc75c926828134}{kfsub\_s}},\ }
+\DoxyCodeLine{00145\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a6c75dd99091e2c9b9b73148f2b3f32bc}{kfmul\_s}},\ }
+\DoxyCodeLine{00146\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a19d7ba44dfbb7f72501ce9479ac23483}{kfdiv\_s}},\ }
+\DoxyCodeLine{00147\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a3601bb8337d446a44041eaba83dd1ac5}{kfsqrt\_s}},}
+\DoxyCodeLine{00148\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980aa009019344f69e8eb95cf2cb50fb8b3b}{kfsgnj\_s}},\ }
+\DoxyCodeLine{00149\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980ab2abe8c50bf5582a8b9b8444dab4e7cf}{kfsgnjn\_s}},\ }
+\DoxyCodeLine{00150\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a703734fde79f1e76c5a216f0bc23963d}{kfsgnjx\_s}},}
+\DoxyCodeLine{00151\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a920160cbe868e9b4d8410be76f6f8f0e}{kfmin\_s}},\ }
+\DoxyCodeLine{00152\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a6dac7f0f8f805504007a5cbde662af6b}{kfmax\_s}},}
+\DoxyCodeLine{00153\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980ace3c37faf4b8f6d3886b7da6e6e77ee6}{kfcvt\_w\_s}},\ }
+\DoxyCodeLine{00154\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a57ea70e648a0a3531b86eee06c38047c}{kfcvt\_wu\_s}},\ }
+\DoxyCodeLine{00155\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a1139eab3f706f5f74cf4f18e2df89bc6}{kfmv\_x\_w}},\ }
+\DoxyCodeLine{00156\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a2a4f01c97cb26d21543e35e3263a9d9a}{kfmv\_w\_x}},}
+\DoxyCodeLine{00157\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980af6536ad6e1a0736aa75a9b9225add24e}{kfeq\_s}},\ }
+\DoxyCodeLine{00158\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980ab962794bb8fac3d310037a5f9f9f130e}{kflt\_s}},\ }
+\DoxyCodeLine{00159\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a5ce3a12adae3a40b9e2305aed36dc8e8}{kfle\_s}},}
+\DoxyCodeLine{00160\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a236c732a8002e85e305572f07c88b6c5}{kfclass\_s}},\ }
+\DoxyCodeLine{00161\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980af605280c1d298f11de4841caa2c20b0b}{kfcvt\_s\_w}},\ }
+\DoxyCodeLine{00162\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a501693061db0541fc0882735ed692b02}{kfcvt\_s\_wu}},}
+\DoxyCodeLine{00163\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980aa65c440ac352be01340864ca1713f1ab}{kfcvt\_l\_s}},\ }
+\DoxyCodeLine{00164\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a849988087b8cb1a3d4c1ae7bb4d49e98}{kfcvt\_lu\_s}},\ }
+\DoxyCodeLine{00165\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a5885ebaaafc652ab0c43279acc4a1fe9}{kfcvt\_s\_l}},\ }
+\DoxyCodeLine{00166\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a5aea15caabd07f7c5a09f1b3c1f8e4ab}{kfcvt\_s\_lu}},}
+\DoxyCodeLine{00167\ }
+\DoxyCodeLine{00168\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a86a651dcb3ed470573d737203c0a3287}{kfld}},\ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980aac0a41021edabcacf6d6991ee7e53b48}{kfsd}},\ }
+\DoxyCodeLine{00169\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980af7274ea3ef69220b143dcdb58c3e1d89}{kfmadd\_d}},\ }
+\DoxyCodeLine{00170\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980aeae1f37b662f71886d174d1e98e3e300}{kfmsub\_d}},\ }
+\DoxyCodeLine{00171\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a61010ea282058714c255d3365e1d4556}{kfnmsub\_d}},\ }
+\DoxyCodeLine{00172\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a4991a811fd6d5fc57f32d8c1de1e981b}{kfnmadd\_d}},}
+\DoxyCodeLine{00173\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a2a89603709dc7ab8f730653a143d1786}{kfadd\_d}},\ }
+\DoxyCodeLine{00174\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980af83822029bc56b076da866827039ac84}{kfsub\_d}},\ }
+\DoxyCodeLine{00175\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980acb0138a88ec7c686d96eadf4bba6211b}{kfmul\_d}},\ }
+\DoxyCodeLine{00176\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a433de101a440ce47bbc289edaec29003}{kfdiv\_d}},\ }
+\DoxyCodeLine{00177\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a89361c5c4ca40a504430666e6999b503}{kfsqrt\_d}},}
+\DoxyCodeLine{00178\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980abbc08b821cef8b2f6dce1ed8479a7517}{kfsgnj\_d}},\ }
+\DoxyCodeLine{00179\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980ad5a5c1dedc393bc231799149ce58174b}{kfsgnjn\_d}},\ }
+\DoxyCodeLine{00180\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980acff099ea5d004532a1a3f59727916eee}{kfsgnjx\_d}},}
+\DoxyCodeLine{00181\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a350de79566143c2e6755e651eabc9e30}{kfmin\_d}},\ }
+\DoxyCodeLine{00182\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a44e1cf13abaf758d222072d6eb01bfe1}{kfmax\_d}},}
+\DoxyCodeLine{00183\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980aca8a3af361f64e60190091defa0a4836}{kfcvt\_s\_d}},\ }
+\DoxyCodeLine{00184\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980ae7dda3a782582dcabacf1c063251d425}{kfcvt\_d\_s}},}
+\DoxyCodeLine{00185\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980af9fbe55d80cb4859238942c0b44b6ccc}{kfeq\_d}},\ }
+\DoxyCodeLine{00186\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a317bbbee328e04787b5fa70557fb62bc}{kflt\_d}},\ }
+\DoxyCodeLine{00187\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a9001fb231f4bd87c814cd63c1cf96391}{kfle\_d}},}
+\DoxyCodeLine{00188\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a69b62889cebe1b19b09371ad2aaf13e4}{kfclass\_d}},\ }
+\DoxyCodeLine{00189\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a76cbbcfebf0038d5617ea4204b1d684d}{kfcvt\_w\_d}},\ }
+\DoxyCodeLine{00190\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a7b5086fc790258b02cfd3492491f58e1}{kfcvt\_wu\_d}},\ }
+\DoxyCodeLine{00191\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a87bd5b88768ee44fd99d9f2c5e7fd94f}{kfcvt\_d\_w}},\ }
+\DoxyCodeLine{00192\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a98dcc5e1455841e572fb1079a54d5a61}{kfcvt\_d\_wu}},}
+\DoxyCodeLine{00193\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a3c2b5e8d160f07d8b6f3394a088c7bf3}{kfcvt\_l\_d}},\ }
+\DoxyCodeLine{00194\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a18fd8de44f3b4c9a44a197f1ea993a20}{kfcvt\_lu\_d}},\ }
+\DoxyCodeLine{00195\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980ac2c4d0c2acaad3bf220ed40314019c91}{kfmv\_x\_d}},\ }
+\DoxyCodeLine{00196\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980ac27d90e2ca1294bad8af40f2e5b7f9c4}{kfcvt\_d\_l}},\ }
+\DoxyCodeLine{00197\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a37365a18b94a0d0512f71287cf163b99}{kfcvt\_d\_lu}},\ }
+\DoxyCodeLine{00198\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980aec779415c395302a71a8105fdcbd8ce6}{kfmv\_d\_x}},}
+\DoxyCodeLine{00199\ }
+\DoxyCodeLine{00200\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a0011dcdf9617dd34fb50717f35c61abd}{INVALID}},}
+\DoxyCodeLine{00201\ }
+\DoxyCodeLine{00202\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980aac66397916080c2781a7d18b92d9f017}{COUNT}}\ \textcolor{comment}{//\ sentinel\ for\ length}}
+\DoxyCodeLine{00203\ }
+\DoxyCodeLine{00204\ \};}
+\DoxyCodeLine{00205\ }
+\DoxyCodeLine{00206\ \textcolor{comment}{//\ TODO:\ use\ enum\ class\ for\ instruction\ encoding}}
+\DoxyCodeLine{00207\ }
+\DoxyCodeLine{00208\ }
+\DoxyCodeLine{00209\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}\ \{}
+\DoxyCodeLine{00210\ \ \ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980}{Instruction}}\ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding_a289257809bcb95430bb4d238a2978514}{instr}};}
+\DoxyCodeLine{00211\ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding_a89b83e71e0b6d206828737892125d3cf}{opcode}};}
+\DoxyCodeLine{00212\ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding_ad0f227e332642be4e9d227464085617c}{funct2}};}
+\DoxyCodeLine{00213\ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding_a7e3975c1c8bcf1e52f0c7e1a887afc4f}{funct3}};}
+\DoxyCodeLine{00214\ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding_af316a60ead96de29771fd953bd55fe8a}{funct5}};}
+\DoxyCodeLine{00215\ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding_a4122c3cea535616b9597214103dffe3c}{funct6}};}
+\DoxyCodeLine{00216\ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding_a73711d0b91baf28834776bf276d24c0b}{funct7}};}
+\DoxyCodeLine{00217\ }
+\DoxyCodeLine{00218\ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding_a44768e6a880a6e3000d8a015cea0fada}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980}{Instruction}}\ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding_a289257809bcb95430bb4d238a2978514}{instr}}\ =\ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a0011dcdf9617dd34fb50717f35c61abd}{Instruction::INVALID}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding_a89b83e71e0b6d206828737892125d3cf}{opcode}}\ =\ -\/1,\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding_ad0f227e332642be4e9d227464085617c}{funct2}}\ =\ -\/1,\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding_a7e3975c1c8bcf1e52f0c7e1a887afc4f}{funct3}}\ =\ -\/1,\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding_af316a60ead96de29771fd953bd55fe8a}{funct5}}\ =\ -\/1,\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding_a4122c3cea535616b9597214103dffe3c}{funct6}}\ =\ -\/1,\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding_a73711d0b91baf28834776bf276d24c0b}{funct7}}\ =\ -\/1)}
+\DoxyCodeLine{00219\ \ \ :\ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding_a289257809bcb95430bb4d238a2978514}{instr}}(\mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding_a289257809bcb95430bb4d238a2978514}{instr}}),\ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding_a89b83e71e0b6d206828737892125d3cf}{opcode}}(\mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding_a89b83e71e0b6d206828737892125d3cf}{opcode}}),\ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding_ad0f227e332642be4e9d227464085617c}{funct2}}(\mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding_ad0f227e332642be4e9d227464085617c}{funct2}}),\ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding_a7e3975c1c8bcf1e52f0c7e1a887afc4f}{funct3}}(\mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding_a7e3975c1c8bcf1e52f0c7e1a887afc4f}{funct3}}),\ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding_af316a60ead96de29771fd953bd55fe8a}{funct5}}(\mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding_af316a60ead96de29771fd953bd55fe8a}{funct5}}),\ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding_a4122c3cea535616b9597214103dffe3c}{funct6}}(\mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding_a4122c3cea535616b9597214103dffe3c}{funct6}}),\ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding_a73711d0b91baf28834776bf276d24c0b}{funct7}}(\mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding_a73711d0b91baf28834776bf276d24c0b}{funct7}})\ \{\}}
+\DoxyCodeLine{00220\ \};}
+\DoxyCodeLine{00221\ }
+\DoxyCodeLine{00222\ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ std::array<InstructionEncoding,\ static\_cast<size\_t>(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980aac66397916080c2781a7d18b92d9f017}{Instruction::COUNT}})>\ \mbox{\hyperlink{namespaceinstruction__set_a25b454e50ccfb03bc53525fa101d41cf}{compiletime\_instruction\_encoding\_array}}\ =\ \{\{}
+\DoxyCodeLine{00223\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980ac9324857055d881d311d4db5425c2f5e}{Instruction::kRtype}},\ \ \ \ \ \ 0b0110011,\ -\/1,\ -\/1,\ -\/1,\ -\/1,\ -\/1),\ \textcolor{comment}{//\ kRtype}}
+\DoxyCodeLine{00224\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980aa914aafea39c6cfc12479e2ba50fad99}{Instruction::kItype}},\ \ \ \ \ \ 0b0010011,\ -\/1,\ -\/1,\ -\/1,\ -\/1,\ -\/1),\ \textcolor{comment}{//\ kItype}}
+\DoxyCodeLine{00225\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a7284ec4873dcea6be5634f00dedd8a52}{Instruction::kStype}},\ \ \ \ \ \ 0b0100011,\ -\/1,\ -\/1,\ -\/1,\ -\/1,\ -\/1),\ \textcolor{comment}{//\ kStype}}
+\DoxyCodeLine{00226\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980aebebf9621888579629cc0e7e9783c187}{Instruction::kBtype}},\ \ \ \ \ \ 0b1100011,\ -\/1,\ -\/1,\ -\/1,\ -\/1,\ -\/1),\ \textcolor{comment}{//\ kBtype}}
+\DoxyCodeLine{00227\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a06bb27cce21a93d282cbfdac2a04d41a}{Instruction::kJtype}},\ \ \ \ \ \ 0b1101111,\ -\/1,\ -\/1,\ -\/1,\ -\/1,\ -\/1),\ \textcolor{comment}{//\ kJtype}}
+\DoxyCodeLine{00228\ \ \ \textcolor{comment}{//\ InstructionEncoding(Instruction::kUtype,\ \ \ \ \ \ 0b0110111,\ -\/1,\ -\/1,\ -\/1,\ -\/1,\ -\/1),\ //\ kUtype}}
+\DoxyCodeLine{00229\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980ac4c891124005659ba531b4aaf98552ac}{Instruction::kLoadType}},\ \ \ 0b0000011,\ -\/1,\ -\/1,\ -\/1,\ -\/1,\ -\/1),\ \textcolor{comment}{//\ kLoadType}}
+\DoxyCodeLine{00230\ }
+\DoxyCodeLine{00231\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980ae7bf121a6fa636cedc89ab18f0ed06ba}{Instruction::kCsrType}},\ \ 0b1110011,\ -\/1,\ -\/1,\ -\/1,\ -\/1,\ -\/1),\ \textcolor{comment}{//\ kCsrType}}
+\DoxyCodeLine{00232\ }
+\DoxyCodeLine{00233\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980ac438479d1cfd3633860f11c0f4303115}{Instruction::kadd}},\ \ \ \ \ \ \ \ 0b0110011,\ -\/1,\ 0b000,\ -\/1,\ -\/1,\ 0b0000000),\ \textcolor{comment}{//\ kadd}}
+\DoxyCodeLine{00234\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a5b786add7d030a9aed2977c105ca3118}{Instruction::ksub}},\ \ \ \ \ \ \ \ 0b0110011,\ -\/1,\ 0b000,\ -\/1,\ -\/1,\ 0b0100000),\ \textcolor{comment}{//\ ksub}}
+\DoxyCodeLine{00235\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980ad4ccbfce3b074e56364aa8c1a00523a0}{Instruction::ksll}},\ \ \ \ \ \ \ \ 0b0110011,\ -\/1,\ 0b001,\ -\/1,\ -\/1,\ 0b0000000),\ \textcolor{comment}{//\ ksll}}
+\DoxyCodeLine{00236\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980ac181debd6036554a0cab6b8166daca27}{Instruction::kslt}},\ \ \ \ \ \ \ \ 0b0110011,\ -\/1,\ 0b010,\ -\/1,\ -\/1,\ 0b0000000),\ \textcolor{comment}{//\ kslt}}
+\DoxyCodeLine{00237\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a91411c836e5bcea565532386876d50ba}{Instruction::ksltu}},\ \ \ \ \ \ \ 0b0110011,\ -\/1,\ 0b011,\ -\/1,\ -\/1,\ 0b0000000),\ \textcolor{comment}{//\ ksltu}}
+\DoxyCodeLine{00238\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980ae374b3602c959c58697207d2277e0d61}{Instruction::kxor}},\ \ \ \ \ \ \ \ 0b0110011,\ -\/1,\ 0b100,\ -\/1,\ -\/1,\ 0b0000000),\ \textcolor{comment}{//\ kxor}}
+\DoxyCodeLine{00239\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a357a0b1dcebc27c1c56740ae03d468eb}{Instruction::ksrl}},\ \ \ \ \ \ \ \ 0b0110011,\ -\/1,\ 0b101,\ -\/1,\ -\/1,\ 0b0000000),\ \textcolor{comment}{//\ ksrl}}
+\DoxyCodeLine{00240\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980ae676ed16d4fdfa03e4d41cf6859c79e4}{Instruction::ksra}},\ \ \ \ \ \ \ \ 0b0110011,\ -\/1,\ 0b101,\ -\/1,\ -\/1,\ 0b0100000),\ \textcolor{comment}{//\ ksra}}
+\DoxyCodeLine{00241\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a524f20086b2a5232211d49da424eb021}{Instruction::kor}},\ \ \ \ \ \ \ \ \ 0b0110011,\ -\/1,\ 0b110,\ -\/1,\ -\/1,\ 0b0000000),\ \textcolor{comment}{//\ kor}}
+\DoxyCodeLine{00242\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a4552bc22d9b6788fbe32abcf431dc9f9}{Instruction::kand}},\ \ \ \ \ \ \ \ 0b0110011,\ -\/1,\ 0b111,\ -\/1,\ -\/1,\ 0b0000000),\ \textcolor{comment}{//\ kand}}
+\DoxyCodeLine{00243\ }
+\DoxyCodeLine{00244\ }
+\DoxyCodeLine{00245\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a65f607351a37184e8da30f45e7b13737}{Instruction::kmul}},\ \ \ \ \ \ \ \ 0b0110011,\ -\/1,\ 0b000,\ -\/1,\ -\/1,\ 0b0000001),\ \textcolor{comment}{//\ kmul}}
+\DoxyCodeLine{00246\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980aace183690ee69c878353be9114940f8a}{Instruction::kmulh}},\ \ \ \ \ \ \ 0b0110011,\ -\/1,\ 0b001,\ -\/1,\ -\/1,\ 0b0000001),\ \textcolor{comment}{//\ kmulh}}
+\DoxyCodeLine{00247\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a8feaa3b2f5daa3741892b5a66d21ffc1}{Instruction::kmulhsu}},\ \ \ \ \ 0b0110011,\ -\/1,\ 0b010,\ -\/1,\ -\/1,\ 0b0000001),\ \textcolor{comment}{//\ kmulhsu}}
+\DoxyCodeLine{00248\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a0170ffe440f8e6d1483f740c2ab67d89}{Instruction::kmulhu}},\ \ \ \ \ \ 0b0110011,\ -\/1,\ 0b011,\ -\/1,\ -\/1,\ 0b0000001),\ \textcolor{comment}{//\ kmulhu}}
+\DoxyCodeLine{00249\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a3eacd7c6931f7cd897d9b7f6532e5c8c}{Instruction::kdiv}},\ \ \ \ \ \ \ \ 0b0110011,\ -\/1,\ 0b100,\ -\/1,\ -\/1,\ 0b0000001),\ \textcolor{comment}{//\ kdiv}}
+\DoxyCodeLine{00250\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980af128a77af616c79cd4c23a8adc67ee17}{Instruction::kdivu}},\ \ \ \ \ \ \ 0b0110011,\ -\/1,\ 0b101,\ -\/1,\ -\/1,\ 0b0000001),\ \textcolor{comment}{//\ kdivu}}
+\DoxyCodeLine{00251\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a83458c730e1c94d8752e63f4a3dc38b7}{Instruction::krem}},\ \ \ \ \ \ \ \ 0b0110011,\ -\/1,\ 0b110,\ -\/1,\ -\/1,\ 0b0000001),\ \textcolor{comment}{//\ krem}}
+\DoxyCodeLine{00252\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a1f8e7a90d28efd99fe32c3defd84cf48}{Instruction::kremu}},\ \ \ \ \ \ \ 0b0110011,\ -\/1,\ 0b111,\ -\/1,\ -\/1,\ 0b0000001),\ \textcolor{comment}{//\ kremu}}
+\DoxyCodeLine{00253\ }
+\DoxyCodeLine{00254\ }
+\DoxyCodeLine{00255\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a44592b4f64c6cd57399bfb5c0261c666}{Instruction::kaddw}},\ \ \ \ \ \ \ 0b0111011,\ -\/1,\ 0b000,\ -\/1,\ -\/1,\ 0b0000000),\ \textcolor{comment}{//\ kaddw}}
+\DoxyCodeLine{00256\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a37638b0a0b0e0236bb6a9004987f95e7}{Instruction::ksubw}},\ \ \ \ \ \ \ 0b0111011,\ -\/1,\ 0b000,\ -\/1,\ -\/1,\ 0b0100000),\ \textcolor{comment}{//\ ksubw}}
+\DoxyCodeLine{00257\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a06544675b45a6af0af02134928d72025}{Instruction::ksllw}},\ \ \ \ \ \ \ 0b0111011,\ -\/1,\ 0b001,\ -\/1,\ -\/1,\ 0b0000000),\ \textcolor{comment}{//\ ksllw}}
+\DoxyCodeLine{00258\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a01ba80b7c5495187208e934353126074}{Instruction::ksrlw}},\ \ \ \ \ \ \ 0b0111011,\ -\/1,\ 0b101,\ -\/1,\ -\/1,\ 0b0000000),\ \textcolor{comment}{//\ ksrlw}}
+\DoxyCodeLine{00259\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a9553aaca416113c4c9c00e970a8cf6d7}{Instruction::ksraw}},\ \ \ \ \ \ \ 0b0111011,\ -\/1,\ 0b101,\ -\/1,\ -\/1,\ 0b0100000),\ \textcolor{comment}{//\ ksraw}}
+\DoxyCodeLine{00260\ \ \ }
+\DoxyCodeLine{00261\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a4d68368826e85b515c3ec3eed74e20a2}{Instruction::kmulw}},\ \ \ \ \ \ \ 0b0111011,\ -\/1,\ 0b000,\ -\/1,\ -\/1,\ 0b0000001),\ \textcolor{comment}{//\ kmulw}}
+\DoxyCodeLine{00262\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a08ef400e411a76dd4c5f1272e4263df7}{Instruction::kdivw}},\ \ \ \ \ \ \ 0b0111011,\ -\/1,\ 0b100,\ -\/1,\ -\/1,\ 0b0000001),\ \textcolor{comment}{//\ kdivw}}
+\DoxyCodeLine{00263\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980ab63dc37f11dc73aa42c9dca21c71c1bf}{Instruction::kdivuw}},\ \ \ \ \ \ 0b0111011,\ -\/1,\ 0b101,\ -\/1,\ -\/1,\ 0b0000001),\ \textcolor{comment}{//\ kdivuw}}
+\DoxyCodeLine{00264\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a7d399412da559a8b4856520f973302bf}{Instruction::kremw}},\ \ \ \ \ \ \ 0b0111011,\ -\/1,\ 0b110,\ -\/1,\ -\/1,\ 0b0000001),\ \textcolor{comment}{//\ kremw}}
+\DoxyCodeLine{00265\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980ad6bb3be2197973350e01161f3ba45434}{Instruction::kremuw}},\ \ \ \ \ \ 0b0111011,\ -\/1,\ 0b111,\ -\/1,\ -\/1,\ 0b0000001),\ \textcolor{comment}{//\ kremuw}}
+\DoxyCodeLine{00266\ }
+\DoxyCodeLine{00267\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980ae6c81577a797484ad005e91795dbf453}{Instruction::kecall}},\ \ \ \ \ \ 0b1110011,\ -\/1,\ 0b000,\ -\/1,\ -\/1,\ 0b0000000),\ \textcolor{comment}{//\ kecall}}
+\DoxyCodeLine{00268\ }
+\DoxyCodeLine{00269\ \ \ }
+\DoxyCodeLine{00270\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a6ac6b80ae93058357c7830519ec3ceaa}{Instruction::kaddi}},\ \ \ \ \ \ \ 0b0010011,\ -\/1,\ 0b000,\ -\/1,\ -\/1,\ -\/1),\ \textcolor{comment}{//\ addi}}
+\DoxyCodeLine{00271\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a32657cbfaab74e8d8c5ff58cb22e4e96}{Instruction::kslli}},\ \ \ \ \ \ \ 0b0010011,\ -\/1,\ 0b001,\ -\/1,\ -\/1,\ 0b0000000),\ \textcolor{comment}{//\ kslli}}
+\DoxyCodeLine{00272\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a475efdbdaab15dd303f73220d4e86ba9}{Instruction::kslti}},\ \ \ \ \ \ \ 0b0010011,\ -\/1,\ 0b010,\ -\/1,\ -\/1,\ -\/1),\ \textcolor{comment}{//\ kslti}}
+\DoxyCodeLine{00273\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a08e7326bdad567235eb20abaf834e56d}{Instruction::ksltiu}},\ \ \ \ \ \ 0b0010011,\ -\/1,\ 0b011,\ -\/1,\ -\/1,\ -\/1),\ \textcolor{comment}{//\ ksltiu}}
+\DoxyCodeLine{00274\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980aded185724bfff21a7eda68db23ddc795}{Instruction::kxori}},\ \ \ \ \ \ \ 0b0010011,\ -\/1,\ 0b100,\ -\/1,\ -\/1,\ -\/1),\ \textcolor{comment}{//\ kxori}}
+\DoxyCodeLine{00275\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a4d35627f6baeef7720b365595fb69ef4}{Instruction::ksrli}},\ \ \ \ \ \ \ 0b0010011,\ -\/1,\ 0b101,\ -\/1,\ -\/1,\ 0b0000000),\ \textcolor{comment}{//\ ksrli}}
+\DoxyCodeLine{00276\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a67fde271abfcf549014a7d8f01098738}{Instruction::ksrai}},\ \ \ \ \ \ \ 0b0010011,\ -\/1,\ 0b101,\ -\/1,\ -\/1,\ 0b0100000),\ \textcolor{comment}{//\ ksrai}}
+\DoxyCodeLine{00277\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a5e20bcc67d5cbb2f3ee96e8b8d6c7ab0}{Instruction::kori}},\ \ \ \ \ \ \ \ 0b0010011,\ -\/1,\ 0b110,\ -\/1,\ -\/1,\ -\/1),\ \textcolor{comment}{//\ kori}}
+\DoxyCodeLine{00278\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a670686b8964454b801b320f16a91ee99}{Instruction::kandi}},\ \ \ \ \ \ \ 0b0010011,\ -\/1,\ 0b111,\ -\/1,\ -\/1,\ -\/1),\ \textcolor{comment}{//\ kandi}}
+\DoxyCodeLine{00279\ }
+\DoxyCodeLine{00280\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a9cde7663ed1249cce6d1e0afbe369de0}{Instruction::kaddiw}},\ \ \ \ \ \ 0b0011011,\ -\/1,\ 0b000,\ -\/1,\ -\/1,\ -\/1),\ \textcolor{comment}{//\ kaddiw}}
+\DoxyCodeLine{00281\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980ae86c1cd33f01aeef4bc7ed248998f374}{Instruction::kslliw}},\ \ \ \ \ \ 0b0011011,\ -\/1,\ 0b001,\ -\/1,\ -\/1,\ 0b0000000),\ \textcolor{comment}{//\ kslliw}}
+\DoxyCodeLine{00282\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980ab65f9c187165c8d913971e382b9cadf0}{Instruction::ksrliw}},\ \ \ \ \ \ 0b0011011,\ -\/1,\ 0b101,\ -\/1,\ -\/1,\ 0b0000000),\ \textcolor{comment}{//\ ksrliw}}
+\DoxyCodeLine{00283\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a63f50b08fb105193c7a2d1361a6837be}{Instruction::ksraiw}},\ \ \ \ \ \ 0b0011011,\ -\/1,\ 0b101,\ -\/1,\ -\/1,\ 0b0100000),\ \textcolor{comment}{//\ ksraiw}}
+\DoxyCodeLine{00284\ }
+\DoxyCodeLine{00285\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980af6b6404ace3b4c57d755ec88aa635fea}{Instruction::klb}},\ \ \ \ \ \ \ \ \ 0b0000011,\ -\/1,\ 0b000,\ -\/1,\ -\/1,\ -\/1),\ \textcolor{comment}{//\ klb}}
+\DoxyCodeLine{00286\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a99b7b94ee44a515881afb97b90dfba18}{Instruction::klh}},\ \ \ \ \ \ \ \ \ 0b0000011,\ -\/1,\ 0b001,\ -\/1,\ -\/1,\ -\/1),\ \textcolor{comment}{//\ klh}}
+\DoxyCodeLine{00287\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980ae7eedadc76e2f3ffb84e41928fa9b526}{Instruction::klw}},\ \ \ \ \ \ \ \ \ 0b0000011,\ -\/1,\ 0b010,\ -\/1,\ -\/1,\ -\/1),\ \textcolor{comment}{//\ klw}}
+\DoxyCodeLine{00288\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a59ef541f710be4e720d504715e1a6831}{Instruction::kld}},\ \ \ \ \ \ \ \ \ 0b0000011,\ -\/1,\ 0b011,\ -\/1,\ -\/1,\ -\/1),\ \textcolor{comment}{//\ kld}}
+\DoxyCodeLine{00289\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a8cc103c645169444fb92f1498ddb40bd}{Instruction::klbu}},\ \ \ \ \ \ \ \ 0b0000011,\ -\/1,\ 0b100,\ -\/1,\ -\/1,\ -\/1),\ \textcolor{comment}{//\ klbu}}
+\DoxyCodeLine{00290\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980af75a319cf81a7045437e0aec0a9fda90}{Instruction::klhu}},\ \ \ \ \ \ \ \ 0b0000011,\ -\/1,\ 0b101,\ -\/1,\ -\/1,\ -\/1),\ \textcolor{comment}{//\ klhu}}
+\DoxyCodeLine{00291\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980aab20867cd821fb0480f777f4b1c23ce2}{Instruction::klwu}},\ \ \ \ \ \ \ \ 0b0000011,\ -\/1,\ 0b110,\ -\/1,\ -\/1,\ -\/1),\ \textcolor{comment}{//\ klwu}}
+\DoxyCodeLine{00292\ }
+\DoxyCodeLine{00293\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a8eee36ca620ee3fe4f282f3dd95bdbc8}{Instruction::kjalr}},\ \ \ \ \ \ \ 0b1100111,\ -\/1,\ 0b000,\ -\/1,\ -\/1,\ -\/1),\ \textcolor{comment}{//\ kjalr}}
+\DoxyCodeLine{00294\ }
+\DoxyCodeLine{00295\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a5e41b4d0cc520b5862c3e56361b4931e}{Instruction::ksb}},\ \ \ \ \ \ \ \ \ 0b0100011,\ -\/1,\ 0b000,\ -\/1,\ -\/1,\ -\/1),\ \textcolor{comment}{//\ ksb}}
+\DoxyCodeLine{00296\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a1348b458efe72d142bf10319789aae07}{Instruction::ksh}},\ \ \ \ \ \ \ \ \ 0b0100011,\ -\/1,\ 0b001,\ -\/1,\ -\/1,\ -\/1),\ \textcolor{comment}{//\ ksh}}
+\DoxyCodeLine{00297\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a880d60c4e270cf58189ca502ece5dcfa}{Instruction::ksw}},\ \ \ \ \ \ \ \ \ 0b0100011,\ -\/1,\ 0b010,\ -\/1,\ -\/1,\ -\/1),\ \textcolor{comment}{//\ ksw}}
+\DoxyCodeLine{00298\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980adbf30f970e8a51154664d0b82b9fe97a}{Instruction::ksd}},\ \ \ \ \ \ \ \ \ 0b0100011,\ -\/1,\ 0b011,\ -\/1,\ -\/1,\ -\/1),\ \textcolor{comment}{//\ ksd}}
+\DoxyCodeLine{00299\ }
+\DoxyCodeLine{00300\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980ac048b512e0f924a4c3ace218c5a3e27b}{Instruction::kbeq}},\ \ \ \ \ \ \ \ 0b1100011,\ -\/1,\ 0b000,\ -\/1,\ -\/1,\ -\/1),\ \textcolor{comment}{//\ kbeq}}
+\DoxyCodeLine{00301\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980aa5e9cc9322b759b0374d8dd36f27041a}{Instruction::kbne}},\ \ \ \ \ \ \ \ 0b1100011,\ -\/1,\ 0b001,\ -\/1,\ -\/1,\ -\/1),\ \textcolor{comment}{//\ kbne}}
+\DoxyCodeLine{00302\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a43e53aeddfa15f33728b61d381c42ad6}{Instruction::kblt}},\ \ \ \ \ \ \ \ 0b1100011,\ -\/1,\ 0b100,\ -\/1,\ -\/1,\ -\/1),\ \textcolor{comment}{//\ kblt}}
+\DoxyCodeLine{00303\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980acbddca10947a185290ff79190dcfcd25}{Instruction::kbge}},\ \ \ \ \ \ \ \ 0b1100011,\ -\/1,\ 0b101,\ -\/1,\ -\/1,\ -\/1),\ \textcolor{comment}{//\ kbge}}
+\DoxyCodeLine{00304\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a3102a9776633f8b3670720982de9f37e}{Instruction::kbltu}},\ \ \ \ \ \ \ 0b1100011,\ -\/1,\ 0b110,\ -\/1,\ -\/1,\ -\/1),\ \textcolor{comment}{//\ kbltu}}
+\DoxyCodeLine{00305\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a53dfe2f693012ace73cf256b50a1923e}{Instruction::kbgeu}},\ \ \ \ \ \ \ 0b1100011,\ -\/1,\ 0b111,\ -\/1,\ -\/1,\ -\/1),\ \textcolor{comment}{//\ kbgeu}}
+\DoxyCodeLine{00306\ }
+\DoxyCodeLine{00307\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a4491c1a9fe5d7619c6445662dd2fa216}{Instruction::klui}},\ \ \ \ \ \ \ \ 0b0110111,\ -\/1,\ -\/1,\ -\/1,\ -\/1,\ -\/1),\ \textcolor{comment}{//\ klui}}
+\DoxyCodeLine{00308\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a77b4cbfe1f27d26152e6425cb065c173}{Instruction::kauipc}},\ \ \ \ \ \ 0b0010111,\ -\/1,\ -\/1,\ -\/1,\ -\/1,\ -\/1),\ \textcolor{comment}{//\ kauipc}}
+\DoxyCodeLine{00309\ \ \ }
+\DoxyCodeLine{00310\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a57d72eeebdbd7fc5b902ce57cbbcb7e1}{Instruction::kjal}},\ \ \ \ \ \ \ \ 0b1101111,\ -\/1,\ -\/1,\ -\/1,\ -\/1,\ -\/1),\ \textcolor{comment}{//\ kjal}}
+\DoxyCodeLine{00311\ }
+\DoxyCodeLine{00312\ \ \ \textcolor{comment}{//\ csr}}
+\DoxyCodeLine{00313\ }
+\DoxyCodeLine{00314\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980af608d8c6965a4e7d1a3e2f8a500f737f}{Instruction::kcsrrw}},\ \ \ \ \ \ 0b1110011,\ -\/1,\ 0b001,\ -\/1,\ -\/1,\ -\/1),\ \textcolor{comment}{//\ kcsrrw}}
+\DoxyCodeLine{00315\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980af6d42226b73e98d032b77c095ba56f12}{Instruction::kcsrrs}},\ \ \ \ \ \ 0b1110011,\ -\/1,\ 0b010,\ -\/1,\ -\/1,\ -\/1),\ \textcolor{comment}{//\ kcsrrs}}
+\DoxyCodeLine{00316\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a74970a380d6e0580c995f5b576c7c6df}{Instruction::kcsrrc}},\ \ \ \ \ \ 0b1110011,\ -\/1,\ 0b011,\ -\/1,\ -\/1,\ -\/1),\ \textcolor{comment}{//\ kcsrrc}}
+\DoxyCodeLine{00317\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a4200803ca310ef52a61879b08c700e21}{Instruction::kcsrrwi}},\ \ \ \ \ 0b1110011,\ -\/1,\ 0b101,\ -\/1,\ -\/1,\ -\/1),\ \textcolor{comment}{//\ kcsrrwi}}
+\DoxyCodeLine{00318\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a295629c46e8bde46d1f8997a1f7c33e3}{Instruction::kcsrrsi}},\ \ \ \ \ 0b1110011,\ -\/1,\ 0b110,\ -\/1,\ -\/1,\ -\/1),\ \textcolor{comment}{//\ kcsrrsi}}
+\DoxyCodeLine{00319\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a5202c5af3b441759358f0cfbdb0db5a1}{Instruction::kcsrrci}},\ \ \ \ \ 0b1110011,\ -\/1,\ 0b111,\ -\/1,\ -\/1,\ -\/1),\ \textcolor{comment}{//\ kcsrrci}}
+\DoxyCodeLine{00320\ }
+\DoxyCodeLine{00321\ }
+\DoxyCodeLine{00322\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980aa009019344f69e8eb95cf2cb50fb8b3b}{Instruction::kfsgnj\_s}},\ \ \ \ 0b1010011,\ -\/1,\ 0b000,\ -\/1,\ -\/1,\ 0b0010000),\ \textcolor{comment}{//\ kfsgnj\_s}}
+\DoxyCodeLine{00323\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980ab2abe8c50bf5582a8b9b8444dab4e7cf}{Instruction::kfsgnjn\_s}},\ \ \ 0b1010011,\ -\/1,\ 0b001,\ -\/1,\ -\/1,\ 0b0010000),\ \textcolor{comment}{//\ kfsgnjn\_s}}
+\DoxyCodeLine{00324\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a703734fde79f1e76c5a216f0bc23963d}{Instruction::kfsgnjx\_s}},\ \ \ 0b1010011,\ -\/1,\ 0b010,\ -\/1,\ -\/1,\ 0b0010000),\ \textcolor{comment}{//\ kfsgnjx\_s\ }}
+\DoxyCodeLine{00325\ \ \ }
+\DoxyCodeLine{00326\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a920160cbe868e9b4d8410be76f6f8f0e}{Instruction::kfmin\_s}},\ \ \ \ \ 0b1010011,\ -\/1,\ 0b000,\ -\/1,\ -\/1,\ 0b0010100),\ \textcolor{comment}{//\ kfmin\_s}}
+\DoxyCodeLine{00327\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a6dac7f0f8f805504007a5cbde662af6b}{Instruction::kfmax\_s}},\ \ \ \ \ 0b1010011,\ -\/1,\ 0b001,\ -\/1,\ -\/1,\ 0b0010100),\ \textcolor{comment}{//\ kfmax\_s}}
+\DoxyCodeLine{00328\ \ \ }
+\DoxyCodeLine{00329\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a5ce3a12adae3a40b9e2305aed36dc8e8}{Instruction::kfle\_s}},\ \ \ \ \ \ 0b1010011,\ -\/1,\ 0b000,\ -\/1,\ -\/1,\ 0b1010000),\ \textcolor{comment}{//\ kfle\_s}}
+\DoxyCodeLine{00330\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980ab962794bb8fac3d310037a5f9f9f130e}{Instruction::kflt\_s}},\ \ \ \ \ \ 0b1010011,\ -\/1,\ 0b001,\ -\/1,\ -\/1,\ 0b1010000),\ \textcolor{comment}{//\ kflt\_s}}
+\DoxyCodeLine{00331\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980af6536ad6e1a0736aa75a9b9225add24e}{Instruction::kfeq\_s}},\ \ \ \ \ \ 0b1010011,\ -\/1,\ 0b010,\ -\/1,\ -\/1,\ 0b1010000),\ \textcolor{comment}{//\ kfeq\_s}}
+\DoxyCodeLine{00332\ \ \ }
+\DoxyCodeLine{00333\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980abbc08b821cef8b2f6dce1ed8479a7517}{Instruction::kfsgnj\_d}},\ \ \ \ 0b1010011,\ -\/1,\ 0b000,\ -\/1,\ -\/1,\ 0b0010001),\ \textcolor{comment}{//\ kfsgnj\_d}}
+\DoxyCodeLine{00334\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980ad5a5c1dedc393bc231799149ce58174b}{Instruction::kfsgnjn\_d}},\ \ \ 0b1010011,\ -\/1,\ 0b001,\ -\/1,\ -\/1,\ 0b0010001),\ \textcolor{comment}{//\ kfsgnjn\_d}}
+\DoxyCodeLine{00335\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980acff099ea5d004532a1a3f59727916eee}{Instruction::kfsgnjx\_d}},\ \ \ 0b1010011,\ -\/1,\ 0b010,\ -\/1,\ -\/1,\ 0b0010001),\ \textcolor{comment}{//\ kfsgnjx\_d}}
+\DoxyCodeLine{00336\ \ \ }
+\DoxyCodeLine{00337\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a350de79566143c2e6755e651eabc9e30}{Instruction::kfmin\_d}},\ \ \ \ \ 0b1010011,\ -\/1,\ 0b000,\ -\/1,\ -\/1,\ 0b0010101),\ \textcolor{comment}{//\ kfmin\_d}}
+\DoxyCodeLine{00338\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a44e1cf13abaf758d222072d6eb01bfe1}{Instruction::kfmax\_d}},\ \ \ \ \ 0b1010011,\ -\/1,\ 0b001,\ -\/1,\ -\/1,\ 0b0010101),\ \textcolor{comment}{//\ kfmax\_d}}
+\DoxyCodeLine{00339\ \ \ }
+\DoxyCodeLine{00340\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a9001fb231f4bd87c814cd63c1cf96391}{Instruction::kfle\_d}},\ \ \ \ \ \ 0b1010011,\ -\/1,\ 0b000,\ -\/1,\ -\/1,\ 0b1010001),\ \textcolor{comment}{//\ kfle\_d}}
+\DoxyCodeLine{00341\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a317bbbee328e04787b5fa70557fb62bc}{Instruction::kflt\_d}},\ \ \ \ \ \ 0b1010011,\ -\/1,\ 0b001,\ -\/1,\ -\/1,\ 0b1010001),\ \textcolor{comment}{//\ kflt\_d}}
+\DoxyCodeLine{00342\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980af9fbe55d80cb4859238942c0b44b6ccc}{Instruction::kfeq\_d}},\ \ \ \ \ \ 0b1010011,\ -\/1,\ 0b010,\ -\/1,\ -\/1,\ 0b1010001),\ \textcolor{comment}{//\ kfeq\_d}}
+\DoxyCodeLine{00343\ }
+\DoxyCodeLine{00344\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a62cd50bf9d3f0a947fd3321676496db1}{Instruction::kflw}},\ \ \ \ \ \ \ \ 0b0000111,\ -\/1,\ 0b010,\ -\/1,\ -\/1,\ -\/1),\ \textcolor{comment}{//\ kflw}}
+\DoxyCodeLine{00345\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a84792e98e98619ea87756bfbd0f67c77}{Instruction::kfsw}},\ \ \ \ \ \ \ \ 0b0100111,\ -\/1,\ 0b010,\ -\/1,\ -\/1,\ -\/1),\ \textcolor{comment}{//\ kfsw}}
+\DoxyCodeLine{00346\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a86a651dcb3ed470573d737203c0a3287}{Instruction::kfld}},\ \ \ \ \ \ \ \ 0b0000111,\ -\/1,\ 0b011,\ -\/1,\ -\/1,\ -\/1),\ \textcolor{comment}{//\ kfld}}
+\DoxyCodeLine{00347\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a84792e98e98619ea87756bfbd0f67c77}{Instruction::kfsw}},\ \ \ \ \ \ \ \ 0b0100111,\ -\/1,\ 0b011,\ -\/1,\ -\/1,\ -\/1),\ \textcolor{comment}{//\ kfsd}}
+\DoxyCodeLine{00348\ }
+\DoxyCodeLine{00349\ }
+\DoxyCodeLine{00350\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980acc8359d6902d9adb49e22414e8b10f67}{Instruction::kfadd\_s}},\ \ \ \ \ 0b1010011,\ -\/1,\ -\/1,\ -\/1,\ -\/1,\ 0b0000000),\ \textcolor{comment}{//\ kfadd\_s}}
+\DoxyCodeLine{00351\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a25c0c697d468474153dc75c926828134}{Instruction::kfsub\_s}},\ \ \ \ \ 0b1010011,\ -\/1,\ -\/1,\ -\/1,\ -\/1,\ 0b0000100),\ \textcolor{comment}{//\ kfsub\_s}}
+\DoxyCodeLine{00352\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a6c75dd99091e2c9b9b73148f2b3f32bc}{Instruction::kfmul\_s}},\ \ \ \ \ 0b1010011,\ -\/1,\ -\/1,\ -\/1,\ -\/1,\ 0b0001000),\ \textcolor{comment}{//\ kfmul\_s}}
+\DoxyCodeLine{00353\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a19d7ba44dfbb7f72501ce9479ac23483}{Instruction::kfdiv\_s}},\ \ \ \ \ 0b1010011,\ -\/1,\ -\/1,\ -\/1,\ -\/1,\ 0b0001100),\ \textcolor{comment}{//\ kfdiv\_s}}
+\DoxyCodeLine{00354\ }
+\DoxyCodeLine{00355\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a2a89603709dc7ab8f730653a143d1786}{Instruction::kfadd\_d}},\ \ \ \ \ 0b1010011,\ -\/1,\ -\/1,\ -\/1,\ -\/1,\ 0b0000001),\ \textcolor{comment}{//\ kfadd\_d}}
+\DoxyCodeLine{00356\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980af83822029bc56b076da866827039ac84}{Instruction::kfsub\_d}},\ \ \ \ \ 0b1010011,\ -\/1,\ -\/1,\ -\/1,\ -\/1,\ 0b0000101),\ \textcolor{comment}{//\ kfsub\_d}}
+\DoxyCodeLine{00357\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980acb0138a88ec7c686d96eadf4bba6211b}{Instruction::kfmul\_d}},\ \ \ \ \ 0b1010011,\ -\/1,\ -\/1,\ -\/1,\ -\/1,\ 0b0001001),\ \textcolor{comment}{//\ kfmul\_d}}
+\DoxyCodeLine{00358\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a433de101a440ce47bbc289edaec29003}{Instruction::kfdiv\_d}},\ \ \ \ \ 0b1010011,\ -\/1,\ -\/1,\ -\/1,\ -\/1,\ 0b0001101),\ \textcolor{comment}{//\ kfdiv\_d}}
+\DoxyCodeLine{00359\ \ \ }
+\DoxyCodeLine{00360\ }
+\DoxyCodeLine{00361\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a3601bb8337d446a44041eaba83dd1ac5}{Instruction::kfsqrt\_s}},\ \ \ \ 0b1010011,\ -\/1,\ -\/1,\ 0b00000,\ -\/1,\ 0b0101100),\ \textcolor{comment}{//\ kfsqrt\_s}}
+\DoxyCodeLine{00362\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980ace3c37faf4b8f6d3886b7da6e6e77ee6}{Instruction::kfcvt\_w\_s}},\ \ \ 0b1010011,\ -\/1,\ -\/1,\ 0b00000,\ -\/1,\ 0b1100000),\ \textcolor{comment}{//\ kfcvt\_w\_s}}
+\DoxyCodeLine{00363\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a57ea70e648a0a3531b86eee06c38047c}{Instruction::kfcvt\_wu\_s}},\ \ 0b1010011,\ -\/1,\ -\/1,\ 0b00001,\ -\/1,\ 0b1100000),\ \textcolor{comment}{//\ kfcvt\_wu\_s}}
+\DoxyCodeLine{00364\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980aa65c440ac352be01340864ca1713f1ab}{Instruction::kfcvt\_l\_s}},\ \ \ 0b1010011,\ -\/1,\ -\/1,\ 0b00010,\ -\/1,\ 0b1100000),\ \textcolor{comment}{//\ kfcvt\_l\_s}}
+\DoxyCodeLine{00365\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a849988087b8cb1a3d4c1ae7bb4d49e98}{Instruction::kfcvt\_lu\_s}},\ \ 0b1010011,\ -\/1,\ -\/1,\ 0b00011,\ -\/1,\ 0b1100000),\ \textcolor{comment}{//\ kfcvt\_lu\_s}}
+\DoxyCodeLine{00366\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980af605280c1d298f11de4841caa2c20b0b}{Instruction::kfcvt\_s\_w}},\ \ \ 0b1010011,\ -\/1,\ -\/1,\ 0b00000,\ -\/1,\ 0b1101000),\ \textcolor{comment}{//\ kfcvt\_s\_w}}
+\DoxyCodeLine{00367\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a501693061db0541fc0882735ed692b02}{Instruction::kfcvt\_s\_wu}},\ \ 0b1010011,\ -\/1,\ -\/1,\ 0b00001,\ -\/1,\ 0b1101000),\ \textcolor{comment}{//\ kfcvt\_s\_wu}}
+\DoxyCodeLine{00368\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a5885ebaaafc652ab0c43279acc4a1fe9}{Instruction::kfcvt\_s\_l}},\ \ \ 0b1010011,\ -\/1,\ -\/1,\ 0b00010,\ -\/1,\ 0b1101000),\ \textcolor{comment}{//\ kfcvt\_s\_l}}
+\DoxyCodeLine{00369\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a5aea15caabd07f7c5a09f1b3c1f8e4ab}{Instruction::kfcvt\_s\_lu}},\ \ 0b1010011,\ -\/1,\ -\/1,\ 0b00011,\ -\/1,\ 0b1101000),\ \textcolor{comment}{//\ kfcvt\_s\_lu}}
+\DoxyCodeLine{00370\ }
+\DoxyCodeLine{00371\ }
+\DoxyCodeLine{00372\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a89361c5c4ca40a504430666e6999b503}{Instruction::kfsqrt\_d}},\ \ \ \ 0b1010011,\ -\/1,\ -\/1,\ 0b00000,\ -\/1,\ 0b0101101),\ \textcolor{comment}{//\ kfsqrt\_d\ }}
+\DoxyCodeLine{00373\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a76cbbcfebf0038d5617ea4204b1d684d}{Instruction::kfcvt\_w\_d}},\ \ \ 0b1010011,\ -\/1,\ -\/1,\ 0b00000,\ -\/1,\ 0b1100001),\ \textcolor{comment}{//\ kfcvt\_w\_d}}
+\DoxyCodeLine{00374\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a7b5086fc790258b02cfd3492491f58e1}{Instruction::kfcvt\_wu\_d}},\ \ 0b1010011,\ -\/1,\ -\/1,\ 0b00001,\ -\/1,\ 0b1100001),\ \textcolor{comment}{//\ kfcvt\_wu\_d}}
+\DoxyCodeLine{00375\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a3c2b5e8d160f07d8b6f3394a088c7bf3}{Instruction::kfcvt\_l\_d}},\ \ \ 0b1010011,\ -\/1,\ -\/1,\ 0b00010,\ -\/1,\ 0b1100001),\ \textcolor{comment}{//\ kfcvt\_l\_d}}
+\DoxyCodeLine{00376\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a18fd8de44f3b4c9a44a197f1ea993a20}{Instruction::kfcvt\_lu\_d}},\ \ 0b1010011,\ -\/1,\ -\/1,\ 0b00011,\ -\/1,\ 0b1100001),\ \textcolor{comment}{//\ kfcvt\_lu\_d}}
+\DoxyCodeLine{00377\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a87bd5b88768ee44fd99d9f2c5e7fd94f}{Instruction::kfcvt\_d\_w}},\ \ \ 0b1010011,\ -\/1,\ -\/1,\ 0b00000,\ -\/1,\ 0b1101001),\ \textcolor{comment}{//\ kfcvt\_d\_w}}
+\DoxyCodeLine{00378\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a98dcc5e1455841e572fb1079a54d5a61}{Instruction::kfcvt\_d\_wu}},\ \ 0b1010011,\ -\/1,\ -\/1,\ 0b00001,\ -\/1,\ 0b1101001),\ \textcolor{comment}{//\ kfcvt\_d\_wu}}
+\DoxyCodeLine{00379\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980ac27d90e2ca1294bad8af40f2e5b7f9c4}{Instruction::kfcvt\_d\_l}},\ \ \ 0b1010011,\ -\/1,\ -\/1,\ 0b00010,\ -\/1,\ 0b1101001),\ \textcolor{comment}{//\ kfcvt\_d\_l}}
+\DoxyCodeLine{00380\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a37365a18b94a0d0512f71287cf163b99}{Instruction::kfcvt\_d\_lu}},\ \ 0b1010011,\ -\/1,\ -\/1,\ 0b00011,\ -\/1,\ 0b1101001),\ \textcolor{comment}{//\ kfcvt\_d\_lu}}
+\DoxyCodeLine{00381\ }
+\DoxyCodeLine{00382\ }
+\DoxyCodeLine{00383\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980aca8a3af361f64e60190091defa0a4836}{Instruction::kfcvt\_s\_d}},\ \ \ 0b1010011,\ -\/1,\ -\/1,\ 0b00001,\ -\/1,\ 0b0100000),\ \textcolor{comment}{//\ kfcvt\_s\_d}}
+\DoxyCodeLine{00384\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980ae7dda3a782582dcabacf1c063251d425}{Instruction::kfcvt\_d\_s}},\ \ \ 0b1010011,\ -\/1,\ -\/1,\ 0b00000,\ -\/1,\ 0b0100001),\ \textcolor{comment}{//\ kfcvt\_d\_s}}
+\DoxyCodeLine{00385\ }
+\DoxyCodeLine{00386\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a1139eab3f706f5f74cf4f18e2df89bc6}{Instruction::kfmv\_x\_w}},\ \ \ \ 0b1010011,\ -\/1,\ 0b000,\ 0b00000,\ -\/1,\ 0b1110000),\ \textcolor{comment}{//\ kfmv\_x\_w}}
+\DoxyCodeLine{00387\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980ac2c4d0c2acaad3bf220ed40314019c91}{Instruction::kfmv\_x\_d}},\ \ \ \ 0b1010011,\ -\/1,\ 0b000,\ 0b00000,\ -\/1,\ 0b1110001),\ \textcolor{comment}{//\ kfmv\_x\_d}}
+\DoxyCodeLine{00388\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a2a4f01c97cb26d21543e35e3263a9d9a}{Instruction::kfmv\_w\_x}},\ \ \ \ 0b1010011,\ -\/1,\ 0b000,\ 0b00000,\ -\/1,\ 0b1111000),\ \textcolor{comment}{//\ kfmv\_w\_x}}
+\DoxyCodeLine{00389\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980aec779415c395302a71a8105fdcbd8ce6}{Instruction::kfmv\_d\_x}},\ \ \ \ 0b1010011,\ -\/1,\ 0b000,\ 0b00000,\ -\/1,\ 0b1111001),\ \textcolor{comment}{//\ kfmv\_d\_x}}
+\DoxyCodeLine{00390\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a236c732a8002e85e305572f07c88b6c5}{Instruction::kfclass\_s}},\ \ \ 0b1010011,\ -\/1,\ 0b001,\ 0b00000,\ -\/1,\ 0b1110000),\ \textcolor{comment}{//\ kfclass\_s}}
+\DoxyCodeLine{00391\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a69b62889cebe1b19b09371ad2aaf13e4}{Instruction::kfclass\_d}},\ \ \ 0b1010011,\ -\/1,\ 0b001,\ 0b00000,\ -\/1,\ 0b1110001),\ \textcolor{comment}{//\ kfclass\_d}}
+\DoxyCodeLine{00392\ }
+\DoxyCodeLine{00393\ \ \ \ \ \ \ }
+\DoxyCodeLine{00394\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980aeac58195154575342ad3aec9f19961ef}{Instruction::kfmadd\_s}},\ 0b1000011,\ 0b00,\ -\/1,\ -\/1,\ -\/1,\ -\/1),\ \textcolor{comment}{//\ kfmadd\_s}}
+\DoxyCodeLine{00395\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a3169694b712a063b3d79d8d4543d5288}{Instruction::kfmsub\_s}},\ 0b1000111,\ 0b00,\ -\/1,\ -\/1,\ -\/1,\ -\/1),\ \textcolor{comment}{//\ kfmsub\_s\ }}
+\DoxyCodeLine{00396\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980abb6b7e784a56c2d3377ef78e364d71e0}{Instruction::kfnmsub\_s}},\ 0b1001011,\ 0b00,\ -\/1,\ -\/1,\ -\/1,\ -\/1),\ \textcolor{comment}{//\ kfnmsub\_s}}
+\DoxyCodeLine{00397\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a36574fa6e9cbd4bc6bab665ada6edbf2}{Instruction::kfnmadd\_s}},\ 0b1001111,\ 0b00,\ -\/1,\ -\/1,\ -\/1,\ -\/1),\ \textcolor{comment}{//\ kfnmadd\_s}}
+\DoxyCodeLine{00398\ \ \ }
+\DoxyCodeLine{00399\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980af7274ea3ef69220b143dcdb58c3e1d89}{Instruction::kfmadd\_d}},\ 0b1000011,\ 0b01,\ -\/1,\ -\/1,\ -\/1,\ -\/1),\ \textcolor{comment}{//\ kfmadd\_d}}
+\DoxyCodeLine{00400\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980aeae1f37b662f71886d174d1e98e3e300}{Instruction::kfmsub\_d}},\ 0b1000111,\ 0b01,\ -\/1,\ -\/1,\ -\/1,\ -\/1),\ \textcolor{comment}{//\ kfmsub\_d\ }}
+\DoxyCodeLine{00401\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a61010ea282058714c255d3365e1d4556}{Instruction::kfnmsub\_d}},\ 0b1001011,\ 0b01,\ -\/1,\ -\/1,\ -\/1,\ -\/1),\ \textcolor{comment}{//\ kfnmsub\_d}}
+\DoxyCodeLine{00402\ \ \ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a4991a811fd6d5fc57f32d8c1de1e981b}{Instruction::kfnmadd\_d}},\ 0b1001111,\ 0b01,\ -\/1,\ -\/1,\ -\/1,\ -\/1),\ \textcolor{comment}{//\ kfnmadd\_d}}
+\DoxyCodeLine{00403\ }
+\DoxyCodeLine{00404\ }
+\DoxyCodeLine{00405\ \}\};}
+\DoxyCodeLine{00406\ }
+\DoxyCodeLine{00407\ \textcolor{keyword}{const}\ std::array<InstructionEncoding,\ static\_cast<size\_t>(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980aac66397916080c2781a7d18b92d9f017}{Instruction::COUNT}})>\ \mbox{\hyperlink{namespaceinstruction__set_adbde340cac84f69d5a9008a16e4cae53}{runtime\_instruction\_encoding\_array}}\ =\ \mbox{\hyperlink{namespaceinstruction__set_a25b454e50ccfb03bc53525fa101d41cf}{compiletime\_instruction\_encoding\_array}};}
+\DoxyCodeLine{00408\ }
+\DoxyCodeLine{00409\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{InstructionEncoding}}\&\ \mbox{\hyperlink{namespaceinstruction__set_a30b5579835de16eaeb2dcd8f8dd70698}{get\_instr\_encoding}}(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980}{Instruction}}\ instr)\ \{}
+\DoxyCodeLine{00410\ \ \ \textcolor{keywordflow}{if}\ (std::is\_constant\_evaluated())\ \{}
+\DoxyCodeLine{00411\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ enc\ :\ \mbox{\hyperlink{namespaceinstruction__set_a25b454e50ccfb03bc53525fa101d41cf}{compiletime\_instruction\_encoding\_array}})\ \{}
+\DoxyCodeLine{00412\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (enc.instr\ ==\ instr)\ \{}
+\DoxyCodeLine{00413\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ enc;}
+\DoxyCodeLine{00414\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00415\ \ \ \ \ \}}
+\DoxyCodeLine{00416\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ enc\ :\ \mbox{\hyperlink{namespaceinstruction__set_a25b454e50ccfb03bc53525fa101d41cf}{compiletime\_instruction\_encoding\_array}})\ \{}
+\DoxyCodeLine{00417\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (enc.instr\ ==\ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a0011dcdf9617dd34fb50717f35c61abd}{Instruction::INVALID}})\ \{}
+\DoxyCodeLine{00418\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ enc;}
+\DoxyCodeLine{00419\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00420\ \ \ \ \ \}}
+\DoxyCodeLine{00421\ }
+\DoxyCodeLine{00422\ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00423\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ enc\ :\ \mbox{\hyperlink{namespaceinstruction__set_adbde340cac84f69d5a9008a16e4cae53}{runtime\_instruction\_encoding\_array}})\ \{}
+\DoxyCodeLine{00424\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (enc.instr\ ==\ instr)\ \{}
+\DoxyCodeLine{00425\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ enc;}
+\DoxyCodeLine{00426\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00427\ \ \ \ \ \}}
+\DoxyCodeLine{00428\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ enc\ :\ \mbox{\hyperlink{namespaceinstruction__set_adbde340cac84f69d5a9008a16e4cae53}{runtime\_instruction\_encoding\_array}})\ \{}
+\DoxyCodeLine{00429\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (enc.instr\ ==\ \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a0011dcdf9617dd34fb50717f35c61abd}{Instruction::INVALID}})\ \{}
+\DoxyCodeLine{00430\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ enc;}
+\DoxyCodeLine{00431\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00432\ \ \ \ \ \}}
+\DoxyCodeLine{00433\ \ \ \}}
+\DoxyCodeLine{00434\ }
+\DoxyCodeLine{00435\ \ \ \_\_builtin\_unreachable();}
+\DoxyCodeLine{00436\ \}}
+\DoxyCodeLine{00437\ }
+\DoxyCodeLine{00438\ }
+\DoxyCodeLine{00439\ \textcolor{keyword}{extern}\ std::unordered\_map<std::string,\ Instruction>\ \mbox{\hyperlink{namespaceinstruction__set_a255c46d8c499cf217f68aee308a3bb04}{instruction\_string\_map}};}
+\DoxyCodeLine{00440\ }
+\DoxyCodeLine{00441\ }
+\DoxyCodeLine{00442\ }
+\DoxyCodeLine{00443\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structinstruction__set_1_1RTypeInstructionEncoding}{RTypeInstructionEncoding}}\ \{}
+\DoxyCodeLine{00444\ \ \ std::bitset<7>\ \mbox{\hyperlink{structinstruction__set_1_1RTypeInstructionEncoding_ac3ab4f1b73d792ad4f08f50c7857eaf0}{opcode}};}
+\DoxyCodeLine{00445\ \ \ std::bitset<3>\ \mbox{\hyperlink{structinstruction__set_1_1RTypeInstructionEncoding_a4e43f9ea5f70379a613129b5bdd4fda5}{funct3}};}
+\DoxyCodeLine{00446\ \ \ std::bitset<7>\ \mbox{\hyperlink{structinstruction__set_1_1RTypeInstructionEncoding_a6942b880848d4bb2b88e14ab9f33f702}{funct7}};}
+\DoxyCodeLine{00447\ }
+\DoxyCodeLine{00448\ \ \ \mbox{\hyperlink{structinstruction__set_1_1RTypeInstructionEncoding_abf2db83d5b0e5422b5cb6532075b900e}{RTypeInstructionEncoding}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structinstruction__set_1_1RTypeInstructionEncoding_ac3ab4f1b73d792ad4f08f50c7857eaf0}{opcode}},\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structinstruction__set_1_1RTypeInstructionEncoding_a4e43f9ea5f70379a613129b5bdd4fda5}{funct3}},\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structinstruction__set_1_1RTypeInstructionEncoding_a6942b880848d4bb2b88e14ab9f33f702}{funct7}})}
+\DoxyCodeLine{00449\ \ \ \ \ \ \ :\ \mbox{\hyperlink{structinstruction__set_1_1RTypeInstructionEncoding_ac3ab4f1b73d792ad4f08f50c7857eaf0}{opcode}}(\mbox{\hyperlink{structinstruction__set_1_1RTypeInstructionEncoding_ac3ab4f1b73d792ad4f08f50c7857eaf0}{opcode}}),\ \mbox{\hyperlink{structinstruction__set_1_1RTypeInstructionEncoding_a4e43f9ea5f70379a613129b5bdd4fda5}{funct3}}(\mbox{\hyperlink{structinstruction__set_1_1RTypeInstructionEncoding_a4e43f9ea5f70379a613129b5bdd4fda5}{funct3}}),\ \mbox{\hyperlink{structinstruction__set_1_1RTypeInstructionEncoding_a6942b880848d4bb2b88e14ab9f33f702}{funct7}}(\mbox{\hyperlink{structinstruction__set_1_1RTypeInstructionEncoding_a6942b880848d4bb2b88e14ab9f33f702}{funct7}})\ \{\}}
+\DoxyCodeLine{00450\ \};}
+\DoxyCodeLine{00451\ }
+\DoxyCodeLine{00452\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structinstruction__set_1_1I1TypeInstructionEncoding}{I1TypeInstructionEncoding}}\ \{}
+\DoxyCodeLine{00453\ \ \ std::bitset<7>\ \mbox{\hyperlink{structinstruction__set_1_1I1TypeInstructionEncoding_a67b1c46e3427792c05c4361101264ab7}{opcode}};}
+\DoxyCodeLine{00454\ \ \ std::bitset<3>\ \mbox{\hyperlink{structinstruction__set_1_1I1TypeInstructionEncoding_a460bd8c66be953e3b6ebe2c6326186f4}{funct3}};}
+\DoxyCodeLine{00455\ }
+\DoxyCodeLine{00456\ \ \ \mbox{\hyperlink{structinstruction__set_1_1I1TypeInstructionEncoding_a7f66a058923d214fbd7a6c2d2fef4dfb}{I1TypeInstructionEncoding}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structinstruction__set_1_1I1TypeInstructionEncoding_a67b1c46e3427792c05c4361101264ab7}{opcode}},\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structinstruction__set_1_1I1TypeInstructionEncoding_a460bd8c66be953e3b6ebe2c6326186f4}{funct3}})}
+\DoxyCodeLine{00457\ \ \ \ \ \ \ :\ \mbox{\hyperlink{structinstruction__set_1_1I1TypeInstructionEncoding_a67b1c46e3427792c05c4361101264ab7}{opcode}}(\mbox{\hyperlink{structinstruction__set_1_1I1TypeInstructionEncoding_a67b1c46e3427792c05c4361101264ab7}{opcode}}),\ \mbox{\hyperlink{structinstruction__set_1_1I1TypeInstructionEncoding_a460bd8c66be953e3b6ebe2c6326186f4}{funct3}}(\mbox{\hyperlink{structinstruction__set_1_1I1TypeInstructionEncoding_a460bd8c66be953e3b6ebe2c6326186f4}{funct3}})\ \{\}}
+\DoxyCodeLine{00458\ \};}
+\DoxyCodeLine{00459\ }
+\DoxyCodeLine{00460\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structinstruction__set_1_1I2TypeInstructionEncoding}{I2TypeInstructionEncoding}}\ \{}
+\DoxyCodeLine{00461\ \ \ std::bitset<7>\ \mbox{\hyperlink{structinstruction__set_1_1I2TypeInstructionEncoding_adab5ebe50913686d13fb6a2708c8aac5}{opcode}};}
+\DoxyCodeLine{00462\ \ \ std::bitset<3>\ \mbox{\hyperlink{structinstruction__set_1_1I2TypeInstructionEncoding_a4c3a771e638deb2a9fecc8295d882580}{funct3}};}
+\DoxyCodeLine{00463\ \ \ std::bitset<6>\ \mbox{\hyperlink{structinstruction__set_1_1I2TypeInstructionEncoding_a552de44fd98aaefc6746378d0576e78d}{funct6}};}
+\DoxyCodeLine{00464\ }
+\DoxyCodeLine{00465\ \ \ \mbox{\hyperlink{structinstruction__set_1_1I2TypeInstructionEncoding_a92358a53cd1c0f302bf3aa013caa0e16}{I2TypeInstructionEncoding}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structinstruction__set_1_1I2TypeInstructionEncoding_adab5ebe50913686d13fb6a2708c8aac5}{opcode}},\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structinstruction__set_1_1I2TypeInstructionEncoding_a4c3a771e638deb2a9fecc8295d882580}{funct3}},\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structinstruction__set_1_1I2TypeInstructionEncoding_a552de44fd98aaefc6746378d0576e78d}{funct6}})}
+\DoxyCodeLine{00466\ \ \ \ \ \ \ :\ \mbox{\hyperlink{structinstruction__set_1_1I2TypeInstructionEncoding_adab5ebe50913686d13fb6a2708c8aac5}{opcode}}(\mbox{\hyperlink{structinstruction__set_1_1I2TypeInstructionEncoding_adab5ebe50913686d13fb6a2708c8aac5}{opcode}}),\ \mbox{\hyperlink{structinstruction__set_1_1I2TypeInstructionEncoding_a4c3a771e638deb2a9fecc8295d882580}{funct3}}(\mbox{\hyperlink{structinstruction__set_1_1I2TypeInstructionEncoding_a4c3a771e638deb2a9fecc8295d882580}{funct3}}),\ \mbox{\hyperlink{structinstruction__set_1_1I2TypeInstructionEncoding_a552de44fd98aaefc6746378d0576e78d}{funct6}}(\mbox{\hyperlink{structinstruction__set_1_1I2TypeInstructionEncoding_a552de44fd98aaefc6746378d0576e78d}{funct6}})\ \{\}}
+\DoxyCodeLine{00467\ \};}
+\DoxyCodeLine{00468\ }
+\DoxyCodeLine{00469\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structinstruction__set_1_1I3TypeInstructionEncoding}{I3TypeInstructionEncoding}}\ \{}
+\DoxyCodeLine{00470\ \ \ std::bitset<7>\ \mbox{\hyperlink{structinstruction__set_1_1I3TypeInstructionEncoding_ab160bea4e6440a3725bbb55401768ed8}{opcode}};}
+\DoxyCodeLine{00471\ \ \ std::bitset<3>\ \mbox{\hyperlink{structinstruction__set_1_1I3TypeInstructionEncoding_a8519056dfaae40eddcb40eb3b6b8e6bf}{funct3}};}
+\DoxyCodeLine{00472\ \ \ std::bitset<7>\ \mbox{\hyperlink{structinstruction__set_1_1I3TypeInstructionEncoding_a0c6468b965c8a3cc9e5a686fd72b4ee9}{funct7}};}
+\DoxyCodeLine{00473\ }
+\DoxyCodeLine{00474\ \ \ \mbox{\hyperlink{structinstruction__set_1_1I3TypeInstructionEncoding_a0861c0732d16aed1b4c583a195ad2edc}{I3TypeInstructionEncoding}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structinstruction__set_1_1I3TypeInstructionEncoding_ab160bea4e6440a3725bbb55401768ed8}{opcode}},\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structinstruction__set_1_1I3TypeInstructionEncoding_a8519056dfaae40eddcb40eb3b6b8e6bf}{funct3}},\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structinstruction__set_1_1I3TypeInstructionEncoding_a0c6468b965c8a3cc9e5a686fd72b4ee9}{funct7}})}
+\DoxyCodeLine{00475\ \ \ \ \ \ \ :\ \mbox{\hyperlink{structinstruction__set_1_1I3TypeInstructionEncoding_ab160bea4e6440a3725bbb55401768ed8}{opcode}}(\mbox{\hyperlink{structinstruction__set_1_1I3TypeInstructionEncoding_ab160bea4e6440a3725bbb55401768ed8}{opcode}}),\ \mbox{\hyperlink{structinstruction__set_1_1I3TypeInstructionEncoding_a8519056dfaae40eddcb40eb3b6b8e6bf}{funct3}}(\mbox{\hyperlink{structinstruction__set_1_1I3TypeInstructionEncoding_a8519056dfaae40eddcb40eb3b6b8e6bf}{funct3}}),\ \mbox{\hyperlink{structinstruction__set_1_1I3TypeInstructionEncoding_a0c6468b965c8a3cc9e5a686fd72b4ee9}{funct7}}(\mbox{\hyperlink{structinstruction__set_1_1I3TypeInstructionEncoding_a0c6468b965c8a3cc9e5a686fd72b4ee9}{funct7}})\ \{\}}
+\DoxyCodeLine{00476\ \};}
+\DoxyCodeLine{00477\ }
+\DoxyCodeLine{00478\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structinstruction__set_1_1STypeInstructionEncoding}{STypeInstructionEncoding}}\ \{}
+\DoxyCodeLine{00479\ \ \ std::bitset<7>\ \mbox{\hyperlink{structinstruction__set_1_1STypeInstructionEncoding_aa3d4b5e2cf6c1a65c00b109ba0ea1afc}{opcode}};}
+\DoxyCodeLine{00480\ \ \ std::bitset<3>\ \mbox{\hyperlink{structinstruction__set_1_1STypeInstructionEncoding_a6f211efd16df18f66a993f5d5b1a8e8a}{funct3}};}
+\DoxyCodeLine{00481\ }
+\DoxyCodeLine{00482\ \ \ \mbox{\hyperlink{structinstruction__set_1_1STypeInstructionEncoding_a4c9cdc1bd9e71aecfe7ed1137791570e}{STypeInstructionEncoding}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structinstruction__set_1_1STypeInstructionEncoding_aa3d4b5e2cf6c1a65c00b109ba0ea1afc}{opcode}},\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structinstruction__set_1_1STypeInstructionEncoding_a6f211efd16df18f66a993f5d5b1a8e8a}{funct3}})}
+\DoxyCodeLine{00483\ \ \ \ \ \ \ :\ \mbox{\hyperlink{structinstruction__set_1_1STypeInstructionEncoding_aa3d4b5e2cf6c1a65c00b109ba0ea1afc}{opcode}}(\mbox{\hyperlink{structinstruction__set_1_1STypeInstructionEncoding_aa3d4b5e2cf6c1a65c00b109ba0ea1afc}{opcode}}),\ \mbox{\hyperlink{structinstruction__set_1_1STypeInstructionEncoding_a6f211efd16df18f66a993f5d5b1a8e8a}{funct3}}(\mbox{\hyperlink{structinstruction__set_1_1STypeInstructionEncoding_a6f211efd16df18f66a993f5d5b1a8e8a}{funct3}})\ \{\}}
+\DoxyCodeLine{00484\ \};}
+\DoxyCodeLine{00485\ }
+\DoxyCodeLine{00486\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structinstruction__set_1_1BTypeInstructionEncoding}{BTypeInstructionEncoding}}\ \{}
+\DoxyCodeLine{00487\ \ \ std::bitset<7>\ \mbox{\hyperlink{structinstruction__set_1_1BTypeInstructionEncoding_af4b1bd37af321aa1400f932a041bb8b0}{opcode}};}
+\DoxyCodeLine{00488\ \ \ std::bitset<3>\ \mbox{\hyperlink{structinstruction__set_1_1BTypeInstructionEncoding_a985dff63e46234327fc3d81a337e9d6c}{funct3}};}
+\DoxyCodeLine{00489\ }
+\DoxyCodeLine{00490\ \ \ \mbox{\hyperlink{structinstruction__set_1_1BTypeInstructionEncoding_a3ba23591ee77efa63baf872e304d32aa}{BTypeInstructionEncoding}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structinstruction__set_1_1BTypeInstructionEncoding_af4b1bd37af321aa1400f932a041bb8b0}{opcode}},\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structinstruction__set_1_1BTypeInstructionEncoding_a985dff63e46234327fc3d81a337e9d6c}{funct3}})}
+\DoxyCodeLine{00491\ \ \ \ \ \ \ :\ \mbox{\hyperlink{structinstruction__set_1_1BTypeInstructionEncoding_af4b1bd37af321aa1400f932a041bb8b0}{opcode}}(\mbox{\hyperlink{structinstruction__set_1_1BTypeInstructionEncoding_af4b1bd37af321aa1400f932a041bb8b0}{opcode}}),\ \mbox{\hyperlink{structinstruction__set_1_1BTypeInstructionEncoding_a985dff63e46234327fc3d81a337e9d6c}{funct3}}(\mbox{\hyperlink{structinstruction__set_1_1BTypeInstructionEncoding_a985dff63e46234327fc3d81a337e9d6c}{funct3}})\ \{\}}
+\DoxyCodeLine{00492\ \};}
+\DoxyCodeLine{00493\ }
+\DoxyCodeLine{00494\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structinstruction__set_1_1UTypeInstructionEncoding}{UTypeInstructionEncoding}}\ \{}
+\DoxyCodeLine{00495\ \ \ std::bitset<7>\ \mbox{\hyperlink{structinstruction__set_1_1UTypeInstructionEncoding_a4ed9b701fa0784581c38b761bb50d90f}{opcode}};}
+\DoxyCodeLine{00496\ }
+\DoxyCodeLine{00497\ \ \ \mbox{\hyperlink{structinstruction__set_1_1UTypeInstructionEncoding_aa35e9b41d62ab6b26810dfd86c25f6f0}{UTypeInstructionEncoding}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structinstruction__set_1_1UTypeInstructionEncoding_a4ed9b701fa0784581c38b761bb50d90f}{opcode}})}
+\DoxyCodeLine{00498\ \ \ \ \ \ \ :\ \mbox{\hyperlink{structinstruction__set_1_1UTypeInstructionEncoding_a4ed9b701fa0784581c38b761bb50d90f}{opcode}}(\mbox{\hyperlink{structinstruction__set_1_1UTypeInstructionEncoding_a4ed9b701fa0784581c38b761bb50d90f}{opcode}})\ \{\}}
+\DoxyCodeLine{00499\ \};}
+\DoxyCodeLine{00500\ }
+\DoxyCodeLine{00501\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structinstruction__set_1_1JTypeInstructionEncoding}{JTypeInstructionEncoding}}\ \{}
+\DoxyCodeLine{00502\ \ \ std::bitset<7>\ \mbox{\hyperlink{structinstruction__set_1_1JTypeInstructionEncoding_abdd1ef1fc33bd74c62fb2cc61ed6d76e}{opcode}};}
+\DoxyCodeLine{00503\ }
+\DoxyCodeLine{00504\ \ \ \mbox{\hyperlink{structinstruction__set_1_1JTypeInstructionEncoding_a850a06da1ca469847e7bcc4a874ac645}{JTypeInstructionEncoding}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structinstruction__set_1_1JTypeInstructionEncoding_abdd1ef1fc33bd74c62fb2cc61ed6d76e}{opcode}})}
+\DoxyCodeLine{00505\ \ \ \ \ \ \ :\ \mbox{\hyperlink{structinstruction__set_1_1JTypeInstructionEncoding_abdd1ef1fc33bd74c62fb2cc61ed6d76e}{opcode}}(\mbox{\hyperlink{structinstruction__set_1_1JTypeInstructionEncoding_abdd1ef1fc33bd74c62fb2cc61ed6d76e}{opcode}})\ \{\}}
+\DoxyCodeLine{00506\ \};}
+\DoxyCodeLine{00507\ }
+\DoxyCodeLine{00508\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structinstruction__set_1_1CSR__RTypeInstructionEncoding}{CSR\_RTypeInstructionEncoding}}\ \{}
+\DoxyCodeLine{00509\ \ \ std::bitset<7>\ \mbox{\hyperlink{structinstruction__set_1_1CSR__RTypeInstructionEncoding_aa198ecd9e04bf1aa59d51194c6a1c613}{opcode}};}
+\DoxyCodeLine{00510\ \ \ std::bitset<3>\ \mbox{\hyperlink{structinstruction__set_1_1CSR__RTypeInstructionEncoding_a7335a3a72d68e420e858add414a3e64b}{funct3}};}
+\DoxyCodeLine{00511\ }
+\DoxyCodeLine{00512\ \ \ \mbox{\hyperlink{structinstruction__set_1_1CSR__RTypeInstructionEncoding_acc2f9fa6edc93ba9adad745f958f391e}{CSR\_RTypeInstructionEncoding}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structinstruction__set_1_1CSR__RTypeInstructionEncoding_aa198ecd9e04bf1aa59d51194c6a1c613}{opcode}},\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structinstruction__set_1_1CSR__RTypeInstructionEncoding_a7335a3a72d68e420e858add414a3e64b}{funct3}})}
+\DoxyCodeLine{00513\ \ \ \ \ \ \ :\ \mbox{\hyperlink{structinstruction__set_1_1CSR__RTypeInstructionEncoding_aa198ecd9e04bf1aa59d51194c6a1c613}{opcode}}(\mbox{\hyperlink{structinstruction__set_1_1CSR__RTypeInstructionEncoding_aa198ecd9e04bf1aa59d51194c6a1c613}{opcode}}),\ \mbox{\hyperlink{structinstruction__set_1_1CSR__RTypeInstructionEncoding_a7335a3a72d68e420e858add414a3e64b}{funct3}}(\mbox{\hyperlink{structinstruction__set_1_1CSR__RTypeInstructionEncoding_a7335a3a72d68e420e858add414a3e64b}{funct3}})\ \{\}}
+\DoxyCodeLine{00514\ \};}
+\DoxyCodeLine{00515\ }
+\DoxyCodeLine{00516\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structinstruction__set_1_1CSR__ITypeInstructionEncoding}{CSR\_ITypeInstructionEncoding}}\ \{}
+\DoxyCodeLine{00517\ \ \ std::bitset<7>\ \mbox{\hyperlink{structinstruction__set_1_1CSR__ITypeInstructionEncoding_ae5b1af7c7ce3e861af2bc4cc7a8c15c5}{opcode}};}
+\DoxyCodeLine{00518\ \ \ std::bitset<3>\ \mbox{\hyperlink{structinstruction__set_1_1CSR__ITypeInstructionEncoding_a3c5b7a9c03e9eeca47da3d536a0a9678}{funct3}};}
+\DoxyCodeLine{00519\ }
+\DoxyCodeLine{00520\ \ \ \mbox{\hyperlink{structinstruction__set_1_1CSR__ITypeInstructionEncoding_ae22b2cb96f686e3317debb0b5f90d2c6}{CSR\_ITypeInstructionEncoding}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structinstruction__set_1_1CSR__ITypeInstructionEncoding_ae5b1af7c7ce3e861af2bc4cc7a8c15c5}{opcode}},\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structinstruction__set_1_1CSR__ITypeInstructionEncoding_a3c5b7a9c03e9eeca47da3d536a0a9678}{funct3}})}
+\DoxyCodeLine{00521\ \ \ \ \ \ \ :\ \mbox{\hyperlink{structinstruction__set_1_1CSR__ITypeInstructionEncoding_ae5b1af7c7ce3e861af2bc4cc7a8c15c5}{opcode}}(\mbox{\hyperlink{structinstruction__set_1_1CSR__ITypeInstructionEncoding_ae5b1af7c7ce3e861af2bc4cc7a8c15c5}{opcode}}),\ \mbox{\hyperlink{structinstruction__set_1_1CSR__ITypeInstructionEncoding_a3c5b7a9c03e9eeca47da3d536a0a9678}{funct3}}(\mbox{\hyperlink{structinstruction__set_1_1CSR__ITypeInstructionEncoding_a3c5b7a9c03e9eeca47da3d536a0a9678}{funct3}})\ \{\}}
+\DoxyCodeLine{00522\ \};}
+\DoxyCodeLine{00523\ }
+\DoxyCodeLine{00524\ \textcolor{comment}{//\ Fextension\ instructions===========================================================================}}
+\DoxyCodeLine{00525\ }
+\DoxyCodeLine{00526\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structinstruction__set_1_1FDRTypeInstructionEncoding}{FDRTypeInstructionEncoding}}\ \{\ \textcolor{comment}{//\ fsgnj}}
+\DoxyCodeLine{00527\ \ \ std::bitset<7>\ \mbox{\hyperlink{structinstruction__set_1_1FDRTypeInstructionEncoding_a40c6b321a1d1ebf5c22fdffc1dcaf123}{opcode}};}
+\DoxyCodeLine{00528\ \ \ std::bitset<3>\ \mbox{\hyperlink{structinstruction__set_1_1FDRTypeInstructionEncoding_a18f69a8d2bdc35a7d66506c0cc5d4d70}{funct3}};}
+\DoxyCodeLine{00529\ \ \ std::bitset<7>\ \mbox{\hyperlink{structinstruction__set_1_1FDRTypeInstructionEncoding_aed1e74714139717252495123c588c3f5}{funct7}};}
+\DoxyCodeLine{00530\ }
+\DoxyCodeLine{00531\ \ \ \mbox{\hyperlink{structinstruction__set_1_1FDRTypeInstructionEncoding_a5a3029cc66958d777a03b6003065289e}{FDRTypeInstructionEncoding}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structinstruction__set_1_1FDRTypeInstructionEncoding_a40c6b321a1d1ebf5c22fdffc1dcaf123}{opcode}},\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structinstruction__set_1_1FDRTypeInstructionEncoding_a18f69a8d2bdc35a7d66506c0cc5d4d70}{funct3}},\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structinstruction__set_1_1FDRTypeInstructionEncoding_aed1e74714139717252495123c588c3f5}{funct7}})}
+\DoxyCodeLine{00532\ \ \ \ \ \ \ :\ \mbox{\hyperlink{structinstruction__set_1_1FDRTypeInstructionEncoding_a40c6b321a1d1ebf5c22fdffc1dcaf123}{opcode}}(\mbox{\hyperlink{structinstruction__set_1_1FDRTypeInstructionEncoding_a40c6b321a1d1ebf5c22fdffc1dcaf123}{opcode}}),\ \mbox{\hyperlink{structinstruction__set_1_1FDRTypeInstructionEncoding_a18f69a8d2bdc35a7d66506c0cc5d4d70}{funct3}}(\mbox{\hyperlink{structinstruction__set_1_1FDRTypeInstructionEncoding_a18f69a8d2bdc35a7d66506c0cc5d4d70}{funct3}}),\ \mbox{\hyperlink{structinstruction__set_1_1FDRTypeInstructionEncoding_aed1e74714139717252495123c588c3f5}{funct7}}(\mbox{\hyperlink{structinstruction__set_1_1FDRTypeInstructionEncoding_aed1e74714139717252495123c588c3f5}{funct7}})\ \{\}}
+\DoxyCodeLine{00533\ \};}
+\DoxyCodeLine{00534\ }
+\DoxyCodeLine{00535\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structinstruction__set_1_1FDR1TypeInstructionEncoding}{FDR1TypeInstructionEncoding}}\ \{\ \textcolor{comment}{//\ fadd,\ fsub,\ fmul}}
+\DoxyCodeLine{00536\ \ \ std::bitset<7>\ \mbox{\hyperlink{structinstruction__set_1_1FDR1TypeInstructionEncoding_aa2810931143f576fab3d8ce7ebb7d398}{opcode}};}
+\DoxyCodeLine{00537\ \ \ std::bitset<7>\ \mbox{\hyperlink{structinstruction__set_1_1FDR1TypeInstructionEncoding_a0379667c273cf707d36212084ac6d0a9}{funct7}};}
+\DoxyCodeLine{00538\ }
+\DoxyCodeLine{00539\ \ \ \mbox{\hyperlink{structinstruction__set_1_1FDR1TypeInstructionEncoding_a855870293bfec624124d4df1073b2d90}{FDR1TypeInstructionEncoding}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structinstruction__set_1_1FDR1TypeInstructionEncoding_aa2810931143f576fab3d8ce7ebb7d398}{opcode}},\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structinstruction__set_1_1FDR1TypeInstructionEncoding_a0379667c273cf707d36212084ac6d0a9}{funct7}})}
+\DoxyCodeLine{00540\ \ \ \ \ \ \ :\ \mbox{\hyperlink{structinstruction__set_1_1FDR1TypeInstructionEncoding_aa2810931143f576fab3d8ce7ebb7d398}{opcode}}(\mbox{\hyperlink{structinstruction__set_1_1FDR1TypeInstructionEncoding_aa2810931143f576fab3d8ce7ebb7d398}{opcode}}),\ \mbox{\hyperlink{structinstruction__set_1_1FDR1TypeInstructionEncoding_a0379667c273cf707d36212084ac6d0a9}{funct7}}(\mbox{\hyperlink{structinstruction__set_1_1FDR1TypeInstructionEncoding_a0379667c273cf707d36212084ac6d0a9}{funct7}})\ \{\}}
+\DoxyCodeLine{00541\ \};}
+\DoxyCodeLine{00542\ }
+\DoxyCodeLine{00543\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structinstruction__set_1_1FDR2TypeInstructionEncoding}{FDR2TypeInstructionEncoding}}\ \{\ \textcolor{comment}{//fsqrt,\ have\ funct5\ instead\ of\ rs2}}
+\DoxyCodeLine{00544\ \ \ std::bitset<7>\ \mbox{\hyperlink{structinstruction__set_1_1FDR2TypeInstructionEncoding_a301252b406ce5c9659619ccb600b9b5e}{opcode}};}
+\DoxyCodeLine{00545\ \ \ std::bitset<5>\ \mbox{\hyperlink{structinstruction__set_1_1FDR2TypeInstructionEncoding_a5653f0285514063bd5501e08039ddd9f}{funct5}};}
+\DoxyCodeLine{00546\ \ \ std::bitset<7>\ \mbox{\hyperlink{structinstruction__set_1_1FDR2TypeInstructionEncoding_aa72b2415274ff2657c4c59ce8c2b177b}{funct7}};}
+\DoxyCodeLine{00547\ }
+\DoxyCodeLine{00548\ \ \ \mbox{\hyperlink{structinstruction__set_1_1FDR2TypeInstructionEncoding_a005002957bf2b27b9d963ecc9d1381c7}{FDR2TypeInstructionEncoding}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structinstruction__set_1_1FDR2TypeInstructionEncoding_a301252b406ce5c9659619ccb600b9b5e}{opcode}},\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structinstruction__set_1_1FDR2TypeInstructionEncoding_a5653f0285514063bd5501e08039ddd9f}{funct5}},\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structinstruction__set_1_1FDR2TypeInstructionEncoding_aa72b2415274ff2657c4c59ce8c2b177b}{funct7}})}
+\DoxyCodeLine{00549\ \ \ \ \ \ \ :\ \mbox{\hyperlink{structinstruction__set_1_1FDR2TypeInstructionEncoding_a301252b406ce5c9659619ccb600b9b5e}{opcode}}(\mbox{\hyperlink{structinstruction__set_1_1FDR2TypeInstructionEncoding_a301252b406ce5c9659619ccb600b9b5e}{opcode}}),\ \mbox{\hyperlink{structinstruction__set_1_1FDR2TypeInstructionEncoding_a5653f0285514063bd5501e08039ddd9f}{funct5}}(\mbox{\hyperlink{structinstruction__set_1_1FDR2TypeInstructionEncoding_a5653f0285514063bd5501e08039ddd9f}{funct5}}),\ \mbox{\hyperlink{structinstruction__set_1_1FDR2TypeInstructionEncoding_aa72b2415274ff2657c4c59ce8c2b177b}{funct7}}(\mbox{\hyperlink{structinstruction__set_1_1FDR2TypeInstructionEncoding_aa72b2415274ff2657c4c59ce8c2b177b}{funct7}})\ \{\}}
+\DoxyCodeLine{00550\ \};}
+\DoxyCodeLine{00551\ }
+\DoxyCodeLine{00552\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structinstruction__set_1_1FDR3TypeInstructionEncoding}{FDR3TypeInstructionEncoding}}\ \{}
+\DoxyCodeLine{00553\ \ \ std::bitset<7>\ \mbox{\hyperlink{structinstruction__set_1_1FDR3TypeInstructionEncoding_a81afe3aab89671ac5fb58c16d5d82e1d}{opcode}};}
+\DoxyCodeLine{00554\ \ \ std::bitset<3>\ \mbox{\hyperlink{structinstruction__set_1_1FDR3TypeInstructionEncoding_aa18c0044ad4d05c3d99c69281b76c672}{funct3}};}
+\DoxyCodeLine{00555\ \ \ std::bitset<5>\ \mbox{\hyperlink{structinstruction__set_1_1FDR3TypeInstructionEncoding_a8823e88dc7b661a9598c1ae9167b8ac0}{funct5}};}
+\DoxyCodeLine{00556\ \ \ std::bitset<7>\ \mbox{\hyperlink{structinstruction__set_1_1FDR3TypeInstructionEncoding_a761f544a9c0c7d693ada88232393249d}{funct7}};}
+\DoxyCodeLine{00557\ }
+\DoxyCodeLine{00558\ \ \ \mbox{\hyperlink{structinstruction__set_1_1FDR3TypeInstructionEncoding_aae61ae9bcd9c93439c2c8f163712757a}{FDR3TypeInstructionEncoding}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structinstruction__set_1_1FDR3TypeInstructionEncoding_a81afe3aab89671ac5fb58c16d5d82e1d}{opcode}},\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structinstruction__set_1_1FDR3TypeInstructionEncoding_aa18c0044ad4d05c3d99c69281b76c672}{funct3}},\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structinstruction__set_1_1FDR3TypeInstructionEncoding_a8823e88dc7b661a9598c1ae9167b8ac0}{funct5}},\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structinstruction__set_1_1FDR3TypeInstructionEncoding_a761f544a9c0c7d693ada88232393249d}{funct7}})}
+\DoxyCodeLine{00559\ \ \ \ \ \ \ :\ \mbox{\hyperlink{structinstruction__set_1_1FDR3TypeInstructionEncoding_a81afe3aab89671ac5fb58c16d5d82e1d}{opcode}}(\mbox{\hyperlink{structinstruction__set_1_1FDR3TypeInstructionEncoding_a81afe3aab89671ac5fb58c16d5d82e1d}{opcode}}),\ \mbox{\hyperlink{structinstruction__set_1_1FDR3TypeInstructionEncoding_aa18c0044ad4d05c3d99c69281b76c672}{funct3}}(\mbox{\hyperlink{structinstruction__set_1_1FDR3TypeInstructionEncoding_aa18c0044ad4d05c3d99c69281b76c672}{funct3}}),\ \mbox{\hyperlink{structinstruction__set_1_1FDR3TypeInstructionEncoding_a8823e88dc7b661a9598c1ae9167b8ac0}{funct5}}(\mbox{\hyperlink{structinstruction__set_1_1FDR3TypeInstructionEncoding_a8823e88dc7b661a9598c1ae9167b8ac0}{funct5}}),\ \mbox{\hyperlink{structinstruction__set_1_1FDR3TypeInstructionEncoding_a761f544a9c0c7d693ada88232393249d}{funct7}}(\mbox{\hyperlink{structinstruction__set_1_1FDR3TypeInstructionEncoding_a761f544a9c0c7d693ada88232393249d}{funct7}})\ \{\}}
+\DoxyCodeLine{00560\ }
+\DoxyCodeLine{00561\ \};}
+\DoxyCodeLine{00562\ }
+\DoxyCodeLine{00563\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structinstruction__set_1_1FDR4TypeInstructionEncoding}{FDR4TypeInstructionEncoding}}\ \{\ \textcolor{comment}{//fmadd}}
+\DoxyCodeLine{00564\ \ \ std::bitset<7>\ \mbox{\hyperlink{structinstruction__set_1_1FDR4TypeInstructionEncoding_ac3fa45d915dbbdae00d9960f5bc0e2de}{opcode}};}
+\DoxyCodeLine{00565\ \ \ std::bitset<2>\ \mbox{\hyperlink{structinstruction__set_1_1FDR4TypeInstructionEncoding_a3a455291d676b40cda5f23e93bf821c1}{funct2}};}
+\DoxyCodeLine{00566\ }
+\DoxyCodeLine{00567\ \ \ \mbox{\hyperlink{structinstruction__set_1_1FDR4TypeInstructionEncoding_a2837c0dd7b802bb625222b733fc69dfe}{FDR4TypeInstructionEncoding}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structinstruction__set_1_1FDR4TypeInstructionEncoding_ac3fa45d915dbbdae00d9960f5bc0e2de}{opcode}},\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structinstruction__set_1_1FDR4TypeInstructionEncoding_a3a455291d676b40cda5f23e93bf821c1}{funct2}})}
+\DoxyCodeLine{00568\ \ \ \ \ \ \ :\ \mbox{\hyperlink{structinstruction__set_1_1FDR4TypeInstructionEncoding_ac3fa45d915dbbdae00d9960f5bc0e2de}{opcode}}(\mbox{\hyperlink{structinstruction__set_1_1FDR4TypeInstructionEncoding_ac3fa45d915dbbdae00d9960f5bc0e2de}{opcode}}),\ \mbox{\hyperlink{structinstruction__set_1_1FDR4TypeInstructionEncoding_a3a455291d676b40cda5f23e93bf821c1}{funct2}}(\mbox{\hyperlink{structinstruction__set_1_1FDR4TypeInstructionEncoding_a3a455291d676b40cda5f23e93bf821c1}{funct2}})\ \{\}}
+\DoxyCodeLine{00569\ \};}
+\DoxyCodeLine{00570\ }
+\DoxyCodeLine{00571\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structinstruction__set_1_1FDITypeInstructionEncoding}{FDITypeInstructionEncoding}}\ \{}
+\DoxyCodeLine{00572\ \ \ std::bitset<7>\ \mbox{\hyperlink{structinstruction__set_1_1FDITypeInstructionEncoding_a8ebf7f6486faa52cc6cfd3ded775dd4e}{opcode}};}
+\DoxyCodeLine{00573\ \ \ std::bitset<3>\ \mbox{\hyperlink{structinstruction__set_1_1FDITypeInstructionEncoding_aa93e447bb29391176472f39583050cec}{funct3}};}
+\DoxyCodeLine{00574\ }
+\DoxyCodeLine{00575\ \ \ \mbox{\hyperlink{structinstruction__set_1_1FDITypeInstructionEncoding_ac40ca1bbaa39c6d9c9c2286eca0246be}{FDITypeInstructionEncoding}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structinstruction__set_1_1FDITypeInstructionEncoding_a8ebf7f6486faa52cc6cfd3ded775dd4e}{opcode}},\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structinstruction__set_1_1FDITypeInstructionEncoding_aa93e447bb29391176472f39583050cec}{funct3}})}
+\DoxyCodeLine{00576\ \ \ \ \ \ \ :\ \mbox{\hyperlink{structinstruction__set_1_1FDITypeInstructionEncoding_a8ebf7f6486faa52cc6cfd3ded775dd4e}{opcode}}(\mbox{\hyperlink{structinstruction__set_1_1FDITypeInstructionEncoding_a8ebf7f6486faa52cc6cfd3ded775dd4e}{opcode}}),\ \mbox{\hyperlink{structinstruction__set_1_1FDITypeInstructionEncoding_aa93e447bb29391176472f39583050cec}{funct3}}(\mbox{\hyperlink{structinstruction__set_1_1FDITypeInstructionEncoding_aa93e447bb29391176472f39583050cec}{funct3}})\ \{\}}
+\DoxyCodeLine{00577\ \};}
+\DoxyCodeLine{00578\ }
+\DoxyCodeLine{00579\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structinstruction__set_1_1FDSTypeInstructionEncoding}{FDSTypeInstructionEncoding}}\ \{}
+\DoxyCodeLine{00580\ \ \ std::bitset<7>\ \mbox{\hyperlink{structinstruction__set_1_1FDSTypeInstructionEncoding_a20ceaede7498b6c901064a6b2d39db04}{opcode}};}
+\DoxyCodeLine{00581\ \ \ std::bitset<3>\ \mbox{\hyperlink{structinstruction__set_1_1FDSTypeInstructionEncoding_a4b1e290f4cb54d19ee03fbbff869244e}{funct3}};}
+\DoxyCodeLine{00582\ }
+\DoxyCodeLine{00583\ \ \ \mbox{\hyperlink{structinstruction__set_1_1FDSTypeInstructionEncoding_a246348bf75f700aa3d77f4233d44fea4}{FDSTypeInstructionEncoding}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structinstruction__set_1_1FDSTypeInstructionEncoding_a20ceaede7498b6c901064a6b2d39db04}{opcode}},\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structinstruction__set_1_1FDSTypeInstructionEncoding_a4b1e290f4cb54d19ee03fbbff869244e}{funct3}})}
+\DoxyCodeLine{00584\ \ \ \ \ \ \ :\ \mbox{\hyperlink{structinstruction__set_1_1FDSTypeInstructionEncoding_a20ceaede7498b6c901064a6b2d39db04}{opcode}}(\mbox{\hyperlink{structinstruction__set_1_1FDSTypeInstructionEncoding_a20ceaede7498b6c901064a6b2d39db04}{opcode}}),\ \mbox{\hyperlink{structinstruction__set_1_1FDSTypeInstructionEncoding_a4b1e290f4cb54d19ee03fbbff869244e}{funct3}}(\mbox{\hyperlink{structinstruction__set_1_1FDSTypeInstructionEncoding_a4b1e290f4cb54d19ee03fbbff869244e}{funct3}})\ \{\}}
+\DoxyCodeLine{00585\ \};}
+\DoxyCodeLine{00586\ }
+\DoxyCodeLine{00590\ \textcolor{keyword}{enum\ class}\ \mbox{\hyperlink{namespaceinstruction__set_a7c366784cebccd7fbfda77874d229462}{SyntaxType}}\ \{}
+\DoxyCodeLine{00591\ \ \ \mbox{\hyperlink{namespaceinstruction__set_a7c366784cebccd7fbfda77874d229462a41dbb99a6896d9e96d14138265da5221}{O\_GPR\_C\_GPR\_C\_GPR}},\ \ \ \ \ \ \ }
+\DoxyCodeLine{00592\ \ \ \mbox{\hyperlink{namespaceinstruction__set_a7c366784cebccd7fbfda77874d229462a6928cbdc3a5078e1dc0ad9ca43016922}{O\_GPR\_C\_GPR\_C\_I}},\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00593\ \ \ \mbox{\hyperlink{namespaceinstruction__set_a7c366784cebccd7fbfda77874d229462a54fc6e8c9d10a97ed4a5e7d0ab9553eb}{O\_GPR\_C\_I}},\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00594\ \ \ \mbox{\hyperlink{namespaceinstruction__set_a7c366784cebccd7fbfda77874d229462a364880ae1f94f6bc2994640139c45f40}{O\_GPR\_C\_GPR\_C\_IL}},\ \ \ \ \ \ \ }
+\DoxyCodeLine{00595\ \ \ \mbox{\hyperlink{namespaceinstruction__set_a7c366784cebccd7fbfda77874d229462af6223c5677027b1fc3b40e9cc9c10cd9}{O\_GPR\_C\_GPR\_C\_DL}},\ \ \ \ \ \ \ }
+\DoxyCodeLine{00596\ \ \ \mbox{\hyperlink{namespaceinstruction__set_a7c366784cebccd7fbfda77874d229462ad0b5df5218c775d236e94b953634aaca}{O\_GPR\_C\_IL}},\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00597\ \ \ \mbox{\hyperlink{namespaceinstruction__set_a7c366784cebccd7fbfda77874d229462ac4900375e3b89f5e09e1f06464fa79b9}{O\_GPR\_C\_DL}},\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00598\ \ \ \mbox{\hyperlink{namespaceinstruction__set_a7c366784cebccd7fbfda77874d229462ad8a1a972ad133831dff5a091d86767c6}{O\_GPR\_C\_I\_LP\_GPR\_RP}},\ \ \ \ }
+\DoxyCodeLine{00599\ \ \ \mbox{\hyperlink{namespaceinstruction__set_a7c366784cebccd7fbfda77874d229462af186217753c37b9b9f958d906208506e}{O}},\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00600\ \ \ \mbox{\hyperlink{namespaceinstruction__set_a7c366784cebccd7fbfda77874d229462abbd7b8a2e3f2db9d4a03e9f243e8c9bb}{PSEUDO}},\ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00601\ }
+\DoxyCodeLine{00602\ \ \ \mbox{\hyperlink{namespaceinstruction__set_a7c366784cebccd7fbfda77874d229462a19a3d4f96e3e9f085d10a229c8566bbf}{O\_GPR\_C\_CSR\_C\_GPR}},\ \ \ \ \ \ \ }
+\DoxyCodeLine{00603\ \ \ \mbox{\hyperlink{namespaceinstruction__set_a7c366784cebccd7fbfda77874d229462a1d2b79a1e7e329b52e9c03db7cb6dd2e}{O\_GPR\_C\_CSR\_C\_I}},\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00604\ }
+\DoxyCodeLine{00605\ \ \ \mbox{\hyperlink{namespaceinstruction__set_a7c366784cebccd7fbfda77874d229462aa9a5f4479bf2405b3bf315c47b0cf3b0}{O\_FPR\_C\_FPR\_C\_FPR\_C\_FPR}},\ \ \ \ }
+\DoxyCodeLine{00606\ \ \ \mbox{\hyperlink{namespaceinstruction__set_a7c366784cebccd7fbfda77874d229462a53ca5a3860cb4fab0329153e7e42f1a8}{O\_FPR\_C\_FPR\_C\_FPR\_C\_FPR\_C\_RM}},\ \ \ \ }
+\DoxyCodeLine{00607\ \ \ \mbox{\hyperlink{namespaceinstruction__set_a7c366784cebccd7fbfda77874d229462a35456c8df1be6e0369b59d2dcc5b5e6d}{O\_FPR\_C\_FPR\_C\_FPR}},\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00608\ \ \ \mbox{\hyperlink{namespaceinstruction__set_a7c366784cebccd7fbfda77874d229462ab4539ac8d05f6bcf1c6a3f5f4fc33d3f}{O\_FPR\_C\_FPR\_C\_FPR\_C\_RM}},\ \ \ \ }
+\DoxyCodeLine{00609\ \ \ \mbox{\hyperlink{namespaceinstruction__set_a7c366784cebccd7fbfda77874d229462a26c0ed632be719d001499f10cf5b8a16}{O\_FPR\_C\_FPR}},\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00610\ \ \ \mbox{\hyperlink{namespaceinstruction__set_a7c366784cebccd7fbfda77874d229462a982d3329005e92444af5a450566deed9}{O\_FPR\_C\_FPR\_C\_RM}},\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00611\ }
+\DoxyCodeLine{00612\ \ \ \mbox{\hyperlink{namespaceinstruction__set_a7c366784cebccd7fbfda77874d229462accff7c0457276e403b2fa1a4e941c155}{O\_FPR\_C\_GPR}},\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00613\ \ \ \mbox{\hyperlink{namespaceinstruction__set_a7c366784cebccd7fbfda77874d229462a32cba8a0330454d639bc8ed709dce80a}{O\_FPR\_C\_GPR\_C\_RM}},\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00614\ \ \ \mbox{\hyperlink{namespaceinstruction__set_a7c366784cebccd7fbfda77874d229462a7c56ceaf0b4fd799a397e31225ad2067}{O\_GPR\_C\_FPR}},\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00615\ \ \ \mbox{\hyperlink{namespaceinstruction__set_a7c366784cebccd7fbfda77874d229462a900aef86308c4bf784c935b1c2132221}{O\_GPR\_C\_FPR\_C\_RM}},\ \ \ \ \ \ \ }
+\DoxyCodeLine{00616\ \ \ \mbox{\hyperlink{namespaceinstruction__set_a7c366784cebccd7fbfda77874d229462a4acbd7a3820c4fe37725ec992ebe084a}{O\_GPR\_C\_FPR\_C\_FPR}},\ \ \ \ \ \ \ }
+\DoxyCodeLine{00617\ \ \ \mbox{\hyperlink{namespaceinstruction__set_a7c366784cebccd7fbfda77874d229462a4b80d7d1223745bdf966288df20f1fa3}{O\_FPR\_C\_I\_LP\_GPR\_RP}},\ \ \ \ }
+\DoxyCodeLine{00618\ \};}
+\DoxyCodeLine{00619\ }
+\DoxyCodeLine{00620\ \textcolor{keyword}{extern}\ std::unordered\_map<std::string,\ RTypeInstructionEncoding>\ \mbox{\hyperlink{namespaceinstruction__set_a859191af4ff841c4c7486a6a19c7fa7a}{R\_type\_instruction\_encoding\_map}};}
+\DoxyCodeLine{00621\ \textcolor{keyword}{extern}\ std::unordered\_map<std::string,\ I1TypeInstructionEncoding>\ \mbox{\hyperlink{namespaceinstruction__set_ad362b1b3167d50a18c67c280b54012b3}{I1\_type\_instruction\_encoding\_map}};}
+\DoxyCodeLine{00622\ \textcolor{keyword}{extern}\ std::unordered\_map<std::string,\ I2TypeInstructionEncoding>\ \mbox{\hyperlink{namespaceinstruction__set_a51290da536b0f0b8fad0e76c5d63300c}{I2\_type\_instruction\_encoding\_map}};}
+\DoxyCodeLine{00623\ \textcolor{keyword}{extern}\ std::unordered\_map<std::string,\ I3TypeInstructionEncoding>\ \mbox{\hyperlink{namespaceinstruction__set_a1e1482a4d9c3475f9750286a89db56ac}{I3\_type\_instruction\_encoding\_map}};}
+\DoxyCodeLine{00624\ \textcolor{keyword}{extern}\ std::unordered\_map<std::string,\ STypeInstructionEncoding>\ \mbox{\hyperlink{namespaceinstruction__set_ab50cca829f0e03ebbe8b71abc0145f8c}{S\_type\_instruction\_encoding\_map}};}
+\DoxyCodeLine{00625\ \textcolor{keyword}{extern}\ std::unordered\_map<std::string,\ BTypeInstructionEncoding>\ \mbox{\hyperlink{namespaceinstruction__set_a3e35acfc82b9e41676104e2747733de6}{B\_type\_instruction\_encoding\_map}};}
+\DoxyCodeLine{00626\ \textcolor{keyword}{extern}\ std::unordered\_map<std::string,\ UTypeInstructionEncoding>\ \mbox{\hyperlink{namespaceinstruction__set_a8dc1d0372413156d015ff8f7e85a4efe}{U\_type\_instruction\_encoding\_map}};}
+\DoxyCodeLine{00627\ \textcolor{keyword}{extern}\ std::unordered\_map<std::string,\ JTypeInstructionEncoding>\ \mbox{\hyperlink{namespaceinstruction__set_a374dcbb396c16fc22f77466bff4f7861}{J\_type\_instruction\_encoding\_map}};}
+\DoxyCodeLine{00628\ \textcolor{keyword}{extern}\ std::unordered\_map<std::string,\ CSR\_RTypeInstructionEncoding>\ \mbox{\hyperlink{namespaceinstruction__set_ae1beeefc4c920a816ef63d2cc2394b97}{CSR\_R\_type\_instruction\_encoding\_map}};}
+\DoxyCodeLine{00629\ \textcolor{keyword}{extern}\ std::unordered\_map<std::string,\ CSR\_ITypeInstructionEncoding>\ \mbox{\hyperlink{namespaceinstruction__set_a4073c9c96c0ad7b56852d98859e1baa3}{CSR\_I\_type\_instruction\_encoding\_map}};}
+\DoxyCodeLine{00630\ }
+\DoxyCodeLine{00631\ \textcolor{keyword}{extern}\ std::unordered\_map<std::string,\ FDRTypeInstructionEncoding>\ \mbox{\hyperlink{namespaceinstruction__set_a5cf78416d8c2c005a6fd3c9caead1ff2}{F\_D\_R\_type\_instruction\_encoding\_map}};}
+\DoxyCodeLine{00632\ \textcolor{keyword}{extern}\ std::unordered\_map<std::string,\ FDR1TypeInstructionEncoding>\ \mbox{\hyperlink{namespaceinstruction__set_a4bc401050f099acc0422f451287d5da1}{F\_D\_R1\_type\_instruction\_encoding\_map}};}
+\DoxyCodeLine{00633\ \textcolor{keyword}{extern}\ std::unordered\_map<std::string,\ FDR2TypeInstructionEncoding>\ \mbox{\hyperlink{namespaceinstruction__set_a4ff8e79787a2060e8e8b53c20348cb66}{F\_D\_R2\_type\_instruction\_encoding\_map}};}
+\DoxyCodeLine{00634\ \textcolor{keyword}{extern}\ std::unordered\_map<std::string,\ FDR3TypeInstructionEncoding>\ \mbox{\hyperlink{namespaceinstruction__set_add9dd2648cc982b1271c28b41c99e18b}{F\_D\_R3\_type\_instruction\_encoding\_map}};}
+\DoxyCodeLine{00635\ \textcolor{keyword}{extern}\ std::unordered\_map<std::string,\ FDR4TypeInstructionEncoding>\ \mbox{\hyperlink{namespaceinstruction__set_a430c1ddcd83a4d8f4f2d6686e4be53d5}{F\_D\_R4\_type\_instruction\_encoding\_map}};}
+\DoxyCodeLine{00636\ \textcolor{keyword}{extern}\ std::unordered\_map<std::string,\ FDITypeInstructionEncoding>\ \mbox{\hyperlink{namespaceinstruction__set_af5c5f93de8a03f2601cc9f734101d966}{F\_D\_I\_type\_instruction\_encoding\_map}};}
+\DoxyCodeLine{00637\ \textcolor{keyword}{extern}\ std::unordered\_map<std::string,\ FDSTypeInstructionEncoding>\ \mbox{\hyperlink{namespaceinstruction__set_a5d37d30556dd68b58a56ac0e134aa17c}{F\_D\_S\_type\_instruction\_encoding\_map}};}
+\DoxyCodeLine{00638\ }
+\DoxyCodeLine{00644\ \textcolor{keyword}{extern}\ std::unordered\_map<std::string,\ std::vector<SyntaxType>>\ \mbox{\hyperlink{namespaceinstruction__set_a5e20a1ab57999f19806854d6ccceeedb}{instruction\_syntax\_map}};}
+\DoxyCodeLine{00645\ }
+\DoxyCodeLine{00646\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespaceinstruction__set_a684c8ea1bb0cd5f2fcdb698286ce49bd}{isValidInstruction}}(\textcolor{keyword}{const}\ std::string\ \&instruction);}
+\DoxyCodeLine{00647\ }
+\DoxyCodeLine{00648\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespaceinstruction__set_a2dbf58ce982702b5ebd65bedbad55f1a}{isValidRTypeInstruction}}(\textcolor{keyword}{const}\ std::string\ \&name);}
+\DoxyCodeLine{00649\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespaceinstruction__set_ac10fca95259b7db81e9d64605dd6d7fd}{isValidITypeInstruction}}(\textcolor{keyword}{const}\ std::string\ \&instruction);}
+\DoxyCodeLine{00650\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespaceinstruction__set_a2686c6cb47421100c0845826a00d6686}{isValidI1TypeInstruction}}(\textcolor{keyword}{const}\ std::string\ \&instruction);}
+\DoxyCodeLine{00651\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespaceinstruction__set_a1157d60c5ad00551432b62c74dce93ce}{isValidI2TypeInstruction}}(\textcolor{keyword}{const}\ std::string\ \&instruction);}
+\DoxyCodeLine{00652\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespaceinstruction__set_ab009114befd859670c1b6a60a4d4a675}{isValidI3TypeInstruction}}(\textcolor{keyword}{const}\ std::string\ \&instruction);}
+\DoxyCodeLine{00653\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespaceinstruction__set_a402f2c32c5f3981e732c5a7bada97398}{isValidSTypeInstruction}}(\textcolor{keyword}{const}\ std::string\ \&instruction);}
+\DoxyCodeLine{00654\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespaceinstruction__set_a9f7fd6439b8f1fdf3fa6c4b846161a60}{isValidBTypeInstruction}}(\textcolor{keyword}{const}\ std::string\ \&instruction);}
+\DoxyCodeLine{00655\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespaceinstruction__set_a72120155b1b49e86de5a21a140757e0c}{isValidUTypeInstruction}}(\textcolor{keyword}{const}\ std::string\ \&instruction);}
+\DoxyCodeLine{00656\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespaceinstruction__set_a40834369e5972193df7c74fa8d3cd7c4}{isValidJTypeInstruction}}(\textcolor{keyword}{const}\ std::string\ \&instruction);}
+\DoxyCodeLine{00657\ }
+\DoxyCodeLine{00658\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespaceinstruction__set_adf2c87a1fa7b27e0012e3eaf1f575538}{isValidPseudoInstruction}}(\textcolor{keyword}{const}\ std::string\ \&instruction);}
+\DoxyCodeLine{00659\ }
+\DoxyCodeLine{00660\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespaceinstruction__set_a3e26615428ea0891ded649073e440d88}{isValidBaseExtensionInstruction}}(\textcolor{keyword}{const}\ std::string\ \&instruction);}
+\DoxyCodeLine{00661\ }
+\DoxyCodeLine{00662\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespaceinstruction__set_a3e6f000a9cc56a65caac4033c362717d}{isValidMExtensionInstruction}}(\textcolor{keyword}{const}\ std::string\ \&instruction);}
+\DoxyCodeLine{00663\ }
+\DoxyCodeLine{00664\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespaceinstruction__set_a390f2245d92958d7d6e67df52fdeab34}{isValidCSRRTypeInstruction}}(\textcolor{keyword}{const}\ std::string\ \&instruction);}
+\DoxyCodeLine{00665\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespaceinstruction__set_ac19e70a283ee2e1b15125faad66ba23e}{isValidCSRITypeInstruction}}(\textcolor{keyword}{const}\ std::string\ \&instruction);}
+\DoxyCodeLine{00666\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespaceinstruction__set_a200e08acd1cac12dc89b25fba97fa6ac}{isValidCSRInstruction}}(\textcolor{keyword}{const}\ std::string\ \&instruction);}
+\DoxyCodeLine{00667\ }
+\DoxyCodeLine{00668\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespaceinstruction__set_a1dd7f86382bd6577c7b880367f5912fa}{isValidFDRTypeInstruction}}(\textcolor{keyword}{const}\ std::string\ \&instruction);}
+\DoxyCodeLine{00669\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespaceinstruction__set_a41eeac0550849ef37fa33ff84cf76a2f}{isValidFDR1TypeInstruction}}(\textcolor{keyword}{const}\ std::string\ \&instruction);}
+\DoxyCodeLine{00670\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespaceinstruction__set_a708f1663efb124992763e7df4a28345e}{isValidFDR2TypeInstruction}}(\textcolor{keyword}{const}\ std::string\ \&instruction);}
+\DoxyCodeLine{00671\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespaceinstruction__set_ab0c4f49b586d5b40444c37be298aad10}{isValidFDR3TypeInstruction}}(\textcolor{keyword}{const}\ std::string\ \&instruction);}
+\DoxyCodeLine{00672\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespaceinstruction__set_a431026007ab52b5f443f62b0282a5632}{isValidFDR4TypeInstruction}}(\textcolor{keyword}{const}\ std::string\ \&instruction);}
+\DoxyCodeLine{00673\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespaceinstruction__set_afafd6b6e78053bc61fb215a4e3134ca3}{isValidFDITypeInstruction}}(\textcolor{keyword}{const}\ std::string\ \&instruction);}
+\DoxyCodeLine{00674\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespaceinstruction__set_aab688f810da37e8780510aab2f2232a0}{isValidFDSTypeInstruction}}(\textcolor{keyword}{const}\ std::string\ \&instruction);}
+\DoxyCodeLine{00675\ }
+\DoxyCodeLine{00676\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespaceinstruction__set_aa2718ca4cc03370f5c3d248ed59028b6}{isFInstruction}}(\textcolor{keyword}{const}\ uint32\_t\ \&instruction);}
+\DoxyCodeLine{00677\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespaceinstruction__set_a5303fb0dd8dd34c268231c47f85a02fc}{isDInstruction}}(\textcolor{keyword}{const}\ uint32\_t\ \&instruction);}
+\DoxyCodeLine{00678\ }
+\DoxyCodeLine{00679\ std::string\ \mbox{\hyperlink{namespaceinstruction__set_a605befee774c8275dccbdf096ac5b66f}{getExpectedSyntaxes}}(\textcolor{keyword}{const}\ std::string\ \&opcode);}
+\DoxyCodeLine{00680\ }
+\DoxyCodeLine{00681\ \}\ \textcolor{comment}{//\ namespace\ instruction\_set}}
+\DoxyCodeLine{00682\ }
+\DoxyCodeLine{00683\ }
+\DoxyCodeLine{00684\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ INSTRUCTIONS\_H}}
+
+\end{DoxyCode}

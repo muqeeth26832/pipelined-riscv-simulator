@@ -1,9 +1,9 @@
-\hypertarget{assembler_8h}{}\doxysection{include/assembler/assembler.h File Reference}
-\label{assembler_8h}\index{include/assembler/assembler.h@{include/assembler/assembler.h}}
-{\ttfamily \#include \char`\"{}assembler/lexer.\+h\char`\"{}}\newline
-{\ttfamily \#include \char`\"{}assembler/parser.\+h\char`\"{}}\newline
-{\ttfamily \#include \char`\"{}code\+\_\+generator.\+h\char`\"{}}\newline
-{\ttfamily \#include \char`\"{}vm\+\_\+asm\+\_\+mw.\+h\char`\"{}}\newline
+\doxysection{include/assembler/assembler.h File Reference}
+\hypertarget{assembler_8h}{}\label{assembler_8h}\index{include/assembler/assembler.h@{include/assembler/assembler.h}}
+{\ttfamily \#include "{}assembler/lexer.\+h"{}}\newline
+{\ttfamily \#include "{}assembler/parser.\+h"{}}\newline
+{\ttfamily \#include "{}code\+\_\+generator.\+h"{}}\newline
+{\ttfamily \#include "{}vm\+\_\+asm\+\_\+mw.\+h"{}}\newline
 Include dependency graph for assembler.\+h\+:
 \nopagebreak
 \begin{figure}[H]
@@ -20,7 +20,7 @@ This graph shows which files directly or indirectly include this file\+:
 \includegraphics[width=335pt]{assembler_8h__dep__incl}
 \end{center}
 \end{figure}
-\doxysubsection*{Functions}
+\doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{structAssembledProgram}{Assembled\+Program}} \mbox{\hyperlink{assembler_8h_a8e37bfd2b778ed2eb6c17c251aac6120}{assemble}} (const std\+::string \&filename)
@@ -28,7 +28,7 @@ This graph shows which files directly or indirectly include this file\+:
 
 
 \doxysubsection{Function Documentation}
-\mbox{\Hypertarget{assembler_8h_a8e37bfd2b778ed2eb6c17c251aac6120}\label{assembler_8h_a8e37bfd2b778ed2eb6c17c251aac6120}} 
+\Hypertarget{assembler_8h_a8e37bfd2b778ed2eb6c17c251aac6120}\label{assembler_8h_a8e37bfd2b778ed2eb6c17c251aac6120} 
 \index{assembler.h@{assembler.h}!assemble@{assemble}}
 \index{assemble@{assemble}!assembler.h@{assembler.h}}
 \doxysubsubsection{\texorpdfstring{assemble()}{assemble()}}
@@ -42,7 +42,7 @@ This function takes a vector of intermediate code blocks and assembles them into
 
 
 \begin{DoxyParams}{Parameters}
-{\em Intermediate\+Code} & A vector of pairs containing \mbox{\hyperlink{structICUnit}{ICUnit}} and a boolean flag. \\
+{\em Intermediate\+Code} & A vector of pairs containing \doxylink{structICUnit}{ICUnit} and a boolean flag. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}

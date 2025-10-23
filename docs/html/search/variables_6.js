@@ -1,23 +1,4 @@
 var searchData=
 [
-  ['i1_5ftype_5finstruction_5fencoding_5fmap_1164',['I1_type_instruction_encoding_map',['../namespaceinstruction__set.html#ad362b1b3167d50a18c67c280b54012b3',1,'instruction_set']]],
-  ['i2_5ftype_5finstruction_5fencoding_5fmap_1165',['I2_type_instruction_encoding_map',['../namespaceinstruction__set.html#a51290da536b0f0b8fad0e76c5d63300c',1,'instruction_set']]],
-  ['i3_5ftype_5finstruction_5fencoding_5fmap_1166',['I3_type_instruction_encoding_map',['../namespaceinstruction__set.html#a1e1482a4d9c3475f9750286a89db56ac',1,'instruction_set']]],
-  ['imm_1167',['imm',['../structICUnit.html#af49f5da98a756c635f14a0201dee9076',1,'ICUnit']]],
-  ['info_5farch_1168',['info_arch',['../cmake-build-debug_2CMakeFiles_23_831_86_2CompilerIdCXX_2CMakeCXXCompilerId_8cpp.html#a59647e99d304ed33b15cb284c27ed391',1,'info_arch():&#160;CMakeCXXCompilerId.cpp'],['../build_2CMakeFiles_23_822_81_2CompilerIdCXX_2CMakeCXXCompilerId_8cpp.html#a59647e99d304ed33b15cb284c27ed391',1,'info_arch():&#160;CMakeCXXCompilerId.cpp']]],
-  ['info_5fcompiler_1169',['info_compiler',['../cmake-build-debug_2CMakeFiles_23_831_86_2CompilerIdCXX_2CMakeCXXCompilerId_8cpp.html#a4b0efeb7a5d59313986b3a0390f050f6',1,'info_compiler():&#160;CMakeCXXCompilerId.cpp'],['../build_2CMakeFiles_23_822_81_2CompilerIdCXX_2CMakeCXXCompilerId_8cpp.html#a4b0efeb7a5d59313986b3a0390f050f6',1,'info_compiler():&#160;CMakeCXXCompilerId.cpp']]],
-  ['info_5flanguage_5fextensions_5fdefault_1170',['info_language_extensions_default',['../cmake-build-debug_2CMakeFiles_23_831_86_2CompilerIdCXX_2CMakeCXXCompilerId_8cpp.html#a0f46a8a39e09d9b803c4766904fd7e99',1,'info_language_extensions_default():&#160;CMakeCXXCompilerId.cpp'],['../build_2CMakeFiles_23_822_81_2CompilerIdCXX_2CMakeCXXCompilerId_8cpp.html#a0f46a8a39e09d9b803c4766904fd7e99',1,'info_language_extensions_default():&#160;CMakeCXXCompilerId.cpp']]],
-  ['info_5flanguage_5fstandard_5fdefault_1171',['info_language_standard_default',['../cmake-build-debug_2CMakeFiles_23_831_86_2CompilerIdCXX_2CMakeCXXCompilerId_8cpp.html#a4607cccf070750927b458473ca82c090',1,'info_language_standard_default():&#160;CMakeCXXCompilerId.cpp'],['../build_2CMakeFiles_23_822_81_2CompilerIdCXX_2CMakeCXXCompilerId_8cpp.html#a4607cccf070750927b458473ca82c090',1,'info_language_standard_default():&#160;CMakeCXXCompilerId.cpp']]],
-  ['info_5fplatform_1172',['info_platform',['../cmake-build-debug_2CMakeFiles_23_831_86_2CompilerIdCXX_2CMakeCXXCompilerId_8cpp.html#a2321403dee54ee23f0c2fa849c60f7d4',1,'info_platform():&#160;CMakeCXXCompilerId.cpp'],['../build_2CMakeFiles_23_822_81_2CompilerIdCXX_2CMakeCXXCompilerId_8cpp.html#a2321403dee54ee23f0c2fa849c60f7d4',1,'info_platform():&#160;CMakeCXXCompilerId.cpp']]],
-  ['input_5fcv_5f_1173',['input_cv_',['../classVmBase.html#a3f3f7acd3cdc0f509085049ae541f5e1',1,'VmBase']]],
-  ['input_5fmutex_5f_1174',['input_mutex_',['../classVmBase.html#adf47d6d0cc8d768751cac1c2d6f11dd9',1,'VmBase']]],
-  ['input_5fqueue_5f_1175',['input_queue_',['../classVmBase.html#a413f7f50a3817358470807a248d1d804',1,'VmBase']]],
-  ['instruction_5findex_1176',['instruction_index',['../structICUnit.html#a081ce1e12c3d898aae2c2e42c75a8254',1,'ICUnit']]],
-  ['instruction_5fnumber_5fdisassembly_5fmapping_1177',['instruction_number_disassembly_mapping',['../structAssembledProgram.html#aea01dd49d19c5c2a4f1d3581514d57e7',1,'AssembledProgram']]],
-  ['instruction_5fnumber_5fline_5fnumber_5fmapping_1178',['instruction_number_line_number_mapping',['../structAssembledProgram.html#ade3312b57abb948a18eee54e64cb4203',1,'AssembledProgram']]],
-  ['instruction_5fsyntax_5fmap_1179',['instruction_syntax_map',['../namespaceinstruction__set.html#a5e20a1ab57999f19806854d6ccceeedb',1,'instruction_set']]],
-  ['instructions_5fretired_5f_1180',['instructions_retired_',['../classVmBase.html#a7c2b1c72a3420353a658128abfbb5a68',1,'VmBase']]],
-  ['intermediate_5fcode_1181',['intermediate_code',['../structAssembledProgram.html#a74bda4728c9cf522dfffb108f9f4af2f',1,'AssembledProgram']]],
-  ['ipc_5f_1182',['ipc_',['../classVmBase.html#aaf1754c3ace71973679ec2f9a212d737',1,'VmBase']]],
-  ['isdata_1183',['isData',['../structSymbolData.html#a492cfec3ac0ddfa948d5697d461b2d7b',1,'SymbolData']]]
+  ['hits_0',['hits',['../structcache_1_1CacheStats.html#a4c55369a204ad0c946ecdd08375ae0ca',1,'cache::CacheStats']]]
 ];

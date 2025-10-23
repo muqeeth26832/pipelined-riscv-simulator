@@ -1,8 +1,8 @@
-\hypertarget{tokens_8h}{}\doxysection{include/assembler/tokens.h File Reference}
-\label{tokens_8h}\index{include/assembler/tokens.h@{include/assembler/tokens.h}}
+\doxysection{include/assembler/tokens.h File Reference}
+\hypertarget{tokens_8h}{}\label{tokens_8h}\index{include/assembler/tokens.h@{include/assembler/tokens.h}}
 
 
-Contains the definition of the Token\+Type enum and the \mbox{\hyperlink{structToken}{Token}} struct.  
+Contains the definition of the Token\+Type enum and the \doxylink{structToken}{Token} struct.  
 
 
 {\ttfamily \#include $<$string$>$}\newline
@@ -22,12 +22,12 @@ This graph shows which files directly or indirectly include this file\+:
 \includegraphics[width=350pt]{tokens_8h__dep__incl}
 \end{center}
 \end{figure}
-\doxysubsection*{Classes}
+\doxysubsubsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 
 struct \mbox{\hyperlink{structToken}{Token}}
 \begin{DoxyCompactList}\small\item\em Structure representing a token. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\doxysubsection*{Enumerations}
+\doxysubsubsection*{Enumerations}
 \begin{DoxyCompactItemize}
 \item 
 enum class \mbox{\hyperlink{tokens_8h_aa520fbf142ba1e7e659590c07da31921}{Token\+Type}} \{ \newline
@@ -55,7 +55,7 @@ enum class \mbox{\hyperlink{tokens_8h_aa520fbf142ba1e7e659590c07da31921}{Token\+
 , \mbox{\hyperlink{tokens_8h_aa520fbf142ba1e7e659590c07da31921a2622e9b348f05f74e3e4bb9b7d213dc8}{RM}}
  \}
 \begin{DoxyCompactList}\small\item\em Enum class representing the type of a token. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\doxysubsection*{Functions}
+\doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
 std\+::string \mbox{\hyperlink{tokens_8h_adcf4232d1b543f396684ab4b9d3d4bc5}{token\+Type\+To\+String}} (\mbox{\hyperlink{tokens_8h_aa520fbf142ba1e7e659590c07da31921}{Token\+Type}} type)
@@ -63,7 +63,7 @@ std\+::string \mbox{\hyperlink{tokens_8h_adcf4232d1b543f396684ab4b9d3d4bc5}{toke
 
 
 \doxysubsection{Detailed Description}
-Contains the definition of the Token\+Type enum and the \mbox{\hyperlink{structToken}{Token}} struct. 
+Contains the definition of the Token\+Type enum and the \doxylink{structToken}{Token} struct. 
 
 \begin{DoxyAuthor}{Author}
 Vishank Singh, \href{https://github.com/VishankSingh}{\texttt{ https\+://github.\+com/\+Vishank\+Singh}} 
@@ -71,86 +71,86 @@ Vishank Singh, \href{https://github.com/VishankSingh}{\texttt{ https\+://github.
 
 
 \doxysubsection{Enumeration Type Documentation}
-\mbox{\Hypertarget{tokens_8h_aa520fbf142ba1e7e659590c07da31921}\label{tokens_8h_aa520fbf142ba1e7e659590c07da31921}} 
+\Hypertarget{tokens_8h_aa520fbf142ba1e7e659590c07da31921}\label{tokens_8h_aa520fbf142ba1e7e659590c07da31921} 
 \index{tokens.h@{tokens.h}!TokenType@{TokenType}}
 \index{TokenType@{TokenType}!tokens.h@{tokens.h}}
 \doxysubsubsection{\texorpdfstring{TokenType}{TokenType}}
-{\footnotesize\ttfamily enum \mbox{\hyperlink{tokens_8h_aa520fbf142ba1e7e659590c07da31921}{Token\+Type}}\hspace{0.3cm}{\ttfamily [strong]}}
+{\footnotesize\ttfamily enum class \mbox{\hyperlink{tokens_8h_aa520fbf142ba1e7e659590c07da31921}{Token\+Type}}\hspace{0.3cm}{\ttfamily [strong]}}
 
 
 
 Enum class representing the type of a token. 
 
 This class is used to categorize different token types in a lexer. \begin{DoxyEnumFields}{Enumerator}
-\raisebox{\heightof{T}}[0pt][0pt]{\index{INVALID@{INVALID}!tokens.h@{tokens.h}}\index{tokens.h@{tokens.h}!INVALID@{INVALID}}}\mbox{\Hypertarget{tokens_8h_aa520fbf142ba1e7e659590c07da31921accc0377a8afbf50e7094f5c23a8af223}\label{tokens_8h_aa520fbf142ba1e7e659590c07da31921accc0377a8afbf50e7094f5c23a8af223}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{INVALID@{INVALID}!tokens.h@{tokens.h}}\index{tokens.h@{tokens.h}!INVALID@{INVALID}}}\Hypertarget{tokens_8h_aa520fbf142ba1e7e659590c07da31921accc0377a8afbf50e7094f5c23a8af223}\label{tokens_8h_aa520fbf142ba1e7e659590c07da31921accc0377a8afbf50e7094f5c23a8af223} 
 INVALID&Invalid token. \\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{EOF\_@{EOF\_}!tokens.h@{tokens.h}}\index{tokens.h@{tokens.h}!EOF\_@{EOF\_}}}\mbox{\Hypertarget{tokens_8h_aa520fbf142ba1e7e659590c07da31921a4eaad20bdd2e68cb1a4410478488cb8d}\label{tokens_8h_aa520fbf142ba1e7e659590c07da31921a4eaad20bdd2e68cb1a4410478488cb8d}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EOF\_@{EOF\_}!tokens.h@{tokens.h}}\index{tokens.h@{tokens.h}!EOF\_@{EOF\_}}}\Hypertarget{tokens_8h_aa520fbf142ba1e7e659590c07da31921a4eaad20bdd2e68cb1a4410478488cb8d}\label{tokens_8h_aa520fbf142ba1e7e659590c07da31921a4eaad20bdd2e68cb1a4410478488cb8d} 
 EOF\+\_\+&End of file. \\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{IDENTIFIER@{IDENTIFIER}!tokens.h@{tokens.h}}\index{tokens.h@{tokens.h}!IDENTIFIER@{IDENTIFIER}}}\mbox{\Hypertarget{tokens_8h_aa520fbf142ba1e7e659590c07da31921a6fcc416051346daca31c571646af127a}\label{tokens_8h_aa520fbf142ba1e7e659590c07da31921a6fcc416051346daca31c571646af127a}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{IDENTIFIER@{IDENTIFIER}!tokens.h@{tokens.h}}\index{tokens.h@{tokens.h}!IDENTIFIER@{IDENTIFIER}}}\Hypertarget{tokens_8h_aa520fbf142ba1e7e659590c07da31921a6fcc416051346daca31c571646af127a}\label{tokens_8h_aa520fbf142ba1e7e659590c07da31921a6fcc416051346daca31c571646af127a} 
 IDENTIFIER&Variable or function name. \\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{DIRECTIVE@{DIRECTIVE}!tokens.h@{tokens.h}}\index{tokens.h@{tokens.h}!DIRECTIVE@{DIRECTIVE}}}\mbox{\Hypertarget{tokens_8h_aa520fbf142ba1e7e659590c07da31921a31e340aa5b97f6d91317dff3a239cc5e}\label{tokens_8h_aa520fbf142ba1e7e659590c07da31921a31e340aa5b97f6d91317dff3a239cc5e}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DIRECTIVE@{DIRECTIVE}!tokens.h@{tokens.h}}\index{tokens.h@{tokens.h}!DIRECTIVE@{DIRECTIVE}}}\Hypertarget{tokens_8h_aa520fbf142ba1e7e659590c07da31921a31e340aa5b97f6d91317dff3a239cc5e}\label{tokens_8h_aa520fbf142ba1e7e659590c07da31921a31e340aa5b97f6d91317dff3a239cc5e} 
 DIRECTIVE&Assembly directive. \\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{OPCODE@{OPCODE}!tokens.h@{tokens.h}}\index{tokens.h@{tokens.h}!OPCODE@{OPCODE}}}\mbox{\Hypertarget{tokens_8h_aa520fbf142ba1e7e659590c07da31921a11bdee9fdefbd8d33a25257557bddbef}\label{tokens_8h_aa520fbf142ba1e7e659590c07da31921a11bdee9fdefbd8d33a25257557bddbef}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{OPCODE@{OPCODE}!tokens.h@{tokens.h}}\index{tokens.h@{tokens.h}!OPCODE@{OPCODE}}}\Hypertarget{tokens_8h_aa520fbf142ba1e7e659590c07da31921a11bdee9fdefbd8d33a25257557bddbef}\label{tokens_8h_aa520fbf142ba1e7e659590c07da31921a11bdee9fdefbd8d33a25257557bddbef} 
 OPCODE&Opcode in an instruction. \\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{GP\_REGISTER@{GP\_REGISTER}!tokens.h@{tokens.h}}\index{tokens.h@{tokens.h}!GP\_REGISTER@{GP\_REGISTER}}}\mbox{\Hypertarget{tokens_8h_aa520fbf142ba1e7e659590c07da31921a1d60368c2a139a81b67353e844cc5ad7}\label{tokens_8h_aa520fbf142ba1e7e659590c07da31921a1d60368c2a139a81b67353e844cc5ad7}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{GP\_REGISTER@{GP\_REGISTER}!tokens.h@{tokens.h}}\index{tokens.h@{tokens.h}!GP\_REGISTER@{GP\_REGISTER}}}\Hypertarget{tokens_8h_aa520fbf142ba1e7e659590c07da31921a1d60368c2a139a81b67353e844cc5ad7}\label{tokens_8h_aa520fbf142ba1e7e659590c07da31921a1d60368c2a139a81b67353e844cc5ad7} 
 GP\+\_\+\+REGISTER&General-\/purpose register. \\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{FP\_REGISTER@{FP\_REGISTER}!tokens.h@{tokens.h}}\index{tokens.h@{tokens.h}!FP\_REGISTER@{FP\_REGISTER}}}\mbox{\Hypertarget{tokens_8h_aa520fbf142ba1e7e659590c07da31921a509d68099e3f0347fb2425f1a2432564}\label{tokens_8h_aa520fbf142ba1e7e659590c07da31921a509d68099e3f0347fb2425f1a2432564}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FP\_REGISTER@{FP\_REGISTER}!tokens.h@{tokens.h}}\index{tokens.h@{tokens.h}!FP\_REGISTER@{FP\_REGISTER}}}\Hypertarget{tokens_8h_aa520fbf142ba1e7e659590c07da31921a509d68099e3f0347fb2425f1a2432564}\label{tokens_8h_aa520fbf142ba1e7e659590c07da31921a509d68099e3f0347fb2425f1a2432564} 
 FP\+\_\+\+REGISTER&Floating-\/point register. \\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{VEC\_REGISTER@{VEC\_REGISTER}!tokens.h@{tokens.h}}\index{tokens.h@{tokens.h}!VEC\_REGISTER@{VEC\_REGISTER}}}\mbox{\Hypertarget{tokens_8h_aa520fbf142ba1e7e659590c07da31921ab1bc3ea41540ebb15bc6be2f8ac8b03f}\label{tokens_8h_aa520fbf142ba1e7e659590c07da31921ab1bc3ea41540ebb15bc6be2f8ac8b03f}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VEC\_REGISTER@{VEC\_REGISTER}!tokens.h@{tokens.h}}\index{tokens.h@{tokens.h}!VEC\_REGISTER@{VEC\_REGISTER}}}\Hypertarget{tokens_8h_aa520fbf142ba1e7e659590c07da31921ab1bc3ea41540ebb15bc6be2f8ac8b03f}\label{tokens_8h_aa520fbf142ba1e7e659590c07da31921ab1bc3ea41540ebb15bc6be2f8ac8b03f} 
 VEC\+\_\+\+REGISTER&Vector register. \\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{CSR\_REGISTER@{CSR\_REGISTER}!tokens.h@{tokens.h}}\index{tokens.h@{tokens.h}!CSR\_REGISTER@{CSR\_REGISTER}}}\mbox{\Hypertarget{tokens_8h_aa520fbf142ba1e7e659590c07da31921a53d24f3c1542701fa693245f816b7fee}\label{tokens_8h_aa520fbf142ba1e7e659590c07da31921a53d24f3c1542701fa693245f816b7fee}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CSR\_REGISTER@{CSR\_REGISTER}!tokens.h@{tokens.h}}\index{tokens.h@{tokens.h}!CSR\_REGISTER@{CSR\_REGISTER}}}\Hypertarget{tokens_8h_aa520fbf142ba1e7e659590c07da31921a53d24f3c1542701fa693245f816b7fee}\label{tokens_8h_aa520fbf142ba1e7e659590c07da31921a53d24f3c1542701fa693245f816b7fee} 
 CSR\+\_\+\+REGISTER&Control and Status Register. \\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{NUM@{NUM}!tokens.h@{tokens.h}}\index{tokens.h@{tokens.h}!NUM@{NUM}}}\mbox{\Hypertarget{tokens_8h_aa520fbf142ba1e7e659590c07da31921a44119bf3bae5d40a8d0766b91c304aac}\label{tokens_8h_aa520fbf142ba1e7e659590c07da31921a44119bf3bae5d40a8d0766b91c304aac}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{NUM@{NUM}!tokens.h@{tokens.h}}\index{tokens.h@{tokens.h}!NUM@{NUM}}}\Hypertarget{tokens_8h_aa520fbf142ba1e7e659590c07da31921a44119bf3bae5d40a8d0766b91c304aac}\label{tokens_8h_aa520fbf142ba1e7e659590c07da31921a44119bf3bae5d40a8d0766b91c304aac} 
 NUM&Numeric value. \\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{FLOAT@{FLOAT}!tokens.h@{tokens.h}}\index{tokens.h@{tokens.h}!FLOAT@{FLOAT}}}\mbox{\Hypertarget{tokens_8h_aa520fbf142ba1e7e659590c07da31921ae738c26bf4ce1037fa81b039a915cbf6}\label{tokens_8h_aa520fbf142ba1e7e659590c07da31921ae738c26bf4ce1037fa81b039a915cbf6}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FLOAT@{FLOAT}!tokens.h@{tokens.h}}\index{tokens.h@{tokens.h}!FLOAT@{FLOAT}}}\Hypertarget{tokens_8h_aa520fbf142ba1e7e659590c07da31921ae738c26bf4ce1037fa81b039a915cbf6}\label{tokens_8h_aa520fbf142ba1e7e659590c07da31921ae738c26bf4ce1037fa81b039a915cbf6} 
 FLOAT&Floating-\/point value. \\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{LABEL@{LABEL}!tokens.h@{tokens.h}}\index{tokens.h@{tokens.h}!LABEL@{LABEL}}}\mbox{\Hypertarget{tokens_8h_aa520fbf142ba1e7e659590c07da31921a6f434c508ad901b8667ed22f713e52bb}\label{tokens_8h_aa520fbf142ba1e7e659590c07da31921a6f434c508ad901b8667ed22f713e52bb}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{LABEL@{LABEL}!tokens.h@{tokens.h}}\index{tokens.h@{tokens.h}!LABEL@{LABEL}}}\Hypertarget{tokens_8h_aa520fbf142ba1e7e659590c07da31921a6f434c508ad901b8667ed22f713e52bb}\label{tokens_8h_aa520fbf142ba1e7e659590c07da31921a6f434c508ad901b8667ed22f713e52bb} 
 LABEL&Label in assembly code. \\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{LABEL\_REF@{LABEL\_REF}!tokens.h@{tokens.h}}\index{tokens.h@{tokens.h}!LABEL\_REF@{LABEL\_REF}}}\mbox{\Hypertarget{tokens_8h_aa520fbf142ba1e7e659590c07da31921aac8e554801dd81a8fb60d78699756f9c}\label{tokens_8h_aa520fbf142ba1e7e659590c07da31921aac8e554801dd81a8fb60d78699756f9c}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{LABEL\_REF@{LABEL\_REF}!tokens.h@{tokens.h}}\index{tokens.h@{tokens.h}!LABEL\_REF@{LABEL\_REF}}}\Hypertarget{tokens_8h_aa520fbf142ba1e7e659590c07da31921aac8e554801dd81a8fb60d78699756f9c}\label{tokens_8h_aa520fbf142ba1e7e659590c07da31921aac8e554801dd81a8fb60d78699756f9c} 
 LABEL\+\_\+\+REF&Reference to a label. \\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{COMMA@{COMMA}!tokens.h@{tokens.h}}\index{tokens.h@{tokens.h}!COMMA@{COMMA}}}\mbox{\Hypertarget{tokens_8h_aa520fbf142ba1e7e659590c07da31921a4d9b3e9fc12849d060371eb65154c751}\label{tokens_8h_aa520fbf142ba1e7e659590c07da31921a4d9b3e9fc12849d060371eb65154c751}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{COMMA@{COMMA}!tokens.h@{tokens.h}}\index{tokens.h@{tokens.h}!COMMA@{COMMA}}}\Hypertarget{tokens_8h_aa520fbf142ba1e7e659590c07da31921a4d9b3e9fc12849d060371eb65154c751}\label{tokens_8h_aa520fbf142ba1e7e659590c07da31921a4d9b3e9fc12849d060371eb65154c751} 
 COMMA&Comma (separator) in assembly. \\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{LPAREN@{LPAREN}!tokens.h@{tokens.h}}\index{tokens.h@{tokens.h}!LPAREN@{LPAREN}}}\mbox{\Hypertarget{tokens_8h_aa520fbf142ba1e7e659590c07da31921a45bf4f3d35a115aaa2df577ba7861286}\label{tokens_8h_aa520fbf142ba1e7e659590c07da31921a45bf4f3d35a115aaa2df577ba7861286}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{LPAREN@{LPAREN}!tokens.h@{tokens.h}}\index{tokens.h@{tokens.h}!LPAREN@{LPAREN}}}\Hypertarget{tokens_8h_aa520fbf142ba1e7e659590c07da31921a45bf4f3d35a115aaa2df577ba7861286}\label{tokens_8h_aa520fbf142ba1e7e659590c07da31921a45bf4f3d35a115aaa2df577ba7861286} 
 LPAREN&Left parenthesis \textquotesingle{}(\textquotesingle{}. \\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{RPAREN@{RPAREN}!tokens.h@{tokens.h}}\index{tokens.h@{tokens.h}!RPAREN@{RPAREN}}}\mbox{\Hypertarget{tokens_8h_aa520fbf142ba1e7e659590c07da31921afccedc90f87593a3b31536bd658808b1}\label{tokens_8h_aa520fbf142ba1e7e659590c07da31921afccedc90f87593a3b31536bd658808b1}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RPAREN@{RPAREN}!tokens.h@{tokens.h}}\index{tokens.h@{tokens.h}!RPAREN@{RPAREN}}}\Hypertarget{tokens_8h_aa520fbf142ba1e7e659590c07da31921afccedc90f87593a3b31536bd658808b1}\label{tokens_8h_aa520fbf142ba1e7e659590c07da31921afccedc90f87593a3b31536bd658808b1} 
 RPAREN&Right parenthesis \textquotesingle{})\textquotesingle{}. \\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{STRING@{STRING}!tokens.h@{tokens.h}}\index{tokens.h@{tokens.h}!STRING@{STRING}}}\mbox{\Hypertarget{tokens_8h_aa520fbf142ba1e7e659590c07da31921a63b588d5559f64f89a416e656880b949}\label{tokens_8h_aa520fbf142ba1e7e659590c07da31921a63b588d5559f64f89a416e656880b949}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{STRING@{STRING}!tokens.h@{tokens.h}}\index{tokens.h@{tokens.h}!STRING@{STRING}}}\Hypertarget{tokens_8h_aa520fbf142ba1e7e659590c07da31921a63b588d5559f64f89a416e656880b949}\label{tokens_8h_aa520fbf142ba1e7e659590c07da31921a63b588d5559f64f89a416e656880b949} 
 STRING&String literal. \\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{RM@{RM}!tokens.h@{tokens.h}}\index{tokens.h@{tokens.h}!RM@{RM}}}\mbox{\Hypertarget{tokens_8h_aa520fbf142ba1e7e659590c07da31921a2622e9b348f05f74e3e4bb9b7d213dc8}\label{tokens_8h_aa520fbf142ba1e7e659590c07da31921a2622e9b348f05f74e3e4bb9b7d213dc8}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RM@{RM}!tokens.h@{tokens.h}}\index{tokens.h@{tokens.h}!RM@{RM}}}\Hypertarget{tokens_8h_aa520fbf142ba1e7e659590c07da31921a2622e9b348f05f74e3e4bb9b7d213dc8}\label{tokens_8h_aa520fbf142ba1e7e659590c07da31921a2622e9b348f05f74e3e4bb9b7d213dc8} 
 RM&Rounding mode. \\
 \hline
 
@@ -158,7 +158,7 @@ RM&Rounding mode. \\
 
 
 \doxysubsection{Function Documentation}
-\mbox{\Hypertarget{tokens_8h_adcf4232d1b543f396684ab4b9d3d4bc5}\label{tokens_8h_adcf4232d1b543f396684ab4b9d3d4bc5}} 
+\Hypertarget{tokens_8h_adcf4232d1b543f396684ab4b9d3d4bc5}\label{tokens_8h_adcf4232d1b543f396684ab4b9d3d4bc5} 
 \index{tokens.h@{tokens.h}!tokenTypeToString@{tokenTypeToString}}
 \index{tokenTypeToString@{tokenTypeToString}!tokens.h@{tokens.h}}
 \doxysubsubsection{\texorpdfstring{tokenTypeToString()}{tokenTypeToString()}}

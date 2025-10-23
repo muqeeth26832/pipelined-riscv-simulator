@@ -1,11 +1,21 @@
 <map id="include/vm/rvss/rvss_control_unit.h" name="include/vm/rvss/rvss_control_unit.h">
-<area shape="rect" id="node1" title="RVSS Control Unit." alt="" coords="359,5,515,47"/>
-<area shape="rect" id="node2" href="$rvss__vm_8h.html" title="RVSS VM definition." alt="" coords="234,102,430,129"/>
-<area shape="rect" id="node9" href="$rvss__control__unit_8cpp.html" title="RVSS Control Unit implementation." alt="" coords="454,95,634,136"/>
-<area shape="rect" id="node3" href="$command__handler_8h.html" title=" " alt="" coords="32,184,237,211"/>
-<area shape="rect" id="node5" href="$main_8cpp.html" title=" " alt="" coords="222,259,327,285"/>
-<area shape="rect" id="node6" href="$vm__runner_8h.html" title="This file contains the declaration of the VMRunner class." alt="" coords="312,184,467,211"/>
-<area shape="rect" id="node8" href="$rvss__vm_8cpp.html" title="RVSS VM implementation." alt="" coords="491,184,674,211"/>
-<area shape="rect" id="node4" href="$command__handler_8cpp.html" title=" " alt="" coords="5,259,197,285"/>
-<area shape="rect" id="node7" href="$vm__runner_8cpp.html" title="This file contains the implementation of the VMRunner class." alt="" coords="351,259,492,285"/>
+<area shape="rect" id="Node000001" title="RVSS Control Unit." alt="" coords="359,5,515,45"/>
+<area shape="rect" id="Node000002" href="$rvss__vm_8h.html" title="RVSS VM definition." alt="" coords="234,101,430,126"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="405,56,348,102,345,98,402,52"/>
+<area shape="rect" id="Node000009" href="$rvss__control__unit_8cpp.html" title="RVSS Control Unit implementation." alt="" coords="454,93,634,133"/>
+<area shape="poly" id="edge10_Node000001_Node000009" title=" " alt="" coords="473,52,522,91,519,95,470,56"/>
+<area shape="rect" id="Node000003" href="$command__handler_8h.html" title=" " alt="" coords="32,181,237,207"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="292,134,164,184,162,179,290,129"/>
+<area shape="rect" id="Node000005" href="$main_8cpp.html" title=" " alt="" coords="222,255,327,280"/>
+<area shape="poly" id="edge8_Node000002_Node000005" title=" " alt="" coords="322,139,302,182,280,255,275,254,298,180,317,137"/>
+<area shape="rect" id="Node000006" href="$vm__runner_8h.html" title="This file contains the declaration of the VMRunner class." alt="" coords="312,181,467,207"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="351,136,383,180,379,183,346,139"/>
+<area shape="rect" id="Node000008" href="$rvss__vm_8cpp.html" title="RVSS VM implementation." alt="" coords="491,181,674,207"/>
+<area shape="poly" id="edge9_Node000002_Node000008" title=" " alt="" coords="382,128,547,179,545,184,381,133"/>
+<area shape="rect" id="Node000004" href="$command__handler_8cpp.html" title=" " alt="" coords="5,255,197,280"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="126,220,109,256,104,253,121,218"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="171,210,253,252,251,257,168,215"/>
+<area shape="poly" id="edge6_Node000006_Node000005" title=" " alt="" coords="361,216,295,257,292,252,358,211"/>
+<area shape="rect" id="Node000007" href="$vm__runner_8cpp.html" title="This file contains the implementation of the VMRunner class." alt="" coords="351,255,492,280"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="403,218,419,253,414,256,398,220"/>
 </map>

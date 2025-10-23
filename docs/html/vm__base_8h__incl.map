@@ -1,36 +1,101 @@
 <map id="include/vm/vm_base.h" name="include/vm/vm_base.h">
-<area shape="rect" id="node1" title="File containing the base class for the virtual machine." alt="" coords="1270,5,1439,32"/>
-<area shape="rect" id="node2" href="$registers_8h.html" title="Contains the definition of the RegisterFile class for managing registers in the simulator." alt="" coords="403,155,493,181"/>
-<area shape="rect" id="node4" title=" " alt="" coords="177,304,239,331"/>
-<area shape="rect" id="node7" title=" " alt="" coords="1607,304,1665,331"/>
-<area shape="rect" id="node8" href="$memory__controller_8h.html" title="Contains the declaration of the MemoryController class for managing memory in the VM." alt="" coords="765,80,923,107"/>
-<area shape="rect" id="node11" title=" " alt="" coords="361,379,452,405"/>
-<area shape="rect" id="node14" title=" " alt="" coords="977,304,1044,331"/>
-<area shape="rect" id="node18" href="$alu_8h.html" title="Contains the definition of the alu class for performing arithmetic and logic operations." alt="" coords="1279,229,1334,256"/>
-<area shape="rect" id="node22" href="$vm__asm__mw_8h.html" title="Contains functions to handle assembler input for the VM." alt="" coords="1344,80,1464,107"/>
-<area shape="rect" id="node31" title=" " alt="" coords="1539,80,1603,107"/>
-<area shape="rect" id="node32" title=" " alt="" coords="1627,80,1770,107"/>
-<area shape="rect" id="node33" title=" " alt="" coords="1794,80,1857,107"/>
-<area shape="rect" id="node34" title=" " alt="" coords="1881,80,1948,107"/>
-<area shape="rect" id="node3" title=" " alt="" coords="687,304,743,331"/>
-<area shape="rect" id="node5" title=" " alt="" coords="245,229,360,256"/>
-<area shape="rect" id="node6" title=" " alt="" coords="435,229,559,256"/>
-<area shape="rect" id="node9" href="$config_8h.html" title="Contains configuration options for the assembler." alt="" coords="736,229,821,256"/>
-<area shape="rect" id="node12" title=" " alt="" coords="873,304,953,331"/>
-<area shape="rect" id="node17" href="$main__memory_8h.html" title="Contains the definition of the MemoryBlock and Memory classes." alt="" coords="679,155,806,181"/>
-<area shape="rect" id="node10" href="$globals_8h.html" title="Contains global definitions and includes for the assembler." alt="" coords="767,304,849,331"/>
-<area shape="rect" id="node13" title=" " alt="" coords="379,304,466,331"/>
-<area shape="rect" id="node15" title=" " alt="" coords="490,304,563,331"/>
-<area shape="rect" id="node16" title=" " alt="" coords="588,304,663,331"/>
-<area shape="rect" id="node19" title=" " alt="" coords="1272,304,1331,331"/>
-<area shape="rect" id="node20" title=" " alt="" coords="1355,304,1418,331"/>
-<area shape="rect" id="node21" title=" " alt="" coords="1485,304,1561,331"/>
-<area shape="rect" id="node23" title=" " alt="" coords="1511,229,1561,256"/>
-<area shape="rect" id="node24" title=" " alt="" coords="1978,229,2046,256"/>
-<area shape="rect" id="node25" href="$parser_8h.html" title="Contains the definition of the Parser class for parsing tokens and generating intermediate code." alt="" coords="1521,155,1668,181"/>
-<area shape="rect" id="node26" href="$tokens_8h.html" title="Contains the definition of the TokenType enum and the Token struct." alt="" coords="1804,229,1953,256"/>
-<area shape="rect" id="node27" href="$code__generator_8h.html" title="Contains the definition of the ICUnit struct and functions for generating machine code." alt="" coords="1049,229,1255,256"/>
-<area shape="rect" id="node30" href="$errors_8h.html" title="Defines error handling structures and error types for syntax and semantic errors in the assembler." alt="" coords="1585,229,1729,256"/>
-<area shape="rect" id="node28" title=" " alt="" coords="1176,304,1243,331"/>
-<area shape="rect" id="node29" title=" " alt="" coords="1077,304,1152,331"/>
+<area shape="rect" id="Node000001" title="File containing the base class for the virtual machine." alt="" coords="1626,5,1796,31"/>
+<area shape="rect" id="Node000002" href="$registers_8h.html" title="Contains the definition of the RegisterFile class for managing registers in the simulator." alt="" coords="807,225,898,251"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1626,23,1442,28,1220,38,1024,55,956,67,918,81,891,109,874,144,863,181,857,212,852,211,858,179,869,142,887,106,915,76,954,62,1024,50,1220,33,1442,23,1626,18"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="708,299,770,324"/>
+<area shape="poly" id="edge58_Node000001_Node000004" title=" " alt="" coords="1626,25,1208,44,1003,61,930,70,888,81,836,108,799,137,770,174,744,226,737,256,738,285,733,285,732,255,739,224,766,171,795,133,833,104,886,76,929,65,1002,55,1207,39,1626,19"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="1390,299,1448,324"/>
+<area shape="poly" id="edge59_Node000001_Node000007" title=" " alt="" coords="1738,28,1809,65,1850,90,1889,119,1921,150,1941,184,1946,201,1945,218,1939,236,1927,253,1903,265,1857,276,1726,293,1580,304,1462,311,1462,306,1579,299,1726,288,1856,271,1901,260,1924,249,1935,233,1940,217,1940,202,1936,186,1916,154,1885,123,1847,95,1806,69,1736,33"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="934,299,1000,324"/>
+<area shape="poly" id="edge61_Node000001_Node000008" title=" " alt="" coords="1626,21,1536,25,1427,34,1310,52,1196,81,1126,105,1073,131,1050,147,1029,168,988,227,977,256,971,285,966,284,971,254,983,224,1025,164,1047,143,1070,126,1124,100,1194,76,1309,47,1426,29,1535,19,1626,16"/>
+<area shape="rect" id="Node000009" href="$memory__controller_8h.html" title="Contains the declaration of the MemoryController class for managing memory in the VM." alt="" coords="406,79,563,104"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="1626,25,1187,45,895,61,599,81,577,83,577,78,599,76,895,56,1186,40,1626,20"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="150,372,240,397"/>
+<area shape="poly" id="edge60_Node000001_Node000012" title=" " alt="" coords="1626,24,1006,43,652,60,505,70,394,81,327,84,259,79,134,66,83,68,61,73,43,81,29,94,18,111,11,134,8,163,8,239,11,285,18,303,33,322,56,341,82,355,137,373,135,378,80,360,53,345,29,326,13,306,6,286,3,239,3,163,6,133,13,109,25,90,40,77,60,68,82,62,134,61,260,74,327,79,394,76,505,65,652,55,1005,38,1626,19"/>
+<area shape="rect" id="Node000018" href="$alu_8h.html" title="Contains the definition of the alu class for performing arithmetic and logic operations." alt="" coords="2018,225,2073,251"/>
+<area shape="poly" id="edge28_Node000001_Node000018" title=" " alt="" coords="1796,25,1915,43,1966,58,2001,77,2024,108,2039,144,2046,180,2048,211,2043,212,2041,181,2034,146,2020,110,1997,81,1964,63,1914,49,1795,30"/>
+<area shape="rect" id="Node000022" href="$vm__asm__mw_8h.html" title="Contains functions to handle assembler input for the VM." alt="" coords="1207,79,1327,104"/>
+<area shape="poly" id="edge33_Node000001_Node000022" title=" " alt="" coords="1640,33,1341,81,1340,76,1639,28"/>
+<area shape="rect" id="Node000031" title=" " alt="" coords="2068,79,2132,104"/>
+<area shape="poly" id="edge62_Node000001_Node000031" title=" " alt="" coords="1782,28,2050,76,2055,77,2054,82,2049,81,1781,33"/>
+<area shape="rect" id="Node000032" title=" " alt="" coords="2157,79,2300,104"/>
+<area shape="poly" id="edge63_Node000001_Node000032" title=" " alt="" coords="1795,28,2144,76,2143,81,1794,33"/>
+<area shape="rect" id="Node000033" title=" " alt="" coords="2324,79,2386,104"/>
+<area shape="poly" id="edge64_Node000001_Node000033" title=" " alt="" coords="1796,21,2025,38,2166,54,2310,76,2309,81,2165,59,2024,43,1796,26"/>
+<area shape="rect" id="Node000034" title=" " alt="" coords="2411,79,2478,104"/>
+<area shape="poly" id="edge65_Node000001_Node000034" title=" " alt="" coords="1796,20,2061,36,2227,53,2398,76,2397,81,2227,58,2060,41,1796,25"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="1040,299,1096,324"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="888,248,1028,294,1026,299,886,253"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="836,253,770,294,768,289,833,248"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="795,299,910,324"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="855,251,855,285,850,285,850,251"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="560,299,684,324"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="816,253,673,297,671,292,815,248"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="898,242,1376,302,1375,307,897,248"/>
+<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="872,248,938,289,935,294,869,253"/>
+<area shape="poly" id="edge27_Node000009_Node000004" title=" " alt="" coords="499,102,544,150,561,179,570,203,581,225,601,249,640,270,695,292,694,297,638,275,597,253,576,228,565,205,556,181,540,154,495,106"/>
+<area shape="poly" id="edge26_Node000009_Node000007" title=" " alt="" coords="563,94,748,108,981,133,1097,150,1203,170,1293,195,1358,223,1375,236,1389,252,1410,285,1406,288,1385,255,1371,240,1355,228,1291,200,1202,176,1096,155,980,138,748,113,563,100"/>
+<area shape="rect" id="Node000010" href="$config_8h.html" title="Contains configuration options for the assembler." alt="" coords="242,225,327,251"/>
+<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="467,106,393,154,310,218,307,214,390,150,464,102"/>
+<area shape="rect" id="Node000013" title=" " alt="" coords="142,299,222,324"/>
+<area shape="poly" id="edge25_Node000009_Node000013" title=" " alt="" coords="447,107,399,124,342,150,284,184,232,227,209,257,194,287,189,285,205,254,228,223,281,180,340,145,397,119,445,102"/>
+<area shape="rect" id="Node000017" href="$main__memory_8h.html" title="Contains the definition of the MemoryBlock and Memory classes." alt="" coords="402,152,529,177"/>
+<area shape="poly" id="edge18_Node000009_Node000017" title=" " alt="" coords="484,105,475,140,470,138,479,104"/>
+<area shape="poly" id="edge12_Node000010_Node000007" title=" " alt="" coords="327,238,735,256,1028,273,1327,296,1377,301,1376,307,1327,301,1027,278,735,261,327,243"/>
+<area shape="poly" id="edge15_Node000010_Node000008" title=" " alt="" coords="327,238,575,255,745,271,921,296,920,301,744,277,575,260,327,244"/>
+<area shape="rect" id="Node000011" href="$globals_8h.html" title="Contains global definitions and includes for the assembler." alt="" coords="344,299,425,324"/>
+<area shape="poly" id="edge10_Node000010_Node000011" title=" " alt="" coords="302,249,359,288,355,293,299,253"/>
+<area shape="poly" id="edge13_Node000010_Node000013" title=" " alt="" coords="269,253,211,293,208,288,266,248"/>
+<area shape="rect" id="Node000014" title=" " alt="" coords="449,299,536,324"/>
+<area shape="poly" id="edge14_Node000010_Node000014" title=" " alt="" coords="319,248,447,292,445,297,317,253"/>
+<area shape="rect" id="Node000015" title=" " alt="" coords="246,299,320,324"/>
+<area shape="poly" id="edge16_Node000010_Node000015" title=" " alt="" coords="287,251,286,285,281,285,282,251"/>
+<area shape="rect" id="Node000016" title=" " alt="" coords="43,299,118,324"/>
+<area shape="poly" id="edge17_Node000010_Node000016" title=" " alt="" coords="253,253,127,297,125,292,251,248"/>
+<area shape="poly" id="edge11_Node000011_Node000012" title=" " alt="" coords="355,327,240,369,238,364,353,322"/>
+<area shape="poly" id="edge20_Node000017_Node000004" title=" " alt="" coords="476,176,506,212,527,231,550,248,608,269,695,295,694,300,606,274,547,253,523,236,502,215,472,179"/>
+<area shape="poly" id="edge21_Node000017_Node000006" title=" " alt="" coords="460,179,445,213,443,232,449,249,464,261,490,273,554,293,553,298,488,278,462,266,445,252,438,233,440,212,456,176"/>
+<area shape="poly" id="edge23_Node000017_Node000007" title=" " alt="" coords="529,163,705,164,935,171,1051,178,1159,189,1250,204,1319,223,1344,236,1367,252,1403,287,1399,290,1363,256,1341,240,1317,228,1249,209,1158,194,1051,183,934,176,705,169,529,168"/>
+<area shape="poly" id="edge22_Node000017_Node000008" title=" " alt="" coords="506,175,921,294,920,299,505,180"/>
+<area shape="poly" id="edge19_Node000017_Node000010" title=" " alt="" coords="438,180,328,223,326,218,436,175"/>
+<area shape="poly" id="edge24_Node000017_Node000014" title=" " alt="" coords="446,180,425,193,407,211,396,230,395,239,399,249,420,274,447,291,444,295,416,278,394,252,390,240,391,228,403,207,422,189,443,175"/>
+<area shape="poly" id="edge31_Node000018_Node000008" title=" " alt="" coords="2018,244,1905,253,1658,265,1466,270,1274,278,1029,301,1014,303,1014,298,1028,296,1274,273,1466,265,1658,260,1904,248,2018,239"/>
+<area shape="rect" id="Node000019" title=" " alt="" coords="2059,299,2118,324"/>
+<area shape="poly" id="edge29_Node000018_Node000019" title=" " alt="" coords="2055,250,2077,286,2072,288,2051,252"/>
+<area shape="rect" id="Node000020" title=" " alt="" coords="1972,299,2034,324"/>
+<area shape="poly" id="edge30_Node000018_Node000020" title=" " alt="" coords="2041,252,2019,288,2015,286,2036,250"/>
+<area shape="rect" id="Node000021" title=" " alt="" coords="1758,299,1834,324"/>
+<area shape="poly" id="edge32_Node000018_Node000021" title=" " alt="" coords="2019,250,1849,298,1847,293,2017,245"/>
+<area shape="poly" id="edge37_Node000022_Node000004" title=" " alt="" coords="1207,104,1097,122,965,149,901,166,843,185,797,205,765,227,755,240,749,255,742,285,737,284,744,253,751,237,761,223,794,201,841,180,899,161,963,144,1096,116,1207,98"/>
+<area shape="poly" id="edge35_Node000022_Node000006" title=" " alt="" coords="1207,96,1135,100,1047,110,951,127,859,154,795,184,735,222,684,259,646,291,643,287,681,255,732,217,792,180,857,150,950,122,1046,105,1134,95,1207,91"/>
+<area shape="poly" id="edge36_Node000022_Node000007" title=" " alt="" coords="1328,93,1469,104,1644,128,1729,145,1805,166,1866,192,1889,207,1907,224,1913,238,1909,251,1897,261,1878,271,1824,285,1753,296,1594,308,1462,312,1462,307,1593,303,1752,291,1823,280,1876,266,1894,257,1905,248,1908,238,1902,227,1886,211,1864,197,1803,171,1728,150,1643,133,1468,110,1327,98"/>
+<area shape="poly" id="edge39_Node000022_Node000008" title=" " alt="" coords="1230,107,1182,124,1125,150,1066,184,1013,227,992,256,978,287,973,285,987,254,1009,223,1063,180,1122,145,1180,119,1228,102"/>
+<area shape="rect" id="Node000023" title=" " alt="" coords="1023,225,1074,251"/>
+<area shape="poly" id="edge34_Node000022_Node000023" title=" " alt="" coords="1259,106,1225,141,1179,180,1133,206,1088,225,1086,221,1130,201,1176,175,1222,137,1255,102"/>
+<area shape="rect" id="Node000024" title=" " alt="" coords="1824,225,1892,251"/>
+<area shape="poly" id="edge38_Node000022_Node000024" title=" " alt="" coords="1315,101,1811,223,1810,228,1313,107"/>
+<area shape="rect" id="Node000025" href="$parser_8h.html" title="Contains the definition of the Parser class for parsing tokens and generating intermediate code." alt="" coords="1250,152,1396,177"/>
+<area shape="poly" id="edge40_Node000022_Node000025" title=" " alt="" coords="1278,103,1308,140,1303,143,1274,106"/>
+<area shape="poly" id="edge56_Node000025_Node000004" title=" " alt="" coords="1249,169,1135,173,1003,183,880,200,832,212,796,228,781,240,769,255,751,287,746,284,764,252,778,236,794,223,830,207,879,195,1002,177,1135,168,1249,164"/>
+<area shape="poly" id="edge55_Node000025_Node000007" title=" " alt="" coords="1354,175,1387,194,1402,208,1415,224,1425,255,1425,285,1420,285,1419,256,1410,227,1398,211,1384,199,1352,180"/>
+<area shape="poly" id="edge54_Node000025_Node000023" title=" " alt="" coords="1276,180,1088,228,1087,228,1086,223,1086,223,1275,175"/>
+<area shape="poly" id="edge57_Node000025_Node000024" title=" " alt="" coords="1397,170,1581,189,1811,223,1810,228,1580,194,1396,175"/>
+<area shape="rect" id="Node000026" href="$tokens_8h.html" title="Contains the definition of the TokenType enum and the Token struct." alt="" coords="1482,225,1631,251"/>
+<area shape="poly" id="edge41_Node000025_Node000026" title=" " alt="" coords="1361,175,1506,219,1505,224,1360,180"/>
+<area shape="rect" id="Node000027" href="$code__generator_8h.html" title="Contains the definition of the ICUnit struct and functions for generating machine code." alt="" coords="1098,225,1305,251"/>
+<area shape="poly" id="edge43_Node000025_Node000027" title=" " alt="" coords="1305,180,1234,221,1232,216,1302,175"/>
+<area shape="rect" id="Node000030" href="$errors_8h.html" title="Defines error handling structures and error types for syntax and semantic errors in the assembler." alt="" coords="1655,225,1799,251"/>
+<area shape="poly" id="edge51_Node000025_Node000030" title=" " alt="" coords="1388,175,1649,220,1648,226,1388,180"/>
+<area shape="poly" id="edge42_Node000026_Node000007" title=" " alt="" coords="1536,253,1455,295,1452,290,1533,248"/>
+<area shape="poly" id="edge44_Node000027_Node000003" title=" " alt="" coords="1182,253,1103,294,1101,290,1179,248"/>
+<area shape="poly" id="edge48_Node000027_Node000004" title=" " alt="" coords="1099,253,954,273,784,301,784,296,953,267,1098,248"/>
+<area shape="poly" id="edge47_Node000027_Node000007" title=" " alt="" coords="1237,248,1377,294,1376,299,1236,253"/>
+<area shape="poly" id="edge45_Node000027_Node000008" title=" " alt="" coords="1165,253,1014,299,1013,293,1163,248"/>
+<area shape="poly" id="edge46_Node000027_Node000013" title=" " alt="" coords="1098,252,1086,253,846,266,660,269,473,277,364,286,235,301,235,301,234,296,235,296,364,281,473,271,660,264,846,261,1086,248,1098,247"/>
+<area shape="rect" id="Node000028" title=" " alt="" coords="1248,299,1315,324"/>
+<area shape="poly" id="edge49_Node000027_Node000028" title=" " alt="" coords="1216,249,1260,288,1257,292,1213,253"/>
+<area shape="rect" id="Node000029" title=" " alt="" coords="1150,299,1224,324"/>
+<area shape="poly" id="edge50_Node000027_Node000029" title=" " alt="" coords="1202,252,1195,286,1190,285,1197,250"/>
+<area shape="poly" id="edge52_Node000030_Node000007" title=" " alt="" coords="1678,253,1462,303,1461,298,1677,248"/>
+<area shape="poly" id="edge53_Node000030_Node000021" title=" " alt="" coords="1740,249,1778,287,1774,291,1737,253"/>
 </map>

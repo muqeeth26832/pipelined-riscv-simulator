@@ -1,14 +1,14 @@
-\hypertarget{utils_8h}{}\doxysection{include/utils.h File Reference}
-\label{utils_8h}\index{include/utils.h@{include/utils.h}}
+\doxysection{include/utils.h File Reference}
+\hypertarget{utils_8h}{}\label{utils_8h}\index{include/utils.h@{include/utils.h}}
 
 
 Contains utility functions for file I/O and string manipulation.  
 
 
-{\ttfamily \#include \char`\"{}assembler/parser.\+h\char`\"{}}\newline
-{\ttfamily \#include \char`\"{}vm/registers.\+h\char`\"{}}\newline
-{\ttfamily \#include \char`\"{}vm/vm\+\_\+base.\+h\char`\"{}}\newline
-{\ttfamily \#include \char`\"{}vm\+\_\+asm\+\_\+mw.\+h\char`\"{}}\newline
+{\ttfamily \#include "{}assembler/parser.\+h"{}}\newline
+{\ttfamily \#include "{}vm/registers.\+h"{}}\newline
+{\ttfamily \#include "{}vm/vm\+\_\+base.\+h"{}}\newline
+{\ttfamily \#include "{}vm\+\_\+asm\+\_\+mw.\+h"{}}\newline
 {\ttfamily \#include $<$string$>$}\newline
 {\ttfamily \#include $<$filesystem$>$}\newline
 Include dependency graph for utils.\+h\+:
@@ -27,7 +27,7 @@ This graph shows which files directly or indirectly include this file\+:
 \includegraphics[width=350pt]{utils_8h__dep__incl}
 \end{center}
 \end{figure}
-\doxysubsection*{Functions}
+\doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
 void \mbox{\hyperlink{utils_8h_af3f95999ef175e14de3c42754e4224aa}{setup\+Vm\+State\+Directory}} ()
@@ -59,7 +59,7 @@ Vishank Singh, \href{https://github.com/VishankSingh}{\texttt{ https\+://github.
 
 
 \doxysubsection{Function Documentation}
-\mbox{\Hypertarget{utils_8h_a9f1db91cc23a2bfbba2379c15eb75d05}\label{utils_8h_a9f1db91cc23a2bfbba2379c15eb75d05}} 
+\Hypertarget{utils_8h_a9f1db91cc23a2bfbba2379c15eb75d05}\label{utils_8h_a9f1db91cc23a2bfbba2379c15eb75d05} 
 \index{utils.h@{utils.h}!CountLines@{CountLines}}
 \index{CountLines@{CountLines}!utils.h@{utils.h}}
 \doxysubsubsection{\texorpdfstring{CountLines()}{CountLines()}}
@@ -82,31 +82,31 @@ The number of lines in the file.
 {\em std\+::ios\+\_\+base\+::failure} & If the file cannot be opened. \\
 \hline
 \end{DoxyExceptions}
-\mbox{\Hypertarget{utils_8h_a05b17231f2df6613889cdeccfdffa6c0}\label{utils_8h_a05b17231f2df6613889cdeccfdffa6c0}} 
+\Hypertarget{utils_8h_a05b17231f2df6613889cdeccfdffa6c0}\label{utils_8h_a05b17231f2df6613889cdeccfdffa6c0} 
 \index{utils.h@{utils.h}!DumpDisasssembly@{DumpDisasssembly}}
 \index{DumpDisasssembly@{DumpDisasssembly}!utils.h@{utils.h}}
 \doxysubsubsection{\texorpdfstring{DumpDisasssembly()}{DumpDisasssembly()}}
 {\footnotesize\ttfamily void Dump\+Disasssembly (\begin{DoxyParamCaption}\item[{const std\+::filesystem\+::path \&}]{filename,  }\item[{\mbox{\hyperlink{structAssembledProgram}{Assembled\+Program}} \&}]{program }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{utils_8h_ae36d66b20fc71d0bfdee0a0fbdd9d8de}\label{utils_8h_ae36d66b20fc71d0bfdee0a0fbdd9d8de}} 
+\Hypertarget{utils_8h_ae36d66b20fc71d0bfdee0a0fbdd9d8de}\label{utils_8h_ae36d66b20fc71d0bfdee0a0fbdd9d8de} 
 \index{utils.h@{utils.h}!DumpErrors@{DumpErrors}}
 \index{DumpErrors@{DumpErrors}!utils.h@{utils.h}}
 \doxysubsubsection{\texorpdfstring{DumpErrors()}{DumpErrors()}}
 {\footnotesize\ttfamily void Dump\+Errors (\begin{DoxyParamCaption}\item[{const std\+::filesystem\+::path \&}]{filename,  }\item[{const std\+::vector$<$ \mbox{\hyperlink{structParseError}{Parse\+Error}} $>$ \&}]{errors }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{utils_8h_a4d37503b8b0f0ed512522c5ba71682ca}\label{utils_8h_a4d37503b8b0f0ed512522c5ba71682ca}} 
+\Hypertarget{utils_8h_a4d37503b8b0f0ed512522c5ba71682ca}\label{utils_8h_a4d37503b8b0f0ed512522c5ba71682ca} 
 \index{utils.h@{utils.h}!DumpNoErrors@{DumpNoErrors}}
 \index{DumpNoErrors@{DumpNoErrors}!utils.h@{utils.h}}
 \doxysubsubsection{\texorpdfstring{DumpNoErrors()}{DumpNoErrors()}}
 {\footnotesize\ttfamily void Dump\+No\+Errors (\begin{DoxyParamCaption}\item[{const std\+::filesystem\+::path \&}]{filename }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{utils_8h_a4645b448c63ee103e8ae566d83b45470}\label{utils_8h_a4645b448c63ee103e8ae566d83b45470}} 
+\Hypertarget{utils_8h_a4645b448c63ee103e8ae566d83b45470}\label{utils_8h_a4645b448c63ee103e8ae566d83b45470} 
 \index{utils.h@{utils.h}!DumpRegisters@{DumpRegisters}}
 \index{DumpRegisters@{DumpRegisters}!utils.h@{utils.h}}
 \doxysubsubsection{\texorpdfstring{DumpRegisters()}{DumpRegisters()}}
 {\footnotesize\ttfamily void Dump\+Registers (\begin{DoxyParamCaption}\item[{const std\+::filesystem\+::path \&}]{filename,  }\item[{\mbox{\hyperlink{classRegisterFile}{Register\+File}} \&}]{register\+\_\+file }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{utils_8h_a110b46ab6e189c14e24ed3e35680b91a}\label{utils_8h_a110b46ab6e189c14e24ed3e35680b91a}} 
+\Hypertarget{utils_8h_a110b46ab6e189c14e24ed3e35680b91a}\label{utils_8h_a110b46ab6e189c14e24ed3e35680b91a} 
 \index{utils.h@{utils.h}!GetLineFromFile@{GetLineFromFile}}
 \index{GetLineFromFile@{GetLineFromFile}!utils.h@{utils.h}}
 \doxysubsubsection{\texorpdfstring{GetLineFromFile()}{GetLineFromFile()}}
@@ -133,7 +133,7 @@ The content of the specified line as a string.
 {\em std\+::ios\+\_\+base\+::failure} & If the file cannot be opened. \\
 \hline
 \end{DoxyExceptions}
-\mbox{\Hypertarget{utils_8h_ac175dbe8421725a466a026a8eecf9b11}\label{utils_8h_ac175dbe8421725a466a026a8eecf9b11}} 
+\Hypertarget{utils_8h_ac175dbe8421725a466a026a8eecf9b11}\label{utils_8h_ac175dbe8421725a466a026a8eecf9b11} 
 \index{utils.h@{utils.h}!ParseEscapedString@{ParseEscapedString}}
 \index{ParseEscapedString@{ParseEscapedString}!utils.h@{utils.h}}
 \doxysubsubsection{\texorpdfstring{ParseEscapedString()}{ParseEscapedString()}}
@@ -151,13 +151,13 @@ Parses a string containing escaped characters into its unescaped form.
 \begin{DoxyReturn}{Returns}
 The unescaped string. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{utils_8h_a105ade81d4e257f3764e557f57773066}\label{utils_8h_a105ade81d4e257f3764e557f57773066}} 
+\Hypertarget{utils_8h_a105ade81d4e257f3764e557f57773066}\label{utils_8h_a105ade81d4e257f3764e557f57773066} 
 \index{utils.h@{utils.h}!SetupConfigFile@{SetupConfigFile}}
 \index{SetupConfigFile@{SetupConfigFile}!utils.h@{utils.h}}
 \doxysubsubsection{\texorpdfstring{SetupConfigFile()}{SetupConfigFile()}}
 {\footnotesize\ttfamily void Setup\+Config\+File (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{utils_8h_af3f95999ef175e14de3c42754e4224aa}\label{utils_8h_af3f95999ef175e14de3c42754e4224aa}} 
+\Hypertarget{utils_8h_af3f95999ef175e14de3c42754e4224aa}\label{utils_8h_af3f95999ef175e14de3c42754e4224aa} 
 \index{utils.h@{utils.h}!setupVmStateDirectory@{setupVmStateDirectory}}
 \index{setupVmStateDirectory@{setupVmStateDirectory}!utils.h@{utils.h}}
 \doxysubsubsection{\texorpdfstring{setupVmStateDirectory()}{setupVmStateDirectory()}}

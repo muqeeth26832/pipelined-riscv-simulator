@@ -1,5 +1,5 @@
-\hypertarget{classRegisterFile}{}\doxysection{Register\+File Class Reference}
-\label{classRegisterFile}\index{RegisterFile@{RegisterFile}}
+\doxysection{Register\+File Class Reference}
+\hypertarget{classRegisterFile}{}\label{classRegisterFile}\index{RegisterFile@{RegisterFile}}
 
 
 Represents a register file containing integer, floating-\/point, and vector registers.  
@@ -9,7 +9,7 @@ Represents a register file containing integer, floating-\/point, and vector regi
 
 {\ttfamily \#include $<$registers.\+h$>$}
 
-\doxysubsection*{Public Types}
+\doxysubsubsection*{Public Types}
 \begin{DoxyCompactItemize}
 \item 
 enum class \mbox{\hyperlink{classRegisterFile_ad20885f84b337c67fd63b230e11ba230}{Register\+Type}} \{ \newline
@@ -21,7 +21,7 @@ enum class \mbox{\hyperlink{classRegisterFile_ad20885f84b337c67fd63b230e11ba230}
 \mbox{\hyperlink{classRegisterFile_ad20885f84b337c67fd63b230e11ba230a9dbebbc8de3ea0e81606b05de0fff36d}{CSR}}
  \}
 \begin{DoxyCompactList}\small\item\em Enum representing the type of a register. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\doxysubsection*{Public Member Functions}
+\doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{classRegisterFile_a9513989ee395d14943de66f99ec8014a}{Register\+File}} ()
@@ -52,34 +52,34 @@ void \mbox{\hyperlink{classRegisterFile_a2fb719f462ce76e7c0839e2cfd853185}{Modif
 Represents a register file containing integer, floating-\/point, and vector registers. 
 
 \doxysubsection{Member Enumeration Documentation}
-\mbox{\Hypertarget{classRegisterFile_ad20885f84b337c67fd63b230e11ba230}\label{classRegisterFile_ad20885f84b337c67fd63b230e11ba230}} 
+\Hypertarget{classRegisterFile_ad20885f84b337c67fd63b230e11ba230}\label{classRegisterFile_ad20885f84b337c67fd63b230e11ba230} 
 \index{RegisterFile@{RegisterFile}!RegisterType@{RegisterType}}
 \index{RegisterType@{RegisterType}!RegisterFile@{RegisterFile}}
 \doxysubsubsection{\texorpdfstring{RegisterType}{RegisterType}}
-{\footnotesize\ttfamily enum \mbox{\hyperlink{classRegisterFile_ad20885f84b337c67fd63b230e11ba230}{Register\+File\+::\+Register\+Type}}\hspace{0.3cm}{\ttfamily [strong]}}
+{\footnotesize\ttfamily enum class \mbox{\hyperlink{classRegisterFile_ad20885f84b337c67fd63b230e11ba230}{Register\+File\+::\+Register\+Type}}\hspace{0.3cm}{\ttfamily [strong]}}
 
 
 
 Enum representing the type of a register. 
 
 \begin{DoxyEnumFields}{Enumerator}
-\raisebox{\heightof{T}}[0pt][0pt]{\index{INVALID@{INVALID}!RegisterFile@{RegisterFile}}\index{RegisterFile@{RegisterFile}!INVALID@{INVALID}}}\mbox{\Hypertarget{classRegisterFile_ad20885f84b337c67fd63b230e11ba230accc0377a8afbf50e7094f5c23a8af223}\label{classRegisterFile_ad20885f84b337c67fd63b230e11ba230accc0377a8afbf50e7094f5c23a8af223}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{INVALID@{INVALID}!RegisterFile@{RegisterFile}}\index{RegisterFile@{RegisterFile}!INVALID@{INVALID}}}\Hypertarget{classRegisterFile_ad20885f84b337c67fd63b230e11ba230accc0377a8afbf50e7094f5c23a8af223}\label{classRegisterFile_ad20885f84b337c67fd63b230e11ba230accc0377a8afbf50e7094f5c23a8af223} 
 INVALID&Invalid register type. \\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{INTEGER@{INTEGER}!RegisterFile@{RegisterFile}}\index{RegisterFile@{RegisterFile}!INTEGER@{INTEGER}}}\mbox{\Hypertarget{classRegisterFile_ad20885f84b337c67fd63b230e11ba230a5d5cd46919fa987731fb2edefe0f2a0c}\label{classRegisterFile_ad20885f84b337c67fd63b230e11ba230a5d5cd46919fa987731fb2edefe0f2a0c}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{INTEGER@{INTEGER}!RegisterFile@{RegisterFile}}\index{RegisterFile@{RegisterFile}!INTEGER@{INTEGER}}}\Hypertarget{classRegisterFile_ad20885f84b337c67fd63b230e11ba230a5d5cd46919fa987731fb2edefe0f2a0c}\label{classRegisterFile_ad20885f84b337c67fd63b230e11ba230a5d5cd46919fa987731fb2edefe0f2a0c} 
 INTEGER&General-\/purpose integer register. \\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{FLOATING\_POINT@{FLOATING\_POINT}!RegisterFile@{RegisterFile}}\index{RegisterFile@{RegisterFile}!FLOATING\_POINT@{FLOATING\_POINT}}}\mbox{\Hypertarget{classRegisterFile_ad20885f84b337c67fd63b230e11ba230a30ccd51223e55d0a8ce2bd253733f579}\label{classRegisterFile_ad20885f84b337c67fd63b230e11ba230a30ccd51223e55d0a8ce2bd253733f579}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FLOATING\_POINT@{FLOATING\_POINT}!RegisterFile@{RegisterFile}}\index{RegisterFile@{RegisterFile}!FLOATING\_POINT@{FLOATING\_POINT}}}\Hypertarget{classRegisterFile_ad20885f84b337c67fd63b230e11ba230a30ccd51223e55d0a8ce2bd253733f579}\label{classRegisterFile_ad20885f84b337c67fd63b230e11ba230a30ccd51223e55d0a8ce2bd253733f579} 
 FLOATING\+\_\+\+POINT&Floating-\/point register. \\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{VECTOR@{VECTOR}!RegisterFile@{RegisterFile}}\index{RegisterFile@{RegisterFile}!VECTOR@{VECTOR}}}\mbox{\Hypertarget{classRegisterFile_ad20885f84b337c67fd63b230e11ba230a87752381b583740610f1dfeb07fdad7e}\label{classRegisterFile_ad20885f84b337c67fd63b230e11ba230a87752381b583740610f1dfeb07fdad7e}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VECTOR@{VECTOR}!RegisterFile@{RegisterFile}}\index{RegisterFile@{RegisterFile}!VECTOR@{VECTOR}}}\Hypertarget{classRegisterFile_ad20885f84b337c67fd63b230e11ba230a87752381b583740610f1dfeb07fdad7e}\label{classRegisterFile_ad20885f84b337c67fd63b230e11ba230a87752381b583740610f1dfeb07fdad7e} 
 VECTOR&Vector register. \\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{CSR@{CSR}!RegisterFile@{RegisterFile}}\index{RegisterFile@{RegisterFile}!CSR@{CSR}}}\mbox{\Hypertarget{classRegisterFile_ad20885f84b337c67fd63b230e11ba230a9dbebbc8de3ea0e81606b05de0fff36d}\label{classRegisterFile_ad20885f84b337c67fd63b230e11ba230a9dbebbc8de3ea0e81606b05de0fff36d}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CSR@{CSR}!RegisterFile@{RegisterFile}}\index{RegisterFile@{RegisterFile}!CSR@{CSR}}}\Hypertarget{classRegisterFile_ad20885f84b337c67fd63b230e11ba230a9dbebbc8de3ea0e81606b05de0fff36d}\label{classRegisterFile_ad20885f84b337c67fd63b230e11ba230a9dbebbc8de3ea0e81606b05de0fff36d} 
 CSR&Control and Status Register (CSR). \\
 \hline
 
@@ -87,7 +87,7 @@ CSR&Control and Status Register (CSR). \\
 
 
 \doxysubsection{Constructor \& Destructor Documentation}
-\mbox{\Hypertarget{classRegisterFile_a9513989ee395d14943de66f99ec8014a}\label{classRegisterFile_a9513989ee395d14943de66f99ec8014a}} 
+\Hypertarget{classRegisterFile_a9513989ee395d14943de66f99ec8014a}\label{classRegisterFile_a9513989ee395d14943de66f99ec8014a} 
 \index{RegisterFile@{RegisterFile}!RegisterFile@{RegisterFile}}
 \index{RegisterFile@{RegisterFile}!RegisterFile@{RegisterFile}}
 \doxysubsubsection{\texorpdfstring{RegisterFile()}{RegisterFile()}}
@@ -96,7 +96,7 @@ CSR&Control and Status Register (CSR). \\
 
 
 \doxysubsection{Member Function Documentation}
-\mbox{\Hypertarget{classRegisterFile_a93f099cce5c1bb800d4a481d2424732c}\label{classRegisterFile_a93f099cce5c1bb800d4a481d2424732c}} 
+\Hypertarget{classRegisterFile_a93f099cce5c1bb800d4a481d2424732c}\label{classRegisterFile_a93f099cce5c1bb800d4a481d2424732c} 
 \index{RegisterFile@{RegisterFile}!GetFprValues@{GetFprValues}}
 \index{GetFprValues@{GetFprValues}!RegisterFile@{RegisterFile}}
 \doxysubsubsection{\texorpdfstring{GetFprValues()}{GetFprValues()}}
@@ -109,7 +109,7 @@ Retrieves the values of all Floating-\/\+Point Registers (FPR).
 \begin{DoxyReturn}{Returns}
 A vector containing the values of all FPRs. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classRegisterFile_a106a489cfac656e42303821efc8e1d8d}\label{classRegisterFile_a106a489cfac656e42303821efc8e1d8d}} 
+\Hypertarget{classRegisterFile_a106a489cfac656e42303821efc8e1d8d}\label{classRegisterFile_a106a489cfac656e42303821efc8e1d8d} 
 \index{RegisterFile@{RegisterFile}!GetGprValues@{GetGprValues}}
 \index{GetGprValues@{GetGprValues}!RegisterFile@{RegisterFile}}
 \doxysubsubsection{\texorpdfstring{GetGprValues()}{GetGprValues()}}
@@ -122,19 +122,19 @@ Retrieves the values of all General-\/\+Purpose Registers (GPR).
 \begin{DoxyReturn}{Returns}
 A vector containing the values of all GPRs. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classRegisterFile_a2fb719f462ce76e7c0839e2cfd853185}\label{classRegisterFile_a2fb719f462ce76e7c0839e2cfd853185}} 
+\Hypertarget{classRegisterFile_a2fb719f462ce76e7c0839e2cfd853185}\label{classRegisterFile_a2fb719f462ce76e7c0839e2cfd853185} 
 \index{RegisterFile@{RegisterFile}!ModifyRegister@{ModifyRegister}}
 \index{ModifyRegister@{ModifyRegister}!RegisterFile@{RegisterFile}}
 \doxysubsubsection{\texorpdfstring{ModifyRegister()}{ModifyRegister()}}
 {\footnotesize\ttfamily void Register\+File\+::\+Modify\+Register (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{reg\+\_\+name,  }\item[{uint64\+\_\+t}]{value }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{classRegisterFile_a864f6e3b6ccc65796223c13c390a8d60}\label{classRegisterFile_a864f6e3b6ccc65796223c13c390a8d60}} 
+\Hypertarget{classRegisterFile_a864f6e3b6ccc65796223c13c390a8d60}\label{classRegisterFile_a864f6e3b6ccc65796223c13c390a8d60} 
 \index{RegisterFile@{RegisterFile}!ReadCsr@{ReadCsr}}
 \index{ReadCsr@{ReadCsr}!RegisterFile@{RegisterFile}}
 \doxysubsubsection{\texorpdfstring{ReadCsr()}{ReadCsr()}}
 {\footnotesize\ttfamily uint64\+\_\+t Register\+File\+::\+Read\+Csr (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{reg }\end{DoxyParamCaption}) const}
 
-\mbox{\Hypertarget{classRegisterFile_ab208db6a17dac266e798394febce6c0b}\label{classRegisterFile_ab208db6a17dac266e798394febce6c0b}} 
+\Hypertarget{classRegisterFile_ab208db6a17dac266e798394febce6c0b}\label{classRegisterFile_ab208db6a17dac266e798394febce6c0b} 
 \index{RegisterFile@{RegisterFile}!ReadFpr@{ReadFpr}}
 \index{ReadFpr@{ReadFpr}!RegisterFile@{RegisterFile}}
 \doxysubsubsection{\texorpdfstring{ReadFpr()}{ReadFpr()}}
@@ -152,7 +152,7 @@ Reads the value of a Floating-\/\+Point Register (FPR).
 \begin{DoxyReturn}{Returns}
 The value of the FPR at the specified index. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classRegisterFile_a6704c638818fdc97fc5d432687c94459}\label{classRegisterFile_a6704c638818fdc97fc5d432687c94459}} 
+\Hypertarget{classRegisterFile_a6704c638818fdc97fc5d432687c94459}\label{classRegisterFile_a6704c638818fdc97fc5d432687c94459} 
 \index{RegisterFile@{RegisterFile}!ReadGpr@{ReadGpr}}
 \index{ReadGpr@{ReadGpr}!RegisterFile@{RegisterFile}}
 \doxysubsubsection{\texorpdfstring{ReadGpr()}{ReadGpr()}}
@@ -170,19 +170,19 @@ Reads the value of a General-\/\+Purpose Register (GPR).
 \begin{DoxyReturn}{Returns}
 The value of the GPR at the specified index. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classRegisterFile_a70bbec9de8daf3195bc7d1fc827c113c}\label{classRegisterFile_a70bbec9de8daf3195bc7d1fc827c113c}} 
+\Hypertarget{classRegisterFile_a70bbec9de8daf3195bc7d1fc827c113c}\label{classRegisterFile_a70bbec9de8daf3195bc7d1fc827c113c} 
 \index{RegisterFile@{RegisterFile}!Reset@{Reset}}
 \index{Reset@{Reset}!RegisterFile@{RegisterFile}}
 \doxysubsubsection{\texorpdfstring{Reset()}{Reset()}}
 {\footnotesize\ttfamily void Register\+File\+::\+Reset (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{classRegisterFile_ad703c614dd37205dc11a43272045b6fd}\label{classRegisterFile_ad703c614dd37205dc11a43272045b6fd}} 
+\Hypertarget{classRegisterFile_ad703c614dd37205dc11a43272045b6fd}\label{classRegisterFile_ad703c614dd37205dc11a43272045b6fd} 
 \index{RegisterFile@{RegisterFile}!WriteCsr@{WriteCsr}}
 \index{WriteCsr@{WriteCsr}!RegisterFile@{RegisterFile}}
 \doxysubsubsection{\texorpdfstring{WriteCsr()}{WriteCsr()}}
 {\footnotesize\ttfamily void Register\+File\+::\+Write\+Csr (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{reg,  }\item[{uint64\+\_\+t}]{value }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{classRegisterFile_a1eb99110e6c9be35cb02ada8bda4f846}\label{classRegisterFile_a1eb99110e6c9be35cb02ada8bda4f846}} 
+\Hypertarget{classRegisterFile_a1eb99110e6c9be35cb02ada8bda4f846}\label{classRegisterFile_a1eb99110e6c9be35cb02ada8bda4f846} 
 \index{RegisterFile@{RegisterFile}!WriteFpr@{WriteFpr}}
 \index{WriteFpr@{WriteFpr}!RegisterFile@{RegisterFile}}
 \doxysubsubsection{\texorpdfstring{WriteFpr()}{WriteFpr()}}
@@ -199,7 +199,7 @@ Writes a value to a Floating-\/\+Point Register (FPR).
 {\em value} & The value to write. \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{classRegisterFile_a0ae02cb5fbd777469d1ec353e6b1ba6c}\label{classRegisterFile_a0ae02cb5fbd777469d1ec353e6b1ba6c}} 
+\Hypertarget{classRegisterFile_a0ae02cb5fbd777469d1ec353e6b1ba6c}\label{classRegisterFile_a0ae02cb5fbd777469d1ec353e6b1ba6c} 
 \index{RegisterFile@{RegisterFile}!WriteGpr@{WriteGpr}}
 \index{WriteGpr@{WriteGpr}!RegisterFile@{RegisterFile}}
 \doxysubsubsection{\texorpdfstring{WriteGpr()}{WriteGpr()}}

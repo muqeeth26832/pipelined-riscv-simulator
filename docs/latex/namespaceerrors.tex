@@ -1,25 +1,25 @@
-\hypertarget{namespaceerrors}{}\doxysection{errors Namespace Reference}
-\label{namespaceerrors}\index{errors@{errors}}
-\doxysubsection*{Classes}
+\doxysection{errors Namespace Reference}
+\hypertarget{namespaceerrors}{}\label{namespaceerrors}\index{errors@{errors}}
+\doxysubsubsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 
-struct \mbox{\hyperlink{structerrors_1_1SyntaxError}{Syntax\+Error}}
-\begin{DoxyCompactList}\small\item\em Represents a generic syntax error in the assembler. \end{DoxyCompactList}\item 
-struct \mbox{\hyperlink{structerrors_1_1UnexpectedTokenError}{Unexpected\+Token\+Error}}
-\begin{DoxyCompactList}\small\item\em Represents an error caused by an unexpected token in the input. \end{DoxyCompactList}\item 
 struct \mbox{\hyperlink{structerrors_1_1ImmediateOutOfRangeError}{Immediate\+Out\+Of\+Range\+Error}}
 \begin{DoxyCompactList}\small\item\em Represents an error caused by an immediate value being outside the valid range. \end{DoxyCompactList}\item 
-struct \mbox{\hyperlink{structerrors_1_1MisalignedImmediateError}{Misaligned\+Immediate\+Error}}
-\begin{DoxyCompactList}\small\item\em Represents an error caused by an immediate value being misaligned. \end{DoxyCompactList}\item 
-struct \mbox{\hyperlink{structerrors_1_1UnexpectedOperandError}{Unexpected\+Operand\+Error}}
-\begin{DoxyCompactList}\small\item\em Represents an error caused by encountering an unexpected operand. \end{DoxyCompactList}\item 
 struct \mbox{\hyperlink{structerrors_1_1InvalidLabelRefError}{Invalid\+Label\+Ref\+Error}}
 \begin{DoxyCompactList}\small\item\em Represents an error caused by referencing an invalid or undefined label. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structerrors_1_1InvalidRegisterError}{Invalid\+Register\+Error}}
+\item 
 struct \mbox{\hyperlink{structerrors_1_1LabelRedefinitionError}{Label\+Redefinition\+Error}}
 \begin{DoxyCompactList}\small\item\em Represents an error caused by redefining a previously defined label. \end{DoxyCompactList}\item 
-struct \mbox{\hyperlink{structerrors_1_1InvalidRegisterError}{Invalid\+Register\+Error}}
-\end{DoxyCompactItemize}
-\doxysubsection*{Enumerations}
+struct \mbox{\hyperlink{structerrors_1_1MisalignedImmediateError}{Misaligned\+Immediate\+Error}}
+\begin{DoxyCompactList}\small\item\em Represents an error caused by an immediate value being misaligned. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structerrors_1_1SyntaxError}{Syntax\+Error}}
+\begin{DoxyCompactList}\small\item\em Represents a generic syntax error in the assembler. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structerrors_1_1UnexpectedOperandError}{Unexpected\+Operand\+Error}}
+\begin{DoxyCompactList}\small\item\em Represents an error caused by encountering an unexpected operand. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structerrors_1_1UnexpectedTokenError}{Unexpected\+Token\+Error}}
+\begin{DoxyCompactList}\small\item\em Represents an error caused by an unexpected token in the input. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
 \begin{DoxyCompactItemize}
 \item 
 enum class \mbox{\hyperlink{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2ae}{Error\+Type}} \{ \newline
@@ -53,135 +53,135 @@ enum class \mbox{\hyperlink{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2ae}{E
 , \mbox{\hyperlink{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aea9a10f345b0f755d461a8673a5e9ef6b4}{UNKNOWN\+\_\+\+ERROR}}
  \}
 \begin{DoxyCompactList}\small\item\em Enumerates various types of errors that can occur during assembly. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\doxysubsection*{Functions}
+\doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-std\+::ostream \& \mbox{\hyperlink{namespaceerrors_abd9c4207eb87823463df570e88b02d43}{operator$<$$<$}} (std\+::ostream \&os, const \mbox{\hyperlink{structerrors_1_1SyntaxError}{Syntax\+Error}} \&error)
+std\+::ostream \& \mbox{\hyperlink{namespaceerrors_a11124eff602364039f26e847bb8bb0d5}{operator$<$$<$}} (std\+::ostream \&os, const \mbox{\hyperlink{structerrors_1_1SyntaxError}{Syntax\+Error}} \&error)
 \item 
-std\+::ostream \& \mbox{\hyperlink{namespaceerrors_adb29fba745a3e83d3176b317717dd4d5}{operator$<$$<$}} (std\+::ostream \&os, const \mbox{\hyperlink{structerrors_1_1UnexpectedTokenError}{Unexpected\+Token\+Error}} \&error)
+std\+::ostream \& \mbox{\hyperlink{namespaceerrors_a0dafebf85c7053cdca4f101311267062}{operator$<$$<$}} (std\+::ostream \&os, const \mbox{\hyperlink{structerrors_1_1UnexpectedTokenError}{Unexpected\+Token\+Error}} \&error)
 \item 
-std\+::ostream \& \mbox{\hyperlink{namespaceerrors_a52b164b18cb3d95402bacd795e2c0bf5}{operator$<$$<$}} (std\+::ostream \&os, const \mbox{\hyperlink{structerrors_1_1ImmediateOutOfRangeError}{Immediate\+Out\+Of\+Range\+Error}} \&error)
+std\+::ostream \& \mbox{\hyperlink{namespaceerrors_ae36ba15fd44ef560035a376cbd0bf266}{operator$<$$<$}} (std\+::ostream \&os, const \mbox{\hyperlink{structerrors_1_1ImmediateOutOfRangeError}{Immediate\+Out\+Of\+Range\+Error}} \&error)
 \item 
-std\+::ostream \& \mbox{\hyperlink{namespaceerrors_a9113523cc9c528bcad96661d1f1a02e2}{operator$<$$<$}} (std\+::ostream \&os, const \mbox{\hyperlink{structerrors_1_1MisalignedImmediateError}{Misaligned\+Immediate\+Error}} \&error)
+std\+::ostream \& \mbox{\hyperlink{namespaceerrors_ace33a99ebf198f38995e6de3e71a0a4b}{operator$<$$<$}} (std\+::ostream \&os, const \mbox{\hyperlink{structerrors_1_1MisalignedImmediateError}{Misaligned\+Immediate\+Error}} \&error)
 \item 
-std\+::ostream \& \mbox{\hyperlink{namespaceerrors_a584e1259321d0b7737f0b52ecd5e772a}{operator$<$$<$}} (std\+::ostream \&os, const \mbox{\hyperlink{structerrors_1_1UnexpectedOperandError}{Unexpected\+Operand\+Error}} \&error)
+std\+::ostream \& \mbox{\hyperlink{namespaceerrors_aa1113ad50dd02976a8eedfb3b36b8523}{operator$<$$<$}} (std\+::ostream \&os, const \mbox{\hyperlink{structerrors_1_1UnexpectedOperandError}{Unexpected\+Operand\+Error}} \&error)
 \item 
-std\+::ostream \& \mbox{\hyperlink{namespaceerrors_a66e879abb10b2b1e71ac3cf5290f933b}{operator$<$$<$}} (std\+::ostream \&os, const \mbox{\hyperlink{structerrors_1_1InvalidLabelRefError}{Invalid\+Label\+Ref\+Error}} \&error)
+std\+::ostream \& \mbox{\hyperlink{namespaceerrors_a1a678934a59fcf93fc21b2d56fc233a4}{operator$<$$<$}} (std\+::ostream \&os, const \mbox{\hyperlink{structerrors_1_1InvalidLabelRefError}{Invalid\+Label\+Ref\+Error}} \&error)
 \item 
-std\+::ostream \& \mbox{\hyperlink{namespaceerrors_ae239575550a2c11891f8b09b0ebd724b}{operator$<$$<$}} (std\+::ostream \&os, const \mbox{\hyperlink{structerrors_1_1LabelRedefinitionError}{Label\+Redefinition\+Error}} \&error)
+std\+::ostream \& \mbox{\hyperlink{namespaceerrors_ae073f3e1d91a74fac03b651c32515764}{operator$<$$<$}} (std\+::ostream \&os, const \mbox{\hyperlink{structerrors_1_1LabelRedefinitionError}{Label\+Redefinition\+Error}} \&error)
 \item 
-std\+::ostream \& \mbox{\hyperlink{namespaceerrors_ab4f7de45b3e771907ef1e76a9854a972}{operator$<$$<$}} (std\+::ostream \&os, const \mbox{\hyperlink{structerrors_1_1InvalidRegisterError}{Invalid\+Register\+Error}} \&error)
+std\+::ostream \& \mbox{\hyperlink{namespaceerrors_a413247a9e5eb7b99ea10561e93088a9d}{operator$<$$<$}} (std\+::ostream \&os, const \mbox{\hyperlink{structerrors_1_1InvalidRegisterError}{Invalid\+Register\+Error}} \&error)
 \end{DoxyCompactItemize}
-\doxysubsection*{Variables}
+\doxysubsubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
-const std\+::string \mbox{\hyperlink{namespaceerrors_acbb11ca64c6ab255eb7bfc65e00f2c94}{ANSI\+\_\+code\+\_\+red}} = \char`\"{}\textbackslash{}033\mbox{[}31m\char`\"{}
+const std\+::string \mbox{\hyperlink{namespaceerrors_acbb11ca64c6ab255eb7bfc65e00f2c94}{ANSI\+\_\+code\+\_\+red}} = "{}\textbackslash{}033\mbox{[}31m"{}
 \begin{DoxyCompactList}\small\item\em ANSI code for red-\/colored text. \end{DoxyCompactList}\item 
-const std\+::string \mbox{\hyperlink{namespaceerrors_adf4393c33a85393d238a21ef77abfdd9}{ANSI\+\_\+code\+\_\+reset}} = \char`\"{}\textbackslash{}033\mbox{[}0m\char`\"{}
+const std\+::string \mbox{\hyperlink{namespaceerrors_adf4393c33a85393d238a21ef77abfdd9}{ANSI\+\_\+code\+\_\+reset}} = "{}\textbackslash{}033\mbox{[}0m"{}
 \begin{DoxyCompactList}\small\item\em ANSI code to Reset text formatting. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Enumeration Type Documentation}
-\mbox{\Hypertarget{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2ae}\label{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2ae}} 
+\Hypertarget{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2ae}\label{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2ae} 
 \index{errors@{errors}!ErrorType@{ErrorType}}
 \index{ErrorType@{ErrorType}!errors@{errors}}
 \doxysubsubsection{\texorpdfstring{ErrorType}{ErrorType}}
-{\footnotesize\ttfamily enum \mbox{\hyperlink{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2ae}{errors\+::\+Error\+Type}}\hspace{0.3cm}{\ttfamily [strong]}}
+{\footnotesize\ttfamily enum class \mbox{\hyperlink{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2ae}{errors\+::\+Error\+Type}}\hspace{0.3cm}{\ttfamily [strong]}}
 
 
 
 Enumerates various types of errors that can occur during assembly. 
 
 \begin{DoxyEnumFields}{Enumerator}
-\raisebox{\heightof{T}}[0pt][0pt]{\index{UNEXPECTED\_TOKEN@{UNEXPECTED\_TOKEN}!errors@{errors}}\index{errors@{errors}!UNEXPECTED\_TOKEN@{UNEXPECTED\_TOKEN}}}\mbox{\Hypertarget{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aea8015f208e97eb87d4077cf0c5d5aeb83}\label{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aea8015f208e97eb87d4077cf0c5d5aeb83}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{UNEXPECTED\_TOKEN@{UNEXPECTED\_TOKEN}!errors@{errors}}\index{errors@{errors}!UNEXPECTED\_TOKEN@{UNEXPECTED\_TOKEN}}}\Hypertarget{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aea8015f208e97eb87d4077cf0c5d5aeb83}\label{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aea8015f208e97eb87d4077cf0c5d5aeb83} 
 UNEXPECTED\+\_\+\+TOKEN&An unexpected token was encountered. \\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{UNEXPECTED\_EOF@{UNEXPECTED\_EOF}!errors@{errors}}\index{errors@{errors}!UNEXPECTED\_EOF@{UNEXPECTED\_EOF}}}\mbox{\Hypertarget{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aead7822fa0763e672131324accbcf830d0}\label{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aead7822fa0763e672131324accbcf830d0}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{UNEXPECTED\_EOF@{UNEXPECTED\_EOF}!errors@{errors}}\index{errors@{errors}!UNEXPECTED\_EOF@{UNEXPECTED\_EOF}}}\Hypertarget{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aead7822fa0763e672131324accbcf830d0}\label{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aead7822fa0763e672131324accbcf830d0} 
 UNEXPECTED\+\_\+\+EOF&Unexpected end of file. \\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{UNEXPECTED\_OPERAND@{UNEXPECTED\_OPERAND}!errors@{errors}}\index{errors@{errors}!UNEXPECTED\_OPERAND@{UNEXPECTED\_OPERAND}}}\mbox{\Hypertarget{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aea4598db2cfeef2078a4c652100cfe25c7}\label{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aea4598db2cfeef2078a4c652100cfe25c7}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{UNEXPECTED\_OPERAND@{UNEXPECTED\_OPERAND}!errors@{errors}}\index{errors@{errors}!UNEXPECTED\_OPERAND@{UNEXPECTED\_OPERAND}}}\Hypertarget{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aea4598db2cfeef2078a4c652100cfe25c7}\label{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aea4598db2cfeef2078a4c652100cfe25c7} 
 UNEXPECTED\+\_\+\+OPERAND&Unexpected operand in the instruction. \\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{MISSING\_OPERAND@{MISSING\_OPERAND}!errors@{errors}}\index{errors@{errors}!MISSING\_OPERAND@{MISSING\_OPERAND}}}\mbox{\Hypertarget{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aea2dee638c1209e59a0584ec345d2469b5}\label{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aea2dee638c1209e59a0584ec345d2469b5}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MISSING\_OPERAND@{MISSING\_OPERAND}!errors@{errors}}\index{errors@{errors}!MISSING\_OPERAND@{MISSING\_OPERAND}}}\Hypertarget{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aea2dee638c1209e59a0584ec345d2469b5}\label{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aea2dee638c1209e59a0584ec345d2469b5} 
 MISSING\+\_\+\+OPERAND&Missing operand in the instruction. \\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{MISSING\_COMMA@{MISSING\_COMMA}!errors@{errors}}\index{errors@{errors}!MISSING\_COMMA@{MISSING\_COMMA}}}\mbox{\Hypertarget{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aead747dec1e9ebdda3b5eba6ab9f3450d8}\label{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aead747dec1e9ebdda3b5eba6ab9f3450d8}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MISSING\_COMMA@{MISSING\_COMMA}!errors@{errors}}\index{errors@{errors}!MISSING\_COMMA@{MISSING\_COMMA}}}\Hypertarget{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aead747dec1e9ebdda3b5eba6ab9f3450d8}\label{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aead747dec1e9ebdda3b5eba6ab9f3450d8} 
 MISSING\+\_\+\+COMMA&Missing comma in the instruction. \\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{MISSING\_LPAREN@{MISSING\_LPAREN}!errors@{errors}}\index{errors@{errors}!MISSING\_LPAREN@{MISSING\_LPAREN}}}\mbox{\Hypertarget{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aeae7feccc35303a919358574bb9873ec6d}\label{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aeae7feccc35303a919358574bb9873ec6d}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MISSING\_LPAREN@{MISSING\_LPAREN}!errors@{errors}}\index{errors@{errors}!MISSING\_LPAREN@{MISSING\_LPAREN}}}\Hypertarget{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aeae7feccc35303a919358574bb9873ec6d}\label{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aeae7feccc35303a919358574bb9873ec6d} 
 MISSING\+\_\+\+LPAREN&Missing left parenthesis. \\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{MISSING\_RPAREN@{MISSING\_RPAREN}!errors@{errors}}\index{errors@{errors}!MISSING\_RPAREN@{MISSING\_RPAREN}}}\mbox{\Hypertarget{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aea8cb50830806d95b68fe452830a94d51e}\label{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aea8cb50830806d95b68fe452830a94d51e}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MISSING\_RPAREN@{MISSING\_RPAREN}!errors@{errors}}\index{errors@{errors}!MISSING\_RPAREN@{MISSING\_RPAREN}}}\Hypertarget{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aea8cb50830806d95b68fe452830a94d51e}\label{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aea8cb50830806d95b68fe452830a94d51e} 
 MISSING\+\_\+\+RPAREN&Missing right parenthesis. \\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{EXPECTED\_REGISTER@{EXPECTED\_REGISTER}!errors@{errors}}\index{errors@{errors}!EXPECTED\_REGISTER@{EXPECTED\_REGISTER}}}\mbox{\Hypertarget{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aeabb0e54b9dc15fe61b5aaf3cb0ef0867d}\label{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aeabb0e54b9dc15fe61b5aaf3cb0ef0867d}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EXPECTED\_REGISTER@{EXPECTED\_REGISTER}!errors@{errors}}\index{errors@{errors}!EXPECTED\_REGISTER@{EXPECTED\_REGISTER}}}\Hypertarget{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aeabb0e54b9dc15fe61b5aaf3cb0ef0867d}\label{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aeabb0e54b9dc15fe61b5aaf3cb0ef0867d} 
 EXPECTED\+\_\+\+REGISTER&Expected a register but found something else. \\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{EXPECTED\_IMMEDIATE@{EXPECTED\_IMMEDIATE}!errors@{errors}}\index{errors@{errors}!EXPECTED\_IMMEDIATE@{EXPECTED\_IMMEDIATE}}}\mbox{\Hypertarget{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aea48c66164b43ae205b4ea29e666d88692}\label{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aea48c66164b43ae205b4ea29e666d88692}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EXPECTED\_IMMEDIATE@{EXPECTED\_IMMEDIATE}!errors@{errors}}\index{errors@{errors}!EXPECTED\_IMMEDIATE@{EXPECTED\_IMMEDIATE}}}\Hypertarget{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aea48c66164b43ae205b4ea29e666d88692}\label{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aea48c66164b43ae205b4ea29e666d88692} 
 EXPECTED\+\_\+\+IMMEDIATE&Expected an immediate value. \\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{EXPECTED\_LABEL@{EXPECTED\_LABEL}!errors@{errors}}\index{errors@{errors}!EXPECTED\_LABEL@{EXPECTED\_LABEL}}}\mbox{\Hypertarget{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aeae95902890e301eff1b3f021b9371c377}\label{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aeae95902890e301eff1b3f021b9371c377}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EXPECTED\_LABEL@{EXPECTED\_LABEL}!errors@{errors}}\index{errors@{errors}!EXPECTED\_LABEL@{EXPECTED\_LABEL}}}\Hypertarget{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aeae95902890e301eff1b3f021b9371c377}\label{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aeae95902890e301eff1b3f021b9371c377} 
 EXPECTED\+\_\+\+LABEL&Expected a label. \\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{INVALID\_OPERAND@{INVALID\_OPERAND}!errors@{errors}}\index{errors@{errors}!INVALID\_OPERAND@{INVALID\_OPERAND}}}\mbox{\Hypertarget{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aea6bf179afa8f7fba18cf39bc0ca6fe043}\label{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aea6bf179afa8f7fba18cf39bc0ca6fe043}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{INVALID\_OPERAND@{INVALID\_OPERAND}!errors@{errors}}\index{errors@{errors}!INVALID\_OPERAND@{INVALID\_OPERAND}}}\Hypertarget{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aea6bf179afa8f7fba18cf39bc0ca6fe043}\label{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aea6bf179afa8f7fba18cf39bc0ca6fe043} 
 INVALID\+\_\+\+OPERAND&Operand is invalid. \\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{INVALID\_DIRECTIVE@{INVALID\_DIRECTIVE}!errors@{errors}}\index{errors@{errors}!INVALID\_DIRECTIVE@{INVALID\_DIRECTIVE}}}\mbox{\Hypertarget{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aeac9a9219dfe74bd3ad1c359a2f1082822}\label{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aeac9a9219dfe74bd3ad1c359a2f1082822}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{INVALID\_DIRECTIVE@{INVALID\_DIRECTIVE}!errors@{errors}}\index{errors@{errors}!INVALID\_DIRECTIVE@{INVALID\_DIRECTIVE}}}\Hypertarget{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aeac9a9219dfe74bd3ad1c359a2f1082822}\label{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aeac9a9219dfe74bd3ad1c359a2f1082822} 
 INVALID\+\_\+\+DIRECTIVE&Directive is invalid. \\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{INVALID\_INSTRUCTION@{INVALID\_INSTRUCTION}!errors@{errors}}\index{errors@{errors}!INVALID\_INSTRUCTION@{INVALID\_INSTRUCTION}}}\mbox{\Hypertarget{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aea2e28fa293e2ca8aca645d85ad05096c3}\label{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aea2e28fa293e2ca8aca645d85ad05096c3}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{INVALID\_INSTRUCTION@{INVALID\_INSTRUCTION}!errors@{errors}}\index{errors@{errors}!INVALID\_INSTRUCTION@{INVALID\_INSTRUCTION}}}\Hypertarget{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aea2e28fa293e2ca8aca645d85ad05096c3}\label{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aea2e28fa293e2ca8aca645d85ad05096c3} 
 INVALID\+\_\+\+INSTRUCTION&Instruction is invalid. \\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{INVALID\_REGISTER@{INVALID\_REGISTER}!errors@{errors}}\index{errors@{errors}!INVALID\_REGISTER@{INVALID\_REGISTER}}}\mbox{\Hypertarget{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aea7277cc675779f41d6cd80f43a8ec702f}\label{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aea7277cc675779f41d6cd80f43a8ec702f}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{INVALID\_REGISTER@{INVALID\_REGISTER}!errors@{errors}}\index{errors@{errors}!INVALID\_REGISTER@{INVALID\_REGISTER}}}\Hypertarget{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aea7277cc675779f41d6cd80f43a8ec702f}\label{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aea7277cc675779f41d6cd80f43a8ec702f} 
 INVALID\+\_\+\+REGISTER&Register name is invalid. \\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{INVALID\_IMMEDIATE@{INVALID\_IMMEDIATE}!errors@{errors}}\index{errors@{errors}!INVALID\_IMMEDIATE@{INVALID\_IMMEDIATE}}}\mbox{\Hypertarget{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aeae1b0ba36bd640cb2081a4b665a8765bf}\label{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aeae1b0ba36bd640cb2081a4b665a8765bf}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{INVALID\_IMMEDIATE@{INVALID\_IMMEDIATE}!errors@{errors}}\index{errors@{errors}!INVALID\_IMMEDIATE@{INVALID\_IMMEDIATE}}}\Hypertarget{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aeae1b0ba36bd640cb2081a4b665a8765bf}\label{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aeae1b0ba36bd640cb2081a4b665a8765bf} 
 INVALID\+\_\+\+IMMEDIATE&Immediate value is invalid. \\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{INVALID\_LABEL@{INVALID\_LABEL}!errors@{errors}}\index{errors@{errors}!INVALID\_LABEL@{INVALID\_LABEL}}}\mbox{\Hypertarget{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aeab3d145c731fec2adf80f7632dd981b47}\label{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aeab3d145c731fec2adf80f7632dd981b47}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{INVALID\_LABEL@{INVALID\_LABEL}!errors@{errors}}\index{errors@{errors}!INVALID\_LABEL@{INVALID\_LABEL}}}\Hypertarget{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aeab3d145c731fec2adf80f7632dd981b47}\label{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aeab3d145c731fec2adf80f7632dd981b47} 
 INVALID\+\_\+\+LABEL&Label is invalid. \\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{INVALID\_LABEL\_REF@{INVALID\_LABEL\_REF}!errors@{errors}}\index{errors@{errors}!INVALID\_LABEL\_REF@{INVALID\_LABEL\_REF}}}\mbox{\Hypertarget{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aeac4b6dda0a90cf1815860d0860989623d}\label{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aeac4b6dda0a90cf1815860d0860989623d}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{INVALID\_LABEL\_REF@{INVALID\_LABEL\_REF}!errors@{errors}}\index{errors@{errors}!INVALID\_LABEL\_REF@{INVALID\_LABEL\_REF}}}\Hypertarget{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aeac4b6dda0a90cf1815860d0860989623d}\label{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aeac4b6dda0a90cf1815860d0860989623d} 
 INVALID\+\_\+\+LABEL\+\_\+\+REF&Label reference is invalid. \\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{INVALID\_TOKEN@{INVALID\_TOKEN}!errors@{errors}}\index{errors@{errors}!INVALID\_TOKEN@{INVALID\_TOKEN}}}\mbox{\Hypertarget{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aea506556a229186f5b45f364032625ff5b}\label{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aea506556a229186f5b45f364032625ff5b}} 
-INVALID\+\_\+\+TOKEN&\mbox{\hyperlink{structToken}{Token}} is invalid. \\
+\raisebox{\heightof{T}}[0pt][0pt]{\index{INVALID\_TOKEN@{INVALID\_TOKEN}!errors@{errors}}\index{errors@{errors}!INVALID\_TOKEN@{INVALID\_TOKEN}}}\Hypertarget{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aea506556a229186f5b45f364032625ff5b}\label{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aea506556a229186f5b45f364032625ff5b} 
+INVALID\+\_\+\+TOKEN&\doxylink{structToken}{Token} is invalid. \\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{INVALID\_SYNTAX@{INVALID\_SYNTAX}!errors@{errors}}\index{errors@{errors}!INVALID\_SYNTAX@{INVALID\_SYNTAX}}}\mbox{\Hypertarget{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aea3fba68b9108afef4ec5c2eb304dd63ff}\label{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aea3fba68b9108afef4ec5c2eb304dd63ff}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{INVALID\_SYNTAX@{INVALID\_SYNTAX}!errors@{errors}}\index{errors@{errors}!INVALID\_SYNTAX@{INVALID\_SYNTAX}}}\Hypertarget{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aea3fba68b9108afef4ec5c2eb304dd63ff}\label{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aea3fba68b9108afef4ec5c2eb304dd63ff} 
 INVALID\+\_\+\+SYNTAX&Syntax is invalid. \\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{MISALIGNED\_IMMEDIATE@{MISALIGNED\_IMMEDIATE}!errors@{errors}}\index{errors@{errors}!MISALIGNED\_IMMEDIATE@{MISALIGNED\_IMMEDIATE}}}\mbox{\Hypertarget{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aea71b8e49b5ac60a6d3468de1fa2b67932}\label{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aea71b8e49b5ac60a6d3468de1fa2b67932}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MISALIGNED\_IMMEDIATE@{MISALIGNED\_IMMEDIATE}!errors@{errors}}\index{errors@{errors}!MISALIGNED\_IMMEDIATE@{MISALIGNED\_IMMEDIATE}}}\Hypertarget{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aea71b8e49b5ac60a6d3468de1fa2b67932}\label{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aea71b8e49b5ac60a6d3468de1fa2b67932} 
 MISALIGNED\+\_\+\+IMMEDIATE&Immediate value is misaligned. \\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{MISALIGNED\_LABEL@{MISALIGNED\_LABEL}!errors@{errors}}\index{errors@{errors}!MISALIGNED\_LABEL@{MISALIGNED\_LABEL}}}\mbox{\Hypertarget{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aeae654793b308eb6923f12cf695d6fb902}\label{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aeae654793b308eb6923f12cf695d6fb902}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MISALIGNED\_LABEL@{MISALIGNED\_LABEL}!errors@{errors}}\index{errors@{errors}!MISALIGNED\_LABEL@{MISALIGNED\_LABEL}}}\Hypertarget{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aeae654793b308eb6923f12cf695d6fb902}\label{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aeae654793b308eb6923f12cf695d6fb902} 
 MISALIGNED\+\_\+\+LABEL&Label is misaligned. \\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{IMMEDIATE\_OUT\_OF\_RANGE@{IMMEDIATE\_OUT\_OF\_RANGE}!errors@{errors}}\index{errors@{errors}!IMMEDIATE\_OUT\_OF\_RANGE@{IMMEDIATE\_OUT\_OF\_RANGE}}}\mbox{\Hypertarget{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aea1a90c26e5e0d02b67ccd5eeb0437752a}\label{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aea1a90c26e5e0d02b67ccd5eeb0437752a}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{IMMEDIATE\_OUT\_OF\_RANGE@{IMMEDIATE\_OUT\_OF\_RANGE}!errors@{errors}}\index{errors@{errors}!IMMEDIATE\_OUT\_OF\_RANGE@{IMMEDIATE\_OUT\_OF\_RANGE}}}\Hypertarget{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aea1a90c26e5e0d02b67ccd5eeb0437752a}\label{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aea1a90c26e5e0d02b67ccd5eeb0437752a} 
 IMMEDIATE\+\_\+\+OUT\+\_\+\+OF\+\_\+\+RANGE&Immediate value is out of range. \\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{UNKNOWN\_ERROR@{UNKNOWN\_ERROR}!errors@{errors}}\index{errors@{errors}!UNKNOWN\_ERROR@{UNKNOWN\_ERROR}}}\mbox{\Hypertarget{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aea9a10f345b0f755d461a8673a5e9ef6b4}\label{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aea9a10f345b0f755d461a8673a5e9ef6b4}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{UNKNOWN\_ERROR@{UNKNOWN\_ERROR}!errors@{errors}}\index{errors@{errors}!UNKNOWN\_ERROR@{UNKNOWN\_ERROR}}}\Hypertarget{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aea9a10f345b0f755d461a8673a5e9ef6b4}\label{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aea9a10f345b0f755d461a8673a5e9ef6b4} 
 UNKNOWN\+\_\+\+ERROR&An unknown error occurred. \\
 \hline
 
@@ -189,72 +189,72 @@ UNKNOWN\+\_\+\+ERROR&An unknown error occurred. \\
 
 
 \doxysubsection{Function Documentation}
-\mbox{\Hypertarget{namespaceerrors_a52b164b18cb3d95402bacd795e2c0bf5}\label{namespaceerrors_a52b164b18cb3d95402bacd795e2c0bf5}} 
+\Hypertarget{namespaceerrors_ae36ba15fd44ef560035a376cbd0bf266}\label{namespaceerrors_ae36ba15fd44ef560035a376cbd0bf266} 
 \index{errors@{errors}!operator$<$$<$@{operator$<$$<$}}
 \index{operator$<$$<$@{operator$<$$<$}!errors@{errors}}
 \doxysubsubsection{\texorpdfstring{operator$<$$<$()}{operator<<()}\hspace{0.1cm}{\footnotesize\ttfamily [1/8]}}
-{\footnotesize\ttfamily std\+::ostream\& errors\+::operator$<$$<$ (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{os,  }\item[{const \mbox{\hyperlink{structerrors_1_1ImmediateOutOfRangeError}{Immediate\+Out\+Of\+Range\+Error}} \&}]{error }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily std\+::ostream \& errors\+::operator$<$$<$ (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{os,  }\item[{const \mbox{\hyperlink{structerrors_1_1ImmediateOutOfRangeError}{Immediate\+Out\+Of\+Range\+Error}} \&}]{error }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{namespaceerrors_a66e879abb10b2b1e71ac3cf5290f933b}\label{namespaceerrors_a66e879abb10b2b1e71ac3cf5290f933b}} 
+\Hypertarget{namespaceerrors_a1a678934a59fcf93fc21b2d56fc233a4}\label{namespaceerrors_a1a678934a59fcf93fc21b2d56fc233a4} 
 \index{errors@{errors}!operator$<$$<$@{operator$<$$<$}}
 \index{operator$<$$<$@{operator$<$$<$}!errors@{errors}}
 \doxysubsubsection{\texorpdfstring{operator$<$$<$()}{operator<<()}\hspace{0.1cm}{\footnotesize\ttfamily [2/8]}}
-{\footnotesize\ttfamily std\+::ostream\& errors\+::operator$<$$<$ (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{os,  }\item[{const \mbox{\hyperlink{structerrors_1_1InvalidLabelRefError}{Invalid\+Label\+Ref\+Error}} \&}]{error }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily std\+::ostream \& errors\+::operator$<$$<$ (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{os,  }\item[{const \mbox{\hyperlink{structerrors_1_1InvalidLabelRefError}{Invalid\+Label\+Ref\+Error}} \&}]{error }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{namespaceerrors_ab4f7de45b3e771907ef1e76a9854a972}\label{namespaceerrors_ab4f7de45b3e771907ef1e76a9854a972}} 
+\Hypertarget{namespaceerrors_a413247a9e5eb7b99ea10561e93088a9d}\label{namespaceerrors_a413247a9e5eb7b99ea10561e93088a9d} 
 \index{errors@{errors}!operator$<$$<$@{operator$<$$<$}}
 \index{operator$<$$<$@{operator$<$$<$}!errors@{errors}}
 \doxysubsubsection{\texorpdfstring{operator$<$$<$()}{operator<<()}\hspace{0.1cm}{\footnotesize\ttfamily [3/8]}}
-{\footnotesize\ttfamily std\+::ostream\& errors\+::operator$<$$<$ (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{os,  }\item[{const \mbox{\hyperlink{structerrors_1_1InvalidRegisterError}{Invalid\+Register\+Error}} \&}]{error }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily std\+::ostream \& errors\+::operator$<$$<$ (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{os,  }\item[{const \mbox{\hyperlink{structerrors_1_1InvalidRegisterError}{Invalid\+Register\+Error}} \&}]{error }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{namespaceerrors_ae239575550a2c11891f8b09b0ebd724b}\label{namespaceerrors_ae239575550a2c11891f8b09b0ebd724b}} 
+\Hypertarget{namespaceerrors_ae073f3e1d91a74fac03b651c32515764}\label{namespaceerrors_ae073f3e1d91a74fac03b651c32515764} 
 \index{errors@{errors}!operator$<$$<$@{operator$<$$<$}}
 \index{operator$<$$<$@{operator$<$$<$}!errors@{errors}}
 \doxysubsubsection{\texorpdfstring{operator$<$$<$()}{operator<<()}\hspace{0.1cm}{\footnotesize\ttfamily [4/8]}}
-{\footnotesize\ttfamily std\+::ostream\& errors\+::operator$<$$<$ (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{os,  }\item[{const \mbox{\hyperlink{structerrors_1_1LabelRedefinitionError}{Label\+Redefinition\+Error}} \&}]{error }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily std\+::ostream \& errors\+::operator$<$$<$ (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{os,  }\item[{const \mbox{\hyperlink{structerrors_1_1LabelRedefinitionError}{Label\+Redefinition\+Error}} \&}]{error }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{namespaceerrors_a9113523cc9c528bcad96661d1f1a02e2}\label{namespaceerrors_a9113523cc9c528bcad96661d1f1a02e2}} 
+\Hypertarget{namespaceerrors_ace33a99ebf198f38995e6de3e71a0a4b}\label{namespaceerrors_ace33a99ebf198f38995e6de3e71a0a4b} 
 \index{errors@{errors}!operator$<$$<$@{operator$<$$<$}}
 \index{operator$<$$<$@{operator$<$$<$}!errors@{errors}}
 \doxysubsubsection{\texorpdfstring{operator$<$$<$()}{operator<<()}\hspace{0.1cm}{\footnotesize\ttfamily [5/8]}}
-{\footnotesize\ttfamily std\+::ostream\& errors\+::operator$<$$<$ (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{os,  }\item[{const \mbox{\hyperlink{structerrors_1_1MisalignedImmediateError}{Misaligned\+Immediate\+Error}} \&}]{error }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily std\+::ostream \& errors\+::operator$<$$<$ (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{os,  }\item[{const \mbox{\hyperlink{structerrors_1_1MisalignedImmediateError}{Misaligned\+Immediate\+Error}} \&}]{error }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{namespaceerrors_abd9c4207eb87823463df570e88b02d43}\label{namespaceerrors_abd9c4207eb87823463df570e88b02d43}} 
+\Hypertarget{namespaceerrors_a11124eff602364039f26e847bb8bb0d5}\label{namespaceerrors_a11124eff602364039f26e847bb8bb0d5} 
 \index{errors@{errors}!operator$<$$<$@{operator$<$$<$}}
 \index{operator$<$$<$@{operator$<$$<$}!errors@{errors}}
 \doxysubsubsection{\texorpdfstring{operator$<$$<$()}{operator<<()}\hspace{0.1cm}{\footnotesize\ttfamily [6/8]}}
-{\footnotesize\ttfamily std\+::ostream\& errors\+::operator$<$$<$ (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{os,  }\item[{const \mbox{\hyperlink{structerrors_1_1SyntaxError}{Syntax\+Error}} \&}]{error }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily std\+::ostream \& errors\+::operator$<$$<$ (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{os,  }\item[{const \mbox{\hyperlink{structerrors_1_1SyntaxError}{Syntax\+Error}} \&}]{error }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{namespaceerrors_a584e1259321d0b7737f0b52ecd5e772a}\label{namespaceerrors_a584e1259321d0b7737f0b52ecd5e772a}} 
+\Hypertarget{namespaceerrors_aa1113ad50dd02976a8eedfb3b36b8523}\label{namespaceerrors_aa1113ad50dd02976a8eedfb3b36b8523} 
 \index{errors@{errors}!operator$<$$<$@{operator$<$$<$}}
 \index{operator$<$$<$@{operator$<$$<$}!errors@{errors}}
 \doxysubsubsection{\texorpdfstring{operator$<$$<$()}{operator<<()}\hspace{0.1cm}{\footnotesize\ttfamily [7/8]}}
-{\footnotesize\ttfamily std\+::ostream\& errors\+::operator$<$$<$ (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{os,  }\item[{const \mbox{\hyperlink{structerrors_1_1UnexpectedOperandError}{Unexpected\+Operand\+Error}} \&}]{error }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily std\+::ostream \& errors\+::operator$<$$<$ (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{os,  }\item[{const \mbox{\hyperlink{structerrors_1_1UnexpectedOperandError}{Unexpected\+Operand\+Error}} \&}]{error }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{namespaceerrors_adb29fba745a3e83d3176b317717dd4d5}\label{namespaceerrors_adb29fba745a3e83d3176b317717dd4d5}} 
+\Hypertarget{namespaceerrors_a0dafebf85c7053cdca4f101311267062}\label{namespaceerrors_a0dafebf85c7053cdca4f101311267062} 
 \index{errors@{errors}!operator$<$$<$@{operator$<$$<$}}
 \index{operator$<$$<$@{operator$<$$<$}!errors@{errors}}
 \doxysubsubsection{\texorpdfstring{operator$<$$<$()}{operator<<()}\hspace{0.1cm}{\footnotesize\ttfamily [8/8]}}
-{\footnotesize\ttfamily std\+::ostream\& errors\+::operator$<$$<$ (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{os,  }\item[{const \mbox{\hyperlink{structerrors_1_1UnexpectedTokenError}{Unexpected\+Token\+Error}} \&}]{error }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily std\+::ostream \& errors\+::operator$<$$<$ (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{os,  }\item[{const \mbox{\hyperlink{structerrors_1_1UnexpectedTokenError}{Unexpected\+Token\+Error}} \&}]{error }\end{DoxyParamCaption})}
 
 
 
 \doxysubsection{Variable Documentation}
-\mbox{\Hypertarget{namespaceerrors_acbb11ca64c6ab255eb7bfc65e00f2c94}\label{namespaceerrors_acbb11ca64c6ab255eb7bfc65e00f2c94}} 
+\Hypertarget{namespaceerrors_acbb11ca64c6ab255eb7bfc65e00f2c94}\label{namespaceerrors_acbb11ca64c6ab255eb7bfc65e00f2c94} 
 \index{errors@{errors}!ANSI\_code\_red@{ANSI\_code\_red}}
 \index{ANSI\_code\_red@{ANSI\_code\_red}!errors@{errors}}
 \doxysubsubsection{\texorpdfstring{ANSI\_code\_red}{ANSI\_code\_red}}
-{\footnotesize\ttfamily const std\+::string errors\+::\+ANSI\+\_\+code\+\_\+red = \char`\"{}\textbackslash{}033\mbox{[}31m\char`\"{}}
+{\footnotesize\ttfamily const std\+::string errors\+::\+ANSI\+\_\+code\+\_\+red = "{}\textbackslash{}033\mbox{[}31m"{}}
 
 
 
 ANSI code for red-\/colored text. 
 
-\mbox{\Hypertarget{namespaceerrors_adf4393c33a85393d238a21ef77abfdd9}\label{namespaceerrors_adf4393c33a85393d238a21ef77abfdd9}} 
+\Hypertarget{namespaceerrors_adf4393c33a85393d238a21ef77abfdd9}\label{namespaceerrors_adf4393c33a85393d238a21ef77abfdd9} 
 \index{errors@{errors}!ANSI\_code\_reset@{ANSI\_code\_reset}}
 \index{ANSI\_code\_reset@{ANSI\_code\_reset}!errors@{errors}}
 \doxysubsubsection{\texorpdfstring{ANSI\_code\_reset}{ANSI\_code\_reset}}
-{\footnotesize\ttfamily const std\+::string errors\+::\+ANSI\+\_\+code\+\_\+reset = \char`\"{}\textbackslash{}033\mbox{[}0m\char`\"{}}
+{\footnotesize\ttfamily const std\+::string errors\+::\+ANSI\+\_\+code\+\_\+reset = "{}\textbackslash{}033\mbox{[}0m"{}}
 
 
 

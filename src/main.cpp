@@ -3,6 +3,7 @@
 #include "utils.h"
 #include "globals.h"
 #include "vm/rvss/rvss_vm.h"
+#include "vm/rv5s/rv5s_vm.h"
 #include "vm_runner.h"
 #include "command_handler.h"
 #include "config.h"
@@ -15,6 +16,7 @@
 
 
 int main(int argc, char *argv[]) {
+    std::cout<<"Muq ka program"<<std::endl;
   if (argc <= 1) {
     std::cerr << "No arguments provided. Use --help for usage information.\n";
     return 1;
@@ -31,7 +33,8 @@ int main(int argc, char *argv[]) {
                   << "  --run <file>         Run the specified file\n"
                   << "  --verbose-errors     Enable verbose error printing\n"
                   << "  --start-vm           Start the VM with the default program\n"
-                  << "  --start-vm --vm-as-backend  Start the VM with the default program in backend mode\n";
+                  << "  --start-vm --vm-as-backend  Start the VM with the default program in backend mode\n"
+                  << "  --pipelined [mode]   Use pipelined VM implementation (0=off, 1=simple pipelining)";
         return 0;
 
     } else if (arg == "--assemble") {
@@ -55,10 +58,17 @@ int main(int argc, char *argv[]) {
         }
         try {
             AssembledProgram program = assemble(argv[i]);
-            RVSSVM vm;
-            vm.LoadProgram(program);
-            vm.Run();
-            std::cout << "Program running: " << program.filename << '\n';
+            if (globals::use_pipelined_vm) {
+                RV5SVM vm;
+                vm.LoadProgram(program);
+                vm.Run();
+                std::cout << "Program running with pipelined VM: " << program.filename << '\n';
+            } else {
+                RVSSVM vm;
+                vm.LoadProgram(program);
+                vm.Run();
+                std::cout << "Program running with single-cycle VM: " << program.filename << '\n';
+            }
             return 0;
         } catch (const std::runtime_error& e) {
             std::cerr << e.what() << '\n';
@@ -75,12 +85,26 @@ int main(int argc, char *argv[]) {
     } else if (arg == "--start-vm") {
         break;
 
-    } else {
+    } else if(arg == "--pipelined") {
+        // Check if a mode argument is provided
+        if (i + 1 < argc && argv[i + 1][0] != '-') {
+            i++;  // Move to the mode argument
+            int mode = std::stoi(argv[i]);
+            globals::pipelined_mode = mode;
+            globals::use_pipelined_vm = (mode != 0);
+        } else {
+            // Default to simple pipelining if no mode specified
+            globals::pipelined_mode = 1;
+            globals::use_pipelined_vm = true;
+        }
+        std::cout << "Using pipelined VM implementation with mode: " << globals::pipelined_mode << std::endl;
+    }
+    else {
         std::cerr << "Unknown option: " << arg << '\n';
         return 1;
     }
   }
-  
+
 
 
   setupVmStateDirectory();
@@ -88,7 +112,17 @@ int main(int argc, char *argv[]) {
 
 
   AssembledProgram program;
-  RVSSVM vm;
+  
+  // Dynamically select VM based on pipelined flag
+  VmBase* vm_ptr = nullptr;
+  if (globals::use_pipelined_vm) {
+    vm_ptr = new RV5SVM();
+    std::cout << "Using RV5S Pipelined VM" << std::endl;
+  } else {
+    vm_ptr = new RVSSVM();
+    std::cout << "Using RVSS Single-Cycle VM" << std::endl;
+  }
+  
   // try {
   //   program = assemble("/home/vis/Desk/codes/assembler/examples/ntest1.s");
   // } catch (const std::runtime_error &e) {
@@ -109,8 +143,8 @@ int main(int argc, char *argv[]) {
   //     count += 4;
   // }
 
-  // vm.LoadProgram(program);
-  
+  // vm_ptr->LoadProgram(program);
+
 
   std::cout << "VM_STARTED" << std::endl;
   // std::cout << globals::invokation_path << std::endl;
@@ -120,12 +154,12 @@ int main(int argc, char *argv[]) {
 
   auto launch_vm_thread = [&](auto fn) {
     if (vm_thread.joinable()) {
-      vm.RequestStop();   
+      vm_ptr->RequestStop();
       vm_thread.join();
     }
     vm_running = true;
     vm_thread = std::thread([&]() {
-      fn();               
+      fn();
       vm_running = false;
     });
   };
@@ -161,48 +195,48 @@ int main(int argc, char *argv[]) {
       try {
         program = assemble(command.args[0]);
         std::cout << "VM_PARSE_SUCCESS" << std::endl;
-        vm.output_status_ = "VM_PARSE_SUCCESS";
-        vm.DumpState(globals::vm_state_dump_file_path);
+        vm_ptr->output_status_ = "VM_PARSE_SUCCESS";
+        vm_ptr->DumpState(globals::vm_state_dump_file_path);
       } catch (const std::runtime_error &e) {
         std::cout << "VM_PARSE_ERROR" << std::endl;
-        vm.output_status_ = "VM_PARSE_ERROR";
-        vm.DumpState(globals::vm_state_dump_file_path);
+        vm_ptr->output_status_ = "VM_PARSE_ERROR";
+        vm_ptr->DumpState(globals::vm_state_dump_file_path);
         std::cerr << e.what() << '\n';
         continue;
       }
-      vm.LoadProgram(program);
+      vm_ptr->LoadProgram(program);
       std::cout << "Program loaded: " << command.args[0] << std::endl;
     } else if (command.type==command_handler::CommandType::RUN) {
-      launch_vm_thread([&]() { vm.Run(); });
+      launch_vm_thread([&]() { vm_ptr->Run(); });
     } else if (command.type==command_handler::CommandType::DEBUG_RUN) {
-      launch_vm_thread([&]() { vm.DebugRun(); });
+      launch_vm_thread([&]() { vm_ptr->DebugRun(); });
     } else if (command.type==command_handler::CommandType::STOP) {
-      vm.RequestStop();
+      vm_ptr->RequestStop();
       std::cout << "VM_STOPPED" << std::endl;
-      vm.output_status_ = "VM_STOPPED";
-      vm.DumpState(globals::vm_state_dump_file_path);
+      vm_ptr->output_status_ = "VM_STOPPED";
+      vm_ptr->DumpState(globals::vm_state_dump_file_path);
     } else if (command.type==command_handler::CommandType::STEP) {
       if (vm_running) continue;
-      launch_vm_thread([&]() { vm.Step(); });
+      launch_vm_thread([&]() { vm_ptr->Step(); });
 
     } else if (command.type==command_handler::CommandType::UNDO) {
       if (vm_running) continue;
-      vm.Undo();
+      vm_ptr->Undo();
     } else if (command.type==command_handler::CommandType::REDO) {
       if (vm_running) continue;
-      vm.Redo();
+      vm_ptr->Redo();
     } else if (command.type==command_handler::CommandType::RESET) {
-      vm.Reset();
+      vm_ptr->Reset();
     } else if (command.type==command_handler::CommandType::EXIT) {
-      vm.RequestStop();
+      vm_ptr->RequestStop();
       if (vm_thread.joinable()) vm_thread.join(); // ensure clean exit
-      vm.output_status_ = "VM_EXITED";
-      vm.DumpState(globals::vm_state_dump_file_path);
+      vm_ptr->output_status_ = "VM_EXITED";
+      vm_ptr->DumpState(globals::vm_state_dump_file_path);
       break;
     } else if (command.type==command_handler::CommandType::ADD_BREAKPOINT) {
-      vm.AddBreakpoint(std::stoul(command.args[0], nullptr, 10));
+      vm_ptr->AddBreakpoint(std::stoul(command.args[0], nullptr, 10));
     } else if (command.type==command_handler::CommandType::REMOVE_BREAKPOINT) {
-      vm.RemoveBreakpoint(std::stoul(command.args[0], nullptr, 10));
+      vm_ptr->RemoveBreakpoint(std::stoul(command.args[0], nullptr, 10));
     } else if (command.type==command_handler::CommandType::MODIFY_REGISTER) {
       try {
         if (command.args.size() != 2) {
@@ -211,8 +245,8 @@ int main(int argc, char *argv[]) {
         }
         std::string reg_name = command.args[0];
         uint64_t value = std::stoull(command.args[1], nullptr, 16);
-        vm.ModifyRegister(reg_name, value);
-        DumpRegisters(globals::registers_dump_file_path, vm.registers_);
+        vm_ptr->ModifyRegister(reg_name, value);
+        DumpRegisters(globals::registers_dump_file_path, vm_ptr->registers_);
         std::cout << "VM_MODIFY_REGISTER_SUCCESS" << std::endl;
       } catch (const std::out_of_range &e) {
         std::cout << "VM_MODIFY_REGISTER_ERROR" << std::endl;
@@ -224,16 +258,16 @@ int main(int argc, char *argv[]) {
     } else if (command.type==command_handler::CommandType::GET_REGISTER) {
       std::string reg_str = command.args[0];
       if (reg_str[0] == 'x') {
-        std::cout << "VM_REGISTER_VAL_START";
+        std::cout << "VM_REGISTER_VAL_START\n";
         std::cout << "0x"
                   << std::hex
-                  << vm.registers_.ReadGpr(std::stoi(reg_str.substr(1))) 
-                  << std::dec;
+                  << vm_ptr->registers_.ReadGpr(std::stoi(reg_str.substr(1)))
+                  << std::dec <<std::endl;
         std::cout << "VM_REGISTER_VAL_END"<< std::endl;
-      } 
+      }
     }
 
-  
+
     else if (command.type==command_handler::CommandType::MODIFY_MEMORY) {
       if (command.args.size() != 3) {
         std::cout << "VM_MODIFY_MEMORY_ERROR" << std::endl;
@@ -245,13 +279,13 @@ int main(int argc, char *argv[]) {
         uint64_t value = std::stoull(command.args[2], nullptr, 16);
 
         if (type == "byte") {
-          vm.memory_controller_.WriteByte(address, static_cast<uint8_t>(value));
+          vm_ptr->memory_controller_.WriteByte(address, static_cast<uint8_t>(value));
         } else if (type == "half") {
-          vm.memory_controller_.WriteHalfWord(address, static_cast<uint16_t>(value));
+          vm_ptr->memory_controller_.WriteHalfWord(address, static_cast<uint16_t>(value));
         } else if (type == "word") {
-          vm.memory_controller_.WriteWord(address, static_cast<uint32_t>(value));
+          vm_ptr->memory_controller_.WriteWord(address, static_cast<uint32_t>(value));
         } else if (type == "double") {
-          vm.memory_controller_.WriteDoubleWord(address, value);
+          vm_ptr->memory_controller_.WriteDoubleWord(address, value);
         } else {
           std::cout << "VM_MODIFY_MEMORY_ERROR" << std::endl;
           continue;
@@ -265,12 +299,12 @@ int main(int argc, char *argv[]) {
         continue;
       }
     }
-    
-    
-    
+
+
+
     else if (command.type==command_handler::CommandType::DUMP_MEMORY) {
       try {
-        vm.memory_controller_.DumpMemory(command.args);
+        vm_ptr->memory_controller_.DumpMemory(command.args);
       } catch (const std::out_of_range &e) {
         std::cout << "VM_MEMORY_DUMP_ERROR" << std::endl;
         continue;
@@ -282,7 +316,7 @@ int main(int argc, char *argv[]) {
       for (size_t i = 0; i < command.args.size(); i+=2) {
         uint64_t address = std::stoull(command.args[i], nullptr, 16);
         uint64_t rows = std::stoull(command.args[i+1]);
-        vm.memory_controller_.PrintMemory(address, rows);
+        vm_ptr->memory_controller_.PrintMemory(address, rows);
       }
       std::cout << std::endl;
     } else if (command.type==command_handler::CommandType::GET_MEMORY_POINT) {
@@ -291,15 +325,15 @@ int main(int argc, char *argv[]) {
         continue;
       }
       // uint64_t address = std::stoull(command.args[0], nullptr, 16);
-      vm.memory_controller_.GetMemoryPoint(command.args[0]);
-    } 
+      vm_ptr->memory_controller_.GetMemoryPoint(command.args[0]);
+    }
 
 
     else if (command.type==command_handler::CommandType::VM_STDIN) {
-      vm.PushInput(command.args[0]);
+      vm_ptr->PushInput(command.args[0]);
     }
-    
-    
+
+
     else if (command.type==command_handler::CommandType::DUMP_CACHE) {
       std::cout << "Cache dumped." << std::endl;
     } else {
@@ -314,5 +348,11 @@ int main(int argc, char *argv[]) {
 
 
 
+  // Clean up the VM
+  if (vm_ptr) {
+    delete vm_ptr;
+    vm_ptr = nullptr;
+  }
+  
   return 0;
 }

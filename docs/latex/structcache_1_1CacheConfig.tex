@@ -1,0 +1,113 @@
+\doxysection{cache\+::Cache\+Config Struct Reference}
+\hypertarget{structcache_1_1CacheConfig}{}\label{structcache_1_1CacheConfig}\index{cache::CacheConfig@{cache::CacheConfig}}
+
+
+{\ttfamily \#include $<$cache.\+h$>$}
+
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+unsigned long \mbox{\hyperlink{structcache_1_1CacheConfig_af5d1314be234cb36d5b3c24a8d3234f2}{lines}} = 0
+\begin{DoxyCompactList}\small\item\em Number of lines in the cache. \end{DoxyCompactList}\item 
+unsigned long \mbox{\hyperlink{structcache_1_1CacheConfig_aab905a2f456ce1a8faa31675768d1e29}{associativity}} = 0
+\begin{DoxyCompactList}\small\item\em Associativity of the cache. \end{DoxyCompactList}\item 
+unsigned long \mbox{\hyperlink{structcache_1_1CacheConfig_a24cd5020a816c0b0a0dd0151fe02814d}{words\+\_\+per\+\_\+line}} = 0
+\begin{DoxyCompactList}\small\item\em Number of words per line in the cache. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacecache_afdbade0aa5657d2124a87a5dbc578c8c}{Replacement\+Policy}} \mbox{\hyperlink{structcache_1_1CacheConfig_aafa5f02b7fd2dc75743b42c2a8e22e35}{replacement\+\_\+policy}} = \mbox{\hyperlink{namespacecache_afdbade0aa5657d2124a87a5dbc578c8ca875ecb34f6d21d13d4b9fd4980a8b5af}{Replacement\+Policy\+::\+LRU}}
+\begin{DoxyCompactList}\small\item\em Replacement policy for the cache. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacecache_ae31cc2b6d2558063b5cbcf25e728033b}{Cache\+Type}} \mbox{\hyperlink{structcache_1_1CacheConfig_aa0bfe4fcc991ba6a7b1fd9c618c0390b}{cache\+\_\+type}} = \mbox{\hyperlink{namespacecache_ae31cc2b6d2558063b5cbcf25e728033baf6068daa29dbb05a7ead1e3b5a48bbee}{Cache\+Type\+::\+Data}}
+\begin{DoxyCompactList}\small\item\em Type of cache (instruction or data) \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacecache_adcc53b3341665657755dcce49e18bff1}{Write\+Hit\+Policy}} \mbox{\hyperlink{structcache_1_1CacheConfig_a9efa1e83e061f58d67ae7e96c3bc9e7f}{write\+\_\+hit\+\_\+policy}} = \mbox{\hyperlink{namespacecache_adcc53b3341665657755dcce49e18bff1adf8e90f657c55cab67bfd1f1b91ba573}{Write\+Hit\+Policy\+::\+Write\+Back}}
+\begin{DoxyCompactList}\small\item\em Write hit policy. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacecache_a96693233da29e228d4c68f157eecc765}{Write\+Miss\+Policy}} \mbox{\hyperlink{structcache_1_1CacheConfig_aa22521aeeee565d8edc2138c3dc45211}{write\+\_\+miss\+\_\+policy}} = \mbox{\hyperlink{namespacecache_a96693233da29e228d4c68f157eecc765aed392887039a647270157cc450df5caa}{Write\+Miss\+Policy\+::\+No\+Write\+Allocate}}
+\begin{DoxyCompactList}\small\item\em Write miss policy. \end{DoxyCompactList}\item 
+unsigned long \mbox{\hyperlink{structcache_1_1CacheConfig_a6fa9aead61a6db5c8c324e87e3f74a99}{size}} = 0
+\begin{DoxyCompactList}\small\item\em Size of the cache in bytes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structcache_1_1CacheConfig_aab905a2f456ce1a8faa31675768d1e29}\label{structcache_1_1CacheConfig_aab905a2f456ce1a8faa31675768d1e29} 
+\index{cache::CacheConfig@{cache::CacheConfig}!associativity@{associativity}}
+\index{associativity@{associativity}!cache::CacheConfig@{cache::CacheConfig}}
+\doxysubsubsection{\texorpdfstring{associativity}{associativity}}
+{\footnotesize\ttfamily unsigned long cache\+::\+Cache\+Config\+::associativity = 0}
+
+
+
+Associativity of the cache. 
+
+\Hypertarget{structcache_1_1CacheConfig_aa0bfe4fcc991ba6a7b1fd9c618c0390b}\label{structcache_1_1CacheConfig_aa0bfe4fcc991ba6a7b1fd9c618c0390b} 
+\index{cache::CacheConfig@{cache::CacheConfig}!cache\_type@{cache\_type}}
+\index{cache\_type@{cache\_type}!cache::CacheConfig@{cache::CacheConfig}}
+\doxysubsubsection{\texorpdfstring{cache\_type}{cache\_type}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacecache_ae31cc2b6d2558063b5cbcf25e728033b}{Cache\+Type}} cache\+::\+Cache\+Config\+::cache\+\_\+type = \mbox{\hyperlink{namespacecache_ae31cc2b6d2558063b5cbcf25e728033baf6068daa29dbb05a7ead1e3b5a48bbee}{Cache\+Type\+::\+Data}}}
+
+
+
+Type of cache (instruction or data) 
+
+\Hypertarget{structcache_1_1CacheConfig_af5d1314be234cb36d5b3c24a8d3234f2}\label{structcache_1_1CacheConfig_af5d1314be234cb36d5b3c24a8d3234f2} 
+\index{cache::CacheConfig@{cache::CacheConfig}!lines@{lines}}
+\index{lines@{lines}!cache::CacheConfig@{cache::CacheConfig}}
+\doxysubsubsection{\texorpdfstring{lines}{lines}}
+{\footnotesize\ttfamily unsigned long cache\+::\+Cache\+Config\+::lines = 0}
+
+
+
+Number of lines in the cache. 
+
+\Hypertarget{structcache_1_1CacheConfig_aafa5f02b7fd2dc75743b42c2a8e22e35}\label{structcache_1_1CacheConfig_aafa5f02b7fd2dc75743b42c2a8e22e35} 
+\index{cache::CacheConfig@{cache::CacheConfig}!replacement\_policy@{replacement\_policy}}
+\index{replacement\_policy@{replacement\_policy}!cache::CacheConfig@{cache::CacheConfig}}
+\doxysubsubsection{\texorpdfstring{replacement\_policy}{replacement\_policy}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacecache_afdbade0aa5657d2124a87a5dbc578c8c}{Replacement\+Policy}} cache\+::\+Cache\+Config\+::replacement\+\_\+policy = \mbox{\hyperlink{namespacecache_afdbade0aa5657d2124a87a5dbc578c8ca875ecb34f6d21d13d4b9fd4980a8b5af}{Replacement\+Policy\+::\+LRU}}}
+
+
+
+Replacement policy for the cache. 
+
+\Hypertarget{structcache_1_1CacheConfig_a6fa9aead61a6db5c8c324e87e3f74a99}\label{structcache_1_1CacheConfig_a6fa9aead61a6db5c8c324e87e3f74a99} 
+\index{cache::CacheConfig@{cache::CacheConfig}!size@{size}}
+\index{size@{size}!cache::CacheConfig@{cache::CacheConfig}}
+\doxysubsubsection{\texorpdfstring{size}{size}}
+{\footnotesize\ttfamily unsigned long cache\+::\+Cache\+Config\+::size = 0}
+
+
+
+Size of the cache in bytes. 
+
+\Hypertarget{structcache_1_1CacheConfig_a24cd5020a816c0b0a0dd0151fe02814d}\label{structcache_1_1CacheConfig_a24cd5020a816c0b0a0dd0151fe02814d} 
+\index{cache::CacheConfig@{cache::CacheConfig}!words\_per\_line@{words\_per\_line}}
+\index{words\_per\_line@{words\_per\_line}!cache::CacheConfig@{cache::CacheConfig}}
+\doxysubsubsection{\texorpdfstring{words\_per\_line}{words\_per\_line}}
+{\footnotesize\ttfamily unsigned long cache\+::\+Cache\+Config\+::words\+\_\+per\+\_\+line = 0}
+
+
+
+Number of words per line in the cache. 
+
+\Hypertarget{structcache_1_1CacheConfig_a9efa1e83e061f58d67ae7e96c3bc9e7f}\label{structcache_1_1CacheConfig_a9efa1e83e061f58d67ae7e96c3bc9e7f} 
+\index{cache::CacheConfig@{cache::CacheConfig}!write\_hit\_policy@{write\_hit\_policy}}
+\index{write\_hit\_policy@{write\_hit\_policy}!cache::CacheConfig@{cache::CacheConfig}}
+\doxysubsubsection{\texorpdfstring{write\_hit\_policy}{write\_hit\_policy}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacecache_adcc53b3341665657755dcce49e18bff1}{Write\+Hit\+Policy}} cache\+::\+Cache\+Config\+::write\+\_\+hit\+\_\+policy = \mbox{\hyperlink{namespacecache_adcc53b3341665657755dcce49e18bff1adf8e90f657c55cab67bfd1f1b91ba573}{Write\+Hit\+Policy\+::\+Write\+Back}}}
+
+
+
+Write hit policy. 
+
+\Hypertarget{structcache_1_1CacheConfig_aa22521aeeee565d8edc2138c3dc45211}\label{structcache_1_1CacheConfig_aa22521aeeee565d8edc2138c3dc45211} 
+\index{cache::CacheConfig@{cache::CacheConfig}!write\_miss\_policy@{write\_miss\_policy}}
+\index{write\_miss\_policy@{write\_miss\_policy}!cache::CacheConfig@{cache::CacheConfig}}
+\doxysubsubsection{\texorpdfstring{write\_miss\_policy}{write\_miss\_policy}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacecache_a96693233da29e228d4c68f157eecc765}{Write\+Miss\+Policy}} cache\+::\+Cache\+Config\+::write\+\_\+miss\+\_\+policy = \mbox{\hyperlink{namespacecache_a96693233da29e228d4c68f157eecc765aed392887039a647270157cc450df5caa}{Write\+Miss\+Policy\+::\+No\+Write\+Allocate}}}
+
+
+
+Write miss policy. 
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/vm/cache/\mbox{\hyperlink{cache_8h}{cache.\+h}}\end{DoxyCompactItemize}

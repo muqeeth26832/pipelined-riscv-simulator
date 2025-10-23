@@ -1,6 +1,6 @@
-\hypertarget{command__handler_8h}{}\doxysection{include/command\+\_\+handler.h File Reference}
-\label{command__handler_8h}\index{include/command\_handler.h@{include/command\_handler.h}}
-{\ttfamily \#include \char`\"{}./vm/rvss/rvss\+\_\+vm.\+h\char`\"{}}\newline
+\doxysection{include/command\+\_\+handler.h File Reference}
+\hypertarget{command__handler_8h}{}\label{command__handler_8h}\index{include/command\_handler.h@{include/command\_handler.h}}
+{\ttfamily \#include "{}./vm/rvss/rvss\+\_\+vm.\+h"{}}\newline
 {\ttfamily \#include $<$vector$>$}\newline
 Include dependency graph for command\+\_\+handler.\+h\+:
 \nopagebreak
@@ -18,17 +18,17 @@ This graph shows which files directly or indirectly include this file\+:
 \includegraphics[width=322pt]{command__handler_8h__dep__incl}
 \end{center}
 \end{figure}
-\doxysubsection*{Classes}
+\doxysubsubsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 
 struct \mbox{\hyperlink{structcommand__handler_1_1Command}{command\+\_\+handler\+::\+Command}}
 \end{DoxyCompactItemize}
-\doxysubsection*{Namespaces}
+\doxysubsubsection*{Namespaces}
 \begin{DoxyCompactItemize}
 \item 
- \mbox{\hyperlink{namespacecommand__handler}{command\+\_\+handler}}
+namespace \mbox{\hyperlink{namespacecommand__handler}{command\+\_\+handler}}
 \end{DoxyCompactItemize}
-\doxysubsection*{Enumerations}
+\doxysubsubsection*{Enumerations}
 \begin{DoxyCompactItemize}
 \item 
 enum class \mbox{\hyperlink{namespacecommand__handler_a49f72bb84305031f68e77b48be812681}{command\+\_\+handler\+::\+Command\+Type}} \{ \newline
@@ -45,16 +45,19 @@ enum class \mbox{\hyperlink{namespacecommand__handler_a49f72bb84305031f68e77b48b
 \mbox{\hyperlink{namespacecommand__handler_a49f72bb84305031f68e77b48be812681ac07bf946a7da4553f9f2776656e0d60f}{command\+\_\+handler\+::\+REDO}}
 , \mbox{\hyperlink{namespacecommand__handler_a49f72bb84305031f68e77b48be812681ab5859d8721cfdc0312b2838b9c985bc1}{command\+\_\+handler\+::\+RESET}}
 , \mbox{\hyperlink{namespacecommand__handler_a49f72bb84305031f68e77b48be812681ab0fe93313e04f4e2c261e0ff20dfdbcb}{command\+\_\+handler\+::\+MODIFY\+\_\+\+REGISTER}}
+, \mbox{\hyperlink{namespacecommand__handler_a49f72bb84305031f68e77b48be812681a5f20fb1a83a6f2777b80c6a05c21c099}{command\+\_\+handler\+::\+GET\+\_\+\+REGISTER}}
+, \newline
+\mbox{\hyperlink{namespacecommand__handler_a49f72bb84305031f68e77b48be812681a2420ea46ee68f3eff9ec681e913f4a19}{command\+\_\+handler\+::\+MODIFY\+\_\+\+MEMORY}}
 , \mbox{\hyperlink{namespacecommand__handler_a49f72bb84305031f68e77b48be812681acecaa410a5dbf8993459edf9f5227a92}{command\+\_\+handler\+::\+DUMP\+\_\+\+MEMORY}}
-, \newline
-\mbox{\hyperlink{namespacecommand__handler_a49f72bb84305031f68e77b48be812681aac0e0a212458cb501d6a64b97e1ca817}{command\+\_\+handler\+::\+PRINT\+\_\+\+MEMORY}}
+, \mbox{\hyperlink{namespacecommand__handler_a49f72bb84305031f68e77b48be812681aac0e0a212458cb501d6a64b97e1ca817}{command\+\_\+handler\+::\+PRINT\+\_\+\+MEMORY}}
 , \mbox{\hyperlink{namespacecommand__handler_a49f72bb84305031f68e77b48be812681a8c3c1a5f272ba8b70b2de2d21d98ef69}{command\+\_\+handler\+::\+GET\+\_\+\+MEMORY\+\_\+\+POINT}}
-, \mbox{\hyperlink{namespacecommand__handler_a49f72bb84305031f68e77b48be812681af4981f876938b4f77a6a883cdc0631d5}{command\+\_\+handler\+::\+DUMP\+\_\+\+CACHE}}
-, \mbox{\hyperlink{namespacecommand__handler_a49f72bb84305031f68e77b48be812681a495ead75498c058e80ac36a65b2399db}{command\+\_\+handler\+::\+ADD\+\_\+\+BREAKPOINT}}
 , \newline
-\mbox{\hyperlink{namespacecommand__handler_a49f72bb84305031f68e77b48be812681a1af1483e77cfe2abd58e8eb639768b15}{command\+\_\+handler\+::\+REMOVE\+\_\+\+BREAKPOINT}}
+\mbox{\hyperlink{namespacecommand__handler_a49f72bb84305031f68e77b48be812681af4981f876938b4f77a6a883cdc0631d5}{command\+\_\+handler\+::\+DUMP\+\_\+\+CACHE}}
+, \mbox{\hyperlink{namespacecommand__handler_a49f72bb84305031f68e77b48be812681a495ead75498c058e80ac36a65b2399db}{command\+\_\+handler\+::\+ADD\+\_\+\+BREAKPOINT}}
+, \mbox{\hyperlink{namespacecommand__handler_a49f72bb84305031f68e77b48be812681a1af1483e77cfe2abd58e8eb639768b15}{command\+\_\+handler\+::\+REMOVE\+\_\+\+BREAKPOINT}}
 , \mbox{\hyperlink{namespacecommand__handler_a49f72bb84305031f68e77b48be812681a3cbd204eb9b0446f83da767225380a79}{command\+\_\+handler\+::\+VM\+\_\+\+STDIN}}
-, \mbox{\hyperlink{namespacecommand__handler_a49f72bb84305031f68e77b48be812681aa42b2fb0e720a080e79a92f4ca97d927}{command\+\_\+handler\+::\+EXIT}}
+, \newline
+\mbox{\hyperlink{namespacecommand__handler_a49f72bb84305031f68e77b48be812681aa42b2fb0e720a080e79a92f4ca97d927}{command\+\_\+handler\+::\+EXIT}}
  \}
 \item 
 enum class \mbox{\hyperlink{namespacecommand__handler_a44c251e1711cea6749a00f36fcb08cf4}{command\+\_\+handler\+::\+Command\+Argument\+Type}} \{ \newline
@@ -66,10 +69,10 @@ enum class \mbox{\hyperlink{namespacecommand__handler_a44c251e1711cea6749a00f36f
 \mbox{\hyperlink{namespacecommand__handler_a44c251e1711cea6749a00f36fcb08cf4aecc2e9c313faddb07e7da223c1dc5c3f}{command\+\_\+handler\+::\+VALUE}}
  \}
 \end{DoxyCompactItemize}
-\doxysubsection*{Functions}
+\doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-Command \mbox{\hyperlink{namespacecommand__handler_aa154f73d4d471f39cfd87bc8068bd815}{command\+\_\+handler\+::\+Parse\+Command}} (const std\+::string \&input)
+\mbox{\hyperlink{structcommand__handler_1_1Command}{Command}} \mbox{\hyperlink{namespacecommand__handler_aa154f73d4d471f39cfd87bc8068bd815}{command\+\_\+handler\+::\+Parse\+Command}} (const std\+::string \&input)
 \item 
-void \mbox{\hyperlink{namespacecommand__handler_a32eea363a2d5c5e4b4b6c71626058fa1}{command\+\_\+handler\+::\+Execute\+Command}} (const Command \&command, \mbox{\hyperlink{classRVSSVM}{RVSSVM}} \&vm)
+void \mbox{\hyperlink{namespacecommand__handler_a32eea363a2d5c5e4b4b6c71626058fa1}{command\+\_\+handler\+::\+Execute\+Command}} (const \mbox{\hyperlink{structcommand__handler_1_1Command}{Command}} \&command, \mbox{\hyperlink{classRVSSVM}{RVSSVM}} \&vm)
 \end{DoxyCompactItemize}

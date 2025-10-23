@@ -1,5 +1,5 @@
-\hypertarget{instructions_8h}{}\doxysection{include/common/instructions.h File Reference}
-\label{instructions_8h}\index{include/common/instructions.h@{include/common/instructions.h}}
+\doxysection{include/common/instructions.h File Reference}
+\hypertarget{instructions_8h}{}\label{instructions_8h}\index{include/common/instructions.h@{include/common/instructions.h}}
 
 
 Contains the declarations for the Instruction\+Encoding struct and related functions.  
@@ -10,6 +10,8 @@ Contains the declarations for the Instruction\+Encoding struct and related funct
 {\ttfamily \#include $<$vector$>$}\newline
 {\ttfamily \#include $<$string$>$}\newline
 {\ttfamily \#include $<$unordered\+\_\+map$>$}\newline
+{\ttfamily \#include $<$array$>$}\newline
+{\ttfamily \#include $<$type\+\_\+traits$>$}\newline
 Include dependency graph for instructions.\+h\+:
 \nopagebreak
 \begin{figure}[H]
@@ -26,8 +28,10 @@ This graph shows which files directly or indirectly include this file\+:
 \includegraphics[width=350pt]{instructions_8h__dep__incl}
 \end{center}
 \end{figure}
-\doxysubsection*{Classes}
+\doxysubsubsection*{Classes}
 \begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{instruction\+\_\+set\+::\+Instruction\+Encoding}}
 \item 
 struct \mbox{\hyperlink{structinstruction__set_1_1RTypeInstructionEncoding}{instruction\+\_\+set\+::\+RType\+Instruction\+Encoding}}
 \item 
@@ -63,13 +67,227 @@ struct \mbox{\hyperlink{structinstruction__set_1_1FDITypeInstructionEncoding}{in
 \item 
 struct \mbox{\hyperlink{structinstruction__set_1_1FDSTypeInstructionEncoding}{instruction\+\_\+set\+::\+FDSType\+Instruction\+Encoding}}
 \end{DoxyCompactItemize}
-\doxysubsection*{Namespaces}
+\doxysubsubsection*{Namespaces}
 \begin{DoxyCompactItemize}
 \item 
- \mbox{\hyperlink{namespaceinstruction__set}{instruction\+\_\+set}}
+namespace \mbox{\hyperlink{namespaceinstruction__set}{instruction\+\_\+set}}
 \end{DoxyCompactItemize}
-\doxysubsection*{Enumerations}
+\doxysubsubsection*{Enumerations}
 \begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980}{instruction\+\_\+set\+::\+Instruction}} \{ \newline
+\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980ac9324857055d881d311d4db5425c2f5e}{instruction\+\_\+set\+::k\+Rtype}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980aa914aafea39c6cfc12479e2ba50fad99}{instruction\+\_\+set\+::k\+Itype}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a7284ec4873dcea6be5634f00dedd8a52}{instruction\+\_\+set\+::k\+Stype}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980aebebf9621888579629cc0e7e9783c187}{instruction\+\_\+set\+::k\+Btype}}
+, \newline
+\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a06bb27cce21a93d282cbfdac2a04d41a}{instruction\+\_\+set\+::k\+Jtype}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980ac4c891124005659ba531b4aaf98552ac}{instruction\+\_\+set\+::k\+Load\+Type}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980ae7bf121a6fa636cedc89ab18f0ed06ba}{instruction\+\_\+set\+::k\+Csr\+Type}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980ac438479d1cfd3633860f11c0f4303115}{instruction\+\_\+set\+::kadd}}
+, \newline
+\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a5b786add7d030a9aed2977c105ca3118}{instruction\+\_\+set\+::ksub}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980ad4ccbfce3b074e56364aa8c1a00523a0}{instruction\+\_\+set\+::ksll}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980ac181debd6036554a0cab6b8166daca27}{instruction\+\_\+set\+::kslt}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a91411c836e5bcea565532386876d50ba}{instruction\+\_\+set\+::ksltu}}
+, \newline
+\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980ae374b3602c959c58697207d2277e0d61}{instruction\+\_\+set\+::kxor}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a357a0b1dcebc27c1c56740ae03d468eb}{instruction\+\_\+set\+::ksrl}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980ae676ed16d4fdfa03e4d41cf6859c79e4}{instruction\+\_\+set\+::ksra}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a524f20086b2a5232211d49da424eb021}{instruction\+\_\+set\+::kor}}
+, \newline
+\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a4552bc22d9b6788fbe32abcf431dc9f9}{instruction\+\_\+set\+::kand}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a44592b4f64c6cd57399bfb5c0261c666}{instruction\+\_\+set\+::kaddw}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a37638b0a0b0e0236bb6a9004987f95e7}{instruction\+\_\+set\+::ksubw}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a06544675b45a6af0af02134928d72025}{instruction\+\_\+set\+::ksllw}}
+, \newline
+\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a01ba80b7c5495187208e934353126074}{instruction\+\_\+set\+::ksrlw}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a9553aaca416113c4c9c00e970a8cf6d7}{instruction\+\_\+set\+::ksraw}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a6ac6b80ae93058357c7830519ec3ceaa}{instruction\+\_\+set\+::kaddi}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980aded185724bfff21a7eda68db23ddc795}{instruction\+\_\+set\+::kxori}}
+, \newline
+\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a5e20bcc67d5cbb2f3ee96e8b8d6c7ab0}{instruction\+\_\+set\+::kori}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a670686b8964454b801b320f16a91ee99}{instruction\+\_\+set\+::kandi}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a32657cbfaab74e8d8c5ff58cb22e4e96}{instruction\+\_\+set\+::kslli}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a4d35627f6baeef7720b365595fb69ef4}{instruction\+\_\+set\+::ksrli}}
+, \newline
+\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a67fde271abfcf549014a7d8f01098738}{instruction\+\_\+set\+::ksrai}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a475efdbdaab15dd303f73220d4e86ba9}{instruction\+\_\+set\+::kslti}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a08e7326bdad567235eb20abaf834e56d}{instruction\+\_\+set\+::ksltiu}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a9cde7663ed1249cce6d1e0afbe369de0}{instruction\+\_\+set\+::kaddiw}}
+, \newline
+\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980ae86c1cd33f01aeef4bc7ed248998f374}{instruction\+\_\+set\+::kslliw}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980ab65f9c187165c8d913971e382b9cadf0}{instruction\+\_\+set\+::ksrliw}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a63f50b08fb105193c7a2d1361a6837be}{instruction\+\_\+set\+::ksraiw}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980af6b6404ace3b4c57d755ec88aa635fea}{instruction\+\_\+set\+::klb}}
+, \newline
+\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a99b7b94ee44a515881afb97b90dfba18}{instruction\+\_\+set\+::klh}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980ae7eedadc76e2f3ffb84e41928fa9b526}{instruction\+\_\+set\+::klw}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a59ef541f710be4e720d504715e1a6831}{instruction\+\_\+set\+::kld}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a8cc103c645169444fb92f1498ddb40bd}{instruction\+\_\+set\+::klbu}}
+, \newline
+\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980af75a319cf81a7045437e0aec0a9fda90}{instruction\+\_\+set\+::klhu}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980aab20867cd821fb0480f777f4b1c23ce2}{instruction\+\_\+set\+::klwu}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a5e41b4d0cc520b5862c3e56361b4931e}{instruction\+\_\+set\+::ksb}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a1348b458efe72d142bf10319789aae07}{instruction\+\_\+set\+::ksh}}
+, \newline
+\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a880d60c4e270cf58189ca502ece5dcfa}{instruction\+\_\+set\+::ksw}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980adbf30f970e8a51154664d0b82b9fe97a}{instruction\+\_\+set\+::ksd}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980ac048b512e0f924a4c3ace218c5a3e27b}{instruction\+\_\+set\+::kbeq}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980aa5e9cc9322b759b0374d8dd36f27041a}{instruction\+\_\+set\+::kbne}}
+, \newline
+\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a43e53aeddfa15f33728b61d381c42ad6}{instruction\+\_\+set\+::kblt}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980acbddca10947a185290ff79190dcfcd25}{instruction\+\_\+set\+::kbge}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a3102a9776633f8b3670720982de9f37e}{instruction\+\_\+set\+::kbltu}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a53dfe2f693012ace73cf256b50a1923e}{instruction\+\_\+set\+::kbgeu}}
+, \newline
+\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a4491c1a9fe5d7619c6445662dd2fa216}{instruction\+\_\+set\+::klui}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a77b4cbfe1f27d26152e6425cb065c173}{instruction\+\_\+set\+::kauipc}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a57d72eeebdbd7fc5b902ce57cbbcb7e1}{instruction\+\_\+set\+::kjal}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a8eee36ca620ee3fe4f282f3dd95bdbc8}{instruction\+\_\+set\+::kjalr}}
+, \newline
+\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980ae6c81577a797484ad005e91795dbf453}{instruction\+\_\+set\+::kecall}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980af608d8c6965a4e7d1a3e2f8a500f737f}{instruction\+\_\+set\+::kcsrrw}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980af6d42226b73e98d032b77c095ba56f12}{instruction\+\_\+set\+::kcsrrs}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a74970a380d6e0580c995f5b576c7c6df}{instruction\+\_\+set\+::kcsrrc}}
+, \newline
+\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a4200803ca310ef52a61879b08c700e21}{instruction\+\_\+set\+::kcsrrwi}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a295629c46e8bde46d1f8997a1f7c33e3}{instruction\+\_\+set\+::kcsrrsi}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a5202c5af3b441759358f0cfbdb0db5a1}{instruction\+\_\+set\+::kcsrrci}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980aef01abaad85a5f1460f89cbf6b15c890}{instruction\+\_\+set\+::kla}}
+, \newline
+\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a23264b7f3feb968197677caa62f75100}{instruction\+\_\+set\+::knop}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a546a14bc4215d0f9ee91be2ac4d7d0e7}{instruction\+\_\+set\+::kli}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a5df51242f6bc4063a984be6f7d15daa6}{instruction\+\_\+set\+::kmv}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a0100666efbb48827f7013eb96ca05c21}{instruction\+\_\+set\+::knot}}
+, \newline
+\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980ae8c99623cbb9b2a1ec04e8ffe226b06e}{instruction\+\_\+set\+::kneg}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a8eac4963607421fffaa2c65a08aa0962}{instruction\+\_\+set\+::knegw}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a8e1bac446149dbea3ca82f49c11c2786}{instruction\+\_\+set\+::ksextw}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980aadc7062325030007e0fc3b38575114b0}{instruction\+\_\+set\+::kseqz}}
+, \newline
+\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980adf6100e931c9297ae1f077cb344572a1}{instruction\+\_\+set\+::ksnez}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a650211f099ccb232c20f3c804585d095}{instruction\+\_\+set\+::ksltz}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980afaf9855c9c70a3e945b712d6d5ae4892}{instruction\+\_\+set\+::ksgtz}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a35999b804497bbfe22deb5b935865647}{instruction\+\_\+set\+::kbeqz}}
+, \newline
+\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a0f002116a36e16a468ca2456f16b6571}{instruction\+\_\+set\+::kbnez}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a0992ea456fc73f71ffd10d6b0b7997b6}{instruction\+\_\+set\+::kblez}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980ac63bfca7bc62e56e68ce3e7adcdcfe8f}{instruction\+\_\+set\+::kbgez}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a0d49f189a1985fabc6f5d1985dd4f0ce}{instruction\+\_\+set\+::kbltz}}
+, \newline
+\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980adc2d56f53116d35de6d6481a07c0773e}{instruction\+\_\+set\+::kbgtz}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a90b0e92f5c3e33ca804e78e3e8eb5f21}{instruction\+\_\+set\+::kbgt}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a6634405cf1cfd5d987bc491bf0c54b89}{instruction\+\_\+set\+::kble}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980af9bcb0b1c1a8e0b673bba58a11672adc}{instruction\+\_\+set\+::kbgtu}}
+, \newline
+\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980aff14808e94d03bf9ac79a2e94b1d1377}{instruction\+\_\+set\+::kbleu}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a765761e20777fa9112a9d26604910737}{instruction\+\_\+set\+::kj}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980ab260327c5f283bb851227b8f2e0803f6}{instruction\+\_\+set\+::kjr}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a80a07f5b606bbaada72c66264a5975c8}{instruction\+\_\+set\+::kret}}
+, \newline
+\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a3d3bab67ed920f16c643455886916299}{instruction\+\_\+set\+::kcall}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980ab5edaf5243975a3df8b899f7d4897c93}{instruction\+\_\+set\+::ktail}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980afaeb45b865b99383810352358edf0ef5}{instruction\+\_\+set\+::kfence}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a1496e1da4b6a76118a754641e73f497e}{instruction\+\_\+set\+::kfence\+\_\+i}}
+, \newline
+\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a65f607351a37184e8da30f45e7b13737}{instruction\+\_\+set\+::kmul}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980aace183690ee69c878353be9114940f8a}{instruction\+\_\+set\+::kmulh}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a8feaa3b2f5daa3741892b5a66d21ffc1}{instruction\+\_\+set\+::kmulhsu}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a0170ffe440f8e6d1483f740c2ab67d89}{instruction\+\_\+set\+::kmulhu}}
+, \newline
+\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a3eacd7c6931f7cd897d9b7f6532e5c8c}{instruction\+\_\+set\+::kdiv}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980af128a77af616c79cd4c23a8adc67ee17}{instruction\+\_\+set\+::kdivu}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a83458c730e1c94d8752e63f4a3dc38b7}{instruction\+\_\+set\+::krem}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a1f8e7a90d28efd99fe32c3defd84cf48}{instruction\+\_\+set\+::kremu}}
+, \newline
+\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a4d68368826e85b515c3ec3eed74e20a2}{instruction\+\_\+set\+::kmulw}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a08ef400e411a76dd4c5f1272e4263df7}{instruction\+\_\+set\+::kdivw}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980ab63dc37f11dc73aa42c9dca21c71c1bf}{instruction\+\_\+set\+::kdivuw}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a7d399412da559a8b4856520f973302bf}{instruction\+\_\+set\+::kremw}}
+, \newline
+\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980ad6bb3be2197973350e01161f3ba45434}{instruction\+\_\+set\+::kremuw}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a62cd50bf9d3f0a947fd3321676496db1}{instruction\+\_\+set\+::kflw}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a84792e98e98619ea87756bfbd0f67c77}{instruction\+\_\+set\+::kfsw}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980aeac58195154575342ad3aec9f19961ef}{instruction\+\_\+set\+::kfmadd\+\_\+s}}
+, \newline
+\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a3169694b712a063b3d79d8d4543d5288}{instruction\+\_\+set\+::kfmsub\+\_\+s}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980abb6b7e784a56c2d3377ef78e364d71e0}{instruction\+\_\+set\+::kfnmsub\+\_\+s}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a36574fa6e9cbd4bc6bab665ada6edbf2}{instruction\+\_\+set\+::kfnmadd\+\_\+s}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980acc8359d6902d9adb49e22414e8b10f67}{instruction\+\_\+set\+::kfadd\+\_\+s}}
+, \newline
+\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a25c0c697d468474153dc75c926828134}{instruction\+\_\+set\+::kfsub\+\_\+s}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a6c75dd99091e2c9b9b73148f2b3f32bc}{instruction\+\_\+set\+::kfmul\+\_\+s}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a19d7ba44dfbb7f72501ce9479ac23483}{instruction\+\_\+set\+::kfdiv\+\_\+s}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a3601bb8337d446a44041eaba83dd1ac5}{instruction\+\_\+set\+::kfsqrt\+\_\+s}}
+, \newline
+\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980aa009019344f69e8eb95cf2cb50fb8b3b}{instruction\+\_\+set\+::kfsgnj\+\_\+s}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980ab2abe8c50bf5582a8b9b8444dab4e7cf}{instruction\+\_\+set\+::kfsgnjn\+\_\+s}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a703734fde79f1e76c5a216f0bc23963d}{instruction\+\_\+set\+::kfsgnjx\+\_\+s}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a920160cbe868e9b4d8410be76f6f8f0e}{instruction\+\_\+set\+::kfmin\+\_\+s}}
+, \newline
+\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a6dac7f0f8f805504007a5cbde662af6b}{instruction\+\_\+set\+::kfmax\+\_\+s}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980ace3c37faf4b8f6d3886b7da6e6e77ee6}{instruction\+\_\+set\+::kfcvt\+\_\+w\+\_\+s}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a57ea70e648a0a3531b86eee06c38047c}{instruction\+\_\+set\+::kfcvt\+\_\+wu\+\_\+s}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a1139eab3f706f5f74cf4f18e2df89bc6}{instruction\+\_\+set\+::kfmv\+\_\+x\+\_\+w}}
+, \newline
+\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a2a4f01c97cb26d21543e35e3263a9d9a}{instruction\+\_\+set\+::kfmv\+\_\+w\+\_\+x}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980af6536ad6e1a0736aa75a9b9225add24e}{instruction\+\_\+set\+::kfeq\+\_\+s}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980ab962794bb8fac3d310037a5f9f9f130e}{instruction\+\_\+set\+::kflt\+\_\+s}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a5ce3a12adae3a40b9e2305aed36dc8e8}{instruction\+\_\+set\+::kfle\+\_\+s}}
+, \newline
+\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a236c732a8002e85e305572f07c88b6c5}{instruction\+\_\+set\+::kfclass\+\_\+s}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980af605280c1d298f11de4841caa2c20b0b}{instruction\+\_\+set\+::kfcvt\+\_\+s\+\_\+w}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a501693061db0541fc0882735ed692b02}{instruction\+\_\+set\+::kfcvt\+\_\+s\+\_\+wu}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980aa65c440ac352be01340864ca1713f1ab}{instruction\+\_\+set\+::kfcvt\+\_\+l\+\_\+s}}
+, \newline
+\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a849988087b8cb1a3d4c1ae7bb4d49e98}{instruction\+\_\+set\+::kfcvt\+\_\+lu\+\_\+s}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a5885ebaaafc652ab0c43279acc4a1fe9}{instruction\+\_\+set\+::kfcvt\+\_\+s\+\_\+l}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a5aea15caabd07f7c5a09f1b3c1f8e4ab}{instruction\+\_\+set\+::kfcvt\+\_\+s\+\_\+lu}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a86a651dcb3ed470573d737203c0a3287}{instruction\+\_\+set\+::kfld}}
+, \newline
+\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980aac0a41021edabcacf6d6991ee7e53b48}{instruction\+\_\+set\+::kfsd}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980af7274ea3ef69220b143dcdb58c3e1d89}{instruction\+\_\+set\+::kfmadd\+\_\+d}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980aeae1f37b662f71886d174d1e98e3e300}{instruction\+\_\+set\+::kfmsub\+\_\+d}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a61010ea282058714c255d3365e1d4556}{instruction\+\_\+set\+::kfnmsub\+\_\+d}}
+, \newline
+\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a4991a811fd6d5fc57f32d8c1de1e981b}{instruction\+\_\+set\+::kfnmadd\+\_\+d}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a2a89603709dc7ab8f730653a143d1786}{instruction\+\_\+set\+::kfadd\+\_\+d}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980af83822029bc56b076da866827039ac84}{instruction\+\_\+set\+::kfsub\+\_\+d}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980acb0138a88ec7c686d96eadf4bba6211b}{instruction\+\_\+set\+::kfmul\+\_\+d}}
+, \newline
+\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a433de101a440ce47bbc289edaec29003}{instruction\+\_\+set\+::kfdiv\+\_\+d}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a89361c5c4ca40a504430666e6999b503}{instruction\+\_\+set\+::kfsqrt\+\_\+d}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980abbc08b821cef8b2f6dce1ed8479a7517}{instruction\+\_\+set\+::kfsgnj\+\_\+d}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980ad5a5c1dedc393bc231799149ce58174b}{instruction\+\_\+set\+::kfsgnjn\+\_\+d}}
+, \newline
+\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980acff099ea5d004532a1a3f59727916eee}{instruction\+\_\+set\+::kfsgnjx\+\_\+d}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a350de79566143c2e6755e651eabc9e30}{instruction\+\_\+set\+::kfmin\+\_\+d}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a44e1cf13abaf758d222072d6eb01bfe1}{instruction\+\_\+set\+::kfmax\+\_\+d}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980aca8a3af361f64e60190091defa0a4836}{instruction\+\_\+set\+::kfcvt\+\_\+s\+\_\+d}}
+, \newline
+\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980ae7dda3a782582dcabacf1c063251d425}{instruction\+\_\+set\+::kfcvt\+\_\+d\+\_\+s}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980af9fbe55d80cb4859238942c0b44b6ccc}{instruction\+\_\+set\+::kfeq\+\_\+d}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a317bbbee328e04787b5fa70557fb62bc}{instruction\+\_\+set\+::kflt\+\_\+d}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a9001fb231f4bd87c814cd63c1cf96391}{instruction\+\_\+set\+::kfle\+\_\+d}}
+, \newline
+\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a69b62889cebe1b19b09371ad2aaf13e4}{instruction\+\_\+set\+::kfclass\+\_\+d}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a76cbbcfebf0038d5617ea4204b1d684d}{instruction\+\_\+set\+::kfcvt\+\_\+w\+\_\+d}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a7b5086fc790258b02cfd3492491f58e1}{instruction\+\_\+set\+::kfcvt\+\_\+wu\+\_\+d}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a87bd5b88768ee44fd99d9f2c5e7fd94f}{instruction\+\_\+set\+::kfcvt\+\_\+d\+\_\+w}}
+, \newline
+\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a98dcc5e1455841e572fb1079a54d5a61}{instruction\+\_\+set\+::kfcvt\+\_\+d\+\_\+wu}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a3c2b5e8d160f07d8b6f3394a088c7bf3}{instruction\+\_\+set\+::kfcvt\+\_\+l\+\_\+d}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a18fd8de44f3b4c9a44a197f1ea993a20}{instruction\+\_\+set\+::kfcvt\+\_\+lu\+\_\+d}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980ac2c4d0c2acaad3bf220ed40314019c91}{instruction\+\_\+set\+::kfmv\+\_\+x\+\_\+d}}
+, \newline
+\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980ac27d90e2ca1294bad8af40f2e5b7f9c4}{instruction\+\_\+set\+::kfcvt\+\_\+d\+\_\+l}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a37365a18b94a0d0512f71287cf163b99}{instruction\+\_\+set\+::kfcvt\+\_\+d\+\_\+lu}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980aec779415c395302a71a8105fdcbd8ce6}{instruction\+\_\+set\+::kfmv\+\_\+d\+\_\+x}}
+, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980a0011dcdf9617dd34fb50717f35c61abd}{instruction\+\_\+set\+::\+INVALID}}
+, \newline
+\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980aac66397916080c2781a7d18b92d9f017}{instruction\+\_\+set\+::\+COUNT}}
+ \}
 \item 
 enum class \mbox{\hyperlink{namespaceinstruction__set_a7c366784cebccd7fbfda77874d229462}{instruction\+\_\+set\+::\+Syntax\+Type}} \{ \newline
 \mbox{\hyperlink{namespaceinstruction__set_a7c366784cebccd7fbfda77874d229462a41dbb99a6896d9e96d14138265da5221}{instruction\+\_\+set\+::\+O\+\_\+\+GPR\+\_\+\+C\+\_\+\+GPR\+\_\+\+C\+\_\+\+GPR}}
@@ -103,8 +321,10 @@ enum class \mbox{\hyperlink{namespaceinstruction__set_a7c366784cebccd7fbfda77874
 , \mbox{\hyperlink{namespaceinstruction__set_a7c366784cebccd7fbfda77874d229462a4b80d7d1223745bdf966288df20f1fa3}{instruction\+\_\+set\+::\+O\+\_\+\+FPR\+\_\+\+C\+\_\+\+I\+\_\+\+LP\+\_\+\+GPR\+\_\+\+RP}}
  \}
 \begin{DoxyCompactList}\small\item\em Enum that represents different syntax types for instructions. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\doxysubsection*{Functions}
+\doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
+\item 
+constexpr const \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{Instruction\+Encoding}} \& \mbox{\hyperlink{namespaceinstruction__set_a30b5579835de16eaeb2dcd8f8dd70698}{instruction\+\_\+set\+::get\+\_\+instr\+\_\+encoding}} (\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980}{Instruction}} instr)
 \item 
 bool \mbox{\hyperlink{namespaceinstruction__set_a684c8ea1bb0cd5f2fcdb698286ce49bd}{instruction\+\_\+set\+::is\+Valid\+Instruction}} (const std\+::string \&instruction)
 \item 
@@ -129,6 +349,8 @@ bool \mbox{\hyperlink{namespaceinstruction__set_a40834369e5972193df7c74fa8d3cd7c
 bool \mbox{\hyperlink{namespaceinstruction__set_adf2c87a1fa7b27e0012e3eaf1f575538}{instruction\+\_\+set\+::is\+Valid\+Pseudo\+Instruction}} (const std\+::string \&instruction)
 \item 
 bool \mbox{\hyperlink{namespaceinstruction__set_a3e26615428ea0891ded649073e440d88}{instruction\+\_\+set\+::is\+Valid\+Base\+Extension\+Instruction}} (const std\+::string \&instruction)
+\item 
+bool \mbox{\hyperlink{namespaceinstruction__set_a3e6f000a9cc56a65caac4033c362717d}{instruction\+\_\+set\+::is\+Valid\+MExtension\+Instruction}} (const std\+::string \&instruction)
 \item 
 bool \mbox{\hyperlink{namespaceinstruction__set_a390f2245d92958d7d6e67df52fdeab34}{instruction\+\_\+set\+::is\+Valid\+CSRRType\+Instruction}} (const std\+::string \&instruction)
 \item 
@@ -156,44 +378,50 @@ bool \mbox{\hyperlink{namespaceinstruction__set_a5303fb0dd8dd34c268231c47f85a02f
 \item 
 std\+::string \mbox{\hyperlink{namespaceinstruction__set_a605befee774c8275dccbdf096ac5b66f}{instruction\+\_\+set\+::get\+Expected\+Syntaxes}} (const std\+::string \&opcode)
 \end{DoxyCompactItemize}
-\doxysubsection*{Variables}
+\doxysubsubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
-std\+::unordered\+\_\+map$<$ std\+::string, RType\+Instruction\+Encoding $>$ \mbox{\hyperlink{namespaceinstruction__set_a859191af4ff841c4c7486a6a19c7fa7a}{instruction\+\_\+set\+::\+R\+\_\+type\+\_\+instruction\+\_\+encoding\+\_\+map}}
+constexpr std\+::array$<$ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{Instruction\+Encoding}}, static\+\_\+cast$<$ size\+\_\+t $>$(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980aac66397916080c2781a7d18b92d9f017}{Instruction\+::\+COUNT}})$>$ \mbox{\hyperlink{namespaceinstruction__set_a25b454e50ccfb03bc53525fa101d41cf}{instruction\+\_\+set\+::compiletime\+\_\+instruction\+\_\+encoding\+\_\+array}}
 \item 
-std\+::unordered\+\_\+map$<$ std\+::string, I1\+Type\+Instruction\+Encoding $>$ \mbox{\hyperlink{namespaceinstruction__set_ad362b1b3167d50a18c67c280b54012b3}{instruction\+\_\+set\+::\+I1\+\_\+type\+\_\+instruction\+\_\+encoding\+\_\+map}}
+const std\+::array$<$ \mbox{\hyperlink{structinstruction__set_1_1InstructionEncoding}{Instruction\+Encoding}}, static\+\_\+cast$<$ size\+\_\+t $>$(\mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980aac66397916080c2781a7d18b92d9f017}{Instruction\+::\+COUNT}})$>$ \mbox{\hyperlink{namespaceinstruction__set_adbde340cac84f69d5a9008a16e4cae53}{instruction\+\_\+set\+::runtime\+\_\+instruction\+\_\+encoding\+\_\+array}} = \mbox{\hyperlink{namespaceinstruction__set_a25b454e50ccfb03bc53525fa101d41cf}{compiletime\+\_\+instruction\+\_\+encoding\+\_\+array}}
 \item 
-std\+::unordered\+\_\+map$<$ std\+::string, I2\+Type\+Instruction\+Encoding $>$ \mbox{\hyperlink{namespaceinstruction__set_a51290da536b0f0b8fad0e76c5d63300c}{instruction\+\_\+set\+::\+I2\+\_\+type\+\_\+instruction\+\_\+encoding\+\_\+map}}
+std\+::unordered\+\_\+map$<$ std\+::string, \mbox{\hyperlink{namespaceinstruction__set_ab8754e798b5117896d42d78c0a67d980}{Instruction}} $>$ \mbox{\hyperlink{namespaceinstruction__set_a255c46d8c499cf217f68aee308a3bb04}{instruction\+\_\+set\+::instruction\+\_\+string\+\_\+map}}
 \item 
-std\+::unordered\+\_\+map$<$ std\+::string, I3\+Type\+Instruction\+Encoding $>$ \mbox{\hyperlink{namespaceinstruction__set_a1e1482a4d9c3475f9750286a89db56ac}{instruction\+\_\+set\+::\+I3\+\_\+type\+\_\+instruction\+\_\+encoding\+\_\+map}}
+std\+::unordered\+\_\+map$<$ std\+::string, \mbox{\hyperlink{structinstruction__set_1_1RTypeInstructionEncoding}{RType\+Instruction\+Encoding}} $>$ \mbox{\hyperlink{namespaceinstruction__set_a859191af4ff841c4c7486a6a19c7fa7a}{instruction\+\_\+set\+::\+R\+\_\+type\+\_\+instruction\+\_\+encoding\+\_\+map}}
 \item 
-std\+::unordered\+\_\+map$<$ std\+::string, SType\+Instruction\+Encoding $>$ \mbox{\hyperlink{namespaceinstruction__set_ab50cca829f0e03ebbe8b71abc0145f8c}{instruction\+\_\+set\+::\+S\+\_\+type\+\_\+instruction\+\_\+encoding\+\_\+map}}
+std\+::unordered\+\_\+map$<$ std\+::string, \mbox{\hyperlink{structinstruction__set_1_1I1TypeInstructionEncoding}{I1\+Type\+Instruction\+Encoding}} $>$ \mbox{\hyperlink{namespaceinstruction__set_ad362b1b3167d50a18c67c280b54012b3}{instruction\+\_\+set\+::\+I1\+\_\+type\+\_\+instruction\+\_\+encoding\+\_\+map}}
 \item 
-std\+::unordered\+\_\+map$<$ std\+::string, BType\+Instruction\+Encoding $>$ \mbox{\hyperlink{namespaceinstruction__set_a3e35acfc82b9e41676104e2747733de6}{instruction\+\_\+set\+::\+B\+\_\+type\+\_\+instruction\+\_\+encoding\+\_\+map}}
+std\+::unordered\+\_\+map$<$ std\+::string, \mbox{\hyperlink{structinstruction__set_1_1I2TypeInstructionEncoding}{I2\+Type\+Instruction\+Encoding}} $>$ \mbox{\hyperlink{namespaceinstruction__set_a51290da536b0f0b8fad0e76c5d63300c}{instruction\+\_\+set\+::\+I2\+\_\+type\+\_\+instruction\+\_\+encoding\+\_\+map}}
 \item 
-std\+::unordered\+\_\+map$<$ std\+::string, UType\+Instruction\+Encoding $>$ \mbox{\hyperlink{namespaceinstruction__set_a8dc1d0372413156d015ff8f7e85a4efe}{instruction\+\_\+set\+::\+U\+\_\+type\+\_\+instruction\+\_\+encoding\+\_\+map}}
+std\+::unordered\+\_\+map$<$ std\+::string, \mbox{\hyperlink{structinstruction__set_1_1I3TypeInstructionEncoding}{I3\+Type\+Instruction\+Encoding}} $>$ \mbox{\hyperlink{namespaceinstruction__set_a1e1482a4d9c3475f9750286a89db56ac}{instruction\+\_\+set\+::\+I3\+\_\+type\+\_\+instruction\+\_\+encoding\+\_\+map}}
 \item 
-std\+::unordered\+\_\+map$<$ std\+::string, JType\+Instruction\+Encoding $>$ \mbox{\hyperlink{namespaceinstruction__set_a374dcbb396c16fc22f77466bff4f7861}{instruction\+\_\+set\+::\+J\+\_\+type\+\_\+instruction\+\_\+encoding\+\_\+map}}
+std\+::unordered\+\_\+map$<$ std\+::string, \mbox{\hyperlink{structinstruction__set_1_1STypeInstructionEncoding}{SType\+Instruction\+Encoding}} $>$ \mbox{\hyperlink{namespaceinstruction__set_ab50cca829f0e03ebbe8b71abc0145f8c}{instruction\+\_\+set\+::\+S\+\_\+type\+\_\+instruction\+\_\+encoding\+\_\+map}}
 \item 
-std\+::unordered\+\_\+map$<$ std\+::string, CSR\+\_\+\+RType\+Instruction\+Encoding $>$ \mbox{\hyperlink{namespaceinstruction__set_ae1beeefc4c920a816ef63d2cc2394b97}{instruction\+\_\+set\+::\+CSR\+\_\+\+R\+\_\+type\+\_\+instruction\+\_\+encoding\+\_\+map}}
+std\+::unordered\+\_\+map$<$ std\+::string, \mbox{\hyperlink{structinstruction__set_1_1BTypeInstructionEncoding}{BType\+Instruction\+Encoding}} $>$ \mbox{\hyperlink{namespaceinstruction__set_a3e35acfc82b9e41676104e2747733de6}{instruction\+\_\+set\+::\+B\+\_\+type\+\_\+instruction\+\_\+encoding\+\_\+map}}
 \item 
-std\+::unordered\+\_\+map$<$ std\+::string, CSR\+\_\+\+IType\+Instruction\+Encoding $>$ \mbox{\hyperlink{namespaceinstruction__set_a4073c9c96c0ad7b56852d98859e1baa3}{instruction\+\_\+set\+::\+CSR\+\_\+\+I\+\_\+type\+\_\+instruction\+\_\+encoding\+\_\+map}}
+std\+::unordered\+\_\+map$<$ std\+::string, \mbox{\hyperlink{structinstruction__set_1_1UTypeInstructionEncoding}{UType\+Instruction\+Encoding}} $>$ \mbox{\hyperlink{namespaceinstruction__set_a8dc1d0372413156d015ff8f7e85a4efe}{instruction\+\_\+set\+::\+U\+\_\+type\+\_\+instruction\+\_\+encoding\+\_\+map}}
 \item 
-std\+::unordered\+\_\+map$<$ std\+::string, FDRType\+Instruction\+Encoding $>$ \mbox{\hyperlink{namespaceinstruction__set_a5cf78416d8c2c005a6fd3c9caead1ff2}{instruction\+\_\+set\+::\+F\+\_\+\+D\+\_\+\+R\+\_\+type\+\_\+instruction\+\_\+encoding\+\_\+map}}
+std\+::unordered\+\_\+map$<$ std\+::string, \mbox{\hyperlink{structinstruction__set_1_1JTypeInstructionEncoding}{JType\+Instruction\+Encoding}} $>$ \mbox{\hyperlink{namespaceinstruction__set_a374dcbb396c16fc22f77466bff4f7861}{instruction\+\_\+set\+::\+J\+\_\+type\+\_\+instruction\+\_\+encoding\+\_\+map}}
 \item 
-std\+::unordered\+\_\+map$<$ std\+::string, FDR1\+Type\+Instruction\+Encoding $>$ \mbox{\hyperlink{namespaceinstruction__set_a4bc401050f099acc0422f451287d5da1}{instruction\+\_\+set\+::\+F\+\_\+\+D\+\_\+\+R1\+\_\+type\+\_\+instruction\+\_\+encoding\+\_\+map}}
+std\+::unordered\+\_\+map$<$ std\+::string, \mbox{\hyperlink{structinstruction__set_1_1CSR__RTypeInstructionEncoding}{CSR\+\_\+\+RType\+Instruction\+Encoding}} $>$ \mbox{\hyperlink{namespaceinstruction__set_ae1beeefc4c920a816ef63d2cc2394b97}{instruction\+\_\+set\+::\+CSR\+\_\+\+R\+\_\+type\+\_\+instruction\+\_\+encoding\+\_\+map}}
 \item 
-std\+::unordered\+\_\+map$<$ std\+::string, FDR2\+Type\+Instruction\+Encoding $>$ \mbox{\hyperlink{namespaceinstruction__set_a4ff8e79787a2060e8e8b53c20348cb66}{instruction\+\_\+set\+::\+F\+\_\+\+D\+\_\+\+R2\+\_\+type\+\_\+instruction\+\_\+encoding\+\_\+map}}
+std\+::unordered\+\_\+map$<$ std\+::string, \mbox{\hyperlink{structinstruction__set_1_1CSR__ITypeInstructionEncoding}{CSR\+\_\+\+IType\+Instruction\+Encoding}} $>$ \mbox{\hyperlink{namespaceinstruction__set_a4073c9c96c0ad7b56852d98859e1baa3}{instruction\+\_\+set\+::\+CSR\+\_\+\+I\+\_\+type\+\_\+instruction\+\_\+encoding\+\_\+map}}
 \item 
-std\+::unordered\+\_\+map$<$ std\+::string, FDR3\+Type\+Instruction\+Encoding $>$ \mbox{\hyperlink{namespaceinstruction__set_add9dd2648cc982b1271c28b41c99e18b}{instruction\+\_\+set\+::\+F\+\_\+\+D\+\_\+\+R3\+\_\+type\+\_\+instruction\+\_\+encoding\+\_\+map}}
+std\+::unordered\+\_\+map$<$ std\+::string, \mbox{\hyperlink{structinstruction__set_1_1FDRTypeInstructionEncoding}{FDRType\+Instruction\+Encoding}} $>$ \mbox{\hyperlink{namespaceinstruction__set_a5cf78416d8c2c005a6fd3c9caead1ff2}{instruction\+\_\+set\+::\+F\+\_\+\+D\+\_\+\+R\+\_\+type\+\_\+instruction\+\_\+encoding\+\_\+map}}
 \item 
-std\+::unordered\+\_\+map$<$ std\+::string, FDR4\+Type\+Instruction\+Encoding $>$ \mbox{\hyperlink{namespaceinstruction__set_a430c1ddcd83a4d8f4f2d6686e4be53d5}{instruction\+\_\+set\+::\+F\+\_\+\+D\+\_\+\+R4\+\_\+type\+\_\+instruction\+\_\+encoding\+\_\+map}}
+std\+::unordered\+\_\+map$<$ std\+::string, \mbox{\hyperlink{structinstruction__set_1_1FDR1TypeInstructionEncoding}{FDR1\+Type\+Instruction\+Encoding}} $>$ \mbox{\hyperlink{namespaceinstruction__set_a4bc401050f099acc0422f451287d5da1}{instruction\+\_\+set\+::\+F\+\_\+\+D\+\_\+\+R1\+\_\+type\+\_\+instruction\+\_\+encoding\+\_\+map}}
 \item 
-std\+::unordered\+\_\+map$<$ std\+::string, FDIType\+Instruction\+Encoding $>$ \mbox{\hyperlink{namespaceinstruction__set_af5c5f93de8a03f2601cc9f734101d966}{instruction\+\_\+set\+::\+F\+\_\+\+D\+\_\+\+I\+\_\+type\+\_\+instruction\+\_\+encoding\+\_\+map}}
+std\+::unordered\+\_\+map$<$ std\+::string, \mbox{\hyperlink{structinstruction__set_1_1FDR2TypeInstructionEncoding}{FDR2\+Type\+Instruction\+Encoding}} $>$ \mbox{\hyperlink{namespaceinstruction__set_a4ff8e79787a2060e8e8b53c20348cb66}{instruction\+\_\+set\+::\+F\+\_\+\+D\+\_\+\+R2\+\_\+type\+\_\+instruction\+\_\+encoding\+\_\+map}}
 \item 
-std\+::unordered\+\_\+map$<$ std\+::string, FDSType\+Instruction\+Encoding $>$ \mbox{\hyperlink{namespaceinstruction__set_a5d37d30556dd68b58a56ac0e134aa17c}{instruction\+\_\+set\+::\+F\+\_\+\+D\+\_\+\+S\+\_\+type\+\_\+instruction\+\_\+encoding\+\_\+map}}
+std\+::unordered\+\_\+map$<$ std\+::string, \mbox{\hyperlink{structinstruction__set_1_1FDR3TypeInstructionEncoding}{FDR3\+Type\+Instruction\+Encoding}} $>$ \mbox{\hyperlink{namespaceinstruction__set_add9dd2648cc982b1271c28b41c99e18b}{instruction\+\_\+set\+::\+F\+\_\+\+D\+\_\+\+R3\+\_\+type\+\_\+instruction\+\_\+encoding\+\_\+map}}
 \item 
-std\+::unordered\+\_\+map$<$ std\+::string, std\+::vector$<$ Syntax\+Type $>$ $>$ \mbox{\hyperlink{namespaceinstruction__set_a5e20a1ab57999f19806854d6ccceeedb}{instruction\+\_\+set\+::instruction\+\_\+syntax\+\_\+map}}
+std\+::unordered\+\_\+map$<$ std\+::string, \mbox{\hyperlink{structinstruction__set_1_1FDR4TypeInstructionEncoding}{FDR4\+Type\+Instruction\+Encoding}} $>$ \mbox{\hyperlink{namespaceinstruction__set_a430c1ddcd83a4d8f4f2d6686e4be53d5}{instruction\+\_\+set\+::\+F\+\_\+\+D\+\_\+\+R4\+\_\+type\+\_\+instruction\+\_\+encoding\+\_\+map}}
+\item 
+std\+::unordered\+\_\+map$<$ std\+::string, \mbox{\hyperlink{structinstruction__set_1_1FDITypeInstructionEncoding}{FDIType\+Instruction\+Encoding}} $>$ \mbox{\hyperlink{namespaceinstruction__set_af5c5f93de8a03f2601cc9f734101d966}{instruction\+\_\+set\+::\+F\+\_\+\+D\+\_\+\+I\+\_\+type\+\_\+instruction\+\_\+encoding\+\_\+map}}
+\item 
+std\+::unordered\+\_\+map$<$ std\+::string, \mbox{\hyperlink{structinstruction__set_1_1FDSTypeInstructionEncoding}{FDSType\+Instruction\+Encoding}} $>$ \mbox{\hyperlink{namespaceinstruction__set_a5d37d30556dd68b58a56ac0e134aa17c}{instruction\+\_\+set\+::\+F\+\_\+\+D\+\_\+\+S\+\_\+type\+\_\+instruction\+\_\+encoding\+\_\+map}}
+\item 
+std\+::unordered\+\_\+map$<$ std\+::string, std\+::vector$<$ \mbox{\hyperlink{namespaceinstruction__set_a7c366784cebccd7fbfda77874d229462}{Syntax\+Type}} $>$ $>$ \mbox{\hyperlink{namespaceinstruction__set_a5e20a1ab57999f19806854d6ccceeedb}{instruction\+\_\+set\+::instruction\+\_\+syntax\+\_\+map}}
 \begin{DoxyCompactList}\small\item\em A map that associates instruction names with their expected syntax. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 

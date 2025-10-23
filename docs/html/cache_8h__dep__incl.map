@@ -1,4 +1,5 @@
 <map id="include/vm/cache/cache.h" name="include/vm/cache/cache.h">
-<area shape="rect" id="node1" title="File containing the cache class for the virtual machine." alt="" coords="5,5,196,32"/>
-<area shape="rect" id="node2" href="$cache_8cpp.html" title="File containing the implementation of the cache class for the virtual machine." alt="" coords="12,80,189,107"/>
+<area shape="rect" id="Node000001" title="File containing the cache class for the virtual machine." alt="" coords="5,5,196,31"/>
+<area shape="rect" id="Node000002" href="$cache_8cpp.html" title="File containing the implementation of the cache class for the virtual machine." alt="" coords="12,79,189,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="103,44,103,79,98,79,98,44"/>
 </map>

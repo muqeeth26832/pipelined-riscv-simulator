@@ -1,7 +1,11 @@
 <map id="include/assembler/lexer.h" name="include/assembler/lexer.h">
-<area shape="rect" id="node1" title="Contains the definition of the Lexer class." alt="" coords="117,5,305,32"/>
-<area shape="rect" id="node2" href="$tokens_8h.html" title="Contains the definition of the TokenType enum and the Token struct." alt="" coords="5,80,155,107"/>
-<area shape="rect" id="node4" title=" " alt="" coords="179,80,242,107"/>
-<area shape="rect" id="node5" title=" " alt="" coords="266,80,339,107"/>
-<area shape="rect" id="node3" title=" " alt="" coords="51,155,109,181"/>
+<area shape="rect" id="Node000001" title="Contains the definition of the Lexer class." alt="" coords="117,5,305,31"/>
+<area shape="rect" id="Node000002" href="$tokens_8h.html" title="Contains the definition of the TokenType enum and the Token struct." alt="" coords="5,79,155,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="191,33,114,74,112,70,188,28"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="179,79,242,104"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="213,31,213,65,208,65,208,31"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="266,79,339,104"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="227,29,279,68,275,72,224,33"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="51,152,109,177"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="83,104,83,138,77,138,77,104"/>
 </map>

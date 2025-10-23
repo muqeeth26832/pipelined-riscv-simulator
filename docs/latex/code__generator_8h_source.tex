@@ -1,0 +1,221 @@
+\doxysection{code\+\_\+generator.\+h}
+\hypertarget{code__generator_8h_source}{}\label{code__generator_8h_source}\index{include/assembler/code\_generator.h@{include/assembler/code\_generator.h}}
+\mbox{\hyperlink{code__generator_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#ifndef\ CODE\_GENERATOR\_H}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#define\ CODE\_GENERATOR\_H}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <array>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <cstdint>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <cstring>}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <iomanip>}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00025\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structICUnit}{ICUnit}}\ \{}
+\DoxyCodeLine{00026\ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structICUnit_a6d0abe84de5612ca74dc7ec11352a190}{line\_number}};\ }
+\DoxyCodeLine{00027\ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structICUnit_a081ce1e12c3d898aae2c2e42c75a8254}{instruction\_index}};\ }
+\DoxyCodeLine{00028\ \ \ std::array<char,\ 21>\ \mbox{\hyperlink{structICUnit_a713091fe83a24ddea9df6b0a8b0fdbda}{opcode}};\ \ }
+\DoxyCodeLine{00029\ \ \ std::array<char,\ 6>\ \mbox{\hyperlink{structICUnit_aa9aa05995849c6ac8cbe1d127d1f922e}{rd}};\ \ \ \ \ \ }
+\DoxyCodeLine{00030\ \ \ std::array<char,\ 6>\ \mbox{\hyperlink{structICUnit_a5cc64dcce86bb9c70403503ddd1e6978}{rs1}};\ \ \ \ \ }
+\DoxyCodeLine{00031\ \ \ std::array<char,\ 6>\ \mbox{\hyperlink{structICUnit_a65f2bf2a14c45bb210439ed02862232c}{rs2}};\ \ \ \ \ }
+\DoxyCodeLine{00032\ \ \ std::array<char,\ 6>\ \mbox{\hyperlink{structICUnit_a4fa54a29e2374eeb6204d4d36c3a198d}{rs3}};\ \ \ \ \ }
+\DoxyCodeLine{00033\ \ \ uint32\_t\ \mbox{\hyperlink{structICUnit_a0986ffbffc86ca1181658c030b070d2e}{csr}};\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00034\ \ \ std::array<char,\ 33>\ \mbox{\hyperlink{structICUnit_af49f5da98a756c635f14a0201dee9076}{imm}};\ \ \ \ \ }
+\DoxyCodeLine{00035\ \ \ std::string\ \mbox{\hyperlink{structICUnit_a921f316aff42a88dd124f88c1c9b0c4d}{label}};\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00036\ \ \ uint8\_t\ \mbox{\hyperlink{structICUnit_a1862ec48ba599365d6f38c5e0f69f84c}{rm}};\ \ \ \ \ \ \ }
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \mbox{\hyperlink{structICUnit_a4d709ebd2a3d1a0611f26b2ae8f7aae7}{ICUnit}}()\ :\ \mbox{\hyperlink{structICUnit_a6d0abe84de5612ca74dc7ec11352a190}{line\_number}}\{\},\ \mbox{\hyperlink{structICUnit_a713091fe83a24ddea9df6b0a8b0fdbda}{opcode}}\{\},\ \mbox{\hyperlink{structICUnit_aa9aa05995849c6ac8cbe1d127d1f922e}{rd}}\{\},\ \mbox{\hyperlink{structICUnit_a5cc64dcce86bb9c70403503ddd1e6978}{rs1}}\{\},\ \mbox{\hyperlink{structICUnit_a65f2bf2a14c45bb210439ed02862232c}{rs2}}\{\},\ \mbox{\hyperlink{structICUnit_a4fa54a29e2374eeb6204d4d36c3a198d}{rs3}}\{\},\ \mbox{\hyperlink{structICUnit_a0986ffbffc86ca1181658c030b070d2e}{csr}}\{\},\ \mbox{\hyperlink{structICUnit_af49f5da98a756c635f14a0201dee9076}{imm}}\{\},\ \mbox{\hyperlink{structICUnit_a921f316aff42a88dd124f88c1c9b0c4d}{label}}\{\},\ \mbox{\hyperlink{structICUnit_a1862ec48ba599365d6f38c5e0f69f84c}{rm}}\{\}\ \{}
+\DoxyCodeLine{00039\ \ \ \ \ \mbox{\hyperlink{structICUnit_a713091fe83a24ddea9df6b0a8b0fdbda}{opcode}}.fill(\textcolor{charliteral}{'\(\backslash\)0'});}
+\DoxyCodeLine{00040\ \ \ \ \ \mbox{\hyperlink{structICUnit_aa9aa05995849c6ac8cbe1d127d1f922e}{rd}}.fill(\textcolor{charliteral}{'\(\backslash\)0'});}
+\DoxyCodeLine{00041\ \ \ \ \ \mbox{\hyperlink{structICUnit_a5cc64dcce86bb9c70403503ddd1e6978}{rs1}}.fill(\textcolor{charliteral}{'\(\backslash\)0'});}
+\DoxyCodeLine{00042\ \ \ \ \ \mbox{\hyperlink{structICUnit_a65f2bf2a14c45bb210439ed02862232c}{rs2}}.fill(\textcolor{charliteral}{'\(\backslash\)0'});}
+\DoxyCodeLine{00043\ \ \ \ \ \mbox{\hyperlink{structICUnit_a4fa54a29e2374eeb6204d4d36c3a198d}{rs3}}.fill(\textcolor{charliteral}{'\(\backslash\)0'});}
+\DoxyCodeLine{00044\ \ \ \ \ \mbox{\hyperlink{structICUnit_af49f5da98a756c635f14a0201dee9076}{imm}}.fill(\textcolor{charliteral}{'\(\backslash\)0'});}
+\DoxyCodeLine{00045\ \ \ \}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \textcolor{keyword}{friend}\ std::ostream\ \&\mbox{\hyperlink{structICUnit_a9d2e519df0c4873ba6060117fb7cef67}{operator<<}}(std::ostream\ \&os,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structICUnit}{ICUnit}}\ \&unit)\ \{}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keyword}{auto}\ emit\_if\_filled\ =\ [\&os](\textcolor{keyword}{const}\ std::array<char,\ 6>\ \&field,}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \&first\_operand)\ \{}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (field[0]\ !=\ \textcolor{charliteral}{'\(\backslash\)0'})\ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ os\ <<\ (first\_operand\ ?\ \textcolor{stringliteral}{"{}\ "{}}\ :\ \textcolor{stringliteral}{"{},\ "{}})\ \ \ \ \ \ }
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ <<\ field.data();}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ first\_operand\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00055\ \ \ \ \ \};}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{comment}{//\ 1.\ line\ number\ +\ opcode}}
+\DoxyCodeLine{00058\ \ \ \ \ os\ }
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{comment}{//\ <<\ std::hex\ }}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{comment}{//\ \ \ \ <<\ unit.instruction\_index\ *\ 4}}
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{comment}{//\ \ \ \ <<\ std::setw(0)\ <<\ std::dec\ }}
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{comment}{//\ \ \ \ <<\ "{}:\ "{}\ }}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ <<\ unit.\mbox{\hyperlink{structICUnit_a713091fe83a24ddea9df6b0a8b0fdbda}{opcode}}.data();}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{comment}{//\ 2.\ operands}}
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keywordtype}{bool}\ first\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00067\ \ \ \ \ emit\_if\_filled(unit.\mbox{\hyperlink{structICUnit_aa9aa05995849c6ac8cbe1d127d1f922e}{rd}},\ \ first);}
+\DoxyCodeLine{00068\ \ \ \ \ emit\_if\_filled(unit.\mbox{\hyperlink{structICUnit_a5cc64dcce86bb9c70403503ddd1e6978}{rs1}},\ first);}
+\DoxyCodeLine{00069\ \ \ \ \ emit\_if\_filled(unit.\mbox{\hyperlink{structICUnit_a65f2bf2a14c45bb210439ed02862232c}{rs2}},\ first);}
+\DoxyCodeLine{00070\ \ \ \ \ emit\_if\_filled(unit.\mbox{\hyperlink{structICUnit_a4fa54a29e2374eeb6204d4d36c3a198d}{rs3}},\ first);}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{comment}{//\ 3.\ immediates\ (33‑byte\ array\ so\ treat\ separately)}}
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordflow}{if}\ (unit.\mbox{\hyperlink{structICUnit_af49f5da98a756c635f14a0201dee9076}{imm}}[0]\ !=\ \textcolor{charliteral}{'\(\backslash\)0'})\ \{}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ os\ <<\ (first\ ?\ \textcolor{stringliteral}{"{}\ "{}}\ :\ \textcolor{stringliteral}{"{},\ "{}})\ <<\ unit.\mbox{\hyperlink{structICUnit_af49f5da98a756c635f14a0201dee9076}{imm}}.data();}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ first\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00076\ \ \ \ \ \}}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{comment}{//\ 4.\ CSR\ (print\ only\ if\ non‑zero)}}
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keywordflow}{if}\ (unit.\mbox{\hyperlink{structICUnit_a0986ffbffc86ca1181658c030b070d2e}{csr}}\ !=\ 0)\ \{}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ std::ios\_base::fmtflags\ f(os.flags());\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ save\ stream\ flags}}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ os\ <<\ \textcolor{stringliteral}{"{}\ csr=0x"{}}\ <<\ std::hex\ <<\ unit.\mbox{\hyperlink{structICUnit_a0986ffbffc86ca1181658c030b070d2e}{csr}};\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ hex\ looks\ nicer}}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ os.flags(f);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ restore\ flags}}
+\DoxyCodeLine{00083\ \ \ \ \ \}}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{comment}{//\ 5.\ rounding\ mode\ (print\ only\ if\ non‑zero)}}
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keywordflow}{if}\ (unit.\mbox{\hyperlink{structICUnit_a1862ec48ba599365d6f38c5e0f69f84c}{rm}}\ !=\ 0)\ \{}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ os\ <<\ \textcolor{stringliteral}{"{}\ rm="{}}\ <<\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(unit.\mbox{\hyperlink{structICUnit_a1862ec48ba599365d6f38c5e0f69f84c}{rm}});}
+\DoxyCodeLine{00088\ \ \ \ \ \}}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{comment}{//\ 6.\ label\ (if\ any)\ —\ put\ at\ the\ end\ in\ angle\ brackets}}
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keywordflow}{if}\ (!unit.\mbox{\hyperlink{structICUnit_a921f316aff42a88dd124f88c1c9b0c4d}{label}}.empty())\ \{}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ os\ <<\ \textcolor{stringliteral}{"{}\ <"{}}\ <<\ unit.\mbox{\hyperlink{structICUnit_a921f316aff42a88dd124f88c1c9b0c4d}{label}}\ <<\ \textcolor{charliteral}{'>'};}
+\DoxyCodeLine{00093\ \ \ \ \ \}}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keywordflow}{return}\ os;}
+\DoxyCodeLine{00096\ \ \ \}}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{structICUnit_a422db7dc5ec05859dff23f857db9032c}{setLineNumber}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ value)\ \{}
+\DoxyCodeLine{00100\ \ \ \ \ \mbox{\hyperlink{structICUnit_a6d0abe84de5612ca74dc7ec11352a190}{line\_number}}\ =\ value;}
+\DoxyCodeLine{00101\ \ \ \}}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{structICUnit_a6636fb97fb7cabdd8fb198bca5ba1c25}{setInstructionIndex}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ value)\ \{}
+\DoxyCodeLine{00104\ \ \ \ \ \mbox{\hyperlink{structICUnit_a081ce1e12c3d898aae2c2e42c75a8254}{instruction\_index}}\ =\ value;}
+\DoxyCodeLine{00105\ \ \ \}}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{structICUnit_ad0edc47ffa9a7197a588ec02f01bf7c0}{setOpcode}}(\textcolor{keyword}{const}\ std::string\ \&value)\ \{}
+\DoxyCodeLine{00108\ \ \ \ \ strncpy(\mbox{\hyperlink{structICUnit_a713091fe83a24ddea9df6b0a8b0fdbda}{opcode}}.data(),\ value.c\_str(),\ 20);}
+\DoxyCodeLine{00109\ \ \ \ \ \mbox{\hyperlink{structICUnit_a713091fe83a24ddea9df6b0a8b0fdbda}{opcode}}[20]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{00110\ \ \ \}}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{structICUnit_a566ba9cecb196f02a2ca1b03236f3c13}{setRd}}(\textcolor{keyword}{const}\ std::string\ \&value)\ \{}
+\DoxyCodeLine{00113\ \ \ \ \ strncpy(\mbox{\hyperlink{structICUnit_aa9aa05995849c6ac8cbe1d127d1f922e}{rd}}.data(),\ value.c\_str(),\ 5);}
+\DoxyCodeLine{00114\ \ \ \ \ \mbox{\hyperlink{structICUnit_aa9aa05995849c6ac8cbe1d127d1f922e}{rd}}[5]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{00115\ \ \ \}}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{structICUnit_ac084bccd7290a3ba7990b90b91b149f7}{setRs1}}(\textcolor{keyword}{const}\ std::string\ \&value)\ \{}
+\DoxyCodeLine{00118\ \ \ \ \ strncpy(\mbox{\hyperlink{structICUnit_a5cc64dcce86bb9c70403503ddd1e6978}{rs1}}.data(),\ value.c\_str(),\ 5);}
+\DoxyCodeLine{00119\ \ \ \ \ \mbox{\hyperlink{structICUnit_a5cc64dcce86bb9c70403503ddd1e6978}{rs1}}[5]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{00120\ \ \ \}}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{structICUnit_a8bf533e866d8cf995a41530052598883}{setRs2}}(\textcolor{keyword}{const}\ std::string\ \&value)\ \{}
+\DoxyCodeLine{00123\ \ \ \ \ strncpy(\mbox{\hyperlink{structICUnit_a65f2bf2a14c45bb210439ed02862232c}{rs2}}.data(),\ value.c\_str(),\ 5);}
+\DoxyCodeLine{00124\ \ \ \ \ \mbox{\hyperlink{structICUnit_a65f2bf2a14c45bb210439ed02862232c}{rs2}}[5]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{00125\ \ \ \}}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00127\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{structICUnit_a4161046a12e2d38b90b88ecc19be8896}{setRs3}}(\textcolor{keyword}{const}\ std::string\ \&value)\ \{}
+\DoxyCodeLine{00128\ \ \ \ \ strncpy(\mbox{\hyperlink{structICUnit_a4fa54a29e2374eeb6204d4d36c3a198d}{rs3}}.data(),\ value.c\_str(),\ 5);}
+\DoxyCodeLine{00129\ \ \ \ \ \mbox{\hyperlink{structICUnit_a4fa54a29e2374eeb6204d4d36c3a198d}{rs3}}[5]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{00130\ \ \ \}}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00132\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{structICUnit_a1eafc9c926a02caeb618a9114f551f0b}{setCsr}}(uint32\_t\ value)\ \{}
+\DoxyCodeLine{00133\ \ \ \ \ \mbox{\hyperlink{structICUnit_a0986ffbffc86ca1181658c030b070d2e}{csr}}\ =\ value;}
+\DoxyCodeLine{00134\ \ \ \}}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00136\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{structICUnit_a1691a21f18ee3fedcf460a67f82a3099}{setImm}}(\textcolor{keyword}{const}\ std::string\ \&value)\ \{}
+\DoxyCodeLine{00137\ \ \ \ \ strncpy(\mbox{\hyperlink{structICUnit_af49f5da98a756c635f14a0201dee9076}{imm}}.data(),\ value.c\_str(),\ 32);}
+\DoxyCodeLine{00138\ \ \ \ \ \mbox{\hyperlink{structICUnit_af49f5da98a756c635f14a0201dee9076}{imm}}[32]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{00139\ \ \ \}}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00141\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{structICUnit_a91d304043cc6b35beba02b90704101dc}{setLabel}}(\textcolor{keyword}{const}\ std::string\ \&value)\ \{}
+\DoxyCodeLine{00142\ \ \ \ \ \mbox{\hyperlink{structICUnit_a921f316aff42a88dd124f88c1c9b0c4d}{label}}\ =\ value;}
+\DoxyCodeLine{00143\ \ \ \}}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00145\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{structICUnit_a964fe26dccc9c4088774a66a2de5ec05}{setRm}}(uint8\_t\ value)\ \{}
+\DoxyCodeLine{00146\ \ \ \ \ \mbox{\hyperlink{structICUnit_a1862ec48ba599365d6f38c5e0f69f84c}{rm}}\ =\ value;}
+\DoxyCodeLine{00147\ \ \ \}}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00149\ \ \ [[nodiscard]]\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structICUnit_aa90e09cadd85f9e91d0f365b9d991a49}{getLineNumber}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00150\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structICUnit_a6d0abe84de5612ca74dc7ec11352a190}{line\_number}};}
+\DoxyCodeLine{00151\ \ \ \}}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00153\ \ \ [[nodiscard]]\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structICUnit_a83e2b707b35e48f75f123b32e6cb15fb}{getInstructionIndex}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00154\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structICUnit_a081ce1e12c3d898aae2c2e42c75a8254}{instruction\_index}};}
+\DoxyCodeLine{00155\ \ \ \}}
+\DoxyCodeLine{00156\ }
+\DoxyCodeLine{00157\ \ \ [[nodiscard]]\ std::string\ \mbox{\hyperlink{structICUnit_adb5ed326c13be41d0ed272878ee7f261}{getOpcode}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00158\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structICUnit_a713091fe83a24ddea9df6b0a8b0fdbda}{opcode}}.data();}
+\DoxyCodeLine{00159\ \ \ \}}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00161\ \ \ [[nodiscard]]\ std::string\ \mbox{\hyperlink{structICUnit_a21974b7d3094b23d555327a06106320f}{getRd}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00162\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structICUnit_aa9aa05995849c6ac8cbe1d127d1f922e}{rd}}.data();}
+\DoxyCodeLine{00163\ \ \ \}}
+\DoxyCodeLine{00164\ }
+\DoxyCodeLine{00165\ \ \ [[nodiscard]]\ std::string\ \mbox{\hyperlink{structICUnit_aca70c5bd0f84b5a76f4b8ea54d8a5142}{getRs1}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00166\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structICUnit_a5cc64dcce86bb9c70403503ddd1e6978}{rs1}}.data();}
+\DoxyCodeLine{00167\ \ \ \}}
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00169\ \ \ [[nodiscard]]\ std::string\ \mbox{\hyperlink{structICUnit_af81c7a33972a78b4c84e5f87a002f519}{getRs2}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00170\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structICUnit_a65f2bf2a14c45bb210439ed02862232c}{rs2}}.data();}
+\DoxyCodeLine{00171\ \ \ \}}
+\DoxyCodeLine{00172\ }
+\DoxyCodeLine{00173\ \ \ [[nodiscard]]\ std::string\ \mbox{\hyperlink{structICUnit_acd6d068cf95577e4a2b13fc5c15f5912}{getRs3}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00174\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structICUnit_a4fa54a29e2374eeb6204d4d36c3a198d}{rs3}}.data();}
+\DoxyCodeLine{00175\ \ \ \}}
+\DoxyCodeLine{00176\ }
+\DoxyCodeLine{00177\ \ \ [[nodiscard]]\ uint32\_t\ \mbox{\hyperlink{structICUnit_a5712a8ffe1abc00cf9ac290ff449e528}{getCsr}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00178\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structICUnit_a0986ffbffc86ca1181658c030b070d2e}{csr}};}
+\DoxyCodeLine{00179\ \ \ \}}
+\DoxyCodeLine{00180\ }
+\DoxyCodeLine{00181\ \ \ [[nodiscard]]\ std::string\ \mbox{\hyperlink{structICUnit_a6c90684f9efa240a24612c7e73166acb}{getImm}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00182\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structICUnit_af49f5da98a756c635f14a0201dee9076}{imm}}.data();}
+\DoxyCodeLine{00183\ \ \ \}}
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00185\ \ \ [[nodiscard]]\ std::string\ \mbox{\hyperlink{structICUnit_a48541c71a4005599181fa9ec022551f4}{getLabel}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00186\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structICUnit_a921f316aff42a88dd124f88c1c9b0c4d}{label}};}
+\DoxyCodeLine{00187\ \ \ \}}
+\DoxyCodeLine{00188\ }
+\DoxyCodeLine{00189\ \ \ [[nodiscard]]\ uint8\_t\ \mbox{\hyperlink{structICUnit_ab07219f827335b338905e555b5a05263}{getRm}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00190\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structICUnit_a1862ec48ba599365d6f38c5e0f69f84c}{rm}};}
+\DoxyCodeLine{00191\ \ \ \}}
+\DoxyCodeLine{00192\ \};}
+\DoxyCodeLine{00193\ }
+\DoxyCodeLine{00194\ \textcolor{comment}{//\ TODO:\ use\ uint32\_t\ instead\ of\ std::bitset<32>}}
+\DoxyCodeLine{00195\ }
+\DoxyCodeLine{00202\ std::vector<std::string>\ \mbox{\hyperlink{code__generator_8h_a0085d7cbc5d3f2f6bf609c67df923b8a}{printIntermediateCode}}(\textcolor{keyword}{const}\ std::vector<std::pair<ICUnit,\ bool>>\ \&IntermediateCode);}
+\DoxyCodeLine{00203\ }
+\DoxyCodeLine{00210\ uint32\_t\ \mbox{\hyperlink{code__generator_8h_ae2f66c19cde80bc9fc71361fe77b3f00}{generateRTypeMachineCode}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structICUnit}{ICUnit}}\ \&block);}
+\DoxyCodeLine{00211\ }
+\DoxyCodeLine{00218\ uint32\_t\ \mbox{\hyperlink{code__generator_8h_a33872fd00aeb2c4854301c2359183d41}{generateI1TypeMachineCode}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structICUnit}{ICUnit}}\ \&block);}
+\DoxyCodeLine{00219\ }
+\DoxyCodeLine{00226\ uint32\_t\ \mbox{\hyperlink{code__generator_8h_af4bdbd7df647e1570161f55e57efb5f9}{generateI2TypeMachineCode}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structICUnit}{ICUnit}}\ \&block);}
+\DoxyCodeLine{00227\ }
+\DoxyCodeLine{00234\ uint32\_t\ \mbox{\hyperlink{code__generator_8h_ac649c0340f846ca6b6397eccfa8e63d7}{generateI3TypeMachineCode}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structICUnit}{ICUnit}}\ \&block);}
+\DoxyCodeLine{00235\ }
+\DoxyCodeLine{00242\ uint32\_t\ \mbox{\hyperlink{code__generator_8h_a6e338288e3a9f58755f65ea74598fee1}{generateSTypeMachineCode}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structICUnit}{ICUnit}}\ \&block);}
+\DoxyCodeLine{00243\ }
+\DoxyCodeLine{00250\ uint32\_t\ \mbox{\hyperlink{code__generator_8h_a4d81b6f02d549e52c8d94d9ec42a6693}{generateBTypeMachineCode}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structICUnit}{ICUnit}}\ \&block);}
+\DoxyCodeLine{00251\ }
+\DoxyCodeLine{00258\ uint32\_t\ \mbox{\hyperlink{code__generator_8h_a35e8e9da9a7ad0efdd00d1dad39024aa}{generateUTypeMachineCode}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structICUnit}{ICUnit}}\ \&block);}
+\DoxyCodeLine{00259\ }
+\DoxyCodeLine{00266\ uint32\_t\ \mbox{\hyperlink{code__generator_8h_a088dd6d34e9ab61e47387668051ed29d}{generateJTypeMachineCode}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structICUnit}{ICUnit}}\ \&block);}
+\DoxyCodeLine{00267\ }
+\DoxyCodeLine{00268\ uint32\_t\ \mbox{\hyperlink{code__generator_8h_a0a624ae61d0c71c3223900cd9b6b22c0}{generateCSRRTypeMachineCode}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structICUnit}{ICUnit}}\ \&block);}
+\DoxyCodeLine{00269\ uint32\_t\ \mbox{\hyperlink{code__generator_8h_a87c6114dd098c78db991c97a9a06d5bf}{generateCSRITypeMachineCode}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structICUnit}{ICUnit}}\ \&block);}
+\DoxyCodeLine{00270\ }
+\DoxyCodeLine{00271\ uint32\_t\ \mbox{\hyperlink{code__generator_8h_a868bed6e507a3a1255a3767b6cd33c88}{generateFDRTypeMachineCode}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structICUnit}{ICUnit}}\ \&block);}
+\DoxyCodeLine{00272\ uint32\_t\ \mbox{\hyperlink{code__generator_8h_a8d546c09d03f4ce95067f74f563e8a8c}{generateFDR1TypeMachineCode}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structICUnit}{ICUnit}}\ \&block);}
+\DoxyCodeLine{00273\ uint32\_t\ \mbox{\hyperlink{code__generator_8h_a65f8a813d8a8fe2136f6756315e882bf}{generateFDR2TypeMachineCode}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structICUnit}{ICUnit}}\ \&block);}
+\DoxyCodeLine{00274\ uint32\_t\ \mbox{\hyperlink{code__generator_8h_ab1e34732bad346700526196030dcd36c}{generateFDR3TypeMachineCode}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structICUnit}{ICUnit}}\ \&block);}
+\DoxyCodeLine{00275\ uint32\_t\ \mbox{\hyperlink{code__generator_8h_a3d9c2799a503820dc9d97ec036b53850}{generateFDR4TypeMachineCode}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structICUnit}{ICUnit}}\ \&block);}
+\DoxyCodeLine{00276\ uint32\_t\ \mbox{\hyperlink{code__generator_8h_a0d3eb18aa6888165eb840a1a79e29b8f}{generateFDITypeMachineCode}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structICUnit}{ICUnit}}\ \&block);}
+\DoxyCodeLine{00277\ uint32\_t\ \mbox{\hyperlink{code__generator_8h_a5a3cbdf4cb88ec1982133d7de248e258}{generateFDSTypeMachineCode}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structICUnit}{ICUnit}}\ \&block);}
+\DoxyCodeLine{00278\ }
+\DoxyCodeLine{00285\ std::vector<uint32\_t>\ \mbox{\hyperlink{code__generator_8h_a9cbbd009b9bb3039a391dfd8ae060ccf}{generateMachineCode}}(\textcolor{keyword}{const}\ std::vector<std::pair<ICUnit,\ bool>>\ \&IntermediateCode);}
+\DoxyCodeLine{00286\ }
+\DoxyCodeLine{00287\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ CODE\_GENERATOR\_H}}
+
+\end{DoxyCode}

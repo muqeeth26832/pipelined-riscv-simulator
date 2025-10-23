@@ -1,0 +1,46 @@
+\doxysection{elf\+\_\+util.\+h}
+\hypertarget{elf__util_8h_source}{}\label{elf__util_8h_source}\index{include/assembler/elf\_util.h@{include/assembler/elf\_util.h}}
+\mbox{\hyperlink{elf__util_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#ifndef\ ELF\_UTIL\_H}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#define\ ELF\_UTIL\_H}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{vm__asm__mw_8h}{vm\_asm\_mw.h}}"{}}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structElfHeader}{ElfHeader}}\ \{}
+\DoxyCodeLine{00013\ \ \ uint8\_t\ \mbox{\hyperlink{structElfHeader_a650dc60b3a73789b8997c62a9d21e3a5}{e\_ident}}[16]\ =\ \{0x7F,\ \textcolor{charliteral}{'E'},\ \textcolor{charliteral}{'L'},\ \textcolor{charliteral}{'F'},\ 1,\ 1,\ 1,\ 0\};\ \textcolor{comment}{//\ ELF\ magic\ number}}
+\DoxyCodeLine{00014\ \ \ uint16\_t\ \mbox{\hyperlink{structElfHeader_a58f491270901b46727aff3e315071423}{e\_type}}\ =\ 2;\ \ \ \ \ \ \ \ \textcolor{comment}{//\ Executable\ file}}
+\DoxyCodeLine{00015\ \ \ uint16\_t\ \mbox{\hyperlink{structElfHeader_a723805c1a7c167ed9003f40a81ff831c}{e\_machine}}\ =\ 0xF3;\ \ \textcolor{comment}{//\ RISC-\/V}}
+\DoxyCodeLine{00016\ \ \ uint32\_t\ \mbox{\hyperlink{structElfHeader_a78d14c167a3d013acceca6d996b10e16}{e\_version}}\ =\ 1;}
+\DoxyCodeLine{00017\ \ \ uint32\_t\ \mbox{\hyperlink{structElfHeader_a8d3a755b249b682cacb47e2c5f702d37}{e\_entry}}\ =\ 0x1000;\ \ \textcolor{comment}{//\ Entry\ point\ (adjust\ later)}}
+\DoxyCodeLine{00018\ \ \ uint32\_t\ \mbox{\hyperlink{structElfHeader_a789b2a155fe63966c1fe15aaedb36e5e}{e\_phoff}}\ =\ 0;\ \ \ \ \ \ \ \textcolor{comment}{//\ No\ program\ headers\ for\ now}}
+\DoxyCodeLine{00019\ \ \ uint32\_t\ \mbox{\hyperlink{structElfHeader_abc9abac95d85371adbab2d108aba7616}{e\_shoff}}\ =\ 0;\ \ \ \ \ \ \ \textcolor{comment}{//\ Section\ headers\ offset\ (to\ be\ calculated)}}
+\DoxyCodeLine{00020\ \ \ uint32\_t\ \mbox{\hyperlink{structElfHeader_aef4b3cce285534bbea3f0a932fa11cad}{e\_flags}}\ =\ 0;\ \ \ \ \ \ \ \textcolor{comment}{//\ Architecture-\/specific\ flags}}
+\DoxyCodeLine{00021\ \ \ uint16\_t\ \mbox{\hyperlink{structElfHeader_a1b3180882685618f86dee1e90a257c7c}{e\_ehsize}}\ =\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{structElfHeader}{ElfHeader}});}
+\DoxyCodeLine{00022\ \ \ uint16\_t\ \mbox{\hyperlink{structElfHeader_a771b9fed63ef520138f0147b307d7663}{e\_phentsize}}\ =\ 0;}
+\DoxyCodeLine{00023\ \ \ uint16\_t\ \mbox{\hyperlink{structElfHeader_a1c8a3de19f30fd90ff4a050473545191}{e\_phnum}}\ =\ 0;}
+\DoxyCodeLine{00024\ \ \ uint16\_t\ \mbox{\hyperlink{structElfHeader_a1f5b0217dadf345c8cc3dab065f78f9d}{e\_shentsize}}\ =\ 40;\ \ \textcolor{comment}{//\ Section\ header\ entry\ size}}
+\DoxyCodeLine{00025\ \ \ uint16\_t\ \mbox{\hyperlink{structElfHeader_a157caa2141ae7e83d2e074c7a2e3ee50}{e\_shnum}}\ =\ 3;\ \ \ \ \ \ \ \textcolor{comment}{//\ Number\ of\ sections}}
+\DoxyCodeLine{00026\ \ \ uint16\_t\ \mbox{\hyperlink{structElfHeader_a0ab5fe75ba257ff7454175f8ba8617ef}{e\_shstrndx}}\ =\ 2;\ \ \ \ \textcolor{comment}{//\ Section\ header\ string\ table\ index}}
+\DoxyCodeLine{00027\ \};}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structElfSectionHeader}{ElfSectionHeader}}\ \{}
+\DoxyCodeLine{00030\ \ \ uint32\_t\ \mbox{\hyperlink{structElfSectionHeader_aba858bec97a385159f47ed421e3f2a0a}{sh\_name}};\ \ \ \ \ \ \textcolor{comment}{//\ Index\ into\ string\ table}}
+\DoxyCodeLine{00031\ \ \ uint32\_t\ \mbox{\hyperlink{structElfSectionHeader_a2d37c2c6240268f26236410233a31247}{sh\_type}};\ \ \ \ \ \ \textcolor{comment}{//\ Section\ type\ (e.g.,\ SHT\_PROGBITS)}}
+\DoxyCodeLine{00032\ \ \ uint32\_t\ \mbox{\hyperlink{structElfSectionHeader_ab7a1e6c118c1ce0752120ba9d0449f3c}{sh\_flags}};\ \ \ \ \ \textcolor{comment}{//\ Flags\ (e.g.,\ executable,\ writable)}}
+\DoxyCodeLine{00033\ \ \ uint32\_t\ \mbox{\hyperlink{structElfSectionHeader_ad5d88153c5f6bf428f925f5aafb285e7}{sh\_addr}};\ \ \ \ \ \ \textcolor{comment}{//\ Memory\ address\ (for\ executables)}}
+\DoxyCodeLine{00034\ \ \ uint32\_t\ \mbox{\hyperlink{structElfSectionHeader_a55220a72daa59c1a4f6115da600c0246}{sh\_offset}};\ \ \ \ \textcolor{comment}{//\ Offset\ in\ ELF\ file}}
+\DoxyCodeLine{00035\ \ \ uint32\_t\ \mbox{\hyperlink{structElfSectionHeader_ae596297e82c312af2840926abc58462c}{sh\_size}};\ \ \ \ \ \ \textcolor{comment}{//\ Section\ size}}
+\DoxyCodeLine{00036\ \ \ uint32\_t\ \mbox{\hyperlink{structElfSectionHeader_afebe046f2258be1385e3ea6ff7f7d0a2}{sh\_link}};}
+\DoxyCodeLine{00037\ \ \ uint32\_t\ \mbox{\hyperlink{structElfSectionHeader_a9c689202b2e4c96175764ba0ae8967f7}{sh\_info}};}
+\DoxyCodeLine{00038\ \ \ uint32\_t\ \mbox{\hyperlink{structElfSectionHeader_aa3aefd99c8400c4e08dbe9e45e981ca4}{sh\_addralign}};\ \textcolor{comment}{//\ Alignment\ requirements}}
+\DoxyCodeLine{00039\ \ \ uint32\_t\ \mbox{\hyperlink{structElfSectionHeader_a1e6e43a4f102b2702f69a4db18c38fd4}{sh\_entsize}};\ \ \ \textcolor{comment}{//\ Entry\ size\ for\ symbol\ tables}}
+\DoxyCodeLine{00040\ \};}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{elf__util_8h_a3a3ddea539457c8134e9322a6d89cc29}{generateElfFile}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structAssembledProgram}{AssembledProgram}}\ \&program,\ \textcolor{keyword}{const}\ std::string\ \&output\_filename);}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ ELF\_UTIL\_H}}
+
+\end{DoxyCode}

@@ -1,23 +1,48 @@
 <map id="include/vm/main_memory.h" name="include/vm/main_memory.h">
-<area shape="rect" id="node1" title="Contains the definition of the MemoryBlock and Memory classes." alt="" coords="1991,5,2193,32"/>
-<area shape="rect" id="node2" href="$memory__controller_8h.html" title="Contains the declaration of the MemoryController class for managing memory in the VM." alt="" coords="1858,80,2091,107"/>
-<area shape="rect" id="node21" href="$main__memory_8cpp.html" title="Contains the implementation of the Memory class." alt="" coords="2115,80,2306,107"/>
-<area shape="rect" id="node3" href="$vm__base_8h.html" title="File containing the base class for the virtual machine." alt="" coords="1781,155,1950,181"/>
-<area shape="rect" id="node20" href="$memory__controller_8cpp.html" title="Contains the implementation of the MemoryController class for managing memory in the VM." alt="" coords="1974,155,2194,181"/>
-<area shape="rect" id="node4" href="$utils_8h.html" title="Contains utility functions for file I/O and string manipulation." alt="" coords="789,229,902,256"/>
-<area shape="rect" id="node14" href="$rvss__vm_8h.html" title="RVSS VM definition." alt="" coords="1699,229,1895,256"/>
-<area shape="rect" id="node17" href="$vm__runner_8h.html" title="This file contains the declaration of the VMRunner class." alt="" coords="1995,311,2149,338"/>
-<area shape="rect" id="node19" href="$vm__base_8cpp.html" title="File containing the base class for the virtual machine." alt="" coords="1971,229,2127,256"/>
-<area shape="rect" id="node5" href="$assembler_8cpp.html" title=" " alt="" coords="628,311,839,338"/>
-<area shape="rect" id="node6" href="$csr__formats_8cpp.html" title=" " alt="" coords="863,304,1051,345"/>
-<area shape="rect" id="node7" href="$f__d__formats_8cpp.html" title=" " alt="" coords="1076,304,1265,345"/>
-<area shape="rect" id="node8" href="$i__m__formats_8cpp.html" title=" " alt="" coords="1290,304,1483,345"/>
-<area shape="rect" id="node9" href="$pseudo__formats_8cpp.html" title=" " alt="" coords="5,304,221,345"/>
-<area shape="rect" id="node10" href="$parser_8cpp.html" title="Contains the implementation of the Parser class for parsing tokens and generating intermediate code." alt="" coords="245,311,429,338"/>
-<area shape="rect" id="node11" href="$main_8cpp.html" title=" " alt="" coords="1665,393,1770,420"/>
-<area shape="rect" id="node12" href="$utils_8cpp.html" title="Contains utility functions for the VM." alt="" coords="505,311,605,338"/>
-<area shape="rect" id="node13" href="$rvss__vm_8cpp.html" title="RVSS VM implementation." alt="" coords="1507,311,1690,338"/>
-<area shape="rect" id="node15" href="$command__handler_8h.html" title=" " alt="" coords="1765,311,1971,338"/>
-<area shape="rect" id="node16" href="$command__handler_8cpp.html" title=" " alt="" coords="1795,393,1987,420"/>
-<area shape="rect" id="node18" href="$vm__runner_8cpp.html" title="This file contains the implementation of the VMRunner class." alt="" coords="2011,393,2152,420"/>
+<area shape="rect" id="Node000001" title="Contains the definition of the MemoryBlock and Memory classes." alt="" coords="1991,5,2193,31"/>
+<area shape="rect" id="Node000002" href="$memory__controller_8h.html" title="Contains the declaration of the MemoryController class for managing memory in the VM." alt="" coords="1858,79,2091,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="2063,40,1995,81,1992,76,2060,35"/>
+<area shape="rect" id="Node000021" href="$main__memory_8cpp.html" title="Contains the implementation of the Memory class." alt="" coords="2115,79,2306,104"/>
+<area shape="poly" id="edge25_Node000001_Node000021" title=" " alt="" coords="2124,35,2193,76,2190,81,2122,40"/>
+<area shape="rect" id="Node000003" href="$vm__base_8h.html" title="File containing the base class for the virtual machine." alt="" coords="1781,152,1950,177"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="1947,114,1885,154,1882,150,1944,109"/>
+<area shape="rect" id="Node000020" href="$memory__controller_8cpp.html" title="Contains the implementation of the MemoryController class for managing memory in the VM." alt="" coords="1974,152,2194,177"/>
+<area shape="poly" id="edge24_Node000002_Node000020" title=" " alt="" coords="2005,109,2068,150,2065,154,2002,114"/>
+<area shape="rect" id="Node000004" href="$utils_8h.html" title="Contains utility functions for file I/O and string manipulation." alt="" coords="789,225,902,251"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="1767,175,903,235,902,230,1767,170"/>
+<area shape="rect" id="Node000014" href="$rvss__vm_8h.html" title="RVSS VM definition." alt="" coords="1699,225,1895,251"/>
+<area shape="poly" id="edge13_Node000003_Node000014" title=" " alt="" coords="1847,189,1810,227,1806,223,1843,185"/>
+<area shape="rect" id="Node000017" href="$vm__runner_8h.html" title="This file contains the declaration of the VMRunner class." alt="" coords="1995,306,2149,331"/>
+<area shape="poly" id="edge22_Node000003_Node000017" title=" " alt="" coords="1888,185,1921,216,1960,249,2008,280,2051,304,2048,308,2005,284,1957,253,1918,220,1884,189"/>
+<area shape="rect" id="Node000019" href="$vm__base_8cpp.html" title="File containing the base class for the virtual machine." alt="" coords="1971,225,2127,251"/>
+<area shape="poly" id="edge23_Node000003_Node000019" title=" " alt="" coords="1909,180,2020,223,2018,228,1907,185"/>
+<area shape="rect" id="Node000005" href="$assembler_8cpp.html" title=" " alt="" coords="628,306,839,331"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="819,261,751,308,748,304,816,257"/>
+<area shape="rect" id="Node000006" href="$csr__formats_8cpp.html" title=" " alt="" coords="863,299,1051,339"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="875,256,932,296,929,301,872,261"/>
+<area shape="rect" id="Node000007" href="$f__d__formats_8cpp.html" title=" " alt="" coords="1076,299,1265,339"/>
+<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="906,251,1093,296,1092,301,905,256"/>
+<area shape="rect" id="Node000008" href="$i__m__formats_8cpp.html" title=" " alt="" coords="1290,299,1483,339"/>
+<area shape="poly" id="edge7_Node000004_Node000008" title=" " alt="" coords="916,246,1278,296,1290,298,1289,303,1277,301,915,251"/>
+<area shape="rect" id="Node000009" href="$pseudo__formats_8cpp.html" title=" " alt="" coords="5,299,221,339"/>
+<area shape="poly" id="edge8_Node000004_Node000009" title=" " alt="" coords="775,247,535,269,234,301,222,303,222,298,233,296,535,263,775,242"/>
+<area shape="rect" id="Node000010" href="$parser_8cpp.html" title="Contains the implementation of the Parser class for parsing tokens and generating intermediate code." alt="" coords="245,306,429,331"/>
+<area shape="poly" id="edge9_Node000004_Node000010" title=" " alt="" coords="775,252,448,301,404,309,403,303,448,296,774,247"/>
+<area shape="rect" id="Node000011" href="$main_8cpp.html" title=" " alt="" coords="1665,387,1770,412"/>
+<area shape="poly" id="edge10_Node000004_Node000011" title=" " alt="" coords="775,241,666,244,608,249,555,258,512,270,485,287,478,297,477,309,482,322,494,337,510,344,545,351,660,363,1007,381,1390,391,1664,395,1664,400,1390,396,1007,386,660,368,544,356,509,349,490,341,478,324,472,309,473,296,481,284,510,266,554,253,608,244,666,239,775,236"/>
+<area shape="rect" id="Node000012" href="$utils_8cpp.html" title="Contains utility functions for the VM." alt="" coords="505,306,605,331"/>
+<area shape="poly" id="edge11_Node000004_Node000012" title=" " alt="" coords="787,257,617,301,592,308,591,303,615,296,785,251"/>
+<area shape="rect" id="Node000013" href="$rvss__vm_8cpp.html" title="RVSS VM implementation." alt="" coords="1507,306,1690,331"/>
+<area shape="poly" id="edge12_Node000004_Node000013" title=" " alt="" coords="916,241,1172,261,1333,277,1495,296,1541,303,1540,309,1494,301,1332,282,1171,266,916,246"/>
+<area shape="poly" id="edge20_Node000014_Node000011" title=" " alt="" coords="1781,263,1756,300,1735,348,1723,387,1718,386,1730,346,1751,297,1776,260"/>
+<area shape="poly" id="edge21_Node000014_Node000013" title=" " alt="" coords="1757,258,1629,308,1627,303,1755,253"/>
+<area shape="rect" id="Node000015" href="$command__handler_8h.html" title=" " alt="" coords="1765,306,1971,331"/>
+<area shape="poly" id="edge14_Node000014_Node000015" title=" " alt="" coords="1819,259,1860,304,1856,308,1815,263"/>
+<area shape="poly" id="edge17_Node000014_Node000017" title=" " alt="" coords="1851,252,2033,303,2031,309,1849,257"/>
+<area shape="poly" id="edge16_Node000015_Node000011" title=" " alt="" coords="1835,340,1741,389,1738,384,1833,335"/>
+<area shape="rect" id="Node000016" href="$command__handler_8cpp.html" title=" " alt="" coords="1795,387,1987,412"/>
+<area shape="poly" id="edge15_Node000015_Node000016" title=" " alt="" coords="1878,344,1890,386,1885,387,1873,345"/>
+<area shape="poly" id="edge18_Node000017_Node000011" title=" " alt="" coords="2008,337,1770,389,1768,384,2007,332"/>
+<area shape="rect" id="Node000018" href="$vm__runner_8cpp.html" title="This file contains the implementation of the VMRunner class." alt="" coords="2011,387,2152,412"/>
+<area shape="poly" id="edge19_Node000017_Node000018" title=" " alt="" coords="2078,345,2083,386,2077,387,2072,345"/>
 </map>

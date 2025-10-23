@@ -1,3 +1,7 @@
+\chapter{Commands}
+\hypertarget{md_COMMANDS}{}\label{md_COMMANDS}\index{Commands@{Commands}}
+\label{md_COMMANDS_autotoc_md0}%
+\Hypertarget{md_COMMANDS_autotoc_md0}%
 
 \begin{DoxyItemize}
 \item {\ttfamily load} or {\ttfamily l}\+: {\ttfamily Absolute File\+Path} ~\newline
@@ -50,12 +54,12 @@
 \item Modifies the internal configuration by setting the specified key in the given section to the provided value.
 \item {\ttfamily Execution}
 \begin{DoxyItemize}
-\item {\ttfamily processor\+\_\+type} (string) \+: {\ttfamily single\+\_\+stage} $\vert$ {\ttfamily multi\+\_\+stage} ~\newline
+\item {\ttfamily processor\+\_\+type} (string) \+: {\ttfamily single\+\_\+stage} \texorpdfstring{$\vert$}{|} {\ttfamily multi\+\_\+stage} ~\newline
 
-\item {\ttfamily run\+\_\+step\+\_\+delay} (unsigned int) \+: milliseconds ~\newline
-
+\item {\ttfamily run\+\_\+step\+\_\+delay} (unsigned int) \+: milliseconds
+\item {\ttfamily instruction\+\_\+execution\+\_\+limit} (unsigned int) \+: Specifies the number of instruction to run on one use of {\ttfamily run} button. Set to {\ttfamily 0} for no limit.
 \end{DoxyItemize}
-\item {\ttfamily \mbox{\hyperlink{classMemory}{Memory}}}
+\item {\ttfamily \doxylink{classMemory}{Memory}}
 \begin{DoxyItemize}
 \item {\ttfamily memory\+\_\+size} (unsigned int) \+: bytes
 \item {\ttfamily memory\+\_\+block\+\_\+size} (unsigned int) \+: bytes ~\newline

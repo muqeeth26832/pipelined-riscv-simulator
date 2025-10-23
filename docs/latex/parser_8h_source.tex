@@ -1,0 +1,148 @@
+\doxysection{parser.\+h}
+\hypertarget{parser_8h_source}{}\label{parser_8h_source}\index{include/assembler/parser.h@{include/assembler/parser.h}}
+\mbox{\hyperlink{parser_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#ifndef\ PARSER\_H}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#define\ PARSER\_H}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{tokens_8h}{assembler/tokens.h}}"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{code__generator_8h}{assembler/code\_generator.h}}"{}}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{errors_8h}{assembler/errors.h}}"{}}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <map>}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ <variant>}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00023\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structParseError}{ParseError}}\ \{}
+\DoxyCodeLine{00024\ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structParseError_a555bb159e539823c3a02804d1e5cbc6a}{line}};\ }
+\DoxyCodeLine{00025\ \ \ std::string\ \mbox{\hyperlink{structParseError_afe0253424394e0b21fa5c46562d3e2a5}{message}};\ }
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00032\ \ \ \mbox{\hyperlink{structParseError_a8499ab54866be7b16689680bbecf74c6}{ParseError}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structParseError_a555bb159e539823c3a02804d1e5cbc6a}{line}},\ std::string\ \mbox{\hyperlink{structParseError_afe0253424394e0b21fa5c46562d3e2a5}{message}})\ :\ \mbox{\hyperlink{structParseError_a555bb159e539823c3a02804d1e5cbc6a}{line}}(\mbox{\hyperlink{structParseError_a555bb159e539823c3a02804d1e5cbc6a}{line}}),\ \mbox{\hyperlink{structParseError_afe0253424394e0b21fa5c46562d3e2a5}{message}}(std::move(\mbox{\hyperlink{structParseError_afe0253424394e0b21fa5c46562d3e2a5}{message}}))\ \{\}}
+\DoxyCodeLine{00033\ \};}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00038\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structErrorTracker}{ErrorTracker}}\ \{}
+\DoxyCodeLine{00039\ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structErrorTracker_aa39e370c57a97c31cddfc4fb3193297e}{count}}\ =\ 0;\ }
+\DoxyCodeLine{00040\ \ \ std::vector<ParseError>\ \mbox{\hyperlink{structErrorTracker_a06c0ef1d1a2e8062c085e89a57989264}{parse\_errors}};\ }
+\DoxyCodeLine{00041\ \ \ std::vector<std::variant<}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \mbox{\hyperlink{structerrors_1_1SyntaxError}{errors::SyntaxError}},}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \mbox{\hyperlink{structerrors_1_1UnexpectedTokenError}{errors::UnexpectedTokenError}},}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \mbox{\hyperlink{structerrors_1_1ImmediateOutOfRangeError}{errors::ImmediateOutOfRangeError}},}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \mbox{\hyperlink{structerrors_1_1MisalignedImmediateError}{errors::MisalignedImmediateError}},}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \mbox{\hyperlink{structerrors_1_1UnexpectedOperandError}{errors::UnexpectedOperandError}},}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \mbox{\hyperlink{structerrors_1_1InvalidLabelRefError}{errors::InvalidLabelRefError}},}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \mbox{\hyperlink{structerrors_1_1LabelRedefinitionError}{errors::LabelRedefinitionError}},}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \mbox{\hyperlink{structerrors_1_1InvalidRegisterError}{errors::InvalidRegisterError}}}
+\DoxyCodeLine{00050\ \ \ >>\ \mbox{\hyperlink{structErrorTracker_a9ffa4ad5d07456b9bf7964d406ff629a}{all\_errors}};\ }
+\DoxyCodeLine{00051\ \};}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00056\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structSymbolData}{SymbolData}}\ \{}
+\DoxyCodeLine{00057\ \ \ uint64\_t\ \mbox{\hyperlink{structSymbolData_a26a4b0f4198366f718e3d988d38cdd8e}{address}};\ }
+\DoxyCodeLine{00058\ \ \ uint64\_t\ \mbox{\hyperlink{structSymbolData_ad5f4c3e16ba8d0eb99442cdf053111d7}{line\_number}};\ }
+\DoxyCodeLine{00059\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structSymbolData_a492cfec3ac0ddfa948d5697d461b2d7b}{isData}};\ }
+\DoxyCodeLine{00060\ \};}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00065\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classParser}{Parser}}\ \{}
+\DoxyCodeLine{00066\ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00067\ \ \ std::string\ filename\_;\ }
+\DoxyCodeLine{00068\ \ \ std::vector<Token>\ tokens\_;\ }
+\DoxyCodeLine{00069\ \ \ \textcolor{keywordtype}{size\_t}\ pos\_\ =\ 0;\ }
+\DoxyCodeLine{00070\ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ instruction\_index\_\ =\ 0;\ }
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \ \ \mbox{\hyperlink{structErrorTracker}{ErrorTracker}}\ errors\_;\ }
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ std::vector<std::variant<uint8\_t,\ uint16\_t,\ uint32\_t,\ uint64\_t,\ std::string,\ float,\ double>>}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ data\_buffer\_;\ }
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \ \ uint64\_t\ data\_index\_\ =\ 0;\ }
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \ \ std::map<std::string,\ SymbolData>\ symbol\_table\_;\ }
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ std::vector<unsigned\ int>\ back\_patch\_;\ }
+\DoxyCodeLine{00082\ \ \ std::vector<std::pair<ICUnit,\ bool>>\ intermediate\_code\_;\ }
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \ \ std::map<unsigned\ int,\ unsigned\ int>}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ instruction\_number\_line\_number\_mapping\_;\ }
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00091\ \ \ \mbox{\hyperlink{structToken}{Token}}\ prevToken();}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00097\ \ \ \mbox{\hyperlink{structToken}{Token}}\ currentToken();}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00103\ \ \ \mbox{\hyperlink{structToken}{Token}}\ nextToken();}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00110\ \ \ \mbox{\hyperlink{structToken}{Token}}\ peekToken(\textcolor{keywordtype}{int}\ n);}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00115\ \ \ \textcolor{keywordtype}{void}\ skipCurrentLine();}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00121\ \ \ \textcolor{keywordtype}{void}\ recordError(\textcolor{keyword}{const}\ \mbox{\hyperlink{structParseError}{ParseError}}\ \&error);}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00123\ \ \ \textcolor{keywordtype}{bool}\ parse\_O\_GPR\_C\_GPR\_C\_GPR();}
+\DoxyCodeLine{00124\ \ \ \textcolor{keywordtype}{bool}\ parse\_O\_GPR\_C\_GPR\_C\_I();}
+\DoxyCodeLine{00125\ \ \ \textcolor{keywordtype}{bool}\ parse\_O\_GPR\_C\_I();}
+\DoxyCodeLine{00126\ \ \ \textcolor{keywordtype}{bool}\ parse\_O\_GPR\_C\_GPR\_C\_IL();}
+\DoxyCodeLine{00127\ \ \ \textcolor{keywordtype}{bool}\ parse\_O\_GPR\_C\_GPR\_C\_DL();}
+\DoxyCodeLine{00128\ \ \ \textcolor{keywordtype}{bool}\ parse\_O\_GPR\_C\_IL();}
+\DoxyCodeLine{00129\ \ \ \textcolor{keywordtype}{bool}\ parse\_O\_GPR\_C\_DL();}
+\DoxyCodeLine{00130\ \ \ \textcolor{keywordtype}{bool}\ parse\_O\_GPR\_C\_I\_LP\_GPR\_RP();}
+\DoxyCodeLine{00131\ \ \ \textcolor{keywordtype}{bool}\ parse\_O();}
+\DoxyCodeLine{00132\ \ \ \textcolor{keywordtype}{bool}\ parse\_pseudo();}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00134\ \ \ \textcolor{keywordtype}{bool}\ parse\_O\_GPR\_C\_CSR\_C\_GPR();}
+\DoxyCodeLine{00135\ \ \ \textcolor{keywordtype}{bool}\ parse\_O\_GPR\_C\_CSR\_C\_I();}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00137\ \ \ \textcolor{keywordtype}{bool}\ parse\_O\_FPR\_C\_FPR\_C\_FPR\_C\_FPR();}
+\DoxyCodeLine{00138\ \ \ \textcolor{keywordtype}{bool}\ parse\_O\_FPR\_C\_FPR\_C\_FPR\_C\_FPR\_C\_RM();}
+\DoxyCodeLine{00139\ \ \ \textcolor{keywordtype}{bool}\ parse\_O\_FPR\_C\_FPR\_C\_FPR();}
+\DoxyCodeLine{00140\ \ \ \textcolor{keywordtype}{bool}\ parse\_O\_FPR\_C\_FPR\_C\_FPR\_C\_RM();}
+\DoxyCodeLine{00141\ \ \ \textcolor{keywordtype}{bool}\ parse\_O\_FPR\_C\_FPR();}
+\DoxyCodeLine{00142\ \ \ \textcolor{keywordtype}{bool}\ parse\_O\_FPR\_C\_FPR\_C\_RM();}
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00144\ \ \ \textcolor{keywordtype}{bool}\ parse\_O\_FPR\_C\_GPR();}
+\DoxyCodeLine{00145\ \ \ \textcolor{keywordtype}{bool}\ parse\_O\_FPR\_C\_GPR\_C\_RM();}
+\DoxyCodeLine{00146\ \ \ \textcolor{keywordtype}{bool}\ parse\_O\_GPR\_C\_FPR();}
+\DoxyCodeLine{00147\ \ \ \textcolor{keywordtype}{bool}\ parse\_O\_GPR\_C\_FPR\_C\_RM();}
+\DoxyCodeLine{00148\ \ \ \textcolor{keywordtype}{bool}\ parse\_O\_GPR\_C\_FPR\_C\_FPR();}
+\DoxyCodeLine{00149\ \ \ \textcolor{keywordtype}{bool}\ parse\_O\_FPR\_C\_I\_LP\_GPR\_RP();}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00154\ \ \ \textcolor{keywordtype}{void}\ parseDataDirective();}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00159\ \ \ \textcolor{keywordtype}{void}\ parseTextDirective();}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00164\ \ \ \textcolor{keywordtype}{void}\ parseBSSDirective();}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00166\ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00172\ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classParser_a8a9cd855b28f41749b42a028c4aa370a}{Parser}}(std::string\ filename,\ \textcolor{keyword}{const}\ std::vector<Token>\ \&tokens)}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ :\ filename\_(std::move(filename)),\ tokens\_(tokens)\ \{}
+\DoxyCodeLine{00174\ \ \ \}}
+\DoxyCodeLine{00175\ }
+\DoxyCodeLine{00176\ \ \ \mbox{\hyperlink{classParser_a95734193a58a199b4c6d820a6a730c42}{\string~Parser}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00177\ }
+\DoxyCodeLine{00181\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classParser_ad941a297e9f6abb39271090806a6be33}{parse}}();}
+\DoxyCodeLine{00182\ }
+\DoxyCodeLine{00183\ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classParser_a77be2d371758afe4ce067b3bd73f5693}{getErrorCount}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00189\ \ \ [[nodiscard]]\ \textcolor{keyword}{const}\ std::vector<ParseError>\ \&\mbox{\hyperlink{classParser_a3013f3bc6bb73bffe54413d7d6e24d3c}{getErrors}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00190\ }
+\DoxyCodeLine{00195\ \ \ std::vector<std::variant<uint8\_t,\ uint16\_t,\ uint32\_t,\ uint64\_t,\ std::string,\ float,\ double>>\ \&\mbox{\hyperlink{classParser_a2a9e753b21da475990d24d6cc76df432}{getDataBuffer}}();}
+\DoxyCodeLine{00196\ }
+\DoxyCodeLine{00201\ \ \ [[nodiscard]]\ \textcolor{keyword}{const}\ std::vector<std::pair<ICUnit,\ bool>>\ \&\mbox{\hyperlink{classParser_ab107a7fe36c012612760c415b45ce30d}{getIntermediateCode}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00202\ }
+\DoxyCodeLine{00203\ \ \ [[nodiscard]]\ \textcolor{keyword}{const}\ std::map<unsigned\ int,\ unsigned\ int>\ \&\mbox{\hyperlink{classParser_ab87f4b382a805319397f0dc334cb6846}{getInstructionNumberLineNumberMapping}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00204\ }
+\DoxyCodeLine{00205\ \ \ [[nodiscard]]\ \textcolor{keyword}{const}\ std::map<std::string,\ SymbolData>\ \&\mbox{\hyperlink{classParser_a55ac3e96e11c10a98adedfb0c7abdb70}{getSymbolTable}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00206\ }
+\DoxyCodeLine{00210\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classParser_a1ffb6b698c06e6f28ebebcbb84c3d839}{printErrors}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00211\ }
+\DoxyCodeLine{00215\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classParser_a0a98612e5aaa33a123ad4e6dc41ef615}{printSymbolTable}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00216\ }
+\DoxyCodeLine{00220\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classParser_a7162a9d0b66118b676ab3b7a47b3b385}{printDataBuffers}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00221\ }
+\DoxyCodeLine{00225\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classParser_aca38c04f09c91ee2323f9da27f06126d}{printIntermediateCode}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00226\ }
+\DoxyCodeLine{00227\ \};}
+\DoxyCodeLine{00228\ }
+\DoxyCodeLine{00229\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ PARSER\_H}}
+
+\end{DoxyCode}

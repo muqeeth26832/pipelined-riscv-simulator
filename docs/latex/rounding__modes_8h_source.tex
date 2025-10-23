@@ -1,0 +1,53 @@
+\doxysection{rounding\+\_\+modes.\+h}
+\hypertarget{rounding__modes_8h_source}{}\label{rounding__modes_8h_source}\index{include/common/rounding\_modes.h@{include/common/rounding\_modes.h}}
+\mbox{\hyperlink{rounding__modes_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#ifndef\ ROUNDING\_MODES\_H}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#define\ ROUNDING\_MODES\_H}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <unordered\_map>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <stdexcept>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{enum\ class}\ \mbox{\hyperlink{rounding__modes_8h_a5959c934b204c7bcb6766cfaea8ae101}{RoundingMode}}\ \{}
+\DoxyCodeLine{00014\ \ \ \mbox{\hyperlink{rounding__modes_8h_a5959c934b204c7bcb6766cfaea8ae101abbbffe540e9df36d8c8f847b529e3282}{RNE}},\ \ \textcolor{comment}{//\ Round\ to\ Nearest,\ ties\ to\ Even}}
+\DoxyCodeLine{00015\ \ \ \mbox{\hyperlink{rounding__modes_8h_a5959c934b204c7bcb6766cfaea8ae101a529a841dde2e78d144c1814e3fc5ac60}{RTZ}},\ \ \textcolor{comment}{//\ Round\ towards\ Zero}}
+\DoxyCodeLine{00016\ \ \ \mbox{\hyperlink{rounding__modes_8h_a5959c934b204c7bcb6766cfaea8ae101a099ecf1e2eedcbbb36750f8ad7fc7f81}{RDN}},\ \ \textcolor{comment}{//\ Round\ Down\ (towards\ -\/∞)}}
+\DoxyCodeLine{00017\ \ \ \mbox{\hyperlink{rounding__modes_8h_a5959c934b204c7bcb6766cfaea8ae101a5ba30c5a3edeca6b0b2fd1050ecf3370}{RUP}},\ \ \textcolor{comment}{//\ Round\ Up\ (towards\ +∞)}}
+\DoxyCodeLine{00018\ \ \ \mbox{\hyperlink{rounding__modes_8h_a5959c934b204c7bcb6766cfaea8ae101a595b30b7583a6cd50bdc591e4420034b}{RMM}},\ \ \textcolor{comment}{//\ Round\ to\ Nearest,\ ties\ to\ Max\ Magnitude}}
+\DoxyCodeLine{00019\ \ \ \mbox{\hyperlink{rounding__modes_8h_a5959c934b204c7bcb6766cfaea8ae101abf98e34f5989ce23714de7c60952a6b7}{DYN}}\ \ \ \textcolor{comment}{//\ Dynamic\ rounding\ mode\ (in\ rm\ field,\ means\ use\ frm\ CSR)}}
+\DoxyCodeLine{00020\ \};}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ std::unordered\_map<std::string,\ RoundingMode>\ \mbox{\hyperlink{rounding__modes_8h_a6691b0b0fa94eba7094768f014c079f2}{stringToRoundingMode}}\ =\ \{}
+\DoxyCodeLine{00023\ \ \ \ \ \{\textcolor{stringliteral}{"{}rne"{}},\ \mbox{\hyperlink{rounding__modes_8h_a5959c934b204c7bcb6766cfaea8ae101abbbffe540e9df36d8c8f847b529e3282}{RoundingMode::RNE}}\},}
+\DoxyCodeLine{00024\ \ \ \ \ \{\textcolor{stringliteral}{"{}rtz"{}},\ \mbox{\hyperlink{rounding__modes_8h_a5959c934b204c7bcb6766cfaea8ae101a529a841dde2e78d144c1814e3fc5ac60}{RoundingMode::RTZ}}\},}
+\DoxyCodeLine{00025\ \ \ \ \ \{\textcolor{stringliteral}{"{}rdn"{}},\ \mbox{\hyperlink{rounding__modes_8h_a5959c934b204c7bcb6766cfaea8ae101a099ecf1e2eedcbbb36750f8ad7fc7f81}{RoundingMode::RDN}}\},}
+\DoxyCodeLine{00026\ \ \ \ \ \{\textcolor{stringliteral}{"{}rup"{}},\ \mbox{\hyperlink{rounding__modes_8h_a5959c934b204c7bcb6766cfaea8ae101a5ba30c5a3edeca6b0b2fd1050ecf3370}{RoundingMode::RUP}}\},}
+\DoxyCodeLine{00027\ \ \ \ \ \{\textcolor{stringliteral}{"{}rmm"{}},\ \mbox{\hyperlink{rounding__modes_8h_a5959c934b204c7bcb6766cfaea8ae101a595b30b7583a6cd50bdc591e4420034b}{RoundingMode::RMM}}\},}
+\DoxyCodeLine{00028\ \ \ \ \ \{\textcolor{stringliteral}{"{}dyn"{}},\ \mbox{\hyperlink{rounding__modes_8h_a5959c934b204c7bcb6766cfaea8ae101abf98e34f5989ce23714de7c60952a6b7}{RoundingMode::DYN}}\}}
+\DoxyCodeLine{00029\ \};}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ std::unordered\_map<RoundingMode,\ int>\ \mbox{\hyperlink{rounding__modes_8h_a0f5fc322fb6db7cb06e5a912be28bf20}{roundingModeEncoding}}\ =\ \{}
+\DoxyCodeLine{00032\ \ \ \ \ \{\mbox{\hyperlink{rounding__modes_8h_a5959c934b204c7bcb6766cfaea8ae101abbbffe540e9df36d8c8f847b529e3282}{RoundingMode::RNE}},\ 0b000\},}
+\DoxyCodeLine{00033\ \ \ \ \ \{\mbox{\hyperlink{rounding__modes_8h_a5959c934b204c7bcb6766cfaea8ae101a529a841dde2e78d144c1814e3fc5ac60}{RoundingMode::RTZ}},\ 0b001\},}
+\DoxyCodeLine{00034\ \ \ \ \ \{\mbox{\hyperlink{rounding__modes_8h_a5959c934b204c7bcb6766cfaea8ae101a099ecf1e2eedcbbb36750f8ad7fc7f81}{RoundingMode::RDN}},\ 0b010\},}
+\DoxyCodeLine{00035\ \ \ \ \ \{\mbox{\hyperlink{rounding__modes_8h_a5959c934b204c7bcb6766cfaea8ae101a5ba30c5a3edeca6b0b2fd1050ecf3370}{RoundingMode::RUP}},\ 0b011\},}
+\DoxyCodeLine{00036\ \ \ \ \ \{\mbox{\hyperlink{rounding__modes_8h_a5959c934b204c7bcb6766cfaea8ae101a595b30b7583a6cd50bdc591e4420034b}{RoundingMode::RMM}},\ 0b100\},}
+\DoxyCodeLine{00037\ \ \ \ \ \{\mbox{\hyperlink{rounding__modes_8h_a5959c934b204c7bcb6766cfaea8ae101abf98e34f5989ce23714de7c60952a6b7}{RoundingMode::DYN}},\ 0b111\}}
+\DoxyCodeLine{00038\ \};}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{rounding__modes_8h_aa3da17e665094fd5998a93e445d00574}{isValidRoundingMode}}(\textcolor{keyword}{const}\ std::string\ \&mode)\ \{}
+\DoxyCodeLine{00041\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{rounding__modes_8h_a6691b0b0fa94eba7094768f014c079f2}{stringToRoundingMode}}.find(mode)!=\mbox{\hyperlink{rounding__modes_8h_a6691b0b0fa94eba7094768f014c079f2}{stringToRoundingMode}}.end();}
+\DoxyCodeLine{00042\ \}}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{rounding__modes_8h_a962a82ec0d2a48a2dbc57543dcac47f3}{getRoundingModeEncoding}}(\textcolor{keyword}{const}\ std::string\ \&mode)\ \{}
+\DoxyCodeLine{00045\ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{rounding__modes_8h_aa3da17e665094fd5998a93e445d00574}{isValidRoundingMode}}(mode))\ \{}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{rounding__modes_8h_a0f5fc322fb6db7cb06e5a912be28bf20}{roundingModeEncoding}}.at(\mbox{\hyperlink{rounding__modes_8h_a6691b0b0fa94eba7094768f014c079f2}{stringToRoundingMode}}.at(mode));}
+\DoxyCodeLine{00047\ \ \ \}}
+\DoxyCodeLine{00048\ \ \ \textcolor{keywordflow}{throw}\ std::invalid\_argument(\textcolor{stringliteral}{"{}Invalid\ rounding\ mode:\ "{}}\ +\ mode);}
+\DoxyCodeLine{00049\ \}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ ROUNDING\_MODES\_H}}
+
+\end{DoxyCode}

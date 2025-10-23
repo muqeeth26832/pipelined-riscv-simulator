@@ -1,0 +1,175 @@
+\doxysection{rvss\+\_\+vm.\+h}
+\hypertarget{rvss__vm_8h_source}{}\label{rvss__vm_8h_source}\index{include/vm/rvss/rvss\_vm.h@{include/vm/rvss/rvss\_vm.h}}
+\mbox{\hyperlink{rvss__vm_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#ifndef\ RVSS\_VM\_H}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#define\ RVSS\_VM\_H}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{vm__base_8h}{vm/vm\_base.h}}"{}}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{rvss__control__unit_8h}{rvss\_control\_unit.h}}"{}}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <stack>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <cstdint>}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{comment}{//\ TODO:\ use\ a\ circular\ buffer\ instead\ of\ a\ stack\ for\ undo/redo}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structRegisterChange}{RegisterChange}}\ \{}
+\DoxyCodeLine{00022\ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structRegisterChange_afb16485a17aff6acb690782da5dcb713}{reg\_index}};}
+\DoxyCodeLine{00023\ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structRegisterChange_ac04acbfc8d09357500d12c1d9acc7f8c}{reg\_type}};\ \textcolor{comment}{//\ 0\ for\ GPR,\ 1\ for\ CSR,\ 2\ for\ FPR}}
+\DoxyCodeLine{00024\ \ \ uint64\_t\ \mbox{\hyperlink{structRegisterChange_a02b4d1f86400bc9cf2735ed8e72917fe}{old\_value}};}
+\DoxyCodeLine{00025\ \ \ uint64\_t\ \mbox{\hyperlink{structRegisterChange_a71b0edf6999c870445e9a6ae2307c6b3}{new\_value}};}
+\DoxyCodeLine{00026\ \};}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structMemoryChange}{MemoryChange}}\ \{}
+\DoxyCodeLine{00029\ \ \ uint64\_t\ \mbox{\hyperlink{structMemoryChange_aa62639348e51e54b205b2b1fa22f3887}{address}};}
+\DoxyCodeLine{00030\ \ \ std::vector<uint8\_t>\ \mbox{\hyperlink{structMemoryChange_a00b0b193bb2af2c675b975faabd355ca}{old\_bytes\_vec}};\ }
+\DoxyCodeLine{00031\ \ \ std::vector<uint8\_t>\ \mbox{\hyperlink{structMemoryChange_a65842830702dfd00ac59632031e1323b}{new\_bytes\_vec}};\ }
+\DoxyCodeLine{00032\ \};}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structStepDelta}{StepDelta}}\ \{}
+\DoxyCodeLine{00035\ \ \ uint64\_t\ \mbox{\hyperlink{structStepDelta_a609fe423c9a6ce11dfd3cb505b1c650c}{old\_pc}};}
+\DoxyCodeLine{00036\ \ \ uint64\_t\ \mbox{\hyperlink{structStepDelta_ad998e8d8c6628d2d3e6775f4a2d913af}{new\_pc}};}
+\DoxyCodeLine{00037\ \ \ std::vector<RegisterChange>\ \mbox{\hyperlink{structStepDelta_a3e41fab118a0d4425af18a7dac832086}{register\_changes}};}
+\DoxyCodeLine{00038\ \ \ std::vector<MemoryChange>\ \mbox{\hyperlink{structStepDelta_ad9c107c2528c8bafe55504a42ea29751}{memory\_changes}};}
+\DoxyCodeLine{00039\ \};}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{comment}{//\ class\ RingUndoRedo\ \{}}
+\DoxyCodeLine{00043\ \textcolor{comment}{//\ \ \ std::vector<StepDelta>\ buffer\_;}}
+\DoxyCodeLine{00044\ \textcolor{comment}{//\ \ \ int\ current\_;\ \ \ \ \ \ //\ index\ of\ current\ state}}
+\DoxyCodeLine{00045\ \textcolor{comment}{//\ \ \ int\ size\_;\ \ \ \ \ \ \ \ \ //\ number\ of\ valid\ entries}}
+\DoxyCodeLine{00046\ \textcolor{comment}{//\ \ \ int\ head\_;}}
+\DoxyCodeLine{00047\ \textcolor{comment}{//\ \ \ const\ int\ capacity\_;}}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \textcolor{comment}{//\ \ public:}}
+\DoxyCodeLine{00050\ \textcolor{comment}{//\ \ \ explicit\ RingUndoRedo(int\ cap)}}
+\DoxyCodeLine{00051\ \textcolor{comment}{//\ \ \ \ \ :\ buffer\_(cap),\ current\_(-\/1),\ size\_(0),\ head\_(-\/1),\ capacity\_(cap)\ \{\}}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \textcolor{comment}{//\ \ \ void\ push(const\ StepDelta\&\ delta)\ \{}}
+\DoxyCodeLine{00054\ \textcolor{comment}{//\ \ \ \ \ head\_\ =\ (head\_\ +\ 1)\ \%\ capacity\_;}}
+\DoxyCodeLine{00055\ \textcolor{comment}{//\ \ \ \ \ buffer\_[head\_]\ =\ delta;}}
+\DoxyCodeLine{00056\ \textcolor{comment}{//\ \ \ \ \ current\_\ =\ head\_;\ \ //\ move\ current\ to\ new\ step}}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \textcolor{comment}{//\ \ \ \ \ if\ (size\_\ <\ capacity\_)}}
+\DoxyCodeLine{00059\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ size\_++;}}
+\DoxyCodeLine{00060\ \textcolor{comment}{//\ \ \ \ \ else\ \{}}
+\DoxyCodeLine{00061\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ ;\ //\ overwrite\ oldest\ entry}}
+\DoxyCodeLine{00062\ \textcolor{comment}{//\ \ \ \ \ \}}}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \textcolor{comment}{//\ \ \ \ \ //\ Invalidate\ all\ redos\ beyond\ head\_}}
+\DoxyCodeLine{00065\ \textcolor{comment}{//\ \ \ \ \ int\ i\ =\ (head\_\ +\ 1)\ \%\ capacity\_;}}
+\DoxyCodeLine{00066\ \textcolor{comment}{//\ \ \ \ \ while\ (i\ !=\ current\_)\ \{}}
+\DoxyCodeLine{00067\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ buffer\_[i]\ =\ StepDelta();\ //\ or\ mark\ invalid}}
+\DoxyCodeLine{00068\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ i\ =\ (i\ +\ 1)\ \%\ capacity\_;}}
+\DoxyCodeLine{00069\ \textcolor{comment}{//\ \ \ \ \ \}}}
+\DoxyCodeLine{00070\ \textcolor{comment}{//\ \}}}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \textcolor{comment}{//\ \ \ bool\ can\_undo()\ const\ \{}}
+\DoxyCodeLine{00074\ \textcolor{comment}{//\ \ \ \ \ return\ size\_\ >\ 0\ \&\&\ current\_\ !=\ -\/1;}}
+\DoxyCodeLine{00075\ \textcolor{comment}{//\ \ \ \}}}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \textcolor{comment}{//\ \ \ bool\ can\_redo()\ const\ \{}}
+\DoxyCodeLine{00078\ \textcolor{comment}{//\ \ \ \ \ return\ current\_\ !=\ head\_\ \&\&\ !buffer\_[(current\_\ +\ 1)\ \%\ capacity\_].register\_changes.empty();}}
+\DoxyCodeLine{00079\ \textcolor{comment}{//\ \}}}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \textcolor{comment}{//\ \ \ StepDelta\ undo()\ \{}}
+\DoxyCodeLine{00082\ \textcolor{comment}{//\ \ \ \ \ if\ (!can\_undo())\ throw\ std::runtime\_error("{}Nothing\ to\ undo"{});}}
+\DoxyCodeLine{00083\ \textcolor{comment}{//\ \ \ \ \ StepDelta\ delta\ =\ buffer\_[current\_];}}
+\DoxyCodeLine{00084\ \textcolor{comment}{//\ \ \ \ \ current\_\ =\ (current\_\ -\/\ 1\ +\ capacity\_)\ \%\ capacity\_;}}
+\DoxyCodeLine{00085\ \textcolor{comment}{//\ \ \ \ \ return\ delta;}}
+\DoxyCodeLine{00086\ \textcolor{comment}{//\ \ \ \}}}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \textcolor{comment}{//\ \ \ StepDelta\ redo()\ \{}}
+\DoxyCodeLine{00089\ \textcolor{comment}{//\ \ \ \ \ if\ (!can\_redo())\ throw\ std::runtime\_error("{}Nothing\ to\ redo"{});}}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \textcolor{comment}{//\ \ \ \ \ current\_\ =\ (current\_\ +\ 1)\ \%\ capacity\_;}}
+\DoxyCodeLine{00092\ \textcolor{comment}{//\ \ \ \ \ return\ buffer\_[current\_];}}
+\DoxyCodeLine{00093\ \textcolor{comment}{//\ \}}}
+\DoxyCodeLine{00094\ \textcolor{comment}{//\ \};}}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classRVSSVM}{RVSSVM}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classVmBase}{VmBase}}\ \{}
+\DoxyCodeLine{00100\ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00101\ \ \ \mbox{\hyperlink{classRVSSControlUnit}{RVSSControlUnit}}\ \mbox{\hyperlink{classRVSSVM_af791e8846fc4e92787827da00a5bc809}{control\_unit\_}};}
+\DoxyCodeLine{00102\ \ \ std::atomic<bool>\ \mbox{\hyperlink{classRVSSVM_a65484df815fde89d6fddb059c192b414}{stop\_requested\_}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ \ \ std::stack<StepDelta>\ \mbox{\hyperlink{classRVSSVM_a731a113960710ba745841a7f97678430}{undo\_stack\_}};}
+\DoxyCodeLine{00106\ \ \ std::stack<StepDelta>\ \mbox{\hyperlink{classRVSSVM_ab108a22ac8ca3f2634b8cd2322736f1d}{redo\_stack\_}};}
+\DoxyCodeLine{00107\ \ \ \textcolor{comment}{//\ RingUndoRedo\ history\_\{1000\};\ //\ or\ however\ many\ steps\ you\ want\ to\ store}}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00109\ \ \ \mbox{\hyperlink{structStepDelta}{StepDelta}}\ \mbox{\hyperlink{classRVSSVM_ae6c5c56d7a856783a6ab9e4c3a6688ca}{current\_delta\_}};}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \ \ \textcolor{comment}{//\ intermediate\ variables}}
+\DoxyCodeLine{00112\ \ \ int64\_t\ \mbox{\hyperlink{classRVSSVM_a8d68bf6e4b85df7b3b40431479a10a65}{execution\_result\_}}\{\};}
+\DoxyCodeLine{00113\ \ \ int64\_t\ \mbox{\hyperlink{classRVSSVM_a81fccd4c10106e7aced1160d68119bbb}{memory\_result\_}}\{\};}
+\DoxyCodeLine{00114\ \ \ \textcolor{comment}{//\ int64\_t\ memory\_address\_\{\};}}
+\DoxyCodeLine{00115\ \ \ \textcolor{comment}{//\ int64\_t\ memory\_data\_\{\};}}
+\DoxyCodeLine{00116\ \ \ uint64\_t\ \mbox{\hyperlink{classRVSSVM_a22bbb0ff1567f0a6483f74f4327b606a}{return\_address\_}}\{\};}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classRVSSVM_adac1aa09fc07850d4f5446a9321bcee3}{branch\_flag\_}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00119\ \ \ int64\_t\ \mbox{\hyperlink{classRVSSVM_a4aa14ea6a3d63291eb637edee36c117e}{next\_pc\_}}\{\};\ \textcolor{comment}{//\ for\ jal,\ jalr,}}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ \ \ \textcolor{comment}{//\ CSR\ intermediate\ variables}}
+\DoxyCodeLine{00122\ \ \ uint16\_t\ \mbox{\hyperlink{classRVSSVM_a6fc6edc37b35e69343f6ecf2cedd6caf}{csr\_target\_address\_}}\{\};}
+\DoxyCodeLine{00123\ \ \ uint64\_t\ \mbox{\hyperlink{classRVSSVM_a26f749a09117cb8c313ab423c2ebf9a3}{csr\_old\_value\_}}\{\};}
+\DoxyCodeLine{00124\ \ \ uint64\_t\ \mbox{\hyperlink{classRVSSVM_ae57223b65ada3f5f5dfecf6c16ce1409}{csr\_write\_val\_}}\{\};}
+\DoxyCodeLine{00125\ \ \ uint8\_t\ \mbox{\hyperlink{classRVSSVM_a7951fd1c543faff83b8aee97427c01a2}{csr\_uimm\_}}\{\};}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00127\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classRVSSVM_a1be53e68e06b88a720e8c50c1a884595}{Fetch}}();}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00129\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classRVSSVM_af9c92521192b852397c3ba182fea8c99}{Decode}}();}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classRVSSVM_af6bf72c47e603412535cb63ade994727}{Execute}}();}
+\DoxyCodeLine{00132\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classRVSSVM_aa565a8b5426dc19cc4a9abfe2f72ee9b}{ExecuteFloat}}();}
+\DoxyCodeLine{00133\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classRVSSVM_ab07bcf2cd78c7f481c0e8eac9b63d767}{ExecuteDouble}}();}
+\DoxyCodeLine{00134\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classRVSSVM_a2d401eee1018804bc76672fcea13b28a}{ExecuteCsr}}();}
+\DoxyCodeLine{00135\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classRVSSVM_a7c78d0dea8af111abb05b1b62b402772}{HandleSyscall}}();}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00137\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classRVSSVM_a12d9fecb0a1312095fa3f9a303e6a22b}{WriteMemory}}();}
+\DoxyCodeLine{00138\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classRVSSVM_aa3fb37b71e508285bc8e0f4892e1c0e8}{WriteMemoryFloat}}();}
+\DoxyCodeLine{00139\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classRVSSVM_a37d15537b41412ab8c59191bdbeeab4e}{WriteMemoryDouble}}();}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00141\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classRVSSVM_a20a3c3b4d7f92288a65cd45b011c9db2}{WriteBack}}();}
+\DoxyCodeLine{00142\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classRVSSVM_a630798c6e11ee4546d1dd71b3dcf4fcb}{WriteBackFloat}}();}
+\DoxyCodeLine{00143\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classRVSSVM_a0c43c1b0a03270d9335e6e73dc0dcf5f}{WriteBackDouble}}();}
+\DoxyCodeLine{00144\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classRVSSVM_ad3f7f30381652bed3ba3dc4f422a0021}{WriteBackCsr}}();}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00146\ \ \ \mbox{\hyperlink{classRVSSVM_a25a6b5b3cd17447bfe4e88819ff55c48}{RVSSVM}}();}
+\DoxyCodeLine{00147\ \ \ \mbox{\hyperlink{classRVSSVM_a487d782e0576c027531150b39560208f}{\string~RVSSVM}}();}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00149\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classRVSSVM_a0aa85843a97344299380afebc83d2a5e}{Run}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00150\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classRVSSVM_a8b954269c60ab390ecca05966dacb47e}{DebugRun}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00151\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classRVSSVM_a5547766e7446048242849d2510e3b2ef}{Step}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00152\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classRVSSVM_aabc759ac821f87303daa71c9480b8756}{Undo}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00153\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classRVSSVM_a9cb130b8c84159be82027d49ce3e4279}{Redo}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00154\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classRVSSVM_aa75bbde8be42c275f928681e372d6c7c}{Reset}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00156\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classRVSSVM_a989ddd15e98b143799703dd41b859bf7}{RequestStop}}()\ \{}
+\DoxyCodeLine{00157\ \ \ \ \ \mbox{\hyperlink{classRVSSVM_a65484df815fde89d6fddb059c192b414}{stop\_requested\_}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00158\ \ \ \}}
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00160\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classRVSSVM_a5e21b4bd05329a9f78579208988de719}{IsStopRequested}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00161\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classRVSSVM_a65484df815fde89d6fddb059c192b414}{stop\_requested\_}};}
+\DoxyCodeLine{00162\ \ \ \}}
+\DoxyCodeLine{00163\ \ \ }
+\DoxyCodeLine{00164\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classRVSSVM_a1934a8a076f44dd66abd79972886a021}{ClearStop}}()\ \{}
+\DoxyCodeLine{00165\ \ \ \ \ \mbox{\hyperlink{classRVSSVM_a65484df815fde89d6fddb059c192b414}{stop\_requested\_}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00166\ \ \ \}}
+\DoxyCodeLine{00167\ }
+\DoxyCodeLine{00168\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classRVSSVM_a6cb411487b468c3a5e88780a10cedf76}{PrintType}}()\ \{}
+\DoxyCodeLine{00169\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}rvssvm"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00170\ \ \ \}}
+\DoxyCodeLine{00171\ \};}
+\DoxyCodeLine{00172\ }
+\DoxyCodeLine{00173\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ RVSS\_VM\_H}}
+
+\end{DoxyCode}

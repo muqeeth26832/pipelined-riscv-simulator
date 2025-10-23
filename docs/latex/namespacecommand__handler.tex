@@ -1,11 +1,11 @@
-\hypertarget{namespacecommand__handler}{}\doxysection{command\+\_\+handler Namespace Reference}
-\label{namespacecommand__handler}\index{command\_handler@{command\_handler}}
-\doxysubsection*{Classes}
+\doxysection{command\+\_\+handler Namespace Reference}
+\hypertarget{namespacecommand__handler}{}\label{namespacecommand__handler}\index{command\_handler@{command\_handler}}
+\doxysubsubsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 
 struct \mbox{\hyperlink{structcommand__handler_1_1Command}{Command}}
 \end{DoxyCompactItemize}
-\doxysubsection*{Enumerations}
+\doxysubsubsection*{Enumerations}
 \begin{DoxyCompactItemize}
 \item 
 enum class \mbox{\hyperlink{namespacecommand__handler_a49f72bb84305031f68e77b48be812681}{Command\+Type}} \{ \newline
@@ -22,16 +22,19 @@ enum class \mbox{\hyperlink{namespacecommand__handler_a49f72bb84305031f68e77b48b
 \mbox{\hyperlink{namespacecommand__handler_a49f72bb84305031f68e77b48be812681ac07bf946a7da4553f9f2776656e0d60f}{REDO}}
 , \mbox{\hyperlink{namespacecommand__handler_a49f72bb84305031f68e77b48be812681ab5859d8721cfdc0312b2838b9c985bc1}{RESET}}
 , \mbox{\hyperlink{namespacecommand__handler_a49f72bb84305031f68e77b48be812681ab0fe93313e04f4e2c261e0ff20dfdbcb}{MODIFY\+\_\+\+REGISTER}}
+, \mbox{\hyperlink{namespacecommand__handler_a49f72bb84305031f68e77b48be812681a5f20fb1a83a6f2777b80c6a05c21c099}{GET\+\_\+\+REGISTER}}
+, \newline
+\mbox{\hyperlink{namespacecommand__handler_a49f72bb84305031f68e77b48be812681a2420ea46ee68f3eff9ec681e913f4a19}{MODIFY\+\_\+\+MEMORY}}
 , \mbox{\hyperlink{namespacecommand__handler_a49f72bb84305031f68e77b48be812681acecaa410a5dbf8993459edf9f5227a92}{DUMP\+\_\+\+MEMORY}}
-, \newline
-\mbox{\hyperlink{namespacecommand__handler_a49f72bb84305031f68e77b48be812681aac0e0a212458cb501d6a64b97e1ca817}{PRINT\+\_\+\+MEMORY}}
+, \mbox{\hyperlink{namespacecommand__handler_a49f72bb84305031f68e77b48be812681aac0e0a212458cb501d6a64b97e1ca817}{PRINT\+\_\+\+MEMORY}}
 , \mbox{\hyperlink{namespacecommand__handler_a49f72bb84305031f68e77b48be812681a8c3c1a5f272ba8b70b2de2d21d98ef69}{GET\+\_\+\+MEMORY\+\_\+\+POINT}}
-, \mbox{\hyperlink{namespacecommand__handler_a49f72bb84305031f68e77b48be812681af4981f876938b4f77a6a883cdc0631d5}{DUMP\+\_\+\+CACHE}}
-, \mbox{\hyperlink{namespacecommand__handler_a49f72bb84305031f68e77b48be812681a495ead75498c058e80ac36a65b2399db}{ADD\+\_\+\+BREAKPOINT}}
 , \newline
-\mbox{\hyperlink{namespacecommand__handler_a49f72bb84305031f68e77b48be812681a1af1483e77cfe2abd58e8eb639768b15}{REMOVE\+\_\+\+BREAKPOINT}}
+\mbox{\hyperlink{namespacecommand__handler_a49f72bb84305031f68e77b48be812681af4981f876938b4f77a6a883cdc0631d5}{DUMP\+\_\+\+CACHE}}
+, \mbox{\hyperlink{namespacecommand__handler_a49f72bb84305031f68e77b48be812681a495ead75498c058e80ac36a65b2399db}{ADD\+\_\+\+BREAKPOINT}}
+, \mbox{\hyperlink{namespacecommand__handler_a49f72bb84305031f68e77b48be812681a1af1483e77cfe2abd58e8eb639768b15}{REMOVE\+\_\+\+BREAKPOINT}}
 , \mbox{\hyperlink{namespacecommand__handler_a49f72bb84305031f68e77b48be812681a3cbd204eb9b0446f83da767225380a79}{VM\+\_\+\+STDIN}}
-, \mbox{\hyperlink{namespacecommand__handler_a49f72bb84305031f68e77b48be812681aa42b2fb0e720a080e79a92f4ca97d927}{EXIT}}
+, \newline
+\mbox{\hyperlink{namespacecommand__handler_a49f72bb84305031f68e77b48be812681aa42b2fb0e720a080e79a92f4ca97d927}{EXIT}}
  \}
 \item 
 enum class \mbox{\hyperlink{namespacecommand__handler_a44c251e1711cea6749a00f36fcb08cf4}{Command\+Argument\+Type}} \{ \newline
@@ -43,7 +46,7 @@ enum class \mbox{\hyperlink{namespacecommand__handler_a44c251e1711cea6749a00f36f
 \mbox{\hyperlink{namespacecommand__handler_a44c251e1711cea6749a00f36fcb08cf4aecc2e9c313faddb07e7da223c1dc5c3f}{VALUE}}
  \}
 \end{DoxyCompactItemize}
-\doxysubsection*{Functions}
+\doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{structcommand__handler_1_1Command}{Command}} \mbox{\hyperlink{namespacecommand__handler_aa154f73d4d471f39cfd87bc8068bd815}{Parse\+Command}} (const std\+::string \&input)
@@ -53,119 +56,127 @@ void \mbox{\hyperlink{namespacecommand__handler_a32eea363a2d5c5e4b4b6c71626058fa
 
 
 \doxysubsection{Detailed Description}
-File Name\+: \mbox{\hyperlink{command__handler_8h}{command\+\_\+handler.\+h}} Author\+: Vishank Singh Github\+: \href{https://github.com/VishankSingh}{\texttt{ https\+://github.\+com/\+Vishank\+Singh}}
+File Name\+: \doxylink{command__handler_8h}{command\+\_\+handler.\+h} Author\+: Vishank Singh Github\+: \href{https://github.com/VishankSingh}{\texttt{ https\+://github.\+com/\+Vishank\+Singh}}
 
-File Name\+: \mbox{\hyperlink{command__handler_8cpp}{command\+\_\+handler.\+cpp}} Author\+: Vishank Singh Github\+: \href{https://github.com/VishankSingh}{\texttt{ https\+://github.\+com/\+Vishank\+Singh}} 
+File Name\+: \doxylink{command__handler_8cpp}{command\+\_\+handler.\+cpp} Author\+: Vishank Singh Github\+: \href{https://github.com/VishankSingh}{\texttt{ https\+://github.\+com/\+Vishank\+Singh}} 
 
 \doxysubsection{Enumeration Type Documentation}
-\mbox{\Hypertarget{namespacecommand__handler_a44c251e1711cea6749a00f36fcb08cf4}\label{namespacecommand__handler_a44c251e1711cea6749a00f36fcb08cf4}} 
+\Hypertarget{namespacecommand__handler_a44c251e1711cea6749a00f36fcb08cf4}\label{namespacecommand__handler_a44c251e1711cea6749a00f36fcb08cf4} 
 \index{command\_handler@{command\_handler}!CommandArgumentType@{CommandArgumentType}}
 \index{CommandArgumentType@{CommandArgumentType}!command\_handler@{command\_handler}}
 \doxysubsubsection{\texorpdfstring{CommandArgumentType}{CommandArgumentType}}
-{\footnotesize\ttfamily enum \mbox{\hyperlink{namespacecommand__handler_a44c251e1711cea6749a00f36fcb08cf4}{command\+\_\+handler\+::\+Command\+Argument\+Type}}\hspace{0.3cm}{\ttfamily [strong]}}
+{\footnotesize\ttfamily enum class \mbox{\hyperlink{namespacecommand__handler_a44c251e1711cea6749a00f36fcb08cf4}{command\+\_\+handler\+::\+Command\+Argument\+Type}}\hspace{0.3cm}{\ttfamily [strong]}}
 
 \begin{DoxyEnumFields}{Enumerator}
-\raisebox{\heightof{T}}[0pt][0pt]{\index{NONE@{NONE}!command\_handler@{command\_handler}}\index{command\_handler@{command\_handler}!NONE@{NONE}}}\mbox{\Hypertarget{namespacecommand__handler_a44c251e1711cea6749a00f36fcb08cf4ab50339a10e1de285ac99d4c3990b8693}\label{namespacecommand__handler_a44c251e1711cea6749a00f36fcb08cf4ab50339a10e1de285ac99d4c3990b8693}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{NONE@{NONE}!command\_handler@{command\_handler}}\index{command\_handler@{command\_handler}!NONE@{NONE}}}\Hypertarget{namespacecommand__handler_a44c251e1711cea6749a00f36fcb08cf4ab50339a10e1de285ac99d4c3990b8693}\label{namespacecommand__handler_a44c251e1711cea6749a00f36fcb08cf4ab50339a10e1de285ac99d4c3990b8693} 
 NONE&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{FILE@{FILE}!command\_handler@{command\_handler}}\index{command\_handler@{command\_handler}!FILE@{FILE}}}\mbox{\Hypertarget{namespacecommand__handler_a44c251e1711cea6749a00f36fcb08cf4a9fc5887c030f7a3e19821ebec457e719}\label{namespacecommand__handler_a44c251e1711cea6749a00f36fcb08cf4a9fc5887c030f7a3e19821ebec457e719}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FILE@{FILE}!command\_handler@{command\_handler}}\index{command\_handler@{command\_handler}!FILE@{FILE}}}\Hypertarget{namespacecommand__handler_a44c251e1711cea6749a00f36fcb08cf4a9fc5887c030f7a3e19821ebec457e719}\label{namespacecommand__handler_a44c251e1711cea6749a00f36fcb08cf4a9fc5887c030f7a3e19821ebec457e719} 
 FILE&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{ADDRESS@{ADDRESS}!command\_handler@{command\_handler}}\index{command\_handler@{command\_handler}!ADDRESS@{ADDRESS}}}\mbox{\Hypertarget{namespacecommand__handler_a44c251e1711cea6749a00f36fcb08cf4a2664f03ac6b8bb9eee4287720e407db3}\label{namespacecommand__handler_a44c251e1711cea6749a00f36fcb08cf4a2664f03ac6b8bb9eee4287720e407db3}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ADDRESS@{ADDRESS}!command\_handler@{command\_handler}}\index{command\_handler@{command\_handler}!ADDRESS@{ADDRESS}}}\Hypertarget{namespacecommand__handler_a44c251e1711cea6749a00f36fcb08cf4a2664f03ac6b8bb9eee4287720e407db3}\label{namespacecommand__handler_a44c251e1711cea6749a00f36fcb08cf4a2664f03ac6b8bb9eee4287720e407db3} 
 ADDRESS&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{REGISTER@{REGISTER}!command\_handler@{command\_handler}}\index{command\_handler@{command\_handler}!REGISTER@{REGISTER}}}\mbox{\Hypertarget{namespacecommand__handler_a44c251e1711cea6749a00f36fcb08cf4ad17455cfcb88a53f1603fb817e09c2d6}\label{namespacecommand__handler_a44c251e1711cea6749a00f36fcb08cf4ad17455cfcb88a53f1603fb817e09c2d6}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{REGISTER@{REGISTER}!command\_handler@{command\_handler}}\index{command\_handler@{command\_handler}!REGISTER@{REGISTER}}}\Hypertarget{namespacecommand__handler_a44c251e1711cea6749a00f36fcb08cf4ad17455cfcb88a53f1603fb817e09c2d6}\label{namespacecommand__handler_a44c251e1711cea6749a00f36fcb08cf4ad17455cfcb88a53f1603fb817e09c2d6} 
 REGISTER&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{VALUE@{VALUE}!command\_handler@{command\_handler}}\index{command\_handler@{command\_handler}!VALUE@{VALUE}}}\mbox{\Hypertarget{namespacecommand__handler_a44c251e1711cea6749a00f36fcb08cf4aecc2e9c313faddb07e7da223c1dc5c3f}\label{namespacecommand__handler_a44c251e1711cea6749a00f36fcb08cf4aecc2e9c313faddb07e7da223c1dc5c3f}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VALUE@{VALUE}!command\_handler@{command\_handler}}\index{command\_handler@{command\_handler}!VALUE@{VALUE}}}\Hypertarget{namespacecommand__handler_a44c251e1711cea6749a00f36fcb08cf4aecc2e9c313faddb07e7da223c1dc5c3f}\label{namespacecommand__handler_a44c251e1711cea6749a00f36fcb08cf4aecc2e9c313faddb07e7da223c1dc5c3f} 
 VALUE&\\
 \hline
 
 \end{DoxyEnumFields}
-\mbox{\Hypertarget{namespacecommand__handler_a49f72bb84305031f68e77b48be812681}\label{namespacecommand__handler_a49f72bb84305031f68e77b48be812681}} 
+\Hypertarget{namespacecommand__handler_a49f72bb84305031f68e77b48be812681}\label{namespacecommand__handler_a49f72bb84305031f68e77b48be812681} 
 \index{command\_handler@{command\_handler}!CommandType@{CommandType}}
 \index{CommandType@{CommandType}!command\_handler@{command\_handler}}
 \doxysubsubsection{\texorpdfstring{CommandType}{CommandType}}
-{\footnotesize\ttfamily enum \mbox{\hyperlink{namespacecommand__handler_a49f72bb84305031f68e77b48be812681}{command\+\_\+handler\+::\+Command\+Type}}\hspace{0.3cm}{\ttfamily [strong]}}
+{\footnotesize\ttfamily enum class \mbox{\hyperlink{namespacecommand__handler_a49f72bb84305031f68e77b48be812681}{command\+\_\+handler\+::\+Command\+Type}}\hspace{0.3cm}{\ttfamily [strong]}}
 
 \begin{DoxyEnumFields}{Enumerator}
-\raisebox{\heightof{T}}[0pt][0pt]{\index{INVALID@{INVALID}!command\_handler@{command\_handler}}\index{command\_handler@{command\_handler}!INVALID@{INVALID}}}\mbox{\Hypertarget{namespacecommand__handler_a49f72bb84305031f68e77b48be812681accc0377a8afbf50e7094f5c23a8af223}\label{namespacecommand__handler_a49f72bb84305031f68e77b48be812681accc0377a8afbf50e7094f5c23a8af223}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{INVALID@{INVALID}!command\_handler@{command\_handler}}\index{command\_handler@{command\_handler}!INVALID@{INVALID}}}\Hypertarget{namespacecommand__handler_a49f72bb84305031f68e77b48be812681accc0377a8afbf50e7094f5c23a8af223}\label{namespacecommand__handler_a49f72bb84305031f68e77b48be812681accc0377a8afbf50e7094f5c23a8af223} 
 INVALID&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{MODIFY\_CONFIG@{MODIFY\_CONFIG}!command\_handler@{command\_handler}}\index{command\_handler@{command\_handler}!MODIFY\_CONFIG@{MODIFY\_CONFIG}}}\mbox{\Hypertarget{namespacecommand__handler_a49f72bb84305031f68e77b48be812681acf327e3d6754435f38fb1b9f696f2ea3}\label{namespacecommand__handler_a49f72bb84305031f68e77b48be812681acf327e3d6754435f38fb1b9f696f2ea3}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MODIFY\_CONFIG@{MODIFY\_CONFIG}!command\_handler@{command\_handler}}\index{command\_handler@{command\_handler}!MODIFY\_CONFIG@{MODIFY\_CONFIG}}}\Hypertarget{namespacecommand__handler_a49f72bb84305031f68e77b48be812681acf327e3d6754435f38fb1b9f696f2ea3}\label{namespacecommand__handler_a49f72bb84305031f68e77b48be812681acf327e3d6754435f38fb1b9f696f2ea3} 
 MODIFY\+\_\+\+CONFIG&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{LOAD@{LOAD}!command\_handler@{command\_handler}}\index{command\_handler@{command\_handler}!LOAD@{LOAD}}}\mbox{\Hypertarget{namespacecommand__handler_a49f72bb84305031f68e77b48be812681a615d2885ef7576cedd9aafbb2578f028}\label{namespacecommand__handler_a49f72bb84305031f68e77b48be812681a615d2885ef7576cedd9aafbb2578f028}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{LOAD@{LOAD}!command\_handler@{command\_handler}}\index{command\_handler@{command\_handler}!LOAD@{LOAD}}}\Hypertarget{namespacecommand__handler_a49f72bb84305031f68e77b48be812681a615d2885ef7576cedd9aafbb2578f028}\label{namespacecommand__handler_a49f72bb84305031f68e77b48be812681a615d2885ef7576cedd9aafbb2578f028} 
 LOAD&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{RUN@{RUN}!command\_handler@{command\_handler}}\index{command\_handler@{command\_handler}!RUN@{RUN}}}\mbox{\Hypertarget{namespacecommand__handler_a49f72bb84305031f68e77b48be812681a855520d2a5b0b1a64b939e7e30889e2a}\label{namespacecommand__handler_a49f72bb84305031f68e77b48be812681a855520d2a5b0b1a64b939e7e30889e2a}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RUN@{RUN}!command\_handler@{command\_handler}}\index{command\_handler@{command\_handler}!RUN@{RUN}}}\Hypertarget{namespacecommand__handler_a49f72bb84305031f68e77b48be812681a855520d2a5b0b1a64b939e7e30889e2a}\label{namespacecommand__handler_a49f72bb84305031f68e77b48be812681a855520d2a5b0b1a64b939e7e30889e2a} 
 RUN&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{STOP@{STOP}!command\_handler@{command\_handler}}\index{command\_handler@{command\_handler}!STOP@{STOP}}}\mbox{\Hypertarget{namespacecommand__handler_a49f72bb84305031f68e77b48be812681a615a46af313786fc4e349f34118be111}\label{namespacecommand__handler_a49f72bb84305031f68e77b48be812681a615a46af313786fc4e349f34118be111}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{STOP@{STOP}!command\_handler@{command\_handler}}\index{command\_handler@{command\_handler}!STOP@{STOP}}}\Hypertarget{namespacecommand__handler_a49f72bb84305031f68e77b48be812681a615a46af313786fc4e349f34118be111}\label{namespacecommand__handler_a49f72bb84305031f68e77b48be812681a615a46af313786fc4e349f34118be111} 
 STOP&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{DEBUG\_RUN@{DEBUG\_RUN}!command\_handler@{command\_handler}}\index{command\_handler@{command\_handler}!DEBUG\_RUN@{DEBUG\_RUN}}}\mbox{\Hypertarget{namespacecommand__handler_a49f72bb84305031f68e77b48be812681a43f1fb13a498a620fc2e19b6fa55ab51}\label{namespacecommand__handler_a49f72bb84305031f68e77b48be812681a43f1fb13a498a620fc2e19b6fa55ab51}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DEBUG\_RUN@{DEBUG\_RUN}!command\_handler@{command\_handler}}\index{command\_handler@{command\_handler}!DEBUG\_RUN@{DEBUG\_RUN}}}\Hypertarget{namespacecommand__handler_a49f72bb84305031f68e77b48be812681a43f1fb13a498a620fc2e19b6fa55ab51}\label{namespacecommand__handler_a49f72bb84305031f68e77b48be812681a43f1fb13a498a620fc2e19b6fa55ab51} 
 DEBUG\+\_\+\+RUN&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{STEP@{STEP}!command\_handler@{command\_handler}}\index{command\_handler@{command\_handler}!STEP@{STEP}}}\mbox{\Hypertarget{namespacecommand__handler_a49f72bb84305031f68e77b48be812681a522f694f92e679d874a1cc2b2616c3d7}\label{namespacecommand__handler_a49f72bb84305031f68e77b48be812681a522f694f92e679d874a1cc2b2616c3d7}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{STEP@{STEP}!command\_handler@{command\_handler}}\index{command\_handler@{command\_handler}!STEP@{STEP}}}\Hypertarget{namespacecommand__handler_a49f72bb84305031f68e77b48be812681a522f694f92e679d874a1cc2b2616c3d7}\label{namespacecommand__handler_a49f72bb84305031f68e77b48be812681a522f694f92e679d874a1cc2b2616c3d7} 
 STEP&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{UNDO@{UNDO}!command\_handler@{command\_handler}}\index{command\_handler@{command\_handler}!UNDO@{UNDO}}}\mbox{\Hypertarget{namespacecommand__handler_a49f72bb84305031f68e77b48be812681a269940bcad6fddf5c68d3e67f767c3d1}\label{namespacecommand__handler_a49f72bb84305031f68e77b48be812681a269940bcad6fddf5c68d3e67f767c3d1}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{UNDO@{UNDO}!command\_handler@{command\_handler}}\index{command\_handler@{command\_handler}!UNDO@{UNDO}}}\Hypertarget{namespacecommand__handler_a49f72bb84305031f68e77b48be812681a269940bcad6fddf5c68d3e67f767c3d1}\label{namespacecommand__handler_a49f72bb84305031f68e77b48be812681a269940bcad6fddf5c68d3e67f767c3d1} 
 UNDO&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{REDO@{REDO}!command\_handler@{command\_handler}}\index{command\_handler@{command\_handler}!REDO@{REDO}}}\mbox{\Hypertarget{namespacecommand__handler_a49f72bb84305031f68e77b48be812681ac07bf946a7da4553f9f2776656e0d60f}\label{namespacecommand__handler_a49f72bb84305031f68e77b48be812681ac07bf946a7da4553f9f2776656e0d60f}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{REDO@{REDO}!command\_handler@{command\_handler}}\index{command\_handler@{command\_handler}!REDO@{REDO}}}\Hypertarget{namespacecommand__handler_a49f72bb84305031f68e77b48be812681ac07bf946a7da4553f9f2776656e0d60f}\label{namespacecommand__handler_a49f72bb84305031f68e77b48be812681ac07bf946a7da4553f9f2776656e0d60f} 
 REDO&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{RESET@{RESET}!command\_handler@{command\_handler}}\index{command\_handler@{command\_handler}!RESET@{RESET}}}\mbox{\Hypertarget{namespacecommand__handler_a49f72bb84305031f68e77b48be812681ab5859d8721cfdc0312b2838b9c985bc1}\label{namespacecommand__handler_a49f72bb84305031f68e77b48be812681ab5859d8721cfdc0312b2838b9c985bc1}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RESET@{RESET}!command\_handler@{command\_handler}}\index{command\_handler@{command\_handler}!RESET@{RESET}}}\Hypertarget{namespacecommand__handler_a49f72bb84305031f68e77b48be812681ab5859d8721cfdc0312b2838b9c985bc1}\label{namespacecommand__handler_a49f72bb84305031f68e77b48be812681ab5859d8721cfdc0312b2838b9c985bc1} 
 RESET&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{MODIFY\_REGISTER@{MODIFY\_REGISTER}!command\_handler@{command\_handler}}\index{command\_handler@{command\_handler}!MODIFY\_REGISTER@{MODIFY\_REGISTER}}}\mbox{\Hypertarget{namespacecommand__handler_a49f72bb84305031f68e77b48be812681ab0fe93313e04f4e2c261e0ff20dfdbcb}\label{namespacecommand__handler_a49f72bb84305031f68e77b48be812681ab0fe93313e04f4e2c261e0ff20dfdbcb}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MODIFY\_REGISTER@{MODIFY\_REGISTER}!command\_handler@{command\_handler}}\index{command\_handler@{command\_handler}!MODIFY\_REGISTER@{MODIFY\_REGISTER}}}\Hypertarget{namespacecommand__handler_a49f72bb84305031f68e77b48be812681ab0fe93313e04f4e2c261e0ff20dfdbcb}\label{namespacecommand__handler_a49f72bb84305031f68e77b48be812681ab0fe93313e04f4e2c261e0ff20dfdbcb} 
 MODIFY\+\_\+\+REGISTER&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{DUMP\_MEMORY@{DUMP\_MEMORY}!command\_handler@{command\_handler}}\index{command\_handler@{command\_handler}!DUMP\_MEMORY@{DUMP\_MEMORY}}}\mbox{\Hypertarget{namespacecommand__handler_a49f72bb84305031f68e77b48be812681acecaa410a5dbf8993459edf9f5227a92}\label{namespacecommand__handler_a49f72bb84305031f68e77b48be812681acecaa410a5dbf8993459edf9f5227a92}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{GET\_REGISTER@{GET\_REGISTER}!command\_handler@{command\_handler}}\index{command\_handler@{command\_handler}!GET\_REGISTER@{GET\_REGISTER}}}\Hypertarget{namespacecommand__handler_a49f72bb84305031f68e77b48be812681a5f20fb1a83a6f2777b80c6a05c21c099}\label{namespacecommand__handler_a49f72bb84305031f68e77b48be812681a5f20fb1a83a6f2777b80c6a05c21c099} 
+GET\+\_\+\+REGISTER&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MODIFY\_MEMORY@{MODIFY\_MEMORY}!command\_handler@{command\_handler}}\index{command\_handler@{command\_handler}!MODIFY\_MEMORY@{MODIFY\_MEMORY}}}\Hypertarget{namespacecommand__handler_a49f72bb84305031f68e77b48be812681a2420ea46ee68f3eff9ec681e913f4a19}\label{namespacecommand__handler_a49f72bb84305031f68e77b48be812681a2420ea46ee68f3eff9ec681e913f4a19} 
+MODIFY\+\_\+\+MEMORY&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DUMP\_MEMORY@{DUMP\_MEMORY}!command\_handler@{command\_handler}}\index{command\_handler@{command\_handler}!DUMP\_MEMORY@{DUMP\_MEMORY}}}\Hypertarget{namespacecommand__handler_a49f72bb84305031f68e77b48be812681acecaa410a5dbf8993459edf9f5227a92}\label{namespacecommand__handler_a49f72bb84305031f68e77b48be812681acecaa410a5dbf8993459edf9f5227a92} 
 DUMP\+\_\+\+MEMORY&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{PRINT\_MEMORY@{PRINT\_MEMORY}!command\_handler@{command\_handler}}\index{command\_handler@{command\_handler}!PRINT\_MEMORY@{PRINT\_MEMORY}}}\mbox{\Hypertarget{namespacecommand__handler_a49f72bb84305031f68e77b48be812681aac0e0a212458cb501d6a64b97e1ca817}\label{namespacecommand__handler_a49f72bb84305031f68e77b48be812681aac0e0a212458cb501d6a64b97e1ca817}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PRINT\_MEMORY@{PRINT\_MEMORY}!command\_handler@{command\_handler}}\index{command\_handler@{command\_handler}!PRINT\_MEMORY@{PRINT\_MEMORY}}}\Hypertarget{namespacecommand__handler_a49f72bb84305031f68e77b48be812681aac0e0a212458cb501d6a64b97e1ca817}\label{namespacecommand__handler_a49f72bb84305031f68e77b48be812681aac0e0a212458cb501d6a64b97e1ca817} 
 PRINT\+\_\+\+MEMORY&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{GET\_MEMORY\_POINT@{GET\_MEMORY\_POINT}!command\_handler@{command\_handler}}\index{command\_handler@{command\_handler}!GET\_MEMORY\_POINT@{GET\_MEMORY\_POINT}}}\mbox{\Hypertarget{namespacecommand__handler_a49f72bb84305031f68e77b48be812681a8c3c1a5f272ba8b70b2de2d21d98ef69}\label{namespacecommand__handler_a49f72bb84305031f68e77b48be812681a8c3c1a5f272ba8b70b2de2d21d98ef69}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{GET\_MEMORY\_POINT@{GET\_MEMORY\_POINT}!command\_handler@{command\_handler}}\index{command\_handler@{command\_handler}!GET\_MEMORY\_POINT@{GET\_MEMORY\_POINT}}}\Hypertarget{namespacecommand__handler_a49f72bb84305031f68e77b48be812681a8c3c1a5f272ba8b70b2de2d21d98ef69}\label{namespacecommand__handler_a49f72bb84305031f68e77b48be812681a8c3c1a5f272ba8b70b2de2d21d98ef69} 
 GET\+\_\+\+MEMORY\+\_\+\+POINT&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{DUMP\_CACHE@{DUMP\_CACHE}!command\_handler@{command\_handler}}\index{command\_handler@{command\_handler}!DUMP\_CACHE@{DUMP\_CACHE}}}\mbox{\Hypertarget{namespacecommand__handler_a49f72bb84305031f68e77b48be812681af4981f876938b4f77a6a883cdc0631d5}\label{namespacecommand__handler_a49f72bb84305031f68e77b48be812681af4981f876938b4f77a6a883cdc0631d5}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DUMP\_CACHE@{DUMP\_CACHE}!command\_handler@{command\_handler}}\index{command\_handler@{command\_handler}!DUMP\_CACHE@{DUMP\_CACHE}}}\Hypertarget{namespacecommand__handler_a49f72bb84305031f68e77b48be812681af4981f876938b4f77a6a883cdc0631d5}\label{namespacecommand__handler_a49f72bb84305031f68e77b48be812681af4981f876938b4f77a6a883cdc0631d5} 
 DUMP\+\_\+\+CACHE&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{ADD\_BREAKPOINT@{ADD\_BREAKPOINT}!command\_handler@{command\_handler}}\index{command\_handler@{command\_handler}!ADD\_BREAKPOINT@{ADD\_BREAKPOINT}}}\mbox{\Hypertarget{namespacecommand__handler_a49f72bb84305031f68e77b48be812681a495ead75498c058e80ac36a65b2399db}\label{namespacecommand__handler_a49f72bb84305031f68e77b48be812681a495ead75498c058e80ac36a65b2399db}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ADD\_BREAKPOINT@{ADD\_BREAKPOINT}!command\_handler@{command\_handler}}\index{command\_handler@{command\_handler}!ADD\_BREAKPOINT@{ADD\_BREAKPOINT}}}\Hypertarget{namespacecommand__handler_a49f72bb84305031f68e77b48be812681a495ead75498c058e80ac36a65b2399db}\label{namespacecommand__handler_a49f72bb84305031f68e77b48be812681a495ead75498c058e80ac36a65b2399db} 
 ADD\+\_\+\+BREAKPOINT&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{REMOVE\_BREAKPOINT@{REMOVE\_BREAKPOINT}!command\_handler@{command\_handler}}\index{command\_handler@{command\_handler}!REMOVE\_BREAKPOINT@{REMOVE\_BREAKPOINT}}}\mbox{\Hypertarget{namespacecommand__handler_a49f72bb84305031f68e77b48be812681a1af1483e77cfe2abd58e8eb639768b15}\label{namespacecommand__handler_a49f72bb84305031f68e77b48be812681a1af1483e77cfe2abd58e8eb639768b15}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{REMOVE\_BREAKPOINT@{REMOVE\_BREAKPOINT}!command\_handler@{command\_handler}}\index{command\_handler@{command\_handler}!REMOVE\_BREAKPOINT@{REMOVE\_BREAKPOINT}}}\Hypertarget{namespacecommand__handler_a49f72bb84305031f68e77b48be812681a1af1483e77cfe2abd58e8eb639768b15}\label{namespacecommand__handler_a49f72bb84305031f68e77b48be812681a1af1483e77cfe2abd58e8eb639768b15} 
 REMOVE\+\_\+\+BREAKPOINT&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{VM\_STDIN@{VM\_STDIN}!command\_handler@{command\_handler}}\index{command\_handler@{command\_handler}!VM\_STDIN@{VM\_STDIN}}}\mbox{\Hypertarget{namespacecommand__handler_a49f72bb84305031f68e77b48be812681a3cbd204eb9b0446f83da767225380a79}\label{namespacecommand__handler_a49f72bb84305031f68e77b48be812681a3cbd204eb9b0446f83da767225380a79}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VM\_STDIN@{VM\_STDIN}!command\_handler@{command\_handler}}\index{command\_handler@{command\_handler}!VM\_STDIN@{VM\_STDIN}}}\Hypertarget{namespacecommand__handler_a49f72bb84305031f68e77b48be812681a3cbd204eb9b0446f83da767225380a79}\label{namespacecommand__handler_a49f72bb84305031f68e77b48be812681a3cbd204eb9b0446f83da767225380a79} 
 VM\+\_\+\+STDIN&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{EXIT@{EXIT}!command\_handler@{command\_handler}}\index{command\_handler@{command\_handler}!EXIT@{EXIT}}}\mbox{\Hypertarget{namespacecommand__handler_a49f72bb84305031f68e77b48be812681aa42b2fb0e720a080e79a92f4ca97d927}\label{namespacecommand__handler_a49f72bb84305031f68e77b48be812681aa42b2fb0e720a080e79a92f4ca97d927}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EXIT@{EXIT}!command\_handler@{command\_handler}}\index{command\_handler@{command\_handler}!EXIT@{EXIT}}}\Hypertarget{namespacecommand__handler_a49f72bb84305031f68e77b48be812681aa42b2fb0e720a080e79a92f4ca97d927}\label{namespacecommand__handler_a49f72bb84305031f68e77b48be812681aa42b2fb0e720a080e79a92f4ca97d927} 
 EXIT&\\
 \hline
 
@@ -173,13 +184,13 @@ EXIT&\\
 
 
 \doxysubsection{Function Documentation}
-\mbox{\Hypertarget{namespacecommand__handler_a32eea363a2d5c5e4b4b6c71626058fa1}\label{namespacecommand__handler_a32eea363a2d5c5e4b4b6c71626058fa1}} 
+\Hypertarget{namespacecommand__handler_a32eea363a2d5c5e4b4b6c71626058fa1}\label{namespacecommand__handler_a32eea363a2d5c5e4b4b6c71626058fa1} 
 \index{command\_handler@{command\_handler}!ExecuteCommand@{ExecuteCommand}}
 \index{ExecuteCommand@{ExecuteCommand}!command\_handler@{command\_handler}}
 \doxysubsubsection{\texorpdfstring{ExecuteCommand()}{ExecuteCommand()}}
 {\footnotesize\ttfamily void command\+\_\+handler\+::\+Execute\+Command (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structcommand__handler_1_1Command}{Command}} \&}]{command,  }\item[{\mbox{\hyperlink{classRVSSVM}{RVSSVM}} \&}]{vm }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{namespacecommand__handler_aa154f73d4d471f39cfd87bc8068bd815}\label{namespacecommand__handler_aa154f73d4d471f39cfd87bc8068bd815}} 
+\Hypertarget{namespacecommand__handler_aa154f73d4d471f39cfd87bc8068bd815}\label{namespacecommand__handler_aa154f73d4d471f39cfd87bc8068bd815} 
 \index{command\_handler@{command\_handler}!ParseCommand@{ParseCommand}}
 \index{ParseCommand@{ParseCommand}!command\_handler@{command\_handler}}
 \doxysubsubsection{\texorpdfstring{ParseCommand()}{ParseCommand()}}

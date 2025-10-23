@@ -1,4 +1,5 @@
 <map id="include/globals.h" name="include/globals.h">
-<area shape="rect" id="node1" title="Contains global definitions and includes for the assembler." alt="" coords="5,5,137,32"/>
-<area shape="rect" id="node2" title=" " alt="" coords="26,80,117,107"/>
+<area shape="rect" id="Node000001" title="Contains global definitions and includes for the assembler." alt="" coords="5,5,137,31"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="26,79,117,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="74,31,74,65,69,65,69,31"/>
 </map>

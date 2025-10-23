@@ -1,10 +1,23 @@
 <map id="src/vm/registers.cpp" name="src/vm/registers.cpp">
-<area shape="rect" id="node1" title="Contains the implementation of the RegisterFile class and related." alt="" coords="184,5,339,32"/>
-<area shape="rect" id="node2" href="$registers_8h.html" title="Contains the definition of the RegisterFile class for managing registers in the simulator." alt="" coords="155,80,271,107"/>
-<area shape="rect" id="node3" title=" " alt="" coords="5,155,61,181"/>
-<area shape="rect" id="node4" title=" " alt="" coords="86,155,149,181"/>
-<area shape="rect" id="node5" title=" " alt="" coords="256,155,371,181"/>
-<area shape="rect" id="node6" title=" " alt="" coords="395,155,519,181"/>
-<area shape="rect" id="node8" title=" " alt="" coords="398,80,485,107"/>
-<area shape="rect" id="node7" title=" " alt="" coords="173,155,232,181"/>
+<area shape="rect" id="Node000001" title="Contains the implementation of the RegisterFile class and related." alt="" coords="185,5,340,31"/>
+<area shape="rect" id="Node000002" href="$registers_8h.html" title="Contains the definition of the RegisterFile class for managing registers in the simulator." alt="" coords="253,79,369,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="273,30,298,66,293,69,268,33"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,152,61,177"/>
+<area shape="poly" id="edge12_Node000001_Node000003" title=" " alt="" coords="246,33,65,147,62,142,243,29"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="86,152,149,177"/>
+<area shape="poly" id="edge11_Node000001_Node000004" title=" " alt="" coords="253,33,141,144,137,140,249,29"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="173,152,288,177"/>
+<area shape="poly" id="edge9_Node000001_Node000005" title=" " alt="" coords="260,32,244,79,235,138,230,138,239,78,255,30"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="486,152,610,177"/>
+<area shape="poly" id="edge10_Node000001_Node000006" title=" " alt="" coords="287,29,383,76,515,143,512,148,380,81,285,33"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="445,79,531,104"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="300,28,439,72,438,77,298,33"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="264,107,75,154,74,149,263,101"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="281,107,162,150,161,145,279,102"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="300,106,256,145,252,141,296,102"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="350,101,497,145,496,151,348,107"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="312,152,371,177"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="318,103,333,139,329,141,313,105"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="395,152,461,177"/>
+<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="331,102,398,142,396,147,328,106"/>
 </map>

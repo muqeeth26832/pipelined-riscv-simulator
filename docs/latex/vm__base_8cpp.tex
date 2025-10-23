@@ -1,13 +1,13 @@
-\hypertarget{vm__base_8cpp}{}\doxysection{src/vm/vm\+\_\+base.cpp File Reference}
-\label{vm__base_8cpp}\index{src/vm/vm\_base.cpp@{src/vm/vm\_base.cpp}}
+\doxysection{src/vm/vm\+\_\+base.cpp File Reference}
+\hypertarget{vm__base_8cpp}{}\label{vm__base_8cpp}\index{src/vm/vm\_base.cpp@{src/vm/vm\_base.cpp}}
 
 
 File containing the base class for the virtual machine.  
 
 
-{\ttfamily \#include \char`\"{}vm/vm\+\_\+base.\+h\char`\"{}}\newline
-{\ttfamily \#include \char`\"{}globals.\+h\char`\"{}}\newline
-{\ttfamily \#include \char`\"{}config.\+h\char`\"{}}\newline
+{\ttfamily \#include "{}vm/vm\+\_\+base.\+h"{}}\newline
+{\ttfamily \#include "{}globals.\+h"{}}\newline
+{\ttfamily \#include "{}config.\+h"{}}\newline
 {\ttfamily \#include $<$cstdint$>$}\newline
 {\ttfamily \#include $<$iostream$>$}\newline
 {\ttfamily \#include $<$iomanip$>$}\newline
@@ -24,7 +24,7 @@ Include dependency graph for vm\+\_\+base.\+cpp\+:
 \includegraphics[width=350pt]{vm__base_8cpp__incl}
 \end{center}
 \end{figure}
-\doxysubsection*{Variables}
+\doxysubsubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
 auto \mbox{\hyperlink{vm__base_8cpp_a282f36b03b3d072954255b57378bed7b}{sign\+\_\+extend}}
@@ -40,7 +40,7 @@ Vishank Singh, \href{https://VishankSingh}{\texttt{ https\+://\+Vishank\+Singh}}
 
 
 \doxysubsection{Variable Documentation}
-\mbox{\Hypertarget{vm__base_8cpp_a282f36b03b3d072954255b57378bed7b}\label{vm__base_8cpp_a282f36b03b3d072954255b57378bed7b}} 
+\Hypertarget{vm__base_8cpp_a282f36b03b3d072954255b57378bed7b}\label{vm__base_8cpp_a282f36b03b3d072954255b57378bed7b} 
 \index{vm\_base.cpp@{vm\_base.cpp}!sign\_extend@{sign\_extend}}
 \index{sign\_extend@{sign\_extend}!vm\_base.cpp@{vm\_base.cpp}}
 \doxysubsubsection{\texorpdfstring{sign\_extend}{sign\_extend}}
@@ -48,9 +48,9 @@ Vishank Singh, \href{https://VishankSingh}{\texttt{ https\+://\+Vishank\+Singh}}
 
 {\bfseries Initial value\+:}
 \begin{DoxyCode}{0}
-\DoxyCodeLine{= [](uint32\_t value, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} bits) -\/> int32\_t \{}
-\DoxyCodeLine{    int32\_t mask = 1 << (bits -\/ 1);}
-\DoxyCodeLine{    \textcolor{keywordflow}{return} (value \string^ mask) -\/ mask;}
+\DoxyCodeLine{=\ [](uint32\_t\ value,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ bits)\ -\/>\ int32\_t\ \{}
+\DoxyCodeLine{\ \ \ \ int32\_t\ mask\ =\ 1\ <<\ (bits\ -\/\ 1);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ (value\ \string^\ mask)\ -\/\ mask;}
 \DoxyCodeLine{\}}
 
 \end{DoxyCode}

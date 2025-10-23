@@ -1,10 +1,10 @@
-\hypertarget{structvm__config_1_1VmConfig}{}\doxysection{vm\+\_\+config\+::Vm\+Config Struct Reference}
-\label{structvm__config_1_1VmConfig}\index{vm\_config::VmConfig@{vm\_config::VmConfig}}
+\doxysection{vm\+\_\+config\+::Vm\+Config Struct Reference}
+\hypertarget{structvm__config_1_1VmConfig}{}\label{structvm__config_1_1VmConfig}\index{vm\_config::VmConfig@{vm\_config::VmConfig}}
 
 
 {\ttfamily \#include $<$config.\+h$>$}
 
-\doxysubsection*{Public Member Functions}
+\doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 void \mbox{\hyperlink{structvm__config_1_1VmConfig_abb8a00c8652daed6dfa60eba3c042f68}{set\+Vm\+Type}} (const \mbox{\hyperlink{namespacevm__config_aa4eeb50c28c404f656938f58b44562b5}{Vm\+Types}} \&type)
@@ -35,9 +35,25 @@ void \mbox{\hyperlink{structvm__config_1_1VmConfig_aa81411167ed2848f96178becea4f
 \item 
 uint64\+\_\+t \mbox{\hyperlink{structvm__config_1_1VmConfig_a0e7ae7889bdc62a23cbc66fad14e35f2}{get\+Bss\+Section\+Start}} () const
 \item 
+void \mbox{\hyperlink{structvm__config_1_1VmConfig_aa5affaa167a74613d7b51825537ab7e1}{set\+Instruction\+Execution\+Limit}} (uint64\+\_\+t limit)
+\item 
+uint64\+\_\+t \mbox{\hyperlink{structvm__config_1_1VmConfig_a3341fe1ac073ccc13a7b9e9103994fc6}{get\+Instruction\+Execution\+Limit}} () const
+\item 
+void \mbox{\hyperlink{structvm__config_1_1VmConfig_af3674e7d55f82d1f29d1986575e4816e}{set\+MExtension\+Enabled}} (bool enabled)
+\item 
+bool \mbox{\hyperlink{structvm__config_1_1VmConfig_ab1035ae84e70eb89712b0788673a32f7}{get\+MExtension\+Enabled}} () const
+\item 
+void \mbox{\hyperlink{structvm__config_1_1VmConfig_a4806e401e3052fbfe78b6a3b55775b32}{set\+FExtension\+Enabled}} (bool enabled)
+\item 
+bool \mbox{\hyperlink{structvm__config_1_1VmConfig_a502220057b8677707eed567cb7320c0d}{get\+FExtension\+Enabled}} () const
+\item 
+void \mbox{\hyperlink{structvm__config_1_1VmConfig_ae14743af1c84b866787d10f90a7da797}{set\+DExtension\+Enabled}} (bool enabled)
+\item 
+bool \mbox{\hyperlink{structvm__config_1_1VmConfig_a8948f3a0ddc738450f732b86e5f32ff9}{get\+DExtension\+Enabled}} () const
+\item 
 void \mbox{\hyperlink{structvm__config_1_1VmConfig_a294ab0dd2f427bdcb05292a9d6beb555}{modify\+Config}} (const std\+::string \&section, const std\+::string \&key, const std\+::string \&value)
 \end{DoxyCompactItemize}
-\doxysubsection*{Public Attributes}
+\doxysubsubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{namespacevm__config_aa4eeb50c28c404f656938f58b44562b5}{Vm\+Types}} \mbox{\hyperlink{structvm__config_1_1VmConfig_ae04b975893d08f77ca2938aeda35cc77}{vm\+\_\+type}} = \mbox{\hyperlink{namespacevm__config_aa4eeb50c28c404f656938f58b44562b5a2c4a0af0ffe5afecf34ef3401408722c}{Vm\+Types\+::\+SINGLE\+\_\+\+STAGE}}
@@ -53,95 +69,151 @@ uint64\+\_\+t \mbox{\hyperlink{structvm__config_1_1VmConfig_a46ea0d10309513ccb96
 uint64\+\_\+t \mbox{\hyperlink{structvm__config_1_1VmConfig_ab53ccaee75a3aa6e97ee56a7d5c7bbf3}{text\+\_\+section\+\_\+start}} = 0x0
 \item 
 uint64\+\_\+t \mbox{\hyperlink{structvm__config_1_1VmConfig_a219e9e3f1ddeb1535d0eed15ec59895f}{bss\+\_\+section\+\_\+start}} = 0x11000000
+\item 
+uint64\+\_\+t \mbox{\hyperlink{structvm__config_1_1VmConfig_ac0d144a1121e7463a694c58a6c2d12ca}{instruction\+\_\+execution\+\_\+limit}} = 100
+\item 
+bool \mbox{\hyperlink{structvm__config_1_1VmConfig_aae91f1d83ed1b2af2435f6d4a8ec343a}{m\+\_\+extension\+\_\+enabled}} = true
+\item 
+bool \mbox{\hyperlink{structvm__config_1_1VmConfig_a68bd987c508ae6f5b47bd9cff87c1daf}{f\+\_\+extension\+\_\+enabled}} = true
+\item 
+bool \mbox{\hyperlink{structvm__config_1_1VmConfig_a180f3d1f68cc8ee848e837efa1def3f5}{d\+\_\+extension\+\_\+enabled}} = true
 \end{DoxyCompactItemize}
 
 
 \doxysubsection{Member Function Documentation}
-\mbox{\Hypertarget{structvm__config_1_1VmConfig_a0e7ae7889bdc62a23cbc66fad14e35f2}\label{structvm__config_1_1VmConfig_a0e7ae7889bdc62a23cbc66fad14e35f2}} 
+\Hypertarget{structvm__config_1_1VmConfig_a0e7ae7889bdc62a23cbc66fad14e35f2}\label{structvm__config_1_1VmConfig_a0e7ae7889bdc62a23cbc66fad14e35f2} 
 \index{vm\_config::VmConfig@{vm\_config::VmConfig}!getBssSectionStart@{getBssSectionStart}}
 \index{getBssSectionStart@{getBssSectionStart}!vm\_config::VmConfig@{vm\_config::VmConfig}}
 \doxysubsubsection{\texorpdfstring{getBssSectionStart()}{getBssSectionStart()}}
 {\footnotesize\ttfamily uint64\+\_\+t vm\+\_\+config\+::\+Vm\+Config\+::get\+Bss\+Section\+Start (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
-\mbox{\Hypertarget{structvm__config_1_1VmConfig_ad0e10a53f879c0e238cad84910424999}\label{structvm__config_1_1VmConfig_ad0e10a53f879c0e238cad84910424999}} 
+\Hypertarget{structvm__config_1_1VmConfig_ad0e10a53f879c0e238cad84910424999}\label{structvm__config_1_1VmConfig_ad0e10a53f879c0e238cad84910424999} 
 \index{vm\_config::VmConfig@{vm\_config::VmConfig}!getDataSectionStart@{getDataSectionStart}}
 \index{getDataSectionStart@{getDataSectionStart}!vm\_config::VmConfig@{vm\_config::VmConfig}}
 \doxysubsubsection{\texorpdfstring{getDataSectionStart()}{getDataSectionStart()}}
 {\footnotesize\ttfamily uint64\+\_\+t vm\+\_\+config\+::\+Vm\+Config\+::get\+Data\+Section\+Start (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
-\mbox{\Hypertarget{structvm__config_1_1VmConfig_a2dcb5a8dd0a4ae911fea084c2f300ada}\label{structvm__config_1_1VmConfig_a2dcb5a8dd0a4ae911fea084c2f300ada}} 
+\Hypertarget{structvm__config_1_1VmConfig_a8948f3a0ddc738450f732b86e5f32ff9}\label{structvm__config_1_1VmConfig_a8948f3a0ddc738450f732b86e5f32ff9} 
+\index{vm\_config::VmConfig@{vm\_config::VmConfig}!getDExtensionEnabled@{getDExtensionEnabled}}
+\index{getDExtensionEnabled@{getDExtensionEnabled}!vm\_config::VmConfig@{vm\_config::VmConfig}}
+\doxysubsubsection{\texorpdfstring{getDExtensionEnabled()}{getDExtensionEnabled()}}
+{\footnotesize\ttfamily bool vm\+\_\+config\+::\+Vm\+Config\+::get\+DExtension\+Enabled (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{structvm__config_1_1VmConfig_a502220057b8677707eed567cb7320c0d}\label{structvm__config_1_1VmConfig_a502220057b8677707eed567cb7320c0d} 
+\index{vm\_config::VmConfig@{vm\_config::VmConfig}!getFExtensionEnabled@{getFExtensionEnabled}}
+\index{getFExtensionEnabled@{getFExtensionEnabled}!vm\_config::VmConfig@{vm\_config::VmConfig}}
+\doxysubsubsection{\texorpdfstring{getFExtensionEnabled()}{getFExtensionEnabled()}}
+{\footnotesize\ttfamily bool vm\+\_\+config\+::\+Vm\+Config\+::get\+FExtension\+Enabled (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{structvm__config_1_1VmConfig_a3341fe1ac073ccc13a7b9e9103994fc6}\label{structvm__config_1_1VmConfig_a3341fe1ac073ccc13a7b9e9103994fc6} 
+\index{vm\_config::VmConfig@{vm\_config::VmConfig}!getInstructionExecutionLimit@{getInstructionExecutionLimit}}
+\index{getInstructionExecutionLimit@{getInstructionExecutionLimit}!vm\_config::VmConfig@{vm\_config::VmConfig}}
+\doxysubsubsection{\texorpdfstring{getInstructionExecutionLimit()}{getInstructionExecutionLimit()}}
+{\footnotesize\ttfamily uint64\+\_\+t vm\+\_\+config\+::\+Vm\+Config\+::get\+Instruction\+Execution\+Limit (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{structvm__config_1_1VmConfig_a2dcb5a8dd0a4ae911fea084c2f300ada}\label{structvm__config_1_1VmConfig_a2dcb5a8dd0a4ae911fea084c2f300ada} 
 \index{vm\_config::VmConfig@{vm\_config::VmConfig}!getMemoryBlockSize@{getMemoryBlockSize}}
 \index{getMemoryBlockSize@{getMemoryBlockSize}!vm\_config::VmConfig@{vm\_config::VmConfig}}
 \doxysubsubsection{\texorpdfstring{getMemoryBlockSize()}{getMemoryBlockSize()}}
 {\footnotesize\ttfamily uint64\+\_\+t vm\+\_\+config\+::\+Vm\+Config\+::get\+Memory\+Block\+Size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
-\mbox{\Hypertarget{structvm__config_1_1VmConfig_a659405ba2c6bba936a3b9aeb83048624}\label{structvm__config_1_1VmConfig_a659405ba2c6bba936a3b9aeb83048624}} 
+\Hypertarget{structvm__config_1_1VmConfig_a659405ba2c6bba936a3b9aeb83048624}\label{structvm__config_1_1VmConfig_a659405ba2c6bba936a3b9aeb83048624} 
 \index{vm\_config::VmConfig@{vm\_config::VmConfig}!getMemorySize@{getMemorySize}}
 \index{getMemorySize@{getMemorySize}!vm\_config::VmConfig@{vm\_config::VmConfig}}
 \doxysubsubsection{\texorpdfstring{getMemorySize()}{getMemorySize()}}
 {\footnotesize\ttfamily uint64\+\_\+t vm\+\_\+config\+::\+Vm\+Config\+::get\+Memory\+Size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
-\mbox{\Hypertarget{structvm__config_1_1VmConfig_a1362515d9135ef841481091006ba0200}\label{structvm__config_1_1VmConfig_a1362515d9135ef841481091006ba0200}} 
+\Hypertarget{structvm__config_1_1VmConfig_ab1035ae84e70eb89712b0788673a32f7}\label{structvm__config_1_1VmConfig_ab1035ae84e70eb89712b0788673a32f7} 
+\index{vm\_config::VmConfig@{vm\_config::VmConfig}!getMExtensionEnabled@{getMExtensionEnabled}}
+\index{getMExtensionEnabled@{getMExtensionEnabled}!vm\_config::VmConfig@{vm\_config::VmConfig}}
+\doxysubsubsection{\texorpdfstring{getMExtensionEnabled()}{getMExtensionEnabled()}}
+{\footnotesize\ttfamily bool vm\+\_\+config\+::\+Vm\+Config\+::get\+MExtension\+Enabled (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{structvm__config_1_1VmConfig_a1362515d9135ef841481091006ba0200}\label{structvm__config_1_1VmConfig_a1362515d9135ef841481091006ba0200} 
 \index{vm\_config::VmConfig@{vm\_config::VmConfig}!getRunStepDelay@{getRunStepDelay}}
 \index{getRunStepDelay@{getRunStepDelay}!vm\_config::VmConfig@{vm\_config::VmConfig}}
 \doxysubsubsection{\texorpdfstring{getRunStepDelay()}{getRunStepDelay()}}
 {\footnotesize\ttfamily uint64\+\_\+t vm\+\_\+config\+::\+Vm\+Config\+::get\+Run\+Step\+Delay (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
-\mbox{\Hypertarget{structvm__config_1_1VmConfig_a8957ed6ce1a78c46440ddd4a6a59558b}\label{structvm__config_1_1VmConfig_a8957ed6ce1a78c46440ddd4a6a59558b}} 
+\Hypertarget{structvm__config_1_1VmConfig_a8957ed6ce1a78c46440ddd4a6a59558b}\label{structvm__config_1_1VmConfig_a8957ed6ce1a78c46440ddd4a6a59558b} 
 \index{vm\_config::VmConfig@{vm\_config::VmConfig}!getTextSectionStart@{getTextSectionStart}}
 \index{getTextSectionStart@{getTextSectionStart}!vm\_config::VmConfig@{vm\_config::VmConfig}}
 \doxysubsubsection{\texorpdfstring{getTextSectionStart()}{getTextSectionStart()}}
 {\footnotesize\ttfamily uint64\+\_\+t vm\+\_\+config\+::\+Vm\+Config\+::get\+Text\+Section\+Start (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
-\mbox{\Hypertarget{structvm__config_1_1VmConfig_aebb2b9192cf97c6c5f996c355fe52e5d}\label{structvm__config_1_1VmConfig_aebb2b9192cf97c6c5f996c355fe52e5d}} 
+\Hypertarget{structvm__config_1_1VmConfig_aebb2b9192cf97c6c5f996c355fe52e5d}\label{structvm__config_1_1VmConfig_aebb2b9192cf97c6c5f996c355fe52e5d} 
 \index{vm\_config::VmConfig@{vm\_config::VmConfig}!getVmType@{getVmType}}
 \index{getVmType@{getVmType}!vm\_config::VmConfig@{vm\_config::VmConfig}}
 \doxysubsubsection{\texorpdfstring{getVmType()}{getVmType()}}
 {\footnotesize\ttfamily \mbox{\hyperlink{namespacevm__config_aa4eeb50c28c404f656938f58b44562b5}{Vm\+Types}} vm\+\_\+config\+::\+Vm\+Config\+::get\+Vm\+Type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
-\mbox{\Hypertarget{structvm__config_1_1VmConfig_a294ab0dd2f427bdcb05292a9d6beb555}\label{structvm__config_1_1VmConfig_a294ab0dd2f427bdcb05292a9d6beb555}} 
+\Hypertarget{structvm__config_1_1VmConfig_a294ab0dd2f427bdcb05292a9d6beb555}\label{structvm__config_1_1VmConfig_a294ab0dd2f427bdcb05292a9d6beb555} 
 \index{vm\_config::VmConfig@{vm\_config::VmConfig}!modifyConfig@{modifyConfig}}
 \index{modifyConfig@{modifyConfig}!vm\_config::VmConfig@{vm\_config::VmConfig}}
 \doxysubsubsection{\texorpdfstring{modifyConfig()}{modifyConfig()}}
 {\footnotesize\ttfamily void vm\+\_\+config\+::\+Vm\+Config\+::modify\+Config (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{section,  }\item[{const std\+::string \&}]{key,  }\item[{const std\+::string \&}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-\mbox{\Hypertarget{structvm__config_1_1VmConfig_aa81411167ed2848f96178becea4f8a03}\label{structvm__config_1_1VmConfig_aa81411167ed2848f96178becea4f8a03}} 
+\Hypertarget{structvm__config_1_1VmConfig_aa81411167ed2848f96178becea4f8a03}\label{structvm__config_1_1VmConfig_aa81411167ed2848f96178becea4f8a03} 
 \index{vm\_config::VmConfig@{vm\_config::VmConfig}!setBssSectionStart@{setBssSectionStart}}
 \index{setBssSectionStart@{setBssSectionStart}!vm\_config::VmConfig@{vm\_config::VmConfig}}
 \doxysubsubsection{\texorpdfstring{setBssSectionStart()}{setBssSectionStart()}}
 {\footnotesize\ttfamily void vm\+\_\+config\+::\+Vm\+Config\+::set\+Bss\+Section\+Start (\begin{DoxyParamCaption}\item[{uint64\+\_\+t}]{start }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-\mbox{\Hypertarget{structvm__config_1_1VmConfig_a348dde0e252bab4136c92f29c8eb1a19}\label{structvm__config_1_1VmConfig_a348dde0e252bab4136c92f29c8eb1a19}} 
+\Hypertarget{structvm__config_1_1VmConfig_a348dde0e252bab4136c92f29c8eb1a19}\label{structvm__config_1_1VmConfig_a348dde0e252bab4136c92f29c8eb1a19} 
 \index{vm\_config::VmConfig@{vm\_config::VmConfig}!setDataSectionStart@{setDataSectionStart}}
 \index{setDataSectionStart@{setDataSectionStart}!vm\_config::VmConfig@{vm\_config::VmConfig}}
 \doxysubsubsection{\texorpdfstring{setDataSectionStart()}{setDataSectionStart()}}
 {\footnotesize\ttfamily void vm\+\_\+config\+::\+Vm\+Config\+::set\+Data\+Section\+Start (\begin{DoxyParamCaption}\item[{uint64\+\_\+t}]{start }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-\mbox{\Hypertarget{structvm__config_1_1VmConfig_a44f1922ab068f74985fde26a0900f071}\label{structvm__config_1_1VmConfig_a44f1922ab068f74985fde26a0900f071}} 
+\Hypertarget{structvm__config_1_1VmConfig_ae14743af1c84b866787d10f90a7da797}\label{structvm__config_1_1VmConfig_ae14743af1c84b866787d10f90a7da797} 
+\index{vm\_config::VmConfig@{vm\_config::VmConfig}!setDExtensionEnabled@{setDExtensionEnabled}}
+\index{setDExtensionEnabled@{setDExtensionEnabled}!vm\_config::VmConfig@{vm\_config::VmConfig}}
+\doxysubsubsection{\texorpdfstring{setDExtensionEnabled()}{setDExtensionEnabled()}}
+{\footnotesize\ttfamily void vm\+\_\+config\+::\+Vm\+Config\+::set\+DExtension\+Enabled (\begin{DoxyParamCaption}\item[{bool}]{enabled }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{structvm__config_1_1VmConfig_a4806e401e3052fbfe78b6a3b55775b32}\label{structvm__config_1_1VmConfig_a4806e401e3052fbfe78b6a3b55775b32} 
+\index{vm\_config::VmConfig@{vm\_config::VmConfig}!setFExtensionEnabled@{setFExtensionEnabled}}
+\index{setFExtensionEnabled@{setFExtensionEnabled}!vm\_config::VmConfig@{vm\_config::VmConfig}}
+\doxysubsubsection{\texorpdfstring{setFExtensionEnabled()}{setFExtensionEnabled()}}
+{\footnotesize\ttfamily void vm\+\_\+config\+::\+Vm\+Config\+::set\+FExtension\+Enabled (\begin{DoxyParamCaption}\item[{bool}]{enabled }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{structvm__config_1_1VmConfig_aa5affaa167a74613d7b51825537ab7e1}\label{structvm__config_1_1VmConfig_aa5affaa167a74613d7b51825537ab7e1} 
+\index{vm\_config::VmConfig@{vm\_config::VmConfig}!setInstructionExecutionLimit@{setInstructionExecutionLimit}}
+\index{setInstructionExecutionLimit@{setInstructionExecutionLimit}!vm\_config::VmConfig@{vm\_config::VmConfig}}
+\doxysubsubsection{\texorpdfstring{setInstructionExecutionLimit()}{setInstructionExecutionLimit()}}
+{\footnotesize\ttfamily void vm\+\_\+config\+::\+Vm\+Config\+::set\+Instruction\+Execution\+Limit (\begin{DoxyParamCaption}\item[{uint64\+\_\+t}]{limit }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{structvm__config_1_1VmConfig_a44f1922ab068f74985fde26a0900f071}\label{structvm__config_1_1VmConfig_a44f1922ab068f74985fde26a0900f071} 
 \index{vm\_config::VmConfig@{vm\_config::VmConfig}!setMemoryBlockSize@{setMemoryBlockSize}}
 \index{setMemoryBlockSize@{setMemoryBlockSize}!vm\_config::VmConfig@{vm\_config::VmConfig}}
 \doxysubsubsection{\texorpdfstring{setMemoryBlockSize()}{setMemoryBlockSize()}}
 {\footnotesize\ttfamily void vm\+\_\+config\+::\+Vm\+Config\+::set\+Memory\+Block\+Size (\begin{DoxyParamCaption}\item[{uint64\+\_\+t}]{size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-\mbox{\Hypertarget{structvm__config_1_1VmConfig_a8bc0665349553003a77e7ffb7fc695ac}\label{structvm__config_1_1VmConfig_a8bc0665349553003a77e7ffb7fc695ac}} 
+\Hypertarget{structvm__config_1_1VmConfig_a8bc0665349553003a77e7ffb7fc695ac}\label{structvm__config_1_1VmConfig_a8bc0665349553003a77e7ffb7fc695ac} 
 \index{vm\_config::VmConfig@{vm\_config::VmConfig}!setMemorySize@{setMemorySize}}
 \index{setMemorySize@{setMemorySize}!vm\_config::VmConfig@{vm\_config::VmConfig}}
 \doxysubsubsection{\texorpdfstring{setMemorySize()}{setMemorySize()}}
 {\footnotesize\ttfamily void vm\+\_\+config\+::\+Vm\+Config\+::set\+Memory\+Size (\begin{DoxyParamCaption}\item[{uint64\+\_\+t}]{size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-\mbox{\Hypertarget{structvm__config_1_1VmConfig_a2de4c51b360792be181645482b79d6e1}\label{structvm__config_1_1VmConfig_a2de4c51b360792be181645482b79d6e1}} 
+\Hypertarget{structvm__config_1_1VmConfig_af3674e7d55f82d1f29d1986575e4816e}\label{structvm__config_1_1VmConfig_af3674e7d55f82d1f29d1986575e4816e} 
+\index{vm\_config::VmConfig@{vm\_config::VmConfig}!setMExtensionEnabled@{setMExtensionEnabled}}
+\index{setMExtensionEnabled@{setMExtensionEnabled}!vm\_config::VmConfig@{vm\_config::VmConfig}}
+\doxysubsubsection{\texorpdfstring{setMExtensionEnabled()}{setMExtensionEnabled()}}
+{\footnotesize\ttfamily void vm\+\_\+config\+::\+Vm\+Config\+::set\+MExtension\+Enabled (\begin{DoxyParamCaption}\item[{bool}]{enabled }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{structvm__config_1_1VmConfig_a2de4c51b360792be181645482b79d6e1}\label{structvm__config_1_1VmConfig_a2de4c51b360792be181645482b79d6e1} 
 \index{vm\_config::VmConfig@{vm\_config::VmConfig}!setRunStepDelay@{setRunStepDelay}}
 \index{setRunStepDelay@{setRunStepDelay}!vm\_config::VmConfig@{vm\_config::VmConfig}}
 \doxysubsubsection{\texorpdfstring{setRunStepDelay()}{setRunStepDelay()}}
 {\footnotesize\ttfamily void vm\+\_\+config\+::\+Vm\+Config\+::set\+Run\+Step\+Delay (\begin{DoxyParamCaption}\item[{uint64\+\_\+t}]{delay }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-\mbox{\Hypertarget{structvm__config_1_1VmConfig_af406d40769fc5eac2781670afd7dfe1b}\label{structvm__config_1_1VmConfig_af406d40769fc5eac2781670afd7dfe1b}} 
+\Hypertarget{structvm__config_1_1VmConfig_af406d40769fc5eac2781670afd7dfe1b}\label{structvm__config_1_1VmConfig_af406d40769fc5eac2781670afd7dfe1b} 
 \index{vm\_config::VmConfig@{vm\_config::VmConfig}!setTextSectionStart@{setTextSectionStart}}
 \index{setTextSectionStart@{setTextSectionStart}!vm\_config::VmConfig@{vm\_config::VmConfig}}
 \doxysubsubsection{\texorpdfstring{setTextSectionStart()}{setTextSectionStart()}}
 {\footnotesize\ttfamily void vm\+\_\+config\+::\+Vm\+Config\+::set\+Text\+Section\+Start (\begin{DoxyParamCaption}\item[{uint64\+\_\+t}]{start }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-\mbox{\Hypertarget{structvm__config_1_1VmConfig_abb8a00c8652daed6dfa60eba3c042f68}\label{structvm__config_1_1VmConfig_abb8a00c8652daed6dfa60eba3c042f68}} 
+\Hypertarget{structvm__config_1_1VmConfig_abb8a00c8652daed6dfa60eba3c042f68}\label{structvm__config_1_1VmConfig_abb8a00c8652daed6dfa60eba3c042f68} 
 \index{vm\_config::VmConfig@{vm\_config::VmConfig}!setVmType@{setVmType}}
 \index{setVmType@{setVmType}!vm\_config::VmConfig@{vm\_config::VmConfig}}
 \doxysubsubsection{\texorpdfstring{setVmType()}{setVmType()}}
@@ -150,43 +222,67 @@ uint64\+\_\+t \mbox{\hyperlink{structvm__config_1_1VmConfig_a219e9e3f1ddeb1535d0
 
 
 \doxysubsection{Member Data Documentation}
-\mbox{\Hypertarget{structvm__config_1_1VmConfig_a219e9e3f1ddeb1535d0eed15ec59895f}\label{structvm__config_1_1VmConfig_a219e9e3f1ddeb1535d0eed15ec59895f}} 
+\Hypertarget{structvm__config_1_1VmConfig_a219e9e3f1ddeb1535d0eed15ec59895f}\label{structvm__config_1_1VmConfig_a219e9e3f1ddeb1535d0eed15ec59895f} 
 \index{vm\_config::VmConfig@{vm\_config::VmConfig}!bss\_section\_start@{bss\_section\_start}}
 \index{bss\_section\_start@{bss\_section\_start}!vm\_config::VmConfig@{vm\_config::VmConfig}}
 \doxysubsubsection{\texorpdfstring{bss\_section\_start}{bss\_section\_start}}
 {\footnotesize\ttfamily uint64\+\_\+t vm\+\_\+config\+::\+Vm\+Config\+::bss\+\_\+section\+\_\+start = 0x11000000}
 
-\mbox{\Hypertarget{structvm__config_1_1VmConfig_a46ea0d10309513ccb96d323625f80e3a}\label{structvm__config_1_1VmConfig_a46ea0d10309513ccb96d323625f80e3a}} 
+\Hypertarget{structvm__config_1_1VmConfig_a180f3d1f68cc8ee848e837efa1def3f5}\label{structvm__config_1_1VmConfig_a180f3d1f68cc8ee848e837efa1def3f5} 
+\index{vm\_config::VmConfig@{vm\_config::VmConfig}!d\_extension\_enabled@{d\_extension\_enabled}}
+\index{d\_extension\_enabled@{d\_extension\_enabled}!vm\_config::VmConfig@{vm\_config::VmConfig}}
+\doxysubsubsection{\texorpdfstring{d\_extension\_enabled}{d\_extension\_enabled}}
+{\footnotesize\ttfamily bool vm\+\_\+config\+::\+Vm\+Config\+::d\+\_\+extension\+\_\+enabled = true}
+
+\Hypertarget{structvm__config_1_1VmConfig_a46ea0d10309513ccb96d323625f80e3a}\label{structvm__config_1_1VmConfig_a46ea0d10309513ccb96d323625f80e3a} 
 \index{vm\_config::VmConfig@{vm\_config::VmConfig}!data\_section\_start@{data\_section\_start}}
 \index{data\_section\_start@{data\_section\_start}!vm\_config::VmConfig@{vm\_config::VmConfig}}
 \doxysubsubsection{\texorpdfstring{data\_section\_start}{data\_section\_start}}
 {\footnotesize\ttfamily uint64\+\_\+t vm\+\_\+config\+::\+Vm\+Config\+::data\+\_\+section\+\_\+start = 0x10000000}
 
-\mbox{\Hypertarget{structvm__config_1_1VmConfig_abefd6f4d54119fc2ce2c9c34c1b0466d}\label{structvm__config_1_1VmConfig_abefd6f4d54119fc2ce2c9c34c1b0466d}} 
+\Hypertarget{structvm__config_1_1VmConfig_a68bd987c508ae6f5b47bd9cff87c1daf}\label{structvm__config_1_1VmConfig_a68bd987c508ae6f5b47bd9cff87c1daf} 
+\index{vm\_config::VmConfig@{vm\_config::VmConfig}!f\_extension\_enabled@{f\_extension\_enabled}}
+\index{f\_extension\_enabled@{f\_extension\_enabled}!vm\_config::VmConfig@{vm\_config::VmConfig}}
+\doxysubsubsection{\texorpdfstring{f\_extension\_enabled}{f\_extension\_enabled}}
+{\footnotesize\ttfamily bool vm\+\_\+config\+::\+Vm\+Config\+::f\+\_\+extension\+\_\+enabled = true}
+
+\Hypertarget{structvm__config_1_1VmConfig_ac0d144a1121e7463a694c58a6c2d12ca}\label{structvm__config_1_1VmConfig_ac0d144a1121e7463a694c58a6c2d12ca} 
+\index{vm\_config::VmConfig@{vm\_config::VmConfig}!instruction\_execution\_limit@{instruction\_execution\_limit}}
+\index{instruction\_execution\_limit@{instruction\_execution\_limit}!vm\_config::VmConfig@{vm\_config::VmConfig}}
+\doxysubsubsection{\texorpdfstring{instruction\_execution\_limit}{instruction\_execution\_limit}}
+{\footnotesize\ttfamily uint64\+\_\+t vm\+\_\+config\+::\+Vm\+Config\+::instruction\+\_\+execution\+\_\+limit = 100}
+
+\Hypertarget{structvm__config_1_1VmConfig_aae91f1d83ed1b2af2435f6d4a8ec343a}\label{structvm__config_1_1VmConfig_aae91f1d83ed1b2af2435f6d4a8ec343a} 
+\index{vm\_config::VmConfig@{vm\_config::VmConfig}!m\_extension\_enabled@{m\_extension\_enabled}}
+\index{m\_extension\_enabled@{m\_extension\_enabled}!vm\_config::VmConfig@{vm\_config::VmConfig}}
+\doxysubsubsection{\texorpdfstring{m\_extension\_enabled}{m\_extension\_enabled}}
+{\footnotesize\ttfamily bool vm\+\_\+config\+::\+Vm\+Config\+::m\+\_\+extension\+\_\+enabled = true}
+
+\Hypertarget{structvm__config_1_1VmConfig_abefd6f4d54119fc2ce2c9c34c1b0466d}\label{structvm__config_1_1VmConfig_abefd6f4d54119fc2ce2c9c34c1b0466d} 
 \index{vm\_config::VmConfig@{vm\_config::VmConfig}!memory\_block\_size@{memory\_block\_size}}
 \index{memory\_block\_size@{memory\_block\_size}!vm\_config::VmConfig@{vm\_config::VmConfig}}
 \doxysubsubsection{\texorpdfstring{memory\_block\_size}{memory\_block\_size}}
 {\footnotesize\ttfamily uint64\+\_\+t vm\+\_\+config\+::\+Vm\+Config\+::memory\+\_\+block\+\_\+size = 1024}
 
-\mbox{\Hypertarget{structvm__config_1_1VmConfig_aba5da01f8429f6ba898d6f7bfa3bf7e7}\label{structvm__config_1_1VmConfig_aba5da01f8429f6ba898d6f7bfa3bf7e7}} 
+\Hypertarget{structvm__config_1_1VmConfig_aba5da01f8429f6ba898d6f7bfa3bf7e7}\label{structvm__config_1_1VmConfig_aba5da01f8429f6ba898d6f7bfa3bf7e7} 
 \index{vm\_config::VmConfig@{vm\_config::VmConfig}!memory\_size@{memory\_size}}
 \index{memory\_size@{memory\_size}!vm\_config::VmConfig@{vm\_config::VmConfig}}
 \doxysubsubsection{\texorpdfstring{memory\_size}{memory\_size}}
 {\footnotesize\ttfamily uint64\+\_\+t vm\+\_\+config\+::\+Vm\+Config\+::memory\+\_\+size = 0xffffffffffffffff}
 
-\mbox{\Hypertarget{structvm__config_1_1VmConfig_a9438d71dc02eca394d21d60da75d50f9}\label{structvm__config_1_1VmConfig_a9438d71dc02eca394d21d60da75d50f9}} 
+\Hypertarget{structvm__config_1_1VmConfig_a9438d71dc02eca394d21d60da75d50f9}\label{structvm__config_1_1VmConfig_a9438d71dc02eca394d21d60da75d50f9} 
 \index{vm\_config::VmConfig@{vm\_config::VmConfig}!run\_step\_delay@{run\_step\_delay}}
 \index{run\_step\_delay@{run\_step\_delay}!vm\_config::VmConfig@{vm\_config::VmConfig}}
 \doxysubsubsection{\texorpdfstring{run\_step\_delay}{run\_step\_delay}}
 {\footnotesize\ttfamily uint64\+\_\+t vm\+\_\+config\+::\+Vm\+Config\+::run\+\_\+step\+\_\+delay = 300}
 
-\mbox{\Hypertarget{structvm__config_1_1VmConfig_ab53ccaee75a3aa6e97ee56a7d5c7bbf3}\label{structvm__config_1_1VmConfig_ab53ccaee75a3aa6e97ee56a7d5c7bbf3}} 
+\Hypertarget{structvm__config_1_1VmConfig_ab53ccaee75a3aa6e97ee56a7d5c7bbf3}\label{structvm__config_1_1VmConfig_ab53ccaee75a3aa6e97ee56a7d5c7bbf3} 
 \index{vm\_config::VmConfig@{vm\_config::VmConfig}!text\_section\_start@{text\_section\_start}}
 \index{text\_section\_start@{text\_section\_start}!vm\_config::VmConfig@{vm\_config::VmConfig}}
 \doxysubsubsection{\texorpdfstring{text\_section\_start}{text\_section\_start}}
 {\footnotesize\ttfamily uint64\+\_\+t vm\+\_\+config\+::\+Vm\+Config\+::text\+\_\+section\+\_\+start = 0x0}
 
-\mbox{\Hypertarget{structvm__config_1_1VmConfig_ae04b975893d08f77ca2938aeda35cc77}\label{structvm__config_1_1VmConfig_ae04b975893d08f77ca2938aeda35cc77}} 
+\Hypertarget{structvm__config_1_1VmConfig_ae04b975893d08f77ca2938aeda35cc77}\label{structvm__config_1_1VmConfig_ae04b975893d08f77ca2938aeda35cc77} 
 \index{vm\_config::VmConfig@{vm\_config::VmConfig}!vm\_type@{vm\_type}}
 \index{vm\_type@{vm\_type}!vm\_config::VmConfig@{vm\_config::VmConfig}}
 \doxysubsubsection{\texorpdfstring{vm\_type}{vm\_type}}

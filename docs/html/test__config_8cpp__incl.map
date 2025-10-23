@@ -1,13 +1,23 @@
 <map id="test/test_config.cpp" name="test/test_config.cpp">
-<area shape="rect" id="node1" title=" " alt="" coords="215,5,364,32"/>
-<area shape="rect" id="node2" title=" " alt="" coords="181,80,285,107"/>
-<area shape="rect" id="node3" href="$config_8h.html" title="Contains configuration options for the assembler." alt="" coords="310,80,383,107"/>
-<area shape="rect" id="node4" href="$globals_8h.html" title="Contains global definitions and includes for the assembler." alt="" coords="10,155,91,181"/>
-<area shape="rect" id="node6" title=" " alt="" coords="116,155,175,181"/>
-<area shape="rect" id="node7" title=" " alt="" coords="199,155,279,181"/>
-<area shape="rect" id="node8" title=" " alt="" coords="303,155,390,181"/>
-<area shape="rect" id="node9" title=" " alt="" coords="415,155,481,181"/>
-<area shape="rect" id="node10" title=" " alt="" coords="506,155,579,181"/>
-<area shape="rect" id="node11" title=" " alt="" coords="604,155,679,181"/>
-<area shape="rect" id="node5" title=" " alt="" coords="5,229,96,256"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="215,5,364,31"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="181,79,285,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="282,33,253,69,249,66,278,29"/>
+<area shape="rect" id="Node000003" href="$config_8h.html" title="Contains configuration options for the assembler." alt="" coords="310,79,383,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="301,29,331,66,327,70,297,33"/>
+<area shape="rect" id="Node000004" href="$globals_8h.html" title="Contains global definitions and includes for the assembler." alt="" coords="10,152,91,177"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="310,104,105,153,104,148,309,99"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="116,152,175,177"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="315,107,188,151,187,146,313,102"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="199,152,279,177"/>
+<area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="331,106,269,147,266,142,328,102"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="303,152,390,177"/>
+<area shape="poly" id="edge7_Node000003_Node000008" title=" " alt="" coords="349,104,349,138,344,138,344,104"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="415,152,481,177"/>
+<area shape="poly" id="edge8_Node000003_Node000009" title=" " alt="" coords="364,102,422,142,419,146,361,106"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="506,152,579,177"/>
+<area shape="poly" id="edge9_Node000003_Node000010" title=" " alt="" coords="379,102,499,145,497,150,377,107"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="604,152,679,177"/>
+<area shape="poly" id="edge10_Node000003_Node000011" title=" " alt="" coords="384,99,591,149,590,154,383,104"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="5,225,96,251"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="53,178,53,212,48,212,48,178"/>
 </map>

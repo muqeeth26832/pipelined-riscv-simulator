@@ -1,0 +1,217 @@
+\doxysection{errors.\+h}
+\hypertarget{errors_8h_source}{}\label{errors_8h_source}\index{include/assembler/errors.h@{include/assembler/errors.h}}
+\mbox{\hyperlink{errors_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#ifndef\ ERRORS\_H}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#define\ ERRORS\_H}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <ostream>}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceerrors}{errors}}\ \{}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{const}\ std::string\ \mbox{\hyperlink{namespaceerrors_acbb11ca64c6ab255eb7bfc65e00f2c94}{ANSI\_code\_red}}\ =\ \textcolor{stringliteral}{"{}\(\backslash\)033[31m"{}};}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00019\ \textcolor{keyword}{const}\ std::string\ \mbox{\hyperlink{namespaceerrors_adf4393c33a85393d238a21ef77abfdd9}{ANSI\_code\_reset}}\ =\ \textcolor{stringliteral}{"{}\(\backslash\)033[0m"{}};}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00025\ \textcolor{keyword}{enum\ class}\ \mbox{\hyperlink{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2ae}{ErrorType}}\ \{}
+\DoxyCodeLine{00026\ \ \ \mbox{\hyperlink{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aea8015f208e97eb87d4077cf0c5d5aeb83}{UNEXPECTED\_TOKEN}},\ \ \ \ \ \ }
+\DoxyCodeLine{00027\ \ \ \mbox{\hyperlink{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aead7822fa0763e672131324accbcf830d0}{UNEXPECTED\_EOF}},\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00028\ \ \ \mbox{\hyperlink{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aea4598db2cfeef2078a4c652100cfe25c7}{UNEXPECTED\_OPERAND}},\ \ \ \ }
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ \mbox{\hyperlink{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aea2dee638c1209e59a0584ec345d2469b5}{MISSING\_OPERAND}},\ \ \ \ \ \ \ }
+\DoxyCodeLine{00031\ \ \ \mbox{\hyperlink{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aead747dec1e9ebdda3b5eba6ab9f3450d8}{MISSING\_COMMA}},\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00032\ \ \ \mbox{\hyperlink{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aeae7feccc35303a919358574bb9873ec6d}{MISSING\_LPAREN}},\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00033\ \ \ \mbox{\hyperlink{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aea8cb50830806d95b68fe452830a94d51e}{MISSING\_RPAREN}},\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \mbox{\hyperlink{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aeabb0e54b9dc15fe61b5aaf3cb0ef0867d}{EXPECTED\_REGISTER}},\ \ \ \ \ }
+\DoxyCodeLine{00036\ \ \ \mbox{\hyperlink{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aea48c66164b43ae205b4ea29e666d88692}{EXPECTED\_IMMEDIATE}},\ \ \ \ }
+\DoxyCodeLine{00037\ \ \ \mbox{\hyperlink{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aeae95902890e301eff1b3f021b9371c377}{EXPECTED\_LABEL}},\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \mbox{\hyperlink{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aea6bf179afa8f7fba18cf39bc0ca6fe043}{INVALID\_OPERAND}},\ \ \ \ \ \ \ }
+\DoxyCodeLine{00040\ \ \ \mbox{\hyperlink{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aeac9a9219dfe74bd3ad1c359a2f1082822}{INVALID\_DIRECTIVE}},\ \ \ \ \ }
+\DoxyCodeLine{00041\ \ \ \mbox{\hyperlink{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aea2e28fa293e2ca8aca645d85ad05096c3}{INVALID\_INSTRUCTION}},\ \ \ }
+\DoxyCodeLine{00042\ \ \ \mbox{\hyperlink{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aea7277cc675779f41d6cd80f43a8ec702f}{INVALID\_REGISTER}},\ \ \ \ \ \ }
+\DoxyCodeLine{00043\ \ \ \mbox{\hyperlink{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aeae1b0ba36bd640cb2081a4b665a8765bf}{INVALID\_IMMEDIATE}},\ \ \ \ \ }
+\DoxyCodeLine{00044\ \ \ \mbox{\hyperlink{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aeab3d145c731fec2adf80f7632dd981b47}{INVALID\_LABEL}},\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00045\ \ \ \mbox{\hyperlink{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aeac4b6dda0a90cf1815860d0860989623d}{INVALID\_LABEL\_REF}},\ \ \ \ \ }
+\DoxyCodeLine{00046\ \ \ \mbox{\hyperlink{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aea506556a229186f5b45f364032625ff5b}{INVALID\_TOKEN}},\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00047\ \ \ \mbox{\hyperlink{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aea3fba68b9108afef4ec5c2eb304dd63ff}{INVALID\_SYNTAX}},\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \mbox{\hyperlink{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aea71b8e49b5ac60a6d3468de1fa2b67932}{MISALIGNED\_IMMEDIATE}},\ \ }
+\DoxyCodeLine{00050\ \ \ \mbox{\hyperlink{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aeae654793b308eb6923f12cf695d6fb902}{MISALIGNED\_LABEL}},\ \ \ \ \ \ }
+\DoxyCodeLine{00051\ \ \ \mbox{\hyperlink{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aea1a90c26e5e0d02b67ccd5eeb0437752a}{IMMEDIATE\_OUT\_OF\_RANGE}},}
+\DoxyCodeLine{00052\ \ \ \mbox{\hyperlink{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aea9a10f345b0f755d461a8673a5e9ef6b4}{UNKNOWN\_ERROR}}\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00053\ \};}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00062\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structerrors_1_1SyntaxError}{SyntaxError}}\ \{}
+\DoxyCodeLine{00063\ \ \ std::string\ \mbox{\hyperlink{structerrors_1_1SyntaxError_abf04b1cdd09d79b68375727925376034}{main\_message}};\ \ \ }
+\DoxyCodeLine{00064\ \ \ std::string\ \mbox{\hyperlink{structerrors_1_1SyntaxError_a27cd10228b6ede09fafd6206898bf6bd}{sub\_message}};\ \ \ \ }
+\DoxyCodeLine{00065\ \ \ std::string\ \mbox{\hyperlink{structerrors_1_1SyntaxError_a04e7f71bb0937d5a66ff50e314a62bfa}{filename}};\ \ \ \ \ \ \ }
+\DoxyCodeLine{00066\ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structerrors_1_1SyntaxError_a4a7e34267dfbf67c6f26d85959716642}{line\_number}};\ \ \ }
+\DoxyCodeLine{00067\ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structerrors_1_1SyntaxError_ac4f7181c49752102124518a68e799769}{column\_number}};\ }
+\DoxyCodeLine{00068\ \ \ std::string\ \mbox{\hyperlink{structerrors_1_1SyntaxError_a15d5696860d43fd0cffb062fe47eaf32}{line\_text}};\ \ \ \ \ \ }
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ \mbox{\hyperlink{structerrors_1_1SyntaxError_ae116ac1e776cddc9d31436700ea66769}{SyntaxError}}(std::string\ \mbox{\hyperlink{structerrors_1_1SyntaxError_abf04b1cdd09d79b68375727925376034}{main\_message}},\ std::string\ \mbox{\hyperlink{structerrors_1_1SyntaxError_a27cd10228b6ede09fafd6206898bf6bd}{sub\_message}},\ std::string\ \mbox{\hyperlink{structerrors_1_1SyntaxError_a04e7f71bb0937d5a66ff50e314a62bfa}{filename}},\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structerrors_1_1SyntaxError_a4a7e34267dfbf67c6f26d85959716642}{line\_number}},}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structerrors_1_1SyntaxError_ac4f7181c49752102124518a68e799769}{column\_number}},\ std::string\ \mbox{\hyperlink{structerrors_1_1SyntaxError_a15d5696860d43fd0cffb062fe47eaf32}{line\_text}})}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ :\ \mbox{\hyperlink{structerrors_1_1SyntaxError_abf04b1cdd09d79b68375727925376034}{main\_message}}(std::move(\mbox{\hyperlink{structerrors_1_1SyntaxError_abf04b1cdd09d79b68375727925376034}{main\_message}})),\ \mbox{\hyperlink{structerrors_1_1SyntaxError_a27cd10228b6ede09fafd6206898bf6bd}{sub\_message}}(std::move(\mbox{\hyperlink{structerrors_1_1SyntaxError_a27cd10228b6ede09fafd6206898bf6bd}{sub\_message}})),}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structerrors_1_1SyntaxError_a04e7f71bb0937d5a66ff50e314a62bfa}{filename}}(std::move(\mbox{\hyperlink{structerrors_1_1SyntaxError_a04e7f71bb0937d5a66ff50e314a62bfa}{filename}})),\ \mbox{\hyperlink{structerrors_1_1SyntaxError_a4a7e34267dfbf67c6f26d85959716642}{line\_number}}(\mbox{\hyperlink{structerrors_1_1SyntaxError_a4a7e34267dfbf67c6f26d85959716642}{line\_number}}),\ \mbox{\hyperlink{structerrors_1_1SyntaxError_ac4f7181c49752102124518a68e799769}{column\_number}}(\mbox{\hyperlink{structerrors_1_1SyntaxError_ac4f7181c49752102124518a68e799769}{column\_number}}),}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structerrors_1_1SyntaxError_a15d5696860d43fd0cffb062fe47eaf32}{line\_text}}(std::move(\mbox{\hyperlink{structerrors_1_1SyntaxError_a15d5696860d43fd0cffb062fe47eaf32}{line\_text}}))\ \{\}}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \ \ \textcolor{keyword}{friend}\ std::ostream\ \&\mbox{\hyperlink{structerrors_1_1SyntaxError_abbdfd1fd318632a093ac8faa7b5e516d}{operator<<}}(std::ostream\ \&os,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structerrors_1_1SyntaxError}{SyntaxError}}\ \&error);}
+\DoxyCodeLine{00077\ \};}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \textcolor{comment}{//\ Other\ error\ structures\ follow\ a\ similar\ pattern.\ Brief\ explanations\ added\ for\ clarity.}}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00085\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structerrors_1_1UnexpectedTokenError}{UnexpectedTokenError}}\ \{}
+\DoxyCodeLine{00086\ \ \ std::string\ \mbox{\hyperlink{structerrors_1_1UnexpectedTokenError_a605bee63b349493f2da6ca0e6cdcf478}{message}};\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00087\ \ \ std::string\ \mbox{\hyperlink{structerrors_1_1UnexpectedTokenError_af0a2d62001318244e7f2e5d75a858436}{filename}};\ \ \ \ \ \ \ }
+\DoxyCodeLine{00088\ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structerrors_1_1UnexpectedTokenError_a12d6a80139a31c9802395d3c7ac398c7}{line\_number}};\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00089\ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structerrors_1_1UnexpectedTokenError_a57d706a08372554d0bac11a5de313cf1}{column\_number}};\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00090\ \ \ std::string\ \mbox{\hyperlink{structerrors_1_1UnexpectedTokenError_afa4dc97a94158b02f8c1cb5a88860e14}{line\_text}};\ \ \ \ \ \ }
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \ \ \mbox{\hyperlink{structerrors_1_1UnexpectedTokenError_a236bc1c5c9d2afeb534d38fab45aae9d}{UnexpectedTokenError}}(std::string\ \mbox{\hyperlink{structerrors_1_1UnexpectedTokenError_a605bee63b349493f2da6ca0e6cdcf478}{message}},}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ \mbox{\hyperlink{structerrors_1_1UnexpectedTokenError_af0a2d62001318244e7f2e5d75a858436}{filename}},}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structerrors_1_1UnexpectedTokenError_a12d6a80139a31c9802395d3c7ac398c7}{line\_number}},}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structerrors_1_1UnexpectedTokenError_a57d706a08372554d0bac11a5de313cf1}{column\_number}},}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ \mbox{\hyperlink{structerrors_1_1UnexpectedTokenError_afa4dc97a94158b02f8c1cb5a88860e14}{line\_text}})}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ :\ \mbox{\hyperlink{structerrors_1_1UnexpectedTokenError_a605bee63b349493f2da6ca0e6cdcf478}{message}}(std::move(\mbox{\hyperlink{structerrors_1_1UnexpectedTokenError_a605bee63b349493f2da6ca0e6cdcf478}{message}})),\ \mbox{\hyperlink{structerrors_1_1UnexpectedTokenError_af0a2d62001318244e7f2e5d75a858436}{filename}}(std::move(\mbox{\hyperlink{structerrors_1_1UnexpectedTokenError_af0a2d62001318244e7f2e5d75a858436}{filename}})),\ \mbox{\hyperlink{structerrors_1_1UnexpectedTokenError_a12d6a80139a31c9802395d3c7ac398c7}{line\_number}}(\mbox{\hyperlink{structerrors_1_1UnexpectedTokenError_a12d6a80139a31c9802395d3c7ac398c7}{line\_number}}),}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structerrors_1_1UnexpectedTokenError_a57d706a08372554d0bac11a5de313cf1}{column\_number}}(\mbox{\hyperlink{structerrors_1_1UnexpectedTokenError_a57d706a08372554d0bac11a5de313cf1}{column\_number}}),\ \mbox{\hyperlink{structerrors_1_1UnexpectedTokenError_afa4dc97a94158b02f8c1cb5a88860e14}{line\_text}}(std::move(\mbox{\hyperlink{structerrors_1_1UnexpectedTokenError_afa4dc97a94158b02f8c1cb5a88860e14}{line\_text}}))\ \{\}}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \ \ \textcolor{keyword}{friend}\ std::ostream\ \&\mbox{\hyperlink{structerrors_1_1UnexpectedTokenError_a828c583a42003858ad4e8d8e339504d2}{operator<<}}(std::ostream\ \&os,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structerrors_1_1UnexpectedTokenError}{UnexpectedTokenError}}\ \&error);}
+\DoxyCodeLine{00102\ \};}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00108\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structerrors_1_1ImmediateOutOfRangeError}{ImmediateOutOfRangeError}}\ \{}
+\DoxyCodeLine{00109\ \ \ std::string\ \mbox{\hyperlink{structerrors_1_1ImmediateOutOfRangeError_ab0bf19e6ecb16454f77aaed350d8df34}{main\_message}};\ \ \ }
+\DoxyCodeLine{00110\ \ \ std::string\ \mbox{\hyperlink{structerrors_1_1ImmediateOutOfRangeError_ae1c6388e9f6c86c66c302d6f0d4d828b}{sub\_message}};\ \ \ \ }
+\DoxyCodeLine{00111\ \ \ std::string\ \mbox{\hyperlink{structerrors_1_1ImmediateOutOfRangeError_a64603c66382f555a83c2427579315031}{filename}};\ \ \ \ \ \ \ }
+\DoxyCodeLine{00112\ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structerrors_1_1ImmediateOutOfRangeError_a3027cdf85adc8b4d8990be560598a905}{line\_number}};\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00113\ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structerrors_1_1ImmediateOutOfRangeError_ace2ca5fbf33f39436ff83eae2500318f}{column\_number}};\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00114\ \ \ std::string\ \mbox{\hyperlink{structerrors_1_1ImmediateOutOfRangeError_af506355ac4741133febc240882c152af}{line\_text}};\ \ \ \ \ \ }
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ \ \ \mbox{\hyperlink{structerrors_1_1ImmediateOutOfRangeError_aac7879e5e7c1b6c819704f6d77c34cae}{ImmediateOutOfRangeError}}(std::string\ \mbox{\hyperlink{structerrors_1_1ImmediateOutOfRangeError_ab0bf19e6ecb16454f77aaed350d8df34}{main\_message}},}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ \mbox{\hyperlink{structerrors_1_1ImmediateOutOfRangeError_ae1c6388e9f6c86c66c302d6f0d4d828b}{sub\_message}},}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ \mbox{\hyperlink{structerrors_1_1ImmediateOutOfRangeError_a64603c66382f555a83c2427579315031}{filename}},}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structerrors_1_1ImmediateOutOfRangeError_a3027cdf85adc8b4d8990be560598a905}{line\_number}},}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structerrors_1_1ImmediateOutOfRangeError_ace2ca5fbf33f39436ff83eae2500318f}{column\_number}},}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ \mbox{\hyperlink{structerrors_1_1ImmediateOutOfRangeError_af506355ac4741133febc240882c152af}{line\_text}})}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ :\ \mbox{\hyperlink{structerrors_1_1ImmediateOutOfRangeError_ab0bf19e6ecb16454f77aaed350d8df34}{main\_message}}(std::move(\mbox{\hyperlink{structerrors_1_1ImmediateOutOfRangeError_ab0bf19e6ecb16454f77aaed350d8df34}{main\_message}})),\ \mbox{\hyperlink{structerrors_1_1ImmediateOutOfRangeError_ae1c6388e9f6c86c66c302d6f0d4d828b}{sub\_message}}(std::move(\mbox{\hyperlink{structerrors_1_1ImmediateOutOfRangeError_ae1c6388e9f6c86c66c302d6f0d4d828b}{sub\_message}})),}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structerrors_1_1ImmediateOutOfRangeError_a64603c66382f555a83c2427579315031}{filename}}(std::move(\mbox{\hyperlink{structerrors_1_1ImmediateOutOfRangeError_a64603c66382f555a83c2427579315031}{filename}})),\ \mbox{\hyperlink{structerrors_1_1ImmediateOutOfRangeError_a3027cdf85adc8b4d8990be560598a905}{line\_number}}(\mbox{\hyperlink{structerrors_1_1ImmediateOutOfRangeError_a3027cdf85adc8b4d8990be560598a905}{line\_number}}),\ \mbox{\hyperlink{structerrors_1_1ImmediateOutOfRangeError_ace2ca5fbf33f39436ff83eae2500318f}{column\_number}}(\mbox{\hyperlink{structerrors_1_1ImmediateOutOfRangeError_ace2ca5fbf33f39436ff83eae2500318f}{column\_number}}),}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structerrors_1_1ImmediateOutOfRangeError_af506355ac4741133febc240882c152af}{line\_text}}(std::move(\mbox{\hyperlink{structerrors_1_1ImmediateOutOfRangeError_af506355ac4741133febc240882c152af}{line\_text}}))\ \{\}}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00126\ \ \ \textcolor{keyword}{friend}\ std::ostream\ \&\mbox{\hyperlink{structerrors_1_1ImmediateOutOfRangeError_a104adf98c42bb3a081d784829eae800e}{operator<<}}(std::ostream\ \&os,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structerrors_1_1ImmediateOutOfRangeError}{ImmediateOutOfRangeError}}\ \&error);}
+\DoxyCodeLine{00127\ \};}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00133\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structerrors_1_1MisalignedImmediateError}{MisalignedImmediateError}}\ \{}
+\DoxyCodeLine{00134\ \ \ std::string\ \mbox{\hyperlink{structerrors_1_1MisalignedImmediateError_a2469fbf61a6f093b937e328013e4bfe0}{main\_message}};\ \ \ }
+\DoxyCodeLine{00135\ \ \ std::string\ \mbox{\hyperlink{structerrors_1_1MisalignedImmediateError_abd40d834d9c7e0d46742b86ce62367d9}{sub\_message}};\ \ \ \ }
+\DoxyCodeLine{00136\ \ \ std::string\ \mbox{\hyperlink{structerrors_1_1MisalignedImmediateError_a570796f68e60fe299f829224d5decf39}{filename}};\ \ \ \ \ \ \ }
+\DoxyCodeLine{00137\ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structerrors_1_1MisalignedImmediateError_acce88d95994c59809e9d643ce7223730}{line\_number}};\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00138\ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structerrors_1_1MisalignedImmediateError_a5573d93096bd3aea618d3c0402a2a664}{column\_number}};\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00139\ \ \ std::string\ \mbox{\hyperlink{structerrors_1_1MisalignedImmediateError_a11500f951e2895a3e673d7696d92e2aa}{line\_text}};\ \ \ \ \ \ }
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00141\ \ \ \mbox{\hyperlink{structerrors_1_1MisalignedImmediateError_a1baf1879d128b6c3d71d5bf3617afafd}{MisalignedImmediateError}}(std::string\ \mbox{\hyperlink{structerrors_1_1MisalignedImmediateError_a2469fbf61a6f093b937e328013e4bfe0}{main\_message}},}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ \mbox{\hyperlink{structerrors_1_1MisalignedImmediateError_abd40d834d9c7e0d46742b86ce62367d9}{sub\_message}},}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ \mbox{\hyperlink{structerrors_1_1MisalignedImmediateError_a570796f68e60fe299f829224d5decf39}{filename}},}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structerrors_1_1MisalignedImmediateError_acce88d95994c59809e9d643ce7223730}{line\_number}},}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structerrors_1_1MisalignedImmediateError_a5573d93096bd3aea618d3c0402a2a664}{column\_number}},}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ \mbox{\hyperlink{structerrors_1_1MisalignedImmediateError_a11500f951e2895a3e673d7696d92e2aa}{line\_text}})}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ :\ \mbox{\hyperlink{structerrors_1_1MisalignedImmediateError_a2469fbf61a6f093b937e328013e4bfe0}{main\_message}}(std::move(\mbox{\hyperlink{structerrors_1_1MisalignedImmediateError_a2469fbf61a6f093b937e328013e4bfe0}{main\_message}})),\ \mbox{\hyperlink{structerrors_1_1MisalignedImmediateError_abd40d834d9c7e0d46742b86ce62367d9}{sub\_message}}(std::move(\mbox{\hyperlink{structerrors_1_1MisalignedImmediateError_abd40d834d9c7e0d46742b86ce62367d9}{sub\_message}})),}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structerrors_1_1MisalignedImmediateError_a570796f68e60fe299f829224d5decf39}{filename}}(std::move(\mbox{\hyperlink{structerrors_1_1MisalignedImmediateError_a570796f68e60fe299f829224d5decf39}{filename}})),\ \mbox{\hyperlink{structerrors_1_1MisalignedImmediateError_acce88d95994c59809e9d643ce7223730}{line\_number}}(\mbox{\hyperlink{structerrors_1_1MisalignedImmediateError_acce88d95994c59809e9d643ce7223730}{line\_number}}),\ \mbox{\hyperlink{structerrors_1_1MisalignedImmediateError_a5573d93096bd3aea618d3c0402a2a664}{column\_number}}(\mbox{\hyperlink{structerrors_1_1MisalignedImmediateError_a5573d93096bd3aea618d3c0402a2a664}{column\_number}}),}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structerrors_1_1MisalignedImmediateError_a11500f951e2895a3e673d7696d92e2aa}{line\_text}}(std::move(\mbox{\hyperlink{structerrors_1_1MisalignedImmediateError_a11500f951e2895a3e673d7696d92e2aa}{line\_text}}))\ \{\}}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00151\ \ \ \textcolor{keyword}{friend}\ std::ostream\ \&\mbox{\hyperlink{structerrors_1_1MisalignedImmediateError_ae8fa8e64983539800ddd6df2f937e7b0}{operator<<}}(std::ostream\ \&os,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structerrors_1_1MisalignedImmediateError}{MisalignedImmediateError}}\ \&error);}
+\DoxyCodeLine{00152\ \};}
+\DoxyCodeLine{00153\ }
+\DoxyCodeLine{00158\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structerrors_1_1UnexpectedOperandError}{UnexpectedOperandError}}\ \{}
+\DoxyCodeLine{00159\ \ \ std::string\ \mbox{\hyperlink{structerrors_1_1UnexpectedOperandError_af5cb6c145d2ef72b1c0b4cb792652463}{main\_message}};\ \ \ }
+\DoxyCodeLine{00160\ \ \ std::string\ \mbox{\hyperlink{structerrors_1_1UnexpectedOperandError_aa7eb42aa30e8a33ce97a8fa67e652969}{sub\_message}};\ \ \ \ }
+\DoxyCodeLine{00161\ \ \ std::string\ \mbox{\hyperlink{structerrors_1_1UnexpectedOperandError_ad4b1bbdce58a125123430a1b632a64a6}{filename}};\ \ \ \ \ \ \ }
+\DoxyCodeLine{00162\ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structerrors_1_1UnexpectedOperandError_ac2bc6788c9c82f45df76b4f83e00b8ba}{line\_number}};\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00163\ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structerrors_1_1UnexpectedOperandError_acd4c50f270f96e81d7c0d316a041e405}{column\_number}};\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00164\ \ \ std::string\ \mbox{\hyperlink{structerrors_1_1UnexpectedOperandError_aaf1cc0b17ff638487a236b5a934c26e7}{line\_text}};\ \ \ \ \ \ }
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00166\ \ \ \mbox{\hyperlink{structerrors_1_1UnexpectedOperandError_a94396fd323a94328e699a14467a9ca99}{UnexpectedOperandError}}(std::string\ \mbox{\hyperlink{structerrors_1_1UnexpectedOperandError_af5cb6c145d2ef72b1c0b4cb792652463}{main\_message}},}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ \mbox{\hyperlink{structerrors_1_1UnexpectedOperandError_aa7eb42aa30e8a33ce97a8fa67e652969}{sub\_message}},}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ \mbox{\hyperlink{structerrors_1_1UnexpectedOperandError_ad4b1bbdce58a125123430a1b632a64a6}{filename}},}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structerrors_1_1UnexpectedOperandError_ac2bc6788c9c82f45df76b4f83e00b8ba}{line\_number}},}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structerrors_1_1UnexpectedOperandError_acd4c50f270f96e81d7c0d316a041e405}{column\_number}},}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ \mbox{\hyperlink{structerrors_1_1UnexpectedOperandError_aaf1cc0b17ff638487a236b5a934c26e7}{line\_text}})}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ :\ \mbox{\hyperlink{structerrors_1_1UnexpectedOperandError_af5cb6c145d2ef72b1c0b4cb792652463}{main\_message}}(std::move(\mbox{\hyperlink{structerrors_1_1UnexpectedOperandError_af5cb6c145d2ef72b1c0b4cb792652463}{main\_message}})),\ \mbox{\hyperlink{structerrors_1_1UnexpectedOperandError_aa7eb42aa30e8a33ce97a8fa67e652969}{sub\_message}}(std::move(\mbox{\hyperlink{structerrors_1_1UnexpectedOperandError_aa7eb42aa30e8a33ce97a8fa67e652969}{sub\_message}})),}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structerrors_1_1UnexpectedOperandError_ad4b1bbdce58a125123430a1b632a64a6}{filename}}(std::move(\mbox{\hyperlink{structerrors_1_1UnexpectedOperandError_ad4b1bbdce58a125123430a1b632a64a6}{filename}})),\ \mbox{\hyperlink{structerrors_1_1UnexpectedOperandError_ac2bc6788c9c82f45df76b4f83e00b8ba}{line\_number}}(\mbox{\hyperlink{structerrors_1_1UnexpectedOperandError_ac2bc6788c9c82f45df76b4f83e00b8ba}{line\_number}}),\ \mbox{\hyperlink{structerrors_1_1UnexpectedOperandError_acd4c50f270f96e81d7c0d316a041e405}{column\_number}}(\mbox{\hyperlink{structerrors_1_1UnexpectedOperandError_acd4c50f270f96e81d7c0d316a041e405}{column\_number}}),}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structerrors_1_1UnexpectedOperandError_aaf1cc0b17ff638487a236b5a934c26e7}{line\_text}}(std::move(\mbox{\hyperlink{structerrors_1_1UnexpectedOperandError_aaf1cc0b17ff638487a236b5a934c26e7}{line\_text}}))\ \{\}}
+\DoxyCodeLine{00175\ }
+\DoxyCodeLine{00176\ \ \ \textcolor{keyword}{friend}\ std::ostream\ \&\mbox{\hyperlink{structerrors_1_1UnexpectedOperandError_a237b8543cbc7f6f1fffcf93deda84606}{operator<<}}(std::ostream\ \&os,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structerrors_1_1UnexpectedOperandError}{UnexpectedOperandError}}\ \&error);}
+\DoxyCodeLine{00177\ \};}
+\DoxyCodeLine{00178\ }
+\DoxyCodeLine{00183\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structerrors_1_1InvalidLabelRefError}{InvalidLabelRefError}}\ \{}
+\DoxyCodeLine{00184\ \ \ std::string\ \mbox{\hyperlink{structerrors_1_1InvalidLabelRefError_a2bf36a30fcbabea5115651a66e0db599}{main\_message}};\ \ \ }
+\DoxyCodeLine{00185\ \ \ std::string\ \mbox{\hyperlink{structerrors_1_1InvalidLabelRefError_aa4ce4accdf817e88c8c44a707b756c08}{sub\_message}};\ \ \ \ }
+\DoxyCodeLine{00186\ \ \ std::string\ \mbox{\hyperlink{structerrors_1_1InvalidLabelRefError_ab6d2587974dace37ac17572ea6f4ab38}{filename}};\ \ \ \ \ \ \ }
+\DoxyCodeLine{00187\ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structerrors_1_1InvalidLabelRefError_aeaa1a268ba90e009f6a9b6adba343a7b}{line\_number}};\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00188\ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structerrors_1_1InvalidLabelRefError_a58842b5cd5dfa23d6d0255a81fac5129}{column\_number}};\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00189\ \ \ std::string\ \mbox{\hyperlink{structerrors_1_1InvalidLabelRefError_a4109326c3e2b1c48310e9f1dff3db31a}{line\_text}};\ \ \ \ \ \ }
+\DoxyCodeLine{00190\ }
+\DoxyCodeLine{00191\ \ \ \mbox{\hyperlink{structerrors_1_1InvalidLabelRefError_a36496c8b6282dead983d9944a9c22f84}{InvalidLabelRefError}}(std::string\ \mbox{\hyperlink{structerrors_1_1InvalidLabelRefError_a2bf36a30fcbabea5115651a66e0db599}{main\_message}},}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ \mbox{\hyperlink{structerrors_1_1InvalidLabelRefError_aa4ce4accdf817e88c8c44a707b756c08}{sub\_message}},}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ \mbox{\hyperlink{structerrors_1_1InvalidLabelRefError_ab6d2587974dace37ac17572ea6f4ab38}{filename}},}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structerrors_1_1InvalidLabelRefError_aeaa1a268ba90e009f6a9b6adba343a7b}{line\_number}},}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structerrors_1_1InvalidLabelRefError_a58842b5cd5dfa23d6d0255a81fac5129}{column\_number}},}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ \mbox{\hyperlink{structerrors_1_1InvalidLabelRefError_a4109326c3e2b1c48310e9f1dff3db31a}{line\_text}})}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ :\ \mbox{\hyperlink{structerrors_1_1InvalidLabelRefError_a2bf36a30fcbabea5115651a66e0db599}{main\_message}}(std::move(\mbox{\hyperlink{structerrors_1_1InvalidLabelRefError_a2bf36a30fcbabea5115651a66e0db599}{main\_message}})),\ \mbox{\hyperlink{structerrors_1_1InvalidLabelRefError_aa4ce4accdf817e88c8c44a707b756c08}{sub\_message}}(std::move(\mbox{\hyperlink{structerrors_1_1InvalidLabelRefError_aa4ce4accdf817e88c8c44a707b756c08}{sub\_message}})),}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structerrors_1_1InvalidLabelRefError_ab6d2587974dace37ac17572ea6f4ab38}{filename}}(std::move(\mbox{\hyperlink{structerrors_1_1InvalidLabelRefError_ab6d2587974dace37ac17572ea6f4ab38}{filename}})),\ \mbox{\hyperlink{structerrors_1_1InvalidLabelRefError_aeaa1a268ba90e009f6a9b6adba343a7b}{line\_number}}(\mbox{\hyperlink{structerrors_1_1InvalidLabelRefError_aeaa1a268ba90e009f6a9b6adba343a7b}{line\_number}}),\ \mbox{\hyperlink{structerrors_1_1InvalidLabelRefError_a58842b5cd5dfa23d6d0255a81fac5129}{column\_number}}(\mbox{\hyperlink{structerrors_1_1InvalidLabelRefError_a58842b5cd5dfa23d6d0255a81fac5129}{column\_number}}),}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structerrors_1_1InvalidLabelRefError_a4109326c3e2b1c48310e9f1dff3db31a}{line\_text}}(std::move(\mbox{\hyperlink{structerrors_1_1InvalidLabelRefError_a4109326c3e2b1c48310e9f1dff3db31a}{line\_text}}))\ \{\}}
+\DoxyCodeLine{00200\ }
+\DoxyCodeLine{00201\ \ \ \textcolor{keyword}{friend}\ std::ostream\ \&\mbox{\hyperlink{structerrors_1_1InvalidLabelRefError_a7438a39c016d07f2dafdd39d8cda106a}{operator<<}}(std::ostream\ \&os,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structerrors_1_1InvalidLabelRefError}{InvalidLabelRefError}}\ \&error);}
+\DoxyCodeLine{00202\ \};}
+\DoxyCodeLine{00203\ }
+\DoxyCodeLine{00208\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structerrors_1_1LabelRedefinitionError}{LabelRedefinitionError}}\ \{}
+\DoxyCodeLine{00209\ \ \ std::string\ \mbox{\hyperlink{structerrors_1_1LabelRedefinitionError_a01295352c86d3ec213ac08ebdec38573}{main\_message}};\ \ \ }
+\DoxyCodeLine{00210\ \ \ std::string\ \mbox{\hyperlink{structerrors_1_1LabelRedefinitionError_a8ae466157b682b998a0b3e710cda2010}{sub\_message}};\ \ \ \ }
+\DoxyCodeLine{00211\ \ \ std::string\ \mbox{\hyperlink{structerrors_1_1LabelRedefinitionError_a07c0ca45c5a48bb8ce5488865e13586e}{filename}};\ \ \ \ \ \ \ }
+\DoxyCodeLine{00212\ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structerrors_1_1LabelRedefinitionError_a93199b6bc9add4632d27a912c0e7aedd}{line\_number}};\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00213\ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structerrors_1_1LabelRedefinitionError_a9dad3c7f197f4b8e6a457461b12eaf2c}{column\_number}};\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00214\ \ \ std::string\ \mbox{\hyperlink{structerrors_1_1LabelRedefinitionError_a7739f47853359e829cb1f2aaaeb0a699}{line\_text}};\ \ \ \ \ \ }
+\DoxyCodeLine{00215\ }
+\DoxyCodeLine{00216\ \ \ \mbox{\hyperlink{structerrors_1_1LabelRedefinitionError_a1cdcda2bb5edd8014e684e44c94ab036}{LabelRedefinitionError}}(std::string\ \mbox{\hyperlink{structerrors_1_1LabelRedefinitionError_a01295352c86d3ec213ac08ebdec38573}{main\_message}},}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ \mbox{\hyperlink{structerrors_1_1LabelRedefinitionError_a8ae466157b682b998a0b3e710cda2010}{sub\_message}},}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ \mbox{\hyperlink{structerrors_1_1LabelRedefinitionError_a07c0ca45c5a48bb8ce5488865e13586e}{filename}},}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structerrors_1_1LabelRedefinitionError_a93199b6bc9add4632d27a912c0e7aedd}{line\_number}},}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structerrors_1_1LabelRedefinitionError_a9dad3c7f197f4b8e6a457461b12eaf2c}{column\_number}},}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ \mbox{\hyperlink{structerrors_1_1LabelRedefinitionError_a7739f47853359e829cb1f2aaaeb0a699}{line\_text}})}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ :\ \mbox{\hyperlink{structerrors_1_1LabelRedefinitionError_a01295352c86d3ec213ac08ebdec38573}{main\_message}}(std::move(\mbox{\hyperlink{structerrors_1_1LabelRedefinitionError_a01295352c86d3ec213ac08ebdec38573}{main\_message}})),\ \mbox{\hyperlink{structerrors_1_1LabelRedefinitionError_a8ae466157b682b998a0b3e710cda2010}{sub\_message}}(std::move(\mbox{\hyperlink{structerrors_1_1LabelRedefinitionError_a8ae466157b682b998a0b3e710cda2010}{sub\_message}})),}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structerrors_1_1LabelRedefinitionError_a07c0ca45c5a48bb8ce5488865e13586e}{filename}}(std::move(\mbox{\hyperlink{structerrors_1_1LabelRedefinitionError_a07c0ca45c5a48bb8ce5488865e13586e}{filename}})),\ \mbox{\hyperlink{structerrors_1_1LabelRedefinitionError_a93199b6bc9add4632d27a912c0e7aedd}{line\_number}}(\mbox{\hyperlink{structerrors_1_1LabelRedefinitionError_a93199b6bc9add4632d27a912c0e7aedd}{line\_number}}),\ \mbox{\hyperlink{structerrors_1_1LabelRedefinitionError_a9dad3c7f197f4b8e6a457461b12eaf2c}{column\_number}}(\mbox{\hyperlink{structerrors_1_1LabelRedefinitionError_a9dad3c7f197f4b8e6a457461b12eaf2c}{column\_number}}),}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structerrors_1_1LabelRedefinitionError_a7739f47853359e829cb1f2aaaeb0a699}{line\_text}}(std::move(\mbox{\hyperlink{structerrors_1_1LabelRedefinitionError_a7739f47853359e829cb1f2aaaeb0a699}{line\_text}}))\ \{\}}
+\DoxyCodeLine{00225\ }
+\DoxyCodeLine{00226\ \ \ \textcolor{keyword}{friend}\ std::ostream\ \&\mbox{\hyperlink{structerrors_1_1LabelRedefinitionError_a1865ff2a2c38f06c3dd84b62383d5687}{operator<<}}(std::ostream\ \&os,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structerrors_1_1LabelRedefinitionError}{LabelRedefinitionError}}\ \&error);}
+\DoxyCodeLine{00227\ \};}
+\DoxyCodeLine{00228\ }
+\DoxyCodeLine{00229\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structerrors_1_1InvalidRegisterError}{InvalidRegisterError}}\ \{}
+\DoxyCodeLine{00230\ \ \ std::string\ \mbox{\hyperlink{structerrors_1_1InvalidRegisterError_a302b0428803fe17b30787f20786b7e64}{main\_message}};\ \ \ }
+\DoxyCodeLine{00231\ \ \ std::string\ \mbox{\hyperlink{structerrors_1_1InvalidRegisterError_a5eb3cbe91e6104dead298ba2554f3bf7}{sub\_message}};\ \ \ \ }
+\DoxyCodeLine{00232\ \ \ std::string\ \mbox{\hyperlink{structerrors_1_1InvalidRegisterError_afeeb98d590525ec9e6e01e36d3c34c98}{filename}};\ \ \ \ \ \ \ }
+\DoxyCodeLine{00233\ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structerrors_1_1InvalidRegisterError_a08dff8f17d2c507822009e5e966d9a33}{line\_number}};\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00234\ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structerrors_1_1InvalidRegisterError_aa66e552137bf7c48a96fdb02bb0536e3}{column\_number}};\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00235\ \ \ std::string\ \mbox{\hyperlink{structerrors_1_1InvalidRegisterError_a3bb22f79f4b7a386b8c40f109a29c556}{line\_text}};\ \ \ \ \ \ }
+\DoxyCodeLine{00236\ }
+\DoxyCodeLine{00237\ \ \ \mbox{\hyperlink{structerrors_1_1InvalidRegisterError_a68e3f93c7dc5d12afd4e76edbcf7f65f}{InvalidRegisterError}}(std::string\ \mbox{\hyperlink{structerrors_1_1InvalidRegisterError_a302b0428803fe17b30787f20786b7e64}{main\_message}},}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ \mbox{\hyperlink{structerrors_1_1InvalidRegisterError_a5eb3cbe91e6104dead298ba2554f3bf7}{sub\_message}},}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ \mbox{\hyperlink{structerrors_1_1InvalidRegisterError_afeeb98d590525ec9e6e01e36d3c34c98}{filename}},}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structerrors_1_1InvalidRegisterError_a08dff8f17d2c507822009e5e966d9a33}{line\_number}},}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structerrors_1_1InvalidRegisterError_aa66e552137bf7c48a96fdb02bb0536e3}{column\_number}},}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ \mbox{\hyperlink{structerrors_1_1InvalidRegisterError_a3bb22f79f4b7a386b8c40f109a29c556}{line\_text}})}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ :\ \mbox{\hyperlink{structerrors_1_1InvalidRegisterError_a302b0428803fe17b30787f20786b7e64}{main\_message}}(std::move(\mbox{\hyperlink{structerrors_1_1InvalidRegisterError_a302b0428803fe17b30787f20786b7e64}{main\_message}})),\ \mbox{\hyperlink{structerrors_1_1InvalidRegisterError_a5eb3cbe91e6104dead298ba2554f3bf7}{sub\_message}}(std::move(\mbox{\hyperlink{structerrors_1_1InvalidRegisterError_a5eb3cbe91e6104dead298ba2554f3bf7}{sub\_message}})),}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structerrors_1_1InvalidRegisterError_afeeb98d590525ec9e6e01e36d3c34c98}{filename}}(std::move(\mbox{\hyperlink{structerrors_1_1InvalidRegisterError_afeeb98d590525ec9e6e01e36d3c34c98}{filename}})),\ \mbox{\hyperlink{structerrors_1_1InvalidRegisterError_a08dff8f17d2c507822009e5e966d9a33}{line\_number}}(\mbox{\hyperlink{structerrors_1_1InvalidRegisterError_a08dff8f17d2c507822009e5e966d9a33}{line\_number}}),\ \mbox{\hyperlink{structerrors_1_1InvalidRegisterError_aa66e552137bf7c48a96fdb02bb0536e3}{column\_number}}(\mbox{\hyperlink{structerrors_1_1InvalidRegisterError_aa66e552137bf7c48a96fdb02bb0536e3}{column\_number}}),}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structerrors_1_1InvalidRegisterError_a3bb22f79f4b7a386b8c40f109a29c556}{line\_text}}(std::move(\mbox{\hyperlink{structerrors_1_1InvalidRegisterError_a3bb22f79f4b7a386b8c40f109a29c556}{line\_text}}))\ \{\}}
+\DoxyCodeLine{00246\ }
+\DoxyCodeLine{00247\ \ \ \textcolor{keyword}{friend}\ std::ostream\ \&\mbox{\hyperlink{structerrors_1_1InvalidRegisterError_ab4c280926876c542eed51209cce8df79}{operator<<}}(std::ostream\ \&os,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structerrors_1_1InvalidRegisterError}{InvalidRegisterError}}\ \&error);}
+\DoxyCodeLine{00248\ \};}
+\DoxyCodeLine{00249\ }
+\DoxyCodeLine{00250\ \}\ \textcolor{comment}{//\ namespace\ errors}}
+\DoxyCodeLine{00251\ }
+\DoxyCodeLine{00252\ }
+\DoxyCodeLine{00253\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ ERRORS\_H}}
+
+\end{DoxyCode}

@@ -1,0 +1,22 @@
+\doxysection{rvss\+\_\+control\+\_\+unit.\+h}
+\hypertarget{rvss__control__unit_8h_source}{}\label{rvss__control__unit_8h_source}\index{include/vm/rvss/rvss\_control\_unit.h@{include/vm/rvss/rvss\_control\_unit.h}}
+\mbox{\hyperlink{rvss__control__unit_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#ifndef\ RVSS\_CONTROL\_UNIT\_H}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#define\ RVSS\_CONTROL\_UNIT\_H}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}../control\_unit\_base.h"{}}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classRVSSControlUnit}{RVSSControlUnit}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classControlUnit}{ControlUnit}}\ \{}
+\DoxyCodeLine{00013\ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00014\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classRVSSControlUnit_adf26df59ddd8b4e69e94ed8b881127bc}{SetControlSignals}}(uint32\_t\ instruction)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \ \ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985}{alu::AluOp}}\ \mbox{\hyperlink{classRVSSControlUnit_a779395276e46b48b9a7865fc34ae9833}{GetAluSignal}}(uint32\_t\ instruction,\ \textcolor{keywordtype}{bool}\ ALUOp)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \};}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ RVSS\_CONTROL\_UNIT\_H}}
+
+\end{DoxyCode}

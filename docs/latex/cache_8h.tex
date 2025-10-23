@@ -1,10 +1,20 @@
-\hypertarget{cache_8h}{}\doxysection{include/vm/cache/cache.h File Reference}
-\label{cache_8h}\index{include/vm/cache/cache.h@{include/vm/cache/cache.h}}
+\doxysection{include/vm/cache/cache.h File Reference}
+\hypertarget{cache_8h}{}\label{cache_8h}\index{include/vm/cache/cache.h@{include/vm/cache/cache.h}}
 
 
 File containing the cache class for the virtual machine.  
 
 
+{\ttfamily \#include $<$cstdint$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+Include dependency graph for cache.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=223pt]{cache_8h__incl}
+\end{center}
+\end{figure}
 This graph shows which files directly or indirectly include this file\+:
 \nopagebreak
 \begin{figure}[H]
@@ -13,6 +23,49 @@ This graph shows which files directly or indirectly include this file\+:
 \includegraphics[width=223pt]{cache_8h__dep__incl}
 \end{center}
 \end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structcache_1_1CacheConfig}{cache\+::\+Cache\+Config}}
+\item 
+struct \mbox{\hyperlink{structcache_1_1CacheLine}{cache\+::\+Cache\+Line}}
+\item 
+struct \mbox{\hyperlink{structcache_1_1CacheStats}{cache\+::\+Cache\+Stats}}
+\item 
+struct \mbox{\hyperlink{structcache_1_1CacheSet}{cache\+::\+Cache\+Set}}
+\item 
+class \mbox{\hyperlink{classcache_1_1Cache}{cache\+::\+Cache}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespacecache}{cache}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum class \mbox{\hyperlink{namespacecache_afdbade0aa5657d2124a87a5dbc578c8c}{cache\+::\+Replacement\+Policy}} \{ \mbox{\hyperlink{namespacecache_afdbade0aa5657d2124a87a5dbc578c8ca875ecb34f6d21d13d4b9fd4980a8b5af}{cache\+::\+LRU}}
+, \mbox{\hyperlink{namespacecache_afdbade0aa5657d2124a87a5dbc578c8cac589858dbe1d06c46544266ae4cd2c6f}{cache\+::\+FIFO}}
+, \mbox{\hyperlink{namespacecache_afdbade0aa5657d2124a87a5dbc578c8ca64663f4646781c9c0110838b905daa23}{cache\+::\+Random}}
+ \}
+\item 
+enum class \mbox{\hyperlink{namespacecache_ae31cc2b6d2558063b5cbcf25e728033b}{cache\+::\+Cache\+Type}} \{ \mbox{\hyperlink{namespacecache_ae31cc2b6d2558063b5cbcf25e728033bac742c5a36b6307267bb709355feb2c41}{cache\+::\+Instruction}}
+, \mbox{\hyperlink{namespacecache_ae31cc2b6d2558063b5cbcf25e728033baf6068daa29dbb05a7ead1e3b5a48bbee}{cache\+::\+Data}}
+ \}
+\item 
+enum class \mbox{\hyperlink{namespacecache_a528c5a7abaa3626760c8a7d9fde3504a}{cache\+::\+Cache\+Line\+State}} \{ \mbox{\hyperlink{namespacecache_a528c5a7abaa3626760c8a7d9fde3504aa3ac705f2acd51a4613f9188c05c91d0d}{cache\+::\+Valid}}
+, \mbox{\hyperlink{namespacecache_a528c5a7abaa3626760c8a7d9fde3504aa4bbb8f967da6d1a610596d7257179c2b}{cache\+::\+Invalid}}
+, \mbox{\hyperlink{namespacecache_a528c5a7abaa3626760c8a7d9fde3504aa99feffc57dae9a01652065178fae5b19}{cache\+::\+Dirty}}
+ \}
+\item 
+enum class \mbox{\hyperlink{namespacecache_adcc53b3341665657755dcce49e18bff1}{cache\+::\+Write\+Hit\+Policy}} \{ \mbox{\hyperlink{namespacecache_adcc53b3341665657755dcce49e18bff1aacb7820573f20d69befb56e41f440549}{cache\+::\+Write\+Through}}
+, \mbox{\hyperlink{namespacecache_adcc53b3341665657755dcce49e18bff1adf8e90f657c55cab67bfd1f1b91ba573}{cache\+::\+Write\+Back}}
+ \}
+\item 
+enum class \mbox{\hyperlink{namespacecache_a96693233da29e228d4c68f157eecc765}{cache\+::\+Write\+Miss\+Policy}} \{ \mbox{\hyperlink{namespacecache_a96693233da29e228d4c68f157eecc765aed392887039a647270157cc450df5caa}{cache\+::\+No\+Write\+Allocate}}
+, \mbox{\hyperlink{namespacecache_a96693233da29e228d4c68f157eecc765a1a6b4e0b6b341b150140eb67e627f3ad}{cache\+::\+Write\+Allocate}}
+ \}
+\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}

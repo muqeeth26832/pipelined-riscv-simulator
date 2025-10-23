@@ -1,0 +1,97 @@
+\doxysection{memory\+\_\+controller.\+h}
+\hypertarget{memory__controller_8h_source}{}\label{memory__controller_8h_source}\index{include/vm/memory\_controller.h@{include/vm/memory\_controller.h}}
+\mbox{\hyperlink{memory__controller_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#ifndef\ MEMORY\_CONTROLLER\_H}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#define\ MEMORY\_CONTROLLER\_H}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}../config.h"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{main__memory_8h}{main\_memory.h}}"{}}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00021\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classMemoryController}{MemoryController}}\ \{}
+\DoxyCodeLine{00022\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00023\ \ \ \ \ \mbox{\hyperlink{classMemory}{Memory}}\ memory\_;\ }
+\DoxyCodeLine{00024\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00025\ \ \ \ \ \mbox{\hyperlink{classMemoryController_a0c055d1bda8ede9928fd8a3b08b86d41}{MemoryController}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classMemoryController_af0d58cab4e7fcda0a1c767c68e383826}{Reset}}()\ \{}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ memory\_.\mbox{\hyperlink{classMemory_af8c16d327e0d504003af4d0798d8abd8}{Reset}}();}
+\DoxyCodeLine{00029\ \ \ \ \ \}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classMemoryController_a34af4b33fdb95584d4cbbd97f0aaac82}{PrintCacheStatus}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00032\ \ \ \ \ \}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classMemoryController_a20fc033bb20a0a4db0069610137ff69b}{WriteByte}}(uint64\_t\ address,\ uint8\_t\ value)\ \{}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ memory\_.\mbox{\hyperlink{classMemory_a51d4ecdf290fe1393911defa3d18ef81}{WriteByte}}(address,\ value);}
+\DoxyCodeLine{00036\ \ \ \ \ \}}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classMemoryController_a4854cd0badc3700b40b3c548f90902b3}{WriteHalfWord}}(uint64\_t\ address,\ uint16\_t\ value)\ \{}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ memory\_.\mbox{\hyperlink{classMemory_afe0f63f58e5342ac9553b3dc79ec665f}{WriteHalfWord}}(address,\ value);}
+\DoxyCodeLine{00040\ \ \ \ \ \}}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classMemoryController_a8f3dadab192aca15da29fc45f39ea999}{WriteWord}}(uint64\_t\ address,\ uint32\_t\ value)\ \{}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ memory\_.\mbox{\hyperlink{classMemory_a254b13707a51f5bc2a00423aec0fdd19}{WriteWord}}(address,\ value);}
+\DoxyCodeLine{00044\ \ \ \ \ \}}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classMemoryController_a52809e94f0e1c8c2c713c464856ab40e}{WriteDoubleWord}}(uint64\_t\ address,\ uint64\_t\ value)\ \{}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ memory\_.\mbox{\hyperlink{classMemory_a7e9e90526f5a0e3616ceb6d139c0f637}{WriteDoubleWord}}(address,\ value);}
+\DoxyCodeLine{00048\ \ \ \ \ \}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \ \ [[nodiscard]]\ uint8\_t\ \mbox{\hyperlink{classMemoryController_ac0a504cb9ae8065ebc91cbce203dacf0}{ReadByte}}(uint64\_t\ address)\ \{}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ memory\_.\mbox{\hyperlink{classMemory_aa53fe987c4303016ac2a91b32d65b309}{ReadByte}}(address);}
+\DoxyCodeLine{00052\ \ \ \ \ \}}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ [[nodiscard]]\ uint16\_t\ \mbox{\hyperlink{classMemoryController_a62594f53e0fccbe647db3fdf5a0027dc}{ReadHalfWord}}(uint64\_t\ address)\ \{}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ memory\_.\mbox{\hyperlink{classMemory_aa7701c410bbb32090b6910212c8a586a}{ReadHalfWord}}(address);}
+\DoxyCodeLine{00056\ \ \ \ \ \}}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ \ \ [[nodiscard]]\ uint32\_t\ \mbox{\hyperlink{classMemoryController_addf77851cb24edf69828e751a22d6850}{ReadWord}}(uint64\_t\ address)\ \{}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ memory\_.\mbox{\hyperlink{classMemory_a3bc0c3ed25c705a2d3013b1c56e3693d}{ReadWord}}(address);}
+\DoxyCodeLine{00060\ \ \ \ \ \}}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \ \ [[nodiscard]]\ uint64\_t\ \mbox{\hyperlink{classMemoryController_a56739a684cfb225821f97705375d0f5e}{ReadDoubleWord}}(uint64\_t\ address)\ \{}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ memory\_.\mbox{\hyperlink{classMemory_ae1900b5cdf0c66884cb93429c64811d6}{ReadDoubleWord}}(address);}
+\DoxyCodeLine{00064\ \ \ \ \ \}}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{comment}{//\ Functions\ to\ read\ memory\ directly\ with\ cache\ bypass}}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ [[nodiscard]]\ uint8\_t\ \mbox{\hyperlink{classMemoryController_a9bc41afd8457514ffdb4f06c3e5bab6c}{ReadByte\_d}}(uint64\_t\ address)\ \{}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ memory\_.\mbox{\hyperlink{classMemory_aa53fe987c4303016ac2a91b32d65b309}{ReadByte}}(address);}
+\DoxyCodeLine{00070\ \ \ \ \ \}}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \ \ \ \ [[nodiscard]]\ uint16\_t\ \mbox{\hyperlink{classMemoryController_a747ccbf63b9f3226640de97e5db19375}{ReadHalfWord\_d}}(uint64\_t\ address)\ \{}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ memory\_.\mbox{\hyperlink{classMemory_aa7701c410bbb32090b6910212c8a586a}{ReadHalfWord}}(address);}
+\DoxyCodeLine{00074\ \ \ \ \ \}}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \ \ \ \ [[nodiscard]]\ uint32\_t\ \mbox{\hyperlink{classMemoryController_af45e6466c0f0b0d24132e4395427a5f5}{ReadWord\_d}}(uint64\_t\ address)\ \{}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ memory\_.\mbox{\hyperlink{classMemory_a3bc0c3ed25c705a2d3013b1c56e3693d}{ReadWord}}(address);}
+\DoxyCodeLine{00078\ \ \ \ \ \}}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \ \ \ \ [[nodiscard]]\ uint64\_t\ \mbox{\hyperlink{classMemoryController_a7f1b15814070d3769efde5ec9fe40972}{ReadDoubleWord\_d}}(uint64\_t\ address)\ \{}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ memory\_.\mbox{\hyperlink{classMemory_ae1900b5cdf0c66884cb93429c64811d6}{ReadDoubleWord}}(address);}
+\DoxyCodeLine{00082\ \ \ \ \ \}}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classMemoryController_ab82c4a83bd057a8de6a0c89bcc61432d}{PrintMemory}}(\textcolor{keyword}{const}\ uint64\_t\ address,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ rows)\ \{}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ memory\_.\mbox{\hyperlink{classMemory_a189725aa5c6c3f1da845f83d471823d9}{PrintMemory}}(address,\ rows);}
+\DoxyCodeLine{00086\ \ \ \ \ \}}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classMemoryController_a8de5a245e8ca1faff107ba69fce7dd72}{DumpMemory}}(std::vector<std::string>\ args)\ \{}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ memory\_.\mbox{\hyperlink{classMemory_af0469898647f13dcefaf754864d57d5c}{DumpMemory}}(args);}
+\DoxyCodeLine{00090\ \ \ \ \ \}}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classMemoryController_aef994bbc0b076d2cc6ba3ec7b0874ddc}{GetMemoryPoint}}(std::string\ address)\ \{}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ memory\_.\mbox{\hyperlink{classMemory_a9e97d95abba646be547575aba6040b3d}{GetMemoryPoint}}(address);}
+\DoxyCodeLine{00094\ \ \ \ \ \}}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \};}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ MEMORY\_CONTROLLER\_H}}
+\DoxyCodeLine{00099\ }
+
+\end{DoxyCode}

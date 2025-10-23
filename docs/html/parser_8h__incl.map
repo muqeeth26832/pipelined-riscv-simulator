@@ -1,16 +1,33 @@
 <map id="include/assembler/parser.h" name="include/assembler/parser.h">
-<area shape="rect" id="node1" title="Contains the definition of the Parser class for parsing tokens and generating intermediate code." alt="" coords="380,5,577,32"/>
-<area shape="rect" id="node2" href="$tokens_8h.html" title="Contains the definition of the TokenType enum and the Token struct." alt="" coords="5,80,155,107"/>
-<area shape="rect" id="node3" title=" " alt="" coords="45,155,104,181"/>
-<area shape="rect" id="node4" href="$code__generator_8h.html" title="Contains the definition of the ICUnit struct and functions for generating machine code." alt="" coords="234,80,441,107"/>
-<area shape="rect" id="node8" title=" " alt="" coords="593,155,655,181"/>
-<area shape="rect" id="node11" href="$errors_8h.html" title="Defines error handling structures and error types for syntax and semantic errors in the assembler." alt="" coords="516,80,660,107"/>
-<area shape="rect" id="node13" title=" " alt="" coords="684,80,735,107"/>
-<area shape="rect" id="node14" title=" " alt="" coords="759,80,827,107"/>
-<area shape="rect" id="node5" title=" " alt="" coords="227,155,283,181"/>
-<area shape="rect" id="node6" title=" " alt="" coords="307,155,373,181"/>
-<area shape="rect" id="node7" title=" " alt="" coords="397,155,477,181"/>
-<area shape="rect" id="node9" title=" " alt="" coords="501,155,568,181"/>
-<area shape="rect" id="node10" title=" " alt="" coords="128,155,203,181"/>
-<area shape="rect" id="node12" title=" " alt="" coords="679,155,755,181"/>
+<area shape="rect" id="Node000001" title="Contains the definition of the Parser class for parsing tokens and generating intermediate code." alt="" coords="380,5,577,31"/>
+<area shape="rect" id="Node000002" href="$tokens_8h.html" title="Contains the definition of the TokenType enum and the Token struct." alt="" coords="5,79,155,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="415,33,159,79,158,74,414,28"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="45,152,104,177"/>
+<area shape="poly" id="edge15_Node000001_Node000003" title=" " alt="" coords="405,33,317,52,224,81,158,113,104,146,101,142,155,108,222,76,315,47,404,28"/>
+<area shape="rect" id="Node000004" href="$code__generator_8h.html" title="Contains the definition of the ICUnit struct and functions for generating machine code." alt="" coords="234,79,441,104"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="457,33,374,75,371,70,455,28"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="593,152,655,177"/>
+<area shape="poly" id="edge16_Node000001_Node000008" title=" " alt="" coords="482,31,488,66,495,85,506,102,522,118,541,131,581,149,579,154,538,135,519,122,502,106,490,87,483,67,477,32"/>
+<area shape="rect" id="Node000011" href="$errors_8h.html" title="Defines error handling structures and error types for syntax and semantic errors in the assembler." alt="" coords="516,79,660,104"/>
+<area shape="poly" id="edge11_Node000001_Node000011" title=" " alt="" coords="498,28,560,69,557,73,495,33"/>
+<area shape="rect" id="Node000013" title=" " alt="" coords="684,79,735,104"/>
+<area shape="poly" id="edge14_Node000001_Node000013" title=" " alt="" coords="517,28,672,76,670,81,515,33"/>
+<area shape="rect" id="Node000014" title=" " alt="" coords="759,79,827,104"/>
+<area shape="poly" id="edge17_Node000001_Node000014" title=" " alt="" coords="532,28,747,76,745,81,531,33"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="82,105,79,139,74,138,76,104"/>
+<area shape="poly" id="edge7_Node000004_Node000003" title=" " alt="" coords="295,107,118,154,116,149,294,102"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="227,152,283,177"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="326,106,280,145,277,141,322,102"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="307,152,373,177"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="340,104,342,138,336,139,335,104"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="397,152,477,177"/>
+<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="355,102,411,142,408,146,352,106"/>
+<area shape="poly" id="edge8_Node000004_Node000008" title=" " alt="" coords="385,102,580,149,579,154,384,107"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="501,152,568,177"/>
+<area shape="poly" id="edge9_Node000004_Node000009" title=" " alt="" coords="370,102,490,145,489,150,368,107"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="128,152,203,177"/>
+<area shape="poly" id="edge10_Node000004_Node000010" title=" " alt="" coords="311,106,207,149,205,144,309,102"/>
+<area shape="poly" id="edge12_Node000011_Node000003" title=" " alt="" coords="516,101,339,120,230,135,118,155,117,149,229,130,338,115,516,96"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="679,152,755,177"/>
+<area shape="poly" id="edge13_Node000011_Node000012" title=" " alt="" coords="610,102,685,143,683,147,608,106"/>
 </map>

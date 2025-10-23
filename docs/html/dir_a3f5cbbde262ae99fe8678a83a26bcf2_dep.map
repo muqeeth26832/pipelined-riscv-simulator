@@ -1,6 +1,7 @@
 <map id="src/vm/cache" name="src/vm/cache">
-<area shape="rect" id="node1" href="dir_a3f5cbbde262ae99fe8678a83a26bcf2.html" title="cache" alt="" coords="27,52,99,100"/>
-<area shape="rect" id="node2" href="dir_d44c64559bbebec7f509842c48db8b23.html" title="include" alt="" coords="27,148,99,196"/>
-<area shape="rect" id="edge1-headlabel" href="dir_000020_000008.html" title="1" alt="" coords="66,122,76,137"/>
-<area shape="rect" id="clust1" href="dir_f56a3a135a8a10a38ba6cf6e5eb74c45.html" title="vm" alt="" coords="16,16,109,111"/>
+<area shape="rect" id="node1" href="dir_a3f5cbbde262ae99fe8678a83a26bcf2.html" title="cache" alt="" coords="27,52,87,77"/>
+<area shape="rect" id="node2" href="dir_d44c64559bbebec7f509842c48db8b23.html" title="include" alt="" coords="23,125,92,151"/>
+<area shape="poly" id="edge1" href="dir_000003_000006.html" alt="" coords="60,78,60,112,55,112,55,78"/>
+<area shape="rect" id="edge1-headlabel" href="dir_000003_000006.html" title="1" alt="" coords="61,100,70,114"/>
+<area shape="rect" id="clust1" href="dir_f56a3a135a8a10a38ba6cf6e5eb74c45.html" title="vm" alt="" coords="16,16,99,88"/>
 </map>

@@ -1,5 +1,5 @@
-\hypertarget{structICUnit}{}\doxysection{ICUnit Struct Reference}
-\label{structICUnit}\index{ICUnit@{ICUnit}}
+\doxysection{ICUnit Struct Reference}
+\hypertarget{structICUnit}{}\label{structICUnit}\index{ICUnit@{ICUnit}}
 
 
 Represents a unit of intermediate code used for generating machine code.  
@@ -9,7 +9,7 @@ Represents a unit of intermediate code used for generating machine code.
 
 {\ttfamily \#include $<$code\+\_\+generator.\+h$>$}
 
-\doxysubsection*{Public Member Functions}
+\doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{structICUnit_a4d709ebd2a3d1a0611f26b2ae8f7aae7}{ICUnit}} ()
@@ -58,7 +58,7 @@ std\+::string \mbox{\hyperlink{structICUnit_a48541c71a4005599181fa9ec022551f4}{g
 \item 
 uint8\+\_\+t \mbox{\hyperlink{structICUnit_ab07219f827335b338905e555b5a05263}{get\+Rm}} () const
 \end{DoxyCompactItemize}
-\doxysubsection*{Public Attributes}
+\doxysubsubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
 unsigned int \mbox{\hyperlink{structICUnit_a6d0abe84de5612ca74dc7ec11352a190}{line\+\_\+number}}
@@ -68,7 +68,7 @@ unsigned int \mbox{\hyperlink{structICUnit_a081ce1e12c3d898aae2c2e42c75a8254}{in
 std\+::array$<$ char, 21 $>$ \mbox{\hyperlink{structICUnit_a713091fe83a24ddea9df6b0a8b0fdbda}{opcode}}
 \begin{DoxyCompactList}\small\item\em Opcode string (up to 20 characters, null-\/terminated). \end{DoxyCompactList}\item 
 std\+::array$<$ char, 6 $>$ \mbox{\hyperlink{structICUnit_aa9aa05995849c6ac8cbe1d127d1f922e}{rd}}
-\begin{DoxyCompactList}\small\item\em Destination register name (up to 20 characters, null-\/terminated). Eg\+: \char`\"{}x1\char`\"{}, \char`\"{}f4\char`\"{}, etc. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Destination register name (up to 20 characters, null-\/terminated). Eg\+: "{}x1"{}, "{}f4"{}, etc. \end{DoxyCompactList}\item 
 std\+::array$<$ char, 6 $>$ \mbox{\hyperlink{structICUnit_a5cc64dcce86bb9c70403503ddd1e6978}{rs1}}
 \begin{DoxyCompactList}\small\item\em Source register 1 name (up to 20 characters, null-\/terminated). \end{DoxyCompactList}\item 
 std\+::array$<$ char, 6 $>$ \mbox{\hyperlink{structICUnit_a65f2bf2a14c45bb210439ed02862232c}{rs2}}
@@ -83,10 +83,10 @@ std\+::string \mbox{\hyperlink{structICUnit_a921f316aff42a88dd124f88c1c9b0c4d}{l
 \begin{DoxyCompactList}\small\item\em Label associated with this code block, if any. \end{DoxyCompactList}\item 
 uint8\+\_\+t \mbox{\hyperlink{structICUnit_a1862ec48ba599365d6f38c5e0f69f84c}{rm}}
 \begin{DoxyCompactList}\small\item\em Rounding mode (up to 4 characters, null-\/terminated). \end{DoxyCompactList}\end{DoxyCompactItemize}
-\doxysubsection*{Friends}
+\doxysubsubsection*{Friends}
 \begin{DoxyCompactItemize}
 \item 
-std\+::ostream \& \mbox{\hyperlink{structICUnit_afa259d536220d9ac38bb21faeff17973}{operator$<$$<$}} (std\+::ostream \&os, const \mbox{\hyperlink{structICUnit}{ICUnit}} \&unit)
+std\+::ostream \& \mbox{\hyperlink{structICUnit_a9d2e519df0c4873ba6060117fb7cef67}{operator$<$$<$}} (std\+::ostream \&os, const \mbox{\hyperlink{structICUnit}{ICUnit}} \&unit)
 \end{DoxyCompactItemize}
 
 
@@ -96,7 +96,7 @@ Represents a unit of intermediate code used for generating machine code.
 This struct stores the details of an intermediate code block, including the line number, opcode, register destinations, immediate values, and labels. It provides setter and getter methods to manage the data safely. 
 
 \doxysubsection{Constructor \& Destructor Documentation}
-\mbox{\Hypertarget{structICUnit_a4d709ebd2a3d1a0611f26b2ae8f7aae7}\label{structICUnit_a4d709ebd2a3d1a0611f26b2ae8f7aae7}} 
+\Hypertarget{structICUnit_a4d709ebd2a3d1a0611f26b2ae8f7aae7}\label{structICUnit_a4d709ebd2a3d1a0611f26b2ae8f7aae7} 
 \index{ICUnit@{ICUnit}!ICUnit@{ICUnit}}
 \index{ICUnit@{ICUnit}!ICUnit@{ICUnit}}
 \doxysubsubsection{\texorpdfstring{ICUnit()}{ICUnit()}}
@@ -105,133 +105,133 @@ This struct stores the details of an intermediate code block, including the line
 
 
 \doxysubsection{Member Function Documentation}
-\mbox{\Hypertarget{structICUnit_a5712a8ffe1abc00cf9ac290ff449e528}\label{structICUnit_a5712a8ffe1abc00cf9ac290ff449e528}} 
+\Hypertarget{structICUnit_a5712a8ffe1abc00cf9ac290ff449e528}\label{structICUnit_a5712a8ffe1abc00cf9ac290ff449e528} 
 \index{ICUnit@{ICUnit}!getCsr@{getCsr}}
 \index{getCsr@{getCsr}!ICUnit@{ICUnit}}
 \doxysubsubsection{\texorpdfstring{getCsr()}{getCsr()}}
 {\footnotesize\ttfamily uint32\+\_\+t ICUnit\+::get\+Csr (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
-\mbox{\Hypertarget{structICUnit_a6c90684f9efa240a24612c7e73166acb}\label{structICUnit_a6c90684f9efa240a24612c7e73166acb}} 
+\Hypertarget{structICUnit_a6c90684f9efa240a24612c7e73166acb}\label{structICUnit_a6c90684f9efa240a24612c7e73166acb} 
 \index{ICUnit@{ICUnit}!getImm@{getImm}}
 \index{getImm@{getImm}!ICUnit@{ICUnit}}
 \doxysubsubsection{\texorpdfstring{getImm()}{getImm()}}
 {\footnotesize\ttfamily std\+::string ICUnit\+::get\+Imm (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
-\mbox{\Hypertarget{structICUnit_a83e2b707b35e48f75f123b32e6cb15fb}\label{structICUnit_a83e2b707b35e48f75f123b32e6cb15fb}} 
+\Hypertarget{structICUnit_a83e2b707b35e48f75f123b32e6cb15fb}\label{structICUnit_a83e2b707b35e48f75f123b32e6cb15fb} 
 \index{ICUnit@{ICUnit}!getInstructionIndex@{getInstructionIndex}}
 \index{getInstructionIndex@{getInstructionIndex}!ICUnit@{ICUnit}}
 \doxysubsubsection{\texorpdfstring{getInstructionIndex()}{getInstructionIndex()}}
 {\footnotesize\ttfamily unsigned int ICUnit\+::get\+Instruction\+Index (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
-\mbox{\Hypertarget{structICUnit_a48541c71a4005599181fa9ec022551f4}\label{structICUnit_a48541c71a4005599181fa9ec022551f4}} 
+\Hypertarget{structICUnit_a48541c71a4005599181fa9ec022551f4}\label{structICUnit_a48541c71a4005599181fa9ec022551f4} 
 \index{ICUnit@{ICUnit}!getLabel@{getLabel}}
 \index{getLabel@{getLabel}!ICUnit@{ICUnit}}
 \doxysubsubsection{\texorpdfstring{getLabel()}{getLabel()}}
 {\footnotesize\ttfamily std\+::string ICUnit\+::get\+Label (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
-\mbox{\Hypertarget{structICUnit_aa90e09cadd85f9e91d0f365b9d991a49}\label{structICUnit_aa90e09cadd85f9e91d0f365b9d991a49}} 
+\Hypertarget{structICUnit_aa90e09cadd85f9e91d0f365b9d991a49}\label{structICUnit_aa90e09cadd85f9e91d0f365b9d991a49} 
 \index{ICUnit@{ICUnit}!getLineNumber@{getLineNumber}}
 \index{getLineNumber@{getLineNumber}!ICUnit@{ICUnit}}
 \doxysubsubsection{\texorpdfstring{getLineNumber()}{getLineNumber()}}
 {\footnotesize\ttfamily unsigned int ICUnit\+::get\+Line\+Number (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
-\mbox{\Hypertarget{structICUnit_adb5ed326c13be41d0ed272878ee7f261}\label{structICUnit_adb5ed326c13be41d0ed272878ee7f261}} 
+\Hypertarget{structICUnit_adb5ed326c13be41d0ed272878ee7f261}\label{structICUnit_adb5ed326c13be41d0ed272878ee7f261} 
 \index{ICUnit@{ICUnit}!getOpcode@{getOpcode}}
 \index{getOpcode@{getOpcode}!ICUnit@{ICUnit}}
 \doxysubsubsection{\texorpdfstring{getOpcode()}{getOpcode()}}
 {\footnotesize\ttfamily std\+::string ICUnit\+::get\+Opcode (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
-\mbox{\Hypertarget{structICUnit_a21974b7d3094b23d555327a06106320f}\label{structICUnit_a21974b7d3094b23d555327a06106320f}} 
+\Hypertarget{structICUnit_a21974b7d3094b23d555327a06106320f}\label{structICUnit_a21974b7d3094b23d555327a06106320f} 
 \index{ICUnit@{ICUnit}!getRd@{getRd}}
 \index{getRd@{getRd}!ICUnit@{ICUnit}}
 \doxysubsubsection{\texorpdfstring{getRd()}{getRd()}}
 {\footnotesize\ttfamily std\+::string ICUnit\+::get\+Rd (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
-\mbox{\Hypertarget{structICUnit_ab07219f827335b338905e555b5a05263}\label{structICUnit_ab07219f827335b338905e555b5a05263}} 
+\Hypertarget{structICUnit_ab07219f827335b338905e555b5a05263}\label{structICUnit_ab07219f827335b338905e555b5a05263} 
 \index{ICUnit@{ICUnit}!getRm@{getRm}}
 \index{getRm@{getRm}!ICUnit@{ICUnit}}
 \doxysubsubsection{\texorpdfstring{getRm()}{getRm()}}
 {\footnotesize\ttfamily uint8\+\_\+t ICUnit\+::get\+Rm (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
-\mbox{\Hypertarget{structICUnit_aca70c5bd0f84b5a76f4b8ea54d8a5142}\label{structICUnit_aca70c5bd0f84b5a76f4b8ea54d8a5142}} 
+\Hypertarget{structICUnit_aca70c5bd0f84b5a76f4b8ea54d8a5142}\label{structICUnit_aca70c5bd0f84b5a76f4b8ea54d8a5142} 
 \index{ICUnit@{ICUnit}!getRs1@{getRs1}}
 \index{getRs1@{getRs1}!ICUnit@{ICUnit}}
 \doxysubsubsection{\texorpdfstring{getRs1()}{getRs1()}}
 {\footnotesize\ttfamily std\+::string ICUnit\+::get\+Rs1 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
-\mbox{\Hypertarget{structICUnit_af81c7a33972a78b4c84e5f87a002f519}\label{structICUnit_af81c7a33972a78b4c84e5f87a002f519}} 
+\Hypertarget{structICUnit_af81c7a33972a78b4c84e5f87a002f519}\label{structICUnit_af81c7a33972a78b4c84e5f87a002f519} 
 \index{ICUnit@{ICUnit}!getRs2@{getRs2}}
 \index{getRs2@{getRs2}!ICUnit@{ICUnit}}
 \doxysubsubsection{\texorpdfstring{getRs2()}{getRs2()}}
 {\footnotesize\ttfamily std\+::string ICUnit\+::get\+Rs2 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
-\mbox{\Hypertarget{structICUnit_acd6d068cf95577e4a2b13fc5c15f5912}\label{structICUnit_acd6d068cf95577e4a2b13fc5c15f5912}} 
+\Hypertarget{structICUnit_acd6d068cf95577e4a2b13fc5c15f5912}\label{structICUnit_acd6d068cf95577e4a2b13fc5c15f5912} 
 \index{ICUnit@{ICUnit}!getRs3@{getRs3}}
 \index{getRs3@{getRs3}!ICUnit@{ICUnit}}
 \doxysubsubsection{\texorpdfstring{getRs3()}{getRs3()}}
 {\footnotesize\ttfamily std\+::string ICUnit\+::get\+Rs3 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
-\mbox{\Hypertarget{structICUnit_a1eafc9c926a02caeb618a9114f551f0b}\label{structICUnit_a1eafc9c926a02caeb618a9114f551f0b}} 
+\Hypertarget{structICUnit_a1eafc9c926a02caeb618a9114f551f0b}\label{structICUnit_a1eafc9c926a02caeb618a9114f551f0b} 
 \index{ICUnit@{ICUnit}!setCsr@{setCsr}}
 \index{setCsr@{setCsr}!ICUnit@{ICUnit}}
 \doxysubsubsection{\texorpdfstring{setCsr()}{setCsr()}}
 {\footnotesize\ttfamily void ICUnit\+::set\+Csr (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-\mbox{\Hypertarget{structICUnit_a1691a21f18ee3fedcf460a67f82a3099}\label{structICUnit_a1691a21f18ee3fedcf460a67f82a3099}} 
+\Hypertarget{structICUnit_a1691a21f18ee3fedcf460a67f82a3099}\label{structICUnit_a1691a21f18ee3fedcf460a67f82a3099} 
 \index{ICUnit@{ICUnit}!setImm@{setImm}}
 \index{setImm@{setImm}!ICUnit@{ICUnit}}
 \doxysubsubsection{\texorpdfstring{setImm()}{setImm()}}
 {\footnotesize\ttfamily void ICUnit\+::set\+Imm (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-\mbox{\Hypertarget{structICUnit_a6636fb97fb7cabdd8fb198bca5ba1c25}\label{structICUnit_a6636fb97fb7cabdd8fb198bca5ba1c25}} 
+\Hypertarget{structICUnit_a6636fb97fb7cabdd8fb198bca5ba1c25}\label{structICUnit_a6636fb97fb7cabdd8fb198bca5ba1c25} 
 \index{ICUnit@{ICUnit}!setInstructionIndex@{setInstructionIndex}}
 \index{setInstructionIndex@{setInstructionIndex}!ICUnit@{ICUnit}}
 \doxysubsubsection{\texorpdfstring{setInstructionIndex()}{setInstructionIndex()}}
 {\footnotesize\ttfamily void ICUnit\+::set\+Instruction\+Index (\begin{DoxyParamCaption}\item[{unsigned int}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-\mbox{\Hypertarget{structICUnit_a91d304043cc6b35beba02b90704101dc}\label{structICUnit_a91d304043cc6b35beba02b90704101dc}} 
+\Hypertarget{structICUnit_a91d304043cc6b35beba02b90704101dc}\label{structICUnit_a91d304043cc6b35beba02b90704101dc} 
 \index{ICUnit@{ICUnit}!setLabel@{setLabel}}
 \index{setLabel@{setLabel}!ICUnit@{ICUnit}}
 \doxysubsubsection{\texorpdfstring{setLabel()}{setLabel()}}
 {\footnotesize\ttfamily void ICUnit\+::set\+Label (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-\mbox{\Hypertarget{structICUnit_a422db7dc5ec05859dff23f857db9032c}\label{structICUnit_a422db7dc5ec05859dff23f857db9032c}} 
+\Hypertarget{structICUnit_a422db7dc5ec05859dff23f857db9032c}\label{structICUnit_a422db7dc5ec05859dff23f857db9032c} 
 \index{ICUnit@{ICUnit}!setLineNumber@{setLineNumber}}
 \index{setLineNumber@{setLineNumber}!ICUnit@{ICUnit}}
 \doxysubsubsection{\texorpdfstring{setLineNumber()}{setLineNumber()}}
 {\footnotesize\ttfamily void ICUnit\+::set\+Line\+Number (\begin{DoxyParamCaption}\item[{unsigned int}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-\mbox{\Hypertarget{structICUnit_ad0edc47ffa9a7197a588ec02f01bf7c0}\label{structICUnit_ad0edc47ffa9a7197a588ec02f01bf7c0}} 
+\Hypertarget{structICUnit_ad0edc47ffa9a7197a588ec02f01bf7c0}\label{structICUnit_ad0edc47ffa9a7197a588ec02f01bf7c0} 
 \index{ICUnit@{ICUnit}!setOpcode@{setOpcode}}
 \index{setOpcode@{setOpcode}!ICUnit@{ICUnit}}
 \doxysubsubsection{\texorpdfstring{setOpcode()}{setOpcode()}}
 {\footnotesize\ttfamily void ICUnit\+::set\+Opcode (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-\mbox{\Hypertarget{structICUnit_a566ba9cecb196f02a2ca1b03236f3c13}\label{structICUnit_a566ba9cecb196f02a2ca1b03236f3c13}} 
+\Hypertarget{structICUnit_a566ba9cecb196f02a2ca1b03236f3c13}\label{structICUnit_a566ba9cecb196f02a2ca1b03236f3c13} 
 \index{ICUnit@{ICUnit}!setRd@{setRd}}
 \index{setRd@{setRd}!ICUnit@{ICUnit}}
 \doxysubsubsection{\texorpdfstring{setRd()}{setRd()}}
 {\footnotesize\ttfamily void ICUnit\+::set\+Rd (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-\mbox{\Hypertarget{structICUnit_a964fe26dccc9c4088774a66a2de5ec05}\label{structICUnit_a964fe26dccc9c4088774a66a2de5ec05}} 
+\Hypertarget{structICUnit_a964fe26dccc9c4088774a66a2de5ec05}\label{structICUnit_a964fe26dccc9c4088774a66a2de5ec05} 
 \index{ICUnit@{ICUnit}!setRm@{setRm}}
 \index{setRm@{setRm}!ICUnit@{ICUnit}}
 \doxysubsubsection{\texorpdfstring{setRm()}{setRm()}}
 {\footnotesize\ttfamily void ICUnit\+::set\+Rm (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-\mbox{\Hypertarget{structICUnit_ac084bccd7290a3ba7990b90b91b149f7}\label{structICUnit_ac084bccd7290a3ba7990b90b91b149f7}} 
+\Hypertarget{structICUnit_ac084bccd7290a3ba7990b90b91b149f7}\label{structICUnit_ac084bccd7290a3ba7990b90b91b149f7} 
 \index{ICUnit@{ICUnit}!setRs1@{setRs1}}
 \index{setRs1@{setRs1}!ICUnit@{ICUnit}}
 \doxysubsubsection{\texorpdfstring{setRs1()}{setRs1()}}
 {\footnotesize\ttfamily void ICUnit\+::set\+Rs1 (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-\mbox{\Hypertarget{structICUnit_a8bf533e866d8cf995a41530052598883}\label{structICUnit_a8bf533e866d8cf995a41530052598883}} 
+\Hypertarget{structICUnit_a8bf533e866d8cf995a41530052598883}\label{structICUnit_a8bf533e866d8cf995a41530052598883} 
 \index{ICUnit@{ICUnit}!setRs2@{setRs2}}
 \index{setRs2@{setRs2}!ICUnit@{ICUnit}}
 \doxysubsubsection{\texorpdfstring{setRs2()}{setRs2()}}
 {\footnotesize\ttfamily void ICUnit\+::set\+Rs2 (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-\mbox{\Hypertarget{structICUnit_a4161046a12e2d38b90b88ecc19be8896}\label{structICUnit_a4161046a12e2d38b90b88ecc19be8896}} 
+\Hypertarget{structICUnit_a4161046a12e2d38b90b88ecc19be8896}\label{structICUnit_a4161046a12e2d38b90b88ecc19be8896} 
 \index{ICUnit@{ICUnit}!setRs3@{setRs3}}
 \index{setRs3@{setRs3}!ICUnit@{ICUnit}}
 \doxysubsubsection{\texorpdfstring{setRs3()}{setRs3()}}
@@ -239,17 +239,17 @@ This struct stores the details of an intermediate code block, including the line
 
 
 
-\doxysubsection{Friends And Related Function Documentation}
-\mbox{\Hypertarget{structICUnit_afa259d536220d9ac38bb21faeff17973}\label{structICUnit_afa259d536220d9ac38bb21faeff17973}} 
+\doxysubsection{Friends And Related Symbol Documentation}
+\Hypertarget{structICUnit_a9d2e519df0c4873ba6060117fb7cef67}\label{structICUnit_a9d2e519df0c4873ba6060117fb7cef67} 
 \index{ICUnit@{ICUnit}!operator$<$$<$@{operator$<$$<$}}
 \index{operator$<$$<$@{operator$<$$<$}!ICUnit@{ICUnit}}
 \doxysubsubsection{\texorpdfstring{operator$<$$<$}{operator<<}}
-{\footnotesize\ttfamily std\+::ostream\& operator$<$$<$ (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{os,  }\item[{const \mbox{\hyperlink{structICUnit}{ICUnit}} \&}]{unit }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+{\footnotesize\ttfamily std\+::ostream \& operator$<$$<$ (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{os,  }\item[{const \mbox{\hyperlink{structICUnit}{ICUnit}} \&}]{unit }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
 
 
 
 \doxysubsection{Member Data Documentation}
-\mbox{\Hypertarget{structICUnit_a0986ffbffc86ca1181658c030b070d2e}\label{structICUnit_a0986ffbffc86ca1181658c030b070d2e}} 
+\Hypertarget{structICUnit_a0986ffbffc86ca1181658c030b070d2e}\label{structICUnit_a0986ffbffc86ca1181658c030b070d2e} 
 \index{ICUnit@{ICUnit}!csr@{csr}}
 \index{csr@{csr}!ICUnit@{ICUnit}}
 \doxysubsubsection{\texorpdfstring{csr}{csr}}
@@ -259,7 +259,7 @@ This struct stores the details of an intermediate code block, including the line
 
 Control and Status Register (CSR) value. 
 
-\mbox{\Hypertarget{structICUnit_af49f5da98a756c635f14a0201dee9076}\label{structICUnit_af49f5da98a756c635f14a0201dee9076}} 
+\Hypertarget{structICUnit_af49f5da98a756c635f14a0201dee9076}\label{structICUnit_af49f5da98a756c635f14a0201dee9076} 
 \index{ICUnit@{ICUnit}!imm@{imm}}
 \index{imm@{imm}!ICUnit@{ICUnit}}
 \doxysubsubsection{\texorpdfstring{imm}{imm}}
@@ -269,7 +269,7 @@ Control and Status Register (CSR) value.
 
 Immediate value (up to 32 characters, null-\/terminated). 
 
-\mbox{\Hypertarget{structICUnit_a081ce1e12c3d898aae2c2e42c75a8254}\label{structICUnit_a081ce1e12c3d898aae2c2e42c75a8254}} 
+\Hypertarget{structICUnit_a081ce1e12c3d898aae2c2e42c75a8254}\label{structICUnit_a081ce1e12c3d898aae2c2e42c75a8254} 
 \index{ICUnit@{ICUnit}!instruction\_index@{instruction\_index}}
 \index{instruction\_index@{instruction\_index}!ICUnit@{ICUnit}}
 \doxysubsubsection{\texorpdfstring{instruction\_index}{instruction\_index}}
@@ -279,7 +279,7 @@ Immediate value (up to 32 characters, null-\/terminated).
 
 Index of the instruction in the intermediate code. 
 
-\mbox{\Hypertarget{structICUnit_a921f316aff42a88dd124f88c1c9b0c4d}\label{structICUnit_a921f316aff42a88dd124f88c1c9b0c4d}} 
+\Hypertarget{structICUnit_a921f316aff42a88dd124f88c1c9b0c4d}\label{structICUnit_a921f316aff42a88dd124f88c1c9b0c4d} 
 \index{ICUnit@{ICUnit}!label@{label}}
 \index{label@{label}!ICUnit@{ICUnit}}
 \doxysubsubsection{\texorpdfstring{label}{label}}
@@ -289,7 +289,7 @@ Index of the instruction in the intermediate code.
 
 Label associated with this code block, if any. 
 
-\mbox{\Hypertarget{structICUnit_a6d0abe84de5612ca74dc7ec11352a190}\label{structICUnit_a6d0abe84de5612ca74dc7ec11352a190}} 
+\Hypertarget{structICUnit_a6d0abe84de5612ca74dc7ec11352a190}\label{structICUnit_a6d0abe84de5612ca74dc7ec11352a190} 
 \index{ICUnit@{ICUnit}!line\_number@{line\_number}}
 \index{line\_number@{line\_number}!ICUnit@{ICUnit}}
 \doxysubsubsection{\texorpdfstring{line\_number}{line\_number}}
@@ -299,7 +299,7 @@ Label associated with this code block, if any.
 
 Line number in the source code corresponding to this block. 
 
-\mbox{\Hypertarget{structICUnit_a713091fe83a24ddea9df6b0a8b0fdbda}\label{structICUnit_a713091fe83a24ddea9df6b0a8b0fdbda}} 
+\Hypertarget{structICUnit_a713091fe83a24ddea9df6b0a8b0fdbda}\label{structICUnit_a713091fe83a24ddea9df6b0a8b0fdbda} 
 \index{ICUnit@{ICUnit}!opcode@{opcode}}
 \index{opcode@{opcode}!ICUnit@{ICUnit}}
 \doxysubsubsection{\texorpdfstring{opcode}{opcode}}
@@ -309,7 +309,7 @@ Line number in the source code corresponding to this block.
 
 Opcode string (up to 20 characters, null-\/terminated). 
 
-\mbox{\Hypertarget{structICUnit_aa9aa05995849c6ac8cbe1d127d1f922e}\label{structICUnit_aa9aa05995849c6ac8cbe1d127d1f922e}} 
+\Hypertarget{structICUnit_aa9aa05995849c6ac8cbe1d127d1f922e}\label{structICUnit_aa9aa05995849c6ac8cbe1d127d1f922e} 
 \index{ICUnit@{ICUnit}!rd@{rd}}
 \index{rd@{rd}!ICUnit@{ICUnit}}
 \doxysubsubsection{\texorpdfstring{rd}{rd}}
@@ -317,9 +317,9 @@ Opcode string (up to 20 characters, null-\/terminated).
 
 
 
-Destination register name (up to 20 characters, null-\/terminated). Eg\+: \char`\"{}x1\char`\"{}, \char`\"{}f4\char`\"{}, etc. 
+Destination register name (up to 20 characters, null-\/terminated). Eg\+: "{}x1"{}, "{}f4"{}, etc. 
 
-\mbox{\Hypertarget{structICUnit_a1862ec48ba599365d6f38c5e0f69f84c}\label{structICUnit_a1862ec48ba599365d6f38c5e0f69f84c}} 
+\Hypertarget{structICUnit_a1862ec48ba599365d6f38c5e0f69f84c}\label{structICUnit_a1862ec48ba599365d6f38c5e0f69f84c} 
 \index{ICUnit@{ICUnit}!rm@{rm}}
 \index{rm@{rm}!ICUnit@{ICUnit}}
 \doxysubsubsection{\texorpdfstring{rm}{rm}}
@@ -329,7 +329,7 @@ Destination register name (up to 20 characters, null-\/terminated). Eg\+: \char`
 
 Rounding mode (up to 4 characters, null-\/terminated). 
 
-\mbox{\Hypertarget{structICUnit_a5cc64dcce86bb9c70403503ddd1e6978}\label{structICUnit_a5cc64dcce86bb9c70403503ddd1e6978}} 
+\Hypertarget{structICUnit_a5cc64dcce86bb9c70403503ddd1e6978}\label{structICUnit_a5cc64dcce86bb9c70403503ddd1e6978} 
 \index{ICUnit@{ICUnit}!rs1@{rs1}}
 \index{rs1@{rs1}!ICUnit@{ICUnit}}
 \doxysubsubsection{\texorpdfstring{rs1}{rs1}}
@@ -339,7 +339,7 @@ Rounding mode (up to 4 characters, null-\/terminated).
 
 Source register 1 name (up to 20 characters, null-\/terminated). 
 
-\mbox{\Hypertarget{structICUnit_a65f2bf2a14c45bb210439ed02862232c}\label{structICUnit_a65f2bf2a14c45bb210439ed02862232c}} 
+\Hypertarget{structICUnit_a65f2bf2a14c45bb210439ed02862232c}\label{structICUnit_a65f2bf2a14c45bb210439ed02862232c} 
 \index{ICUnit@{ICUnit}!rs2@{rs2}}
 \index{rs2@{rs2}!ICUnit@{ICUnit}}
 \doxysubsubsection{\texorpdfstring{rs2}{rs2}}
@@ -349,7 +349,7 @@ Source register 1 name (up to 20 characters, null-\/terminated).
 
 Source register 2 name (up to 20 characters, null-\/terminated). 
 
-\mbox{\Hypertarget{structICUnit_a4fa54a29e2374eeb6204d4d36c3a198d}\label{structICUnit_a4fa54a29e2374eeb6204d4d36c3a198d}} 
+\Hypertarget{structICUnit_a4fa54a29e2374eeb6204d4d36c3a198d}\label{structICUnit_a4fa54a29e2374eeb6204d4d36c3a198d} 
 \index{ICUnit@{ICUnit}!rs3@{rs3}}
 \index{rs3@{rs3}!ICUnit@{ICUnit}}
 \doxysubsubsection{\texorpdfstring{rs3}{rs3}}

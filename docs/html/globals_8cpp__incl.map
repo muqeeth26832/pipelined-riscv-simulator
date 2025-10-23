@@ -1,5 +1,8 @@
 <map id="src/globals.cpp" name="src/globals.cpp">
-<area shape="rect" id="node1" title=" " alt="" coords="25,5,144,32"/>
-<area shape="rect" id="node2" href="$globals_8h.html" title="Contains global definitions and includes for the assembler." alt="" coords="5,80,87,107"/>
-<area shape="rect" id="node3" title=" " alt="" coords="39,155,130,181"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="25,5,144,31"/>
+<area shape="rect" id="Node000002" href="$globals_8h.html" title="Contains global definitions and includes for the assembler." alt="" coords="5,79,87,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="81,32,61,68,56,65,76,30"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="39,152,130,177"/>
+<area shape="poly" id="edge3_Node000001_Node000003" title=" " alt="" coords="91,30,102,78,101,110,95,139,90,138,96,110,97,79,86,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="55,103,74,139,70,141,50,106"/>
 </map>

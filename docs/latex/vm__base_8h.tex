@@ -1,14 +1,14 @@
-\hypertarget{vm__base_8h}{}\doxysection{include/vm/vm\+\_\+base.h File Reference}
-\label{vm__base_8h}\index{include/vm/vm\_base.h@{include/vm/vm\_base.h}}
+\doxysection{include/vm/vm\+\_\+base.h File Reference}
+\hypertarget{vm__base_8h}{}\label{vm__base_8h}\index{include/vm/vm\_base.h@{include/vm/vm\_base.h}}
 
 
 File containing the base class for the virtual machine.  
 
 
-{\ttfamily \#include \char`\"{}registers.\+h\char`\"{}}\newline
-{\ttfamily \#include \char`\"{}memory\+\_\+controller.\+h\char`\"{}}\newline
-{\ttfamily \#include \char`\"{}alu.\+h\char`\"{}}\newline
-{\ttfamily \#include \char`\"{}vm\+\_\+asm\+\_\+mw.\+h\char`\"{}}\newline
+{\ttfamily \#include "{}registers.\+h"{}}\newline
+{\ttfamily \#include "{}memory\+\_\+controller.\+h"{}}\newline
+{\ttfamily \#include "{}alu.\+h"{}}\newline
+{\ttfamily \#include "{}vm\+\_\+asm\+\_\+mw.\+h"{}}\newline
 {\ttfamily \#include $<$vector$>$}\newline
 {\ttfamily \#include $<$string$>$}\newline
 {\ttfamily \#include $<$filesystem$>$}\newline
@@ -33,12 +33,12 @@ This graph shows which files directly or indirectly include this file\+:
 \includegraphics[width=350pt]{vm__base_8h__dep__incl}
 \end{center}
 \end{figure}
-\doxysubsection*{Classes}
+\doxysubsubsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 
 class \mbox{\hyperlink{classVmBase}{Vm\+Base}}
 \end{DoxyCompactItemize}
-\doxysubsection*{Enumerations}
+\doxysubsubsection*{Enumerations}
 \begin{DoxyCompactItemize}
 \item 
 enum \mbox{\hyperlink{vm__base_8h_a0151f3169cfe19daa8c8478396f91765}{Syscall\+Code}} \{ \newline
@@ -63,38 +63,38 @@ Vishank Singh, \href{https://VishankSingh}{\texttt{ https\+://\+Vishank\+Singh}}
 
 
 \doxysubsection{Enumeration Type Documentation}
-\mbox{\Hypertarget{vm__base_8h_a0151f3169cfe19daa8c8478396f91765}\label{vm__base_8h_a0151f3169cfe19daa8c8478396f91765}} 
+\Hypertarget{vm__base_8h_a0151f3169cfe19daa8c8478396f91765}\label{vm__base_8h_a0151f3169cfe19daa8c8478396f91765} 
 \index{vm\_base.h@{vm\_base.h}!SyscallCode@{SyscallCode}}
 \index{SyscallCode@{SyscallCode}!vm\_base.h@{vm\_base.h}}
 \doxysubsubsection{\texorpdfstring{SyscallCode}{SyscallCode}}
 {\footnotesize\ttfamily enum \mbox{\hyperlink{vm__base_8h_a0151f3169cfe19daa8c8478396f91765}{Syscall\+Code}}}
 
 \begin{DoxyEnumFields}{Enumerator}
-\raisebox{\heightof{T}}[0pt][0pt]{\index{SYSCALL\_PRINT\_INT@{SYSCALL\_PRINT\_INT}!vm\_base.h@{vm\_base.h}}\index{vm\_base.h@{vm\_base.h}!SYSCALL\_PRINT\_INT@{SYSCALL\_PRINT\_INT}}}\mbox{\Hypertarget{vm__base_8h_a0151f3169cfe19daa8c8478396f91765ad41b74c705938b0944e19f50bff3607a}\label{vm__base_8h_a0151f3169cfe19daa8c8478396f91765ad41b74c705938b0944e19f50bff3607a}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SYSCALL\_PRINT\_INT@{SYSCALL\_PRINT\_INT}!vm\_base.h@{vm\_base.h}}\index{vm\_base.h@{vm\_base.h}!SYSCALL\_PRINT\_INT@{SYSCALL\_PRINT\_INT}}}\Hypertarget{vm__base_8h_a0151f3169cfe19daa8c8478396f91765ad41b74c705938b0944e19f50bff3607a}\label{vm__base_8h_a0151f3169cfe19daa8c8478396f91765ad41b74c705938b0944e19f50bff3607a} 
 SYSCALL\+\_\+\+PRINT\+\_\+\+INT&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{SYSCALL\_PRINT\_FLOAT@{SYSCALL\_PRINT\_FLOAT}!vm\_base.h@{vm\_base.h}}\index{vm\_base.h@{vm\_base.h}!SYSCALL\_PRINT\_FLOAT@{SYSCALL\_PRINT\_FLOAT}}}\mbox{\Hypertarget{vm__base_8h_a0151f3169cfe19daa8c8478396f91765a485b6ccf51eb1988c9ed86f21f980174}\label{vm__base_8h_a0151f3169cfe19daa8c8478396f91765a485b6ccf51eb1988c9ed86f21f980174}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SYSCALL\_PRINT\_FLOAT@{SYSCALL\_PRINT\_FLOAT}!vm\_base.h@{vm\_base.h}}\index{vm\_base.h@{vm\_base.h}!SYSCALL\_PRINT\_FLOAT@{SYSCALL\_PRINT\_FLOAT}}}\Hypertarget{vm__base_8h_a0151f3169cfe19daa8c8478396f91765a485b6ccf51eb1988c9ed86f21f980174}\label{vm__base_8h_a0151f3169cfe19daa8c8478396f91765a485b6ccf51eb1988c9ed86f21f980174} 
 SYSCALL\+\_\+\+PRINT\+\_\+\+FLOAT&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{SYSCALL\_PRINT\_DOUBLE@{SYSCALL\_PRINT\_DOUBLE}!vm\_base.h@{vm\_base.h}}\index{vm\_base.h@{vm\_base.h}!SYSCALL\_PRINT\_DOUBLE@{SYSCALL\_PRINT\_DOUBLE}}}\mbox{\Hypertarget{vm__base_8h_a0151f3169cfe19daa8c8478396f91765a036357630a45b24a33dd5ed8c4f4be72}\label{vm__base_8h_a0151f3169cfe19daa8c8478396f91765a036357630a45b24a33dd5ed8c4f4be72}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SYSCALL\_PRINT\_DOUBLE@{SYSCALL\_PRINT\_DOUBLE}!vm\_base.h@{vm\_base.h}}\index{vm\_base.h@{vm\_base.h}!SYSCALL\_PRINT\_DOUBLE@{SYSCALL\_PRINT\_DOUBLE}}}\Hypertarget{vm__base_8h_a0151f3169cfe19daa8c8478396f91765a036357630a45b24a33dd5ed8c4f4be72}\label{vm__base_8h_a0151f3169cfe19daa8c8478396f91765a036357630a45b24a33dd5ed8c4f4be72} 
 SYSCALL\+\_\+\+PRINT\+\_\+\+DOUBLE&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{SYSCALL\_PRINT\_STRING@{SYSCALL\_PRINT\_STRING}!vm\_base.h@{vm\_base.h}}\index{vm\_base.h@{vm\_base.h}!SYSCALL\_PRINT\_STRING@{SYSCALL\_PRINT\_STRING}}}\mbox{\Hypertarget{vm__base_8h_a0151f3169cfe19daa8c8478396f91765a3d4bf3b4c92468bb5c5a101d6d656ae2}\label{vm__base_8h_a0151f3169cfe19daa8c8478396f91765a3d4bf3b4c92468bb5c5a101d6d656ae2}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SYSCALL\_PRINT\_STRING@{SYSCALL\_PRINT\_STRING}!vm\_base.h@{vm\_base.h}}\index{vm\_base.h@{vm\_base.h}!SYSCALL\_PRINT\_STRING@{SYSCALL\_PRINT\_STRING}}}\Hypertarget{vm__base_8h_a0151f3169cfe19daa8c8478396f91765a3d4bf3b4c92468bb5c5a101d6d656ae2}\label{vm__base_8h_a0151f3169cfe19daa8c8478396f91765a3d4bf3b4c92468bb5c5a101d6d656ae2} 
 SYSCALL\+\_\+\+PRINT\+\_\+\+STRING&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{SYSCALL\_EXIT@{SYSCALL\_EXIT}!vm\_base.h@{vm\_base.h}}\index{vm\_base.h@{vm\_base.h}!SYSCALL\_EXIT@{SYSCALL\_EXIT}}}\mbox{\Hypertarget{vm__base_8h_a0151f3169cfe19daa8c8478396f91765a4777b04e1ffe7c43d3bf5173ea6121f7}\label{vm__base_8h_a0151f3169cfe19daa8c8478396f91765a4777b04e1ffe7c43d3bf5173ea6121f7}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SYSCALL\_EXIT@{SYSCALL\_EXIT}!vm\_base.h@{vm\_base.h}}\index{vm\_base.h@{vm\_base.h}!SYSCALL\_EXIT@{SYSCALL\_EXIT}}}\Hypertarget{vm__base_8h_a0151f3169cfe19daa8c8478396f91765a4777b04e1ffe7c43d3bf5173ea6121f7}\label{vm__base_8h_a0151f3169cfe19daa8c8478396f91765a4777b04e1ffe7c43d3bf5173ea6121f7} 
 SYSCALL\+\_\+\+EXIT&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{SYSCALL\_READ@{SYSCALL\_READ}!vm\_base.h@{vm\_base.h}}\index{vm\_base.h@{vm\_base.h}!SYSCALL\_READ@{SYSCALL\_READ}}}\mbox{\Hypertarget{vm__base_8h_a0151f3169cfe19daa8c8478396f91765aae28428803bceb12fac6559507142ffc}\label{vm__base_8h_a0151f3169cfe19daa8c8478396f91765aae28428803bceb12fac6559507142ffc}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SYSCALL\_READ@{SYSCALL\_READ}!vm\_base.h@{vm\_base.h}}\index{vm\_base.h@{vm\_base.h}!SYSCALL\_READ@{SYSCALL\_READ}}}\Hypertarget{vm__base_8h_a0151f3169cfe19daa8c8478396f91765aae28428803bceb12fac6559507142ffc}\label{vm__base_8h_a0151f3169cfe19daa8c8478396f91765aae28428803bceb12fac6559507142ffc} 
 SYSCALL\+\_\+\+READ&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{SYSCALL\_WRITE@{SYSCALL\_WRITE}!vm\_base.h@{vm\_base.h}}\index{vm\_base.h@{vm\_base.h}!SYSCALL\_WRITE@{SYSCALL\_WRITE}}}\mbox{\Hypertarget{vm__base_8h_a0151f3169cfe19daa8c8478396f91765a39a423648a02c841cfdb884d5d08cbad}\label{vm__base_8h_a0151f3169cfe19daa8c8478396f91765a39a423648a02c841cfdb884d5d08cbad}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SYSCALL\_WRITE@{SYSCALL\_WRITE}!vm\_base.h@{vm\_base.h}}\index{vm\_base.h@{vm\_base.h}!SYSCALL\_WRITE@{SYSCALL\_WRITE}}}\Hypertarget{vm__base_8h_a0151f3169cfe19daa8c8478396f91765a39a423648a02c841cfdb884d5d08cbad}\label{vm__base_8h_a0151f3169cfe19daa8c8478396f91765a39a423648a02c841cfdb884d5d08cbad} 
 SYSCALL\+\_\+\+WRITE&\\
 \hline
 

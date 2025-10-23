@@ -1,0 +1,95 @@
+\doxysection{main\+\_\+memory.\+h}
+\hypertarget{main__memory_8h_source}{}\label{main__memory_8h_source}\index{include/vm/main\_memory.h@{include/vm/main\_memory.h}}
+\mbox{\hyperlink{main__memory_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#ifndef\ MAIN\_MEMORY\_H}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#define\ MAIN\_MEMORY\_H}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{config_8h}{config.h}}"{}}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <unordered\_map>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <cstdint>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <stdexcept>}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00021\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structMemoryBlock}{MemoryBlock}}\ \{}
+\DoxyCodeLine{00022\ \ \ std::vector<uint8\_t>\ \mbox{\hyperlink{structMemoryBlock_a0cd70c89ef3b4b7ebfd25aa48b2db04f}{data}};\ }
+\DoxyCodeLine{00023\ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structMemoryBlock_a4fc9655625b9d635d1c0458e5d096373}{block\_size}}\ =\ \mbox{\hyperlink{namespacevm__config_a69afb29f3814a3526848dae1dfbd07c4}{vm\_config::config}}.\mbox{\hyperlink{structvm__config_1_1VmConfig_a2dcb5a8dd0a4ae911fea084c2f300ada}{getMemoryBlockSize}}();\ }
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00028\ \ \ \mbox{\hyperlink{structMemoryBlock_a734af8678e5b969cfc2b10e3395c101a}{MemoryBlock}}()\ \{}
+\DoxyCodeLine{00029\ \ \ \ \ \mbox{\hyperlink{structMemoryBlock_a0cd70c89ef3b4b7ebfd25aa48b2db04f}{data}}.resize(\mbox{\hyperlink{structMemoryBlock_a4fc9655625b9d635d1c0458e5d096373}{block\_size}},\ 0);}
+\DoxyCodeLine{00030\ \ \ \}}
+\DoxyCodeLine{00031\ \};}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00036\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classMemory}{Memory}}\ \{}
+\DoxyCodeLine{00037\ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00038\ \ \ std::unordered\_map<uint64\_t,\ MemoryBlock>\ blocks\_;\ }
+\DoxyCodeLine{00039\ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ block\_size\_;\ }
+\DoxyCodeLine{00040\ \ \ uint64\_t\ memory\_size\_\ =\ \mbox{\hyperlink{namespacevm__config_a69afb29f3814a3526848dae1dfbd07c4}{vm\_config::config}}.\mbox{\hyperlink{structvm__config_1_1VmConfig_a659405ba2c6bba936a3b9aeb83048624}{getMemorySize}}();\ }
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00047\ \ \ uint64\_t\ GetBlockIndex(uint64\_t\ address)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00054\ \ \ uint64\_t\ GetBlockOffset(uint64\_t\ address)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00061\ \ \ \textcolor{keywordtype}{bool}\ IsBlockPresent(uint64\_t\ block\_index)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00067\ \ \ \textcolor{keywordtype}{void}\ EnsureBlockExists(uint64\_t\ block\_index);}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00075\ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00076\ \ \ T\ ReadGeneric(uint64\_t\ address);}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00084\ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00085\ \ \ \textcolor{keywordtype}{void}\ WriteGeneric(uint64\_t\ address,\ T\ value);}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00091\ \ \ \mbox{\hyperlink{classMemory_a585d7bb6fc6f2237bcebf94a86b7dd99}{Memory}}()\ \{}
+\DoxyCodeLine{00092\ \ \ \ \ block\_size\_\ =\ \mbox{\hyperlink{namespacevm__config_a69afb29f3814a3526848dae1dfbd07c4}{vm\_config::config}}.\mbox{\hyperlink{structvm__config_1_1VmConfig_a2dcb5a8dd0a4ae911fea084c2f300ada}{getMemoryBlockSize}}();}
+\DoxyCodeLine{00093\ \ \ \}}
+\DoxyCodeLine{00097\ \ \ \mbox{\hyperlink{classMemory_a2b517b46ae4b070d9f6a7b6d9efeb7a1}{\string~Memory}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classMemory_af8c16d327e0d504003af4d0798d8abd8}{Reset}}()\ \{}
+\DoxyCodeLine{00100\ \ \ \ \ blocks\_.clear();}
+\DoxyCodeLine{00101\ \ \ \}}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00108\ \ \ uint8\_t\ \mbox{\hyperlink{classMemory_a0592958b79513334df0e9f232e5a163c}{Read}}(uint64\_t\ address);}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00115\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classMemory_a17aa7f0f31ae87b255f901088fb93ddf}{Write}}(uint64\_t\ address,\ uint8\_t\ value);}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00122\ \ \ uint8\_t\ \mbox{\hyperlink{classMemory_aa53fe987c4303016ac2a91b32d65b309}{ReadByte}}(uint64\_t\ address);}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00129\ \ \ uint16\_t\ \mbox{\hyperlink{classMemory_aa7701c410bbb32090b6910212c8a586a}{ReadHalfWord}}(uint64\_t\ address);}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00136\ \ \ uint32\_t\ \mbox{\hyperlink{classMemory_a3bc0c3ed25c705a2d3013b1c56e3693d}{ReadWord}}(uint64\_t\ address);}
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00143\ \ \ uint64\_t\ \mbox{\hyperlink{classMemory_ae1900b5cdf0c66884cb93429c64811d6}{ReadDoubleWord}}(uint64\_t\ address);}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00145\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classMemory_a82b7d51b7b49f9cc0d50d813e9b77e60}{ReadFloat}}(uint64\_t\ address);}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00147\ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classMemory_ab7acb8461bac56c3eb1c3be43ef3feff}{ReadDouble}}(uint64\_t\ address);}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00154\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classMemory_a51d4ecdf290fe1393911defa3d18ef81}{WriteByte}}(uint64\_t\ address,\ uint8\_t\ value);}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00161\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classMemory_afe0f63f58e5342ac9553b3dc79ec665f}{WriteHalfWord}}(uint64\_t\ address,\ uint16\_t\ value);}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00168\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classMemory_a254b13707a51f5bc2a00423aec0fdd19}{WriteWord}}(uint64\_t\ address,\ uint32\_t\ value);}
+\DoxyCodeLine{00169\ }
+\DoxyCodeLine{00175\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classMemory_a7e9e90526f5a0e3616ceb6d139c0f637}{WriteDoubleWord}}(uint64\_t\ address,\ uint64\_t\ value);}
+\DoxyCodeLine{00176\ }
+\DoxyCodeLine{00177\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classMemory_a50d0b16cad399089e6dd34a6743669ff}{WriteFloat}}(uint64\_t\ address,\ \textcolor{keywordtype}{float}\ value);}
+\DoxyCodeLine{00178\ }
+\DoxyCodeLine{00179\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classMemory_aca59547bb22b859345a056952a392b97}{WriteDouble}}(uint64\_t\ address,\ \textcolor{keywordtype}{double}\ value);}
+\DoxyCodeLine{00180\ }
+\DoxyCodeLine{00181\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classMemory_a189725aa5c6c3f1da845f83d471823d9}{PrintMemory}}(uint64\_t\ address,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ rows);}
+\DoxyCodeLine{00182\ }
+\DoxyCodeLine{00183\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classMemory_af0469898647f13dcefaf754864d57d5c}{DumpMemory}}(std::vector<std::string>\ args);}
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00185\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classMemory_a9e97d95abba646be547575aba6040b3d}{GetMemoryPoint}}(std::string\ address);}
+\DoxyCodeLine{00186\ }
+\DoxyCodeLine{00187\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classMemory_a3ecb28f33d2f59ed261390f67552af99}{printMemoryUsage}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00188\ \};}
+\DoxyCodeLine{00189\ }
+\DoxyCodeLine{00190\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ MAIN\_MEMORY\_H}}
+
+\end{DoxyCode}

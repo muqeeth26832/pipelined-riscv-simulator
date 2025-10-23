@@ -1,5 +1,5 @@
-\hypertarget{alu_8h}{}\doxysection{include/vm/alu.h File Reference}
-\label{alu_8h}\index{include/vm/alu.h@{include/vm/alu.h}}
+\doxysection{include/vm/alu.h File Reference}
+\hypertarget{alu_8h}{}\label{alu_8h}\index{include/vm/alu.h@{include/vm/alu.h}}
 
 
 Contains the definition of the alu class for performing arithmetic and logic operations.  
@@ -25,17 +25,17 @@ This graph shows which files directly or indirectly include this file\+:
 \includegraphics[width=350pt]{alu_8h__dep__incl}
 \end{center}
 \end{figure}
-\doxysubsection*{Classes}
+\doxysubsubsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 
 class \mbox{\hyperlink{classalu_1_1Alu}{alu\+::\+Alu}}
 \begin{DoxyCompactList}\small\item\em The alu class is responsible for performing arithmetic and logic operations. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\doxysubsection*{Namespaces}
+\doxysubsubsection*{Namespaces}
 \begin{DoxyCompactItemize}
 \item 
- \mbox{\hyperlink{namespacealu}{alu}}
+namespace \mbox{\hyperlink{namespacealu}{alu}}
 \end{DoxyCompactItemize}
-\doxysubsection*{Macros}
+\doxysubsubsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
 \#define \mbox{\hyperlink{alu_8h_a891bc992cb99a5663b75102af36530a0}{FCSR\+\_\+\+INVALID\+\_\+\+OP}}~(1 $<$$<$ 0)
@@ -48,7 +48,7 @@ class \mbox{\hyperlink{classalu_1_1Alu}{alu\+::\+Alu}}
 \item 
 \#define \mbox{\hyperlink{alu_8h_ad974e8f51fdf5f9bd3344bb823be49a0}{FCSR\+\_\+\+INEXACT}}~(1 $<$$<$ 4)
 \end{DoxyCompactItemize}
-\doxysubsection*{Enumerations}
+\doxysubsubsection*{Enumerations}
 \begin{DoxyCompactItemize}
 \item 
 enum class \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985}{alu\+::\+Alu\+Op}} \{ \newline
@@ -162,10 +162,10 @@ enum class \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985}{alu\
 , \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985a9ae5838e54ed93c698c0b3707bc28cc5}{alu\+::\+FMV\+\_\+\+X\+\_\+D}}
  \}
 \end{DoxyCompactItemize}
-\doxysubsection*{Functions}
+\doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-std\+::ostream \& \mbox{\hyperlink{namespacealu_aa159daf5d98346103460989d9551ea58}{alu\+::operator$<$$<$}} (std\+::ostream \&os, const Alu\+Op \&op)
+std\+::ostream \& \mbox{\hyperlink{namespacealu_ab7f83a4625971791bcb6a5e6ff961564}{alu\+::operator$<$$<$}} (std\+::ostream \&os, const \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985}{Alu\+Op}} \&op)
 \end{DoxyCompactItemize}
 
 
@@ -178,31 +178,31 @@ Vishank Singh, httpa\+://github.com/\+Vishank\+Singh
 
 
 \doxysubsection{Macro Definition Documentation}
-\mbox{\Hypertarget{alu_8h_a7a9a09b6531a62d829677d832777b904}\label{alu_8h_a7a9a09b6531a62d829677d832777b904}} 
+\Hypertarget{alu_8h_a7a9a09b6531a62d829677d832777b904}\label{alu_8h_a7a9a09b6531a62d829677d832777b904} 
 \index{alu.h@{alu.h}!FCSR\_DIV\_BY\_ZERO@{FCSR\_DIV\_BY\_ZERO}}
 \index{FCSR\_DIV\_BY\_ZERO@{FCSR\_DIV\_BY\_ZERO}!alu.h@{alu.h}}
 \doxysubsubsection{\texorpdfstring{FCSR\_DIV\_BY\_ZERO}{FCSR\_DIV\_BY\_ZERO}}
 {\footnotesize\ttfamily \#define FCSR\+\_\+\+DIV\+\_\+\+BY\+\_\+\+ZERO~(1 $<$$<$ 1)}
 
-\mbox{\Hypertarget{alu_8h_ad974e8f51fdf5f9bd3344bb823be49a0}\label{alu_8h_ad974e8f51fdf5f9bd3344bb823be49a0}} 
+\Hypertarget{alu_8h_ad974e8f51fdf5f9bd3344bb823be49a0}\label{alu_8h_ad974e8f51fdf5f9bd3344bb823be49a0} 
 \index{alu.h@{alu.h}!FCSR\_INEXACT@{FCSR\_INEXACT}}
 \index{FCSR\_INEXACT@{FCSR\_INEXACT}!alu.h@{alu.h}}
 \doxysubsubsection{\texorpdfstring{FCSR\_INEXACT}{FCSR\_INEXACT}}
 {\footnotesize\ttfamily \#define FCSR\+\_\+\+INEXACT~(1 $<$$<$ 4)}
 
-\mbox{\Hypertarget{alu_8h_a891bc992cb99a5663b75102af36530a0}\label{alu_8h_a891bc992cb99a5663b75102af36530a0}} 
+\Hypertarget{alu_8h_a891bc992cb99a5663b75102af36530a0}\label{alu_8h_a891bc992cb99a5663b75102af36530a0} 
 \index{alu.h@{alu.h}!FCSR\_INVALID\_OP@{FCSR\_INVALID\_OP}}
 \index{FCSR\_INVALID\_OP@{FCSR\_INVALID\_OP}!alu.h@{alu.h}}
 \doxysubsubsection{\texorpdfstring{FCSR\_INVALID\_OP}{FCSR\_INVALID\_OP}}
 {\footnotesize\ttfamily \#define FCSR\+\_\+\+INVALID\+\_\+\+OP~(1 $<$$<$ 0)}
 
-\mbox{\Hypertarget{alu_8h_a0dc8d8489f329d8fe45499c8c1c02142}\label{alu_8h_a0dc8d8489f329d8fe45499c8c1c02142}} 
+\Hypertarget{alu_8h_a0dc8d8489f329d8fe45499c8c1c02142}\label{alu_8h_a0dc8d8489f329d8fe45499c8c1c02142} 
 \index{alu.h@{alu.h}!FCSR\_OVERFLOW@{FCSR\_OVERFLOW}}
 \index{FCSR\_OVERFLOW@{FCSR\_OVERFLOW}!alu.h@{alu.h}}
 \doxysubsubsection{\texorpdfstring{FCSR\_OVERFLOW}{FCSR\_OVERFLOW}}
 {\footnotesize\ttfamily \#define FCSR\+\_\+\+OVERFLOW~(1 $<$$<$ 2)}
 
-\mbox{\Hypertarget{alu_8h_af66df4d1afa5b11e3eb8fd39b2a45a2f}\label{alu_8h_af66df4d1afa5b11e3eb8fd39b2a45a2f}} 
+\Hypertarget{alu_8h_af66df4d1afa5b11e3eb8fd39b2a45a2f}\label{alu_8h_af66df4d1afa5b11e3eb8fd39b2a45a2f} 
 \index{alu.h@{alu.h}!FCSR\_UNDERFLOW@{FCSR\_UNDERFLOW}}
 \index{FCSR\_UNDERFLOW@{FCSR\_UNDERFLOW}!alu.h@{alu.h}}
 \doxysubsubsection{\texorpdfstring{FCSR\_UNDERFLOW}{FCSR\_UNDERFLOW}}

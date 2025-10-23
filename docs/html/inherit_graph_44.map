@@ -1,3 +1,5 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$structSymbolData.html" title="Stores data about a symbol." alt="" coords="5,5,108,32"/>
+<area shape="rect" id="Node000000" href="$classMMIODevice.html" title=" " alt="" coords="5,5,111,31"/>
+<area shape="rect" id="Node000001" href="$classNullMMIODevice.html" title="A simple MMIO device that does nothing." alt="" coords="159,5,289,31"/>
+<area shape="poly" id="edge2_Node000000_Node000001" title=" " alt="" coords="125,15,158,15,158,21,125,21"/>
 </map>

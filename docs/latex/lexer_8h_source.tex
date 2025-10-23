@@ -1,0 +1,52 @@
+\doxysection{lexer.\+h}
+\hypertarget{lexer_8h_source}{}\label{lexer_8h_source}\index{include/assembler/lexer.h@{include/assembler/lexer.h}}
+\mbox{\hyperlink{lexer_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#ifndef\ LEXER\_H}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#define\ LEXER\_H}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{tokens_8h}{assembler/tokens.h}}"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00021\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classLexer}{Lexer}}\ \{}
+\DoxyCodeLine{00022\ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00023\ \ \ std::string\ filename\_;\ }
+\DoxyCodeLine{00024\ \ \ std::ifstream\ input\_;\ }
+\DoxyCodeLine{00025\ \ \ std::string\ current\_line\_;\ }
+\DoxyCodeLine{00026\ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ line\_number\_;\ }
+\DoxyCodeLine{00027\ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ column\_number\_;\ }
+\DoxyCodeLine{00028\ \ \ \textcolor{keywordtype}{size\_t}\ pos\_;\ }
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ std::vector<Token>\ tokens\_;\ }
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00038\ \ \ \textcolor{keywordtype}{void}\ skipWhitespace();}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00046\ \ \ \textcolor{keywordtype}{void}\ skipComment();}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00054\ \ \ \textcolor{keywordtype}{void}\ skipLine();}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00063\ \ \ \mbox{\hyperlink{structToken}{Token}}\ identifier();}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00072\ \ \ \mbox{\hyperlink{structToken}{Token}}\ number();}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00081\ \ \ \mbox{\hyperlink{structToken}{Token}}\ directive();}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00090\ \ \ \mbox{\hyperlink{structToken}{Token}}\ stringLiteral();}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00100\ \ \ \mbox{\hyperlink{structToken}{Token}}\ getNextToken();}
+\DoxyCodeLine{00101\ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00109\ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classLexer}{Lexer}}(std::string\ filename);}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00114\ \ \ \mbox{\hyperlink{classLexer_ad26a84af23d8d303723e36e83fc4e556}{\string~Lexer}}();}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00123\ \ \ std::string\ \mbox{\hyperlink{classLexer_ac9f432d29889532c2930bdb462c906da}{getFilename}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00132\ \ \ std::vector<Token>\ \mbox{\hyperlink{classLexer_ad66eb14085f3fe976763c53f9bbaf3e8}{getTokenList}}();}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00134\ \};}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00136\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ LEXER\_H}}
+
+\end{DoxyCode}

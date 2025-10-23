@@ -15,5 +15,7 @@ std::filesystem::path globals::vm_state_dump_file_path = (globals::invokation_pa
 bool globals::verbose_errors_print = false;
 bool globals::verbose_warnings = false;
 bool globals::vm_as_backend = false;
+bool globals::use_pipelined_vm = false;
+int globals::pipelined_mode = 0;  // 0 = no pipelining, 1 = simple pipelining
 
 unsigned int globals::text_section_start = 0x00000000;

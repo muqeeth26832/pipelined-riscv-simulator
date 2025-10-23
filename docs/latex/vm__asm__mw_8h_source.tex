@@ -1,0 +1,37 @@
+\doxysection{vm\+\_\+asm\+\_\+mw.\+h}
+\hypertarget{vm__asm__mw_8h_source}{}\label{vm__asm__mw_8h_source}\index{include/vm\_asm\_mw.h@{include/vm\_asm\_mw.h}}
+\mbox{\hyperlink{vm__asm__mw_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#ifndef\ VM\_ASM\_MW\_H}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#define\ VM\_ASM\_MW\_H}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <map>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <unordered\_map>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <variant>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <cstdint>}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{parser_8h}{assembler/parser.h}}"{}}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structAssembledProgram}{AssembledProgram}}\ \{}
+\DoxyCodeLine{00020\ \ \ std::map<unsigned\ int,\ unsigned\ int>\ \mbox{\hyperlink{structAssembledProgram_a2edb6ebd25416825340a18079828d667}{line\_number\_instruction\_number\_mapping}};}
+\DoxyCodeLine{00021\ \ \ std::map<unsigned\ int,\ unsigned\ int>\ \mbox{\hyperlink{structAssembledProgram_ade3312b57abb948a18eee54e64cb4203}{instruction\_number\_line\_number\_mapping}};}
+\DoxyCodeLine{00022\ \ \ std::map<unsigned\ int,\ unsigned\ int>\ \mbox{\hyperlink{structAssembledProgram_aea01dd49d19c5c2a4f1d3581514d57e7}{instruction\_number\_disassembly\_mapping}};}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \ \ std::vector<std::pair<ICUnit,\ bool>>\ \mbox{\hyperlink{structAssembledProgram_a74bda4728c9cf522dfffb108f9f4af2f}{intermediate\_code}};}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \ \ \textcolor{comment}{//\ std::vector<std::pair<std::string,\ SymbolData>>\ symbol\_table;}}
+\DoxyCodeLine{00027\ \ \ }
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ std::map<std::string,\ SymbolData>\ \mbox{\hyperlink{structAssembledProgram_a92a97311854032cb913c492333e26525}{symbol\_table}};}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ std::string\ \mbox{\hyperlink{structAssembledProgram_afe8761d1f655b60e13b565f1fec54e76}{filename}};}
+\DoxyCodeLine{00032\ \ \ std::vector<std::variant<uint8\_t,\ uint16\_t,\ uint32\_t,\ uint64\_t,\ std::string,\ float,\ double>>\ \mbox{\hyperlink{structAssembledProgram_abd827684cbf41302559a6b82ac8c2f0e}{data\_buffer}};}
+\DoxyCodeLine{00033\ \ \ std::vector<uint32\_t>\ \mbox{\hyperlink{structAssembledProgram_a2fb48576e355cdaede88efb71573dd40}{text\_buffer}};}
+\DoxyCodeLine{00034\ \};}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ VM\_ASM\_MW\_H}}
+
+\end{DoxyCode}

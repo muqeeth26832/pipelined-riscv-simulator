@@ -1,5 +1,5 @@
-\hypertarget{errors_8h}{}\doxysection{include/assembler/errors.h File Reference}
-\label{errors_8h}\index{include/assembler/errors.h@{include/assembler/errors.h}}
+\doxysection{include/assembler/errors.h File Reference}
+\hypertarget{errors_8h}{}\label{errors_8h}\index{include/assembler/errors.h@{include/assembler/errors.h}}
 
 
 Defines error handling structures and error types for syntax and semantic errors in the assembler.  
@@ -23,7 +23,7 @@ This graph shows which files directly or indirectly include this file\+:
 \includegraphics[width=350pt]{errors_8h__dep__incl}
 \end{center}
 \end{figure}
-\doxysubsection*{Classes}
+\doxysubsubsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 
 struct \mbox{\hyperlink{structerrors_1_1SyntaxError}{errors\+::\+Syntax\+Error}}
@@ -42,12 +42,12 @@ struct \mbox{\hyperlink{structerrors_1_1LabelRedefinitionError}{errors\+::\+Labe
 \begin{DoxyCompactList}\small\item\em Represents an error caused by redefining a previously defined label. \end{DoxyCompactList}\item 
 struct \mbox{\hyperlink{structerrors_1_1InvalidRegisterError}{errors\+::\+Invalid\+Register\+Error}}
 \end{DoxyCompactItemize}
-\doxysubsection*{Namespaces}
+\doxysubsubsection*{Namespaces}
 \begin{DoxyCompactItemize}
 \item 
- \mbox{\hyperlink{namespaceerrors}{errors}}
+namespace \mbox{\hyperlink{namespaceerrors}{errors}}
 \end{DoxyCompactItemize}
-\doxysubsection*{Enumerations}
+\doxysubsubsection*{Enumerations}
 \begin{DoxyCompactItemize}
 \item 
 enum class \mbox{\hyperlink{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2ae}{errors\+::\+Error\+Type}} \{ \newline
@@ -81,12 +81,12 @@ enum class \mbox{\hyperlink{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2ae}{e
 , \mbox{\hyperlink{namespaceerrors_a08d49fe09bd28d4b06dc27d2a5e3e2aea9a10f345b0f755d461a8673a5e9ef6b4}{errors\+::\+UNKNOWN\+\_\+\+ERROR}}
  \}
 \begin{DoxyCompactList}\small\item\em Enumerates various types of errors that can occur during assembly. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\doxysubsection*{Variables}
+\doxysubsubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
-const std\+::string \mbox{\hyperlink{namespaceerrors_acbb11ca64c6ab255eb7bfc65e00f2c94}{errors\+::\+ANSI\+\_\+code\+\_\+red}} = \char`\"{}\textbackslash{}033\mbox{[}31m\char`\"{}
+const std\+::string \mbox{\hyperlink{namespaceerrors_acbb11ca64c6ab255eb7bfc65e00f2c94}{errors\+::\+ANSI\+\_\+code\+\_\+red}} = "{}\textbackslash{}033\mbox{[}31m"{}
 \begin{DoxyCompactList}\small\item\em ANSI code for red-\/colored text. \end{DoxyCompactList}\item 
-const std\+::string \mbox{\hyperlink{namespaceerrors_adf4393c33a85393d238a21ef77abfdd9}{errors\+::\+ANSI\+\_\+code\+\_\+reset}} = \char`\"{}\textbackslash{}033\mbox{[}0m\char`\"{}
+const std\+::string \mbox{\hyperlink{namespaceerrors_adf4393c33a85393d238a21ef77abfdd9}{errors\+::\+ANSI\+\_\+code\+\_\+reset}} = "{}\textbackslash{}033\mbox{[}0m"{}
 \begin{DoxyCompactList}\small\item\em ANSI code to Reset text formatting. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 

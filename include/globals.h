@@ -23,6 +23,8 @@ extern std::filesystem::path vm_state_dump_file_path;
 extern bool verbose_errors_print;
 extern bool verbose_warnings;
 extern bool vm_as_backend;
+extern bool use_pipelined_vm;
+extern int pipelined_mode;
 
 extern unsigned int text_section_start;
 

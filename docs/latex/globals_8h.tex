@@ -1,5 +1,5 @@
-\hypertarget{globals_8h}{}\doxysection{include/globals.h File Reference}
-\label{globals_8h}\index{include/globals.h@{include/globals.h}}
+\doxysection{include/globals.h File Reference}
+\hypertarget{globals_8h}{}\label{globals_8h}\index{include/globals.h@{include/globals.h}}
 
 
 Contains global definitions and includes for the assembler.  
@@ -22,34 +22,36 @@ This graph shows which files directly or indirectly include this file\+:
 \includegraphics[width=350pt]{globals_8h__dep__incl}
 \end{center}
 \end{figure}
-\doxysubsection*{Namespaces}
+\doxysubsubsection*{Namespaces}
 \begin{DoxyCompactItemize}
 \item 
- \mbox{\hyperlink{namespaceglobals}{globals}}
+namespace \mbox{\hyperlink{namespaceglobals}{globals}}
 \end{DoxyCompactItemize}
-\doxysubsection*{Functions}
+\doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
 void \mbox{\hyperlink{namespaceglobals_aa11e5b4f00b5bec36fe4cf155707e56b}{globals\+::init\+Globals}} ()
 \end{DoxyCompactItemize}
-\doxysubsection*{Variables}
+\doxysubsubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
-std\+::filesystem\+::path \mbox{\hyperlink{namespaceglobals_a16938e23c332b0d727322ffa4e5ee660}{globals\+::vm\+\_\+state\+\_\+directory}} = std\+::filesystem\+::path(\char`\"{}.\char`\"{}) / \char`\"{}vm\+\_\+state\char`\"{}
+std\+::filesystem\+::path \mbox{\hyperlink{namespaceglobals_a9e8f7ae299f4cca0042e23cc974dfbc7}{globals\+::invokation\+\_\+path}} = std\+::filesystem\+::current\+\_\+path()
 \item 
-std\+::filesystem\+::path \mbox{\hyperlink{namespaceglobals_a4371da31b2e38c3ed3e4bbe6f6ea756d}{globals\+::config\+\_\+file\+\_\+path}} = (std\+::filesystem\+::path(\char`\"{}.\char`\"{})/\char`\"{}vm\+\_\+state\char`\"{}/\char`\"{}config.\+ini\char`\"{})
+std\+::filesystem\+::path \mbox{\hyperlink{namespaceglobals_a16938e23c332b0d727322ffa4e5ee660}{globals\+::vm\+\_\+state\+\_\+directory}} = \mbox{\hyperlink{namespaceglobals_a9e8f7ae299f4cca0042e23cc974dfbc7}{globals\+::invokation\+\_\+path}} / "{}vm\+\_\+state"{}
 \item 
-std\+::filesystem\+::path \mbox{\hyperlink{namespaceglobals_a4fb2e27b096375cbfbb54f0118d0c9c4}{globals\+::disassembly\+\_\+file\+\_\+path}} = (std\+::filesystem\+::path(\char`\"{}.\char`\"{})/\char`\"{}vm\+\_\+state\char`\"{}/\char`\"{}disassembly.\+txt\char`\"{})
+std\+::filesystem\+::path \mbox{\hyperlink{namespaceglobals_a4371da31b2e38c3ed3e4bbe6f6ea756d}{globals\+::config\+\_\+file\+\_\+path}} = (\mbox{\hyperlink{namespaceglobals_a9e8f7ae299f4cca0042e23cc974dfbc7}{globals\+::invokation\+\_\+path}} / "{}vm\+\_\+state"{} / "{}config.\+ini"{})
 \item 
-std\+::filesystem\+::path \mbox{\hyperlink{namespaceglobals_a8c793cd30fee5a5830c09f5da66ad597}{globals\+::errors\+\_\+dump\+\_\+file\+\_\+path}} = (std\+::filesystem\+::path(\char`\"{}.\char`\"{})/\char`\"{}vm\+\_\+state\char`\"{}/\char`\"{}errors\+\_\+dump.\+json\char`\"{})
+std\+::filesystem\+::path \mbox{\hyperlink{namespaceglobals_a4fb2e27b096375cbfbb54f0118d0c9c4}{globals\+::disassembly\+\_\+file\+\_\+path}} = (\mbox{\hyperlink{namespaceglobals_a9e8f7ae299f4cca0042e23cc974dfbc7}{globals\+::invokation\+\_\+path}} / "{}vm\+\_\+state"{} / "{}disassembly.\+txt"{})
 \item 
-std\+::filesystem\+::path \mbox{\hyperlink{namespaceglobals_a71fe4e87fbec0b990ffe7bc7e592d0d1}{globals\+::registers\+\_\+dump\+\_\+file\+\_\+path}} = (std\+::filesystem\+::path(\char`\"{}.\char`\"{})/\char`\"{}vm\+\_\+state\char`\"{}/\char`\"{}registers\+\_\+dump.\+json\char`\"{})
+std\+::filesystem\+::path \mbox{\hyperlink{namespaceglobals_a8c793cd30fee5a5830c09f5da66ad597}{globals\+::errors\+\_\+dump\+\_\+file\+\_\+path}} = (\mbox{\hyperlink{namespaceglobals_a9e8f7ae299f4cca0042e23cc974dfbc7}{globals\+::invokation\+\_\+path}} / "{}vm\+\_\+state"{} / "{}errors\+\_\+dump.\+json"{})
 \item 
-std\+::filesystem\+::path \mbox{\hyperlink{namespaceglobals_a9268aa42b04405c06946d3386d3b2c14}{globals\+::memory\+\_\+dump\+\_\+file\+\_\+path}} = (std\+::filesystem\+::path(\char`\"{}.\char`\"{})/\char`\"{}vm\+\_\+state\char`\"{}/\char`\"{}memory\+\_\+dump.\+json\char`\"{})
+std\+::filesystem\+::path \mbox{\hyperlink{namespaceglobals_a71fe4e87fbec0b990ffe7bc7e592d0d1}{globals\+::registers\+\_\+dump\+\_\+file\+\_\+path}} = (\mbox{\hyperlink{namespaceglobals_a9e8f7ae299f4cca0042e23cc974dfbc7}{globals\+::invokation\+\_\+path}} / "{}vm\+\_\+state"{} / "{}registers\+\_\+dump.\+json"{})
 \item 
-std\+::filesystem\+::path \mbox{\hyperlink{namespaceglobals_a926592cabd4ae18cac4cac2fba351ac9}{globals\+::cache\+\_\+dump\+\_\+file\+\_\+path}} = (std\+::filesystem\+::path(\char`\"{}.\char`\"{})/\char`\"{}vm\+\_\+state\char`\"{}/\char`\"{}cache\+\_\+dump.\+json\char`\"{})
+std\+::filesystem\+::path \mbox{\hyperlink{namespaceglobals_a9268aa42b04405c06946d3386d3b2c14}{globals\+::memory\+\_\+dump\+\_\+file\+\_\+path}} = (\mbox{\hyperlink{namespaceglobals_a9e8f7ae299f4cca0042e23cc974dfbc7}{globals\+::invokation\+\_\+path}} / "{}vm\+\_\+state"{} / "{}memory\+\_\+dump.\+json"{})
 \item 
-std\+::filesystem\+::path \mbox{\hyperlink{namespaceglobals_a15602230069b77cb24d50ab0ea458426}{globals\+::vm\+\_\+state\+\_\+dump\+\_\+file\+\_\+path}} = (std\+::filesystem\+::path(\char`\"{}.\char`\"{})/\char`\"{}vm\+\_\+state\char`\"{}/\char`\"{}vm\+\_\+state\+\_\+dump.\+json\char`\"{})
+std\+::filesystem\+::path \mbox{\hyperlink{namespaceglobals_a926592cabd4ae18cac4cac2fba351ac9}{globals\+::cache\+\_\+dump\+\_\+file\+\_\+path}} = (\mbox{\hyperlink{namespaceglobals_a9e8f7ae299f4cca0042e23cc974dfbc7}{globals\+::invokation\+\_\+path}} / "{}vm\+\_\+state"{} / "{}cache\+\_\+dump.\+json"{})
+\item 
+std\+::filesystem\+::path \mbox{\hyperlink{namespaceglobals_a15602230069b77cb24d50ab0ea458426}{globals\+::vm\+\_\+state\+\_\+dump\+\_\+file\+\_\+path}} = (\mbox{\hyperlink{namespaceglobals_a9e8f7ae299f4cca0042e23cc974dfbc7}{globals\+::invokation\+\_\+path}} / "{}vm\+\_\+state"{} / "{}vm\+\_\+state\+\_\+dump.\+json"{})
 \item 
 bool \mbox{\hyperlink{namespaceglobals_a23d4de6e5986a330c86d741c092a94b8}{globals\+::verbose\+\_\+errors\+\_\+print}} = false
 \item 
@@ -58,8 +60,6 @@ bool \mbox{\hyperlink{namespaceglobals_afa15799ed881a164e64eb167bf6e8a9e}{global
 bool \mbox{\hyperlink{namespaceglobals_a3af4ada39791277323bd8a32c3ec6caa}{globals\+::vm\+\_\+as\+\_\+backend}} = false
 \item 
 unsigned int \mbox{\hyperlink{namespaceglobals_aeb16734b649eb981c3f2e6cb218106be}{globals\+::text\+\_\+section\+\_\+start}} = 0x00000000
-\item 
-unsigned int \mbox{\hyperlink{namespaceglobals_ae569afb99e3b6782cc92c0545417ffab}{globals\+::data\+\_\+section\+\_\+start}} = 0x10000000
 \end{DoxyCompactItemize}
 
 

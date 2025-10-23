@@ -1,28 +1,30 @@
-\hypertarget{namespaceglobals}{}\doxysection{globals Namespace Reference}
-\label{namespaceglobals}\index{globals@{globals}}
-\doxysubsection*{Functions}
+\doxysection{globals Namespace Reference}
+\hypertarget{namespaceglobals}{}\label{namespaceglobals}\index{globals@{globals}}
+\doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
 void \mbox{\hyperlink{namespaceglobals_aa11e5b4f00b5bec36fe4cf155707e56b}{init\+Globals}} ()
 \end{DoxyCompactItemize}
-\doxysubsection*{Variables}
+\doxysubsubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
-std\+::filesystem\+::path \mbox{\hyperlink{namespaceglobals_a16938e23c332b0d727322ffa4e5ee660}{vm\+\_\+state\+\_\+directory}} = std\+::filesystem\+::path(\char`\"{}.\char`\"{}) / \char`\"{}vm\+\_\+state\char`\"{}
+std\+::filesystem\+::path \mbox{\hyperlink{namespaceglobals_a9e8f7ae299f4cca0042e23cc974dfbc7}{invokation\+\_\+path}} = std\+::filesystem\+::current\+\_\+path()
 \item 
-std\+::filesystem\+::path \mbox{\hyperlink{namespaceglobals_a4371da31b2e38c3ed3e4bbe6f6ea756d}{config\+\_\+file\+\_\+path}} = (std\+::filesystem\+::path(\char`\"{}.\char`\"{})/\char`\"{}vm\+\_\+state\char`\"{}/\char`\"{}config.\+ini\char`\"{})
+std\+::filesystem\+::path \mbox{\hyperlink{namespaceglobals_a16938e23c332b0d727322ffa4e5ee660}{vm\+\_\+state\+\_\+directory}} = \mbox{\hyperlink{namespaceglobals_a9e8f7ae299f4cca0042e23cc974dfbc7}{globals\+::invokation\+\_\+path}} / "{}vm\+\_\+state"{}
 \item 
-std\+::filesystem\+::path \mbox{\hyperlink{namespaceglobals_a4fb2e27b096375cbfbb54f0118d0c9c4}{disassembly\+\_\+file\+\_\+path}} = (std\+::filesystem\+::path(\char`\"{}.\char`\"{})/\char`\"{}vm\+\_\+state\char`\"{}/\char`\"{}disassembly.\+txt\char`\"{})
+std\+::filesystem\+::path \mbox{\hyperlink{namespaceglobals_a4371da31b2e38c3ed3e4bbe6f6ea756d}{config\+\_\+file\+\_\+path}} = (\mbox{\hyperlink{namespaceglobals_a9e8f7ae299f4cca0042e23cc974dfbc7}{globals\+::invokation\+\_\+path}} / "{}vm\+\_\+state"{} / "{}config.\+ini"{})
 \item 
-std\+::filesystem\+::path \mbox{\hyperlink{namespaceglobals_a8c793cd30fee5a5830c09f5da66ad597}{errors\+\_\+dump\+\_\+file\+\_\+path}} = (std\+::filesystem\+::path(\char`\"{}.\char`\"{})/\char`\"{}vm\+\_\+state\char`\"{}/\char`\"{}errors\+\_\+dump.\+json\char`\"{})
+std\+::filesystem\+::path \mbox{\hyperlink{namespaceglobals_a4fb2e27b096375cbfbb54f0118d0c9c4}{disassembly\+\_\+file\+\_\+path}} = (\mbox{\hyperlink{namespaceglobals_a9e8f7ae299f4cca0042e23cc974dfbc7}{globals\+::invokation\+\_\+path}} / "{}vm\+\_\+state"{} / "{}disassembly.\+txt"{})
 \item 
-std\+::filesystem\+::path \mbox{\hyperlink{namespaceglobals_a71fe4e87fbec0b990ffe7bc7e592d0d1}{registers\+\_\+dump\+\_\+file\+\_\+path}} = (std\+::filesystem\+::path(\char`\"{}.\char`\"{})/\char`\"{}vm\+\_\+state\char`\"{}/\char`\"{}registers\+\_\+dump.\+json\char`\"{})
+std\+::filesystem\+::path \mbox{\hyperlink{namespaceglobals_a8c793cd30fee5a5830c09f5da66ad597}{errors\+\_\+dump\+\_\+file\+\_\+path}} = (\mbox{\hyperlink{namespaceglobals_a9e8f7ae299f4cca0042e23cc974dfbc7}{globals\+::invokation\+\_\+path}} / "{}vm\+\_\+state"{} / "{}errors\+\_\+dump.\+json"{})
 \item 
-std\+::filesystem\+::path \mbox{\hyperlink{namespaceglobals_a9268aa42b04405c06946d3386d3b2c14}{memory\+\_\+dump\+\_\+file\+\_\+path}} = (std\+::filesystem\+::path(\char`\"{}.\char`\"{})/\char`\"{}vm\+\_\+state\char`\"{}/\char`\"{}memory\+\_\+dump.\+json\char`\"{})
+std\+::filesystem\+::path \mbox{\hyperlink{namespaceglobals_a71fe4e87fbec0b990ffe7bc7e592d0d1}{registers\+\_\+dump\+\_\+file\+\_\+path}} = (\mbox{\hyperlink{namespaceglobals_a9e8f7ae299f4cca0042e23cc974dfbc7}{globals\+::invokation\+\_\+path}} / "{}vm\+\_\+state"{} / "{}registers\+\_\+dump.\+json"{})
 \item 
-std\+::filesystem\+::path \mbox{\hyperlink{namespaceglobals_a926592cabd4ae18cac4cac2fba351ac9}{cache\+\_\+dump\+\_\+file\+\_\+path}} = (std\+::filesystem\+::path(\char`\"{}.\char`\"{})/\char`\"{}vm\+\_\+state\char`\"{}/\char`\"{}cache\+\_\+dump.\+json\char`\"{})
+std\+::filesystem\+::path \mbox{\hyperlink{namespaceglobals_a9268aa42b04405c06946d3386d3b2c14}{memory\+\_\+dump\+\_\+file\+\_\+path}} = (\mbox{\hyperlink{namespaceglobals_a9e8f7ae299f4cca0042e23cc974dfbc7}{globals\+::invokation\+\_\+path}} / "{}vm\+\_\+state"{} / "{}memory\+\_\+dump.\+json"{})
 \item 
-std\+::filesystem\+::path \mbox{\hyperlink{namespaceglobals_a15602230069b77cb24d50ab0ea458426}{vm\+\_\+state\+\_\+dump\+\_\+file\+\_\+path}} = (std\+::filesystem\+::path(\char`\"{}.\char`\"{})/\char`\"{}vm\+\_\+state\char`\"{}/\char`\"{}vm\+\_\+state\+\_\+dump.\+json\char`\"{})
+std\+::filesystem\+::path \mbox{\hyperlink{namespaceglobals_a926592cabd4ae18cac4cac2fba351ac9}{cache\+\_\+dump\+\_\+file\+\_\+path}} = (\mbox{\hyperlink{namespaceglobals_a9e8f7ae299f4cca0042e23cc974dfbc7}{globals\+::invokation\+\_\+path}} / "{}vm\+\_\+state"{} / "{}cache\+\_\+dump.\+json"{})
+\item 
+std\+::filesystem\+::path \mbox{\hyperlink{namespaceglobals_a15602230069b77cb24d50ab0ea458426}{vm\+\_\+state\+\_\+dump\+\_\+file\+\_\+path}} = (\mbox{\hyperlink{namespaceglobals_a9e8f7ae299f4cca0042e23cc974dfbc7}{globals\+::invokation\+\_\+path}} / "{}vm\+\_\+state"{} / "{}vm\+\_\+state\+\_\+dump.\+json"{})
 \item 
 bool \mbox{\hyperlink{namespaceglobals_a23d4de6e5986a330c86d741c092a94b8}{verbose\+\_\+errors\+\_\+print}} = false
 \item 
@@ -31,13 +33,11 @@ bool \mbox{\hyperlink{namespaceglobals_afa15799ed881a164e64eb167bf6e8a9e}{verbos
 bool \mbox{\hyperlink{namespaceglobals_a3af4ada39791277323bd8a32c3ec6caa}{vm\+\_\+as\+\_\+backend}} = false
 \item 
 unsigned int \mbox{\hyperlink{namespaceglobals_aeb16734b649eb981c3f2e6cb218106be}{text\+\_\+section\+\_\+start}} = 0x00000000
-\item 
-unsigned int \mbox{\hyperlink{namespaceglobals_ae569afb99e3b6782cc92c0545417ffab}{data\+\_\+section\+\_\+start}} = 0x10000000
 \end{DoxyCompactItemize}
 
 
 \doxysubsection{Function Documentation}
-\mbox{\Hypertarget{namespaceglobals_aa11e5b4f00b5bec36fe4cf155707e56b}\label{namespaceglobals_aa11e5b4f00b5bec36fe4cf155707e56b}} 
+\Hypertarget{namespaceglobals_aa11e5b4f00b5bec36fe4cf155707e56b}\label{namespaceglobals_aa11e5b4f00b5bec36fe4cf155707e56b} 
 \index{globals@{globals}!initGlobals@{initGlobals}}
 \index{initGlobals@{initGlobals}!globals@{globals}}
 \doxysubsubsection{\texorpdfstring{initGlobals()}{initGlobals()}}
@@ -46,81 +46,81 @@ unsigned int \mbox{\hyperlink{namespaceglobals_ae569afb99e3b6782cc92c0545417ffab
 
 
 \doxysubsection{Variable Documentation}
-\mbox{\Hypertarget{namespaceglobals_a926592cabd4ae18cac4cac2fba351ac9}\label{namespaceglobals_a926592cabd4ae18cac4cac2fba351ac9}} 
+\Hypertarget{namespaceglobals_a926592cabd4ae18cac4cac2fba351ac9}\label{namespaceglobals_a926592cabd4ae18cac4cac2fba351ac9} 
 \index{globals@{globals}!cache\_dump\_file\_path@{cache\_dump\_file\_path}}
 \index{cache\_dump\_file\_path@{cache\_dump\_file\_path}!globals@{globals}}
 \doxysubsubsection{\texorpdfstring{cache\_dump\_file\_path}{cache\_dump\_file\_path}}
-{\footnotesize\ttfamily std\+::filesystem\+::path globals\+::cache\+\_\+dump\+\_\+file\+\_\+path = (std\+::filesystem\+::path(\char`\"{}.\char`\"{})/\char`\"{}vm\+\_\+state\char`\"{}/\char`\"{}cache\+\_\+dump.\+json\char`\"{})\hspace{0.3cm}{\ttfamily [extern]}}
+{\footnotesize\ttfamily std\+::filesystem\+::path globals\+::cache\+\_\+dump\+\_\+file\+\_\+path = (\mbox{\hyperlink{namespaceglobals_a9e8f7ae299f4cca0042e23cc974dfbc7}{globals\+::invokation\+\_\+path}} / "{}vm\+\_\+state"{} / "{}cache\+\_\+dump.\+json"{})\hspace{0.3cm}{\ttfamily [extern]}}
 
-\mbox{\Hypertarget{namespaceglobals_a4371da31b2e38c3ed3e4bbe6f6ea756d}\label{namespaceglobals_a4371da31b2e38c3ed3e4bbe6f6ea756d}} 
+\Hypertarget{namespaceglobals_a4371da31b2e38c3ed3e4bbe6f6ea756d}\label{namespaceglobals_a4371da31b2e38c3ed3e4bbe6f6ea756d} 
 \index{globals@{globals}!config\_file\_path@{config\_file\_path}}
 \index{config\_file\_path@{config\_file\_path}!globals@{globals}}
 \doxysubsubsection{\texorpdfstring{config\_file\_path}{config\_file\_path}}
-{\footnotesize\ttfamily std\+::filesystem\+::path globals\+::config\+\_\+file\+\_\+path = (std\+::filesystem\+::path(\char`\"{}.\char`\"{})/\char`\"{}vm\+\_\+state\char`\"{}/\char`\"{}config.\+ini\char`\"{})\hspace{0.3cm}{\ttfamily [extern]}}
+{\footnotesize\ttfamily std\+::filesystem\+::path globals\+::config\+\_\+file\+\_\+path = (\mbox{\hyperlink{namespaceglobals_a9e8f7ae299f4cca0042e23cc974dfbc7}{globals\+::invokation\+\_\+path}} / "{}vm\+\_\+state"{} / "{}config.\+ini"{})\hspace{0.3cm}{\ttfamily [extern]}}
 
-\mbox{\Hypertarget{namespaceglobals_ae569afb99e3b6782cc92c0545417ffab}\label{namespaceglobals_ae569afb99e3b6782cc92c0545417ffab}} 
-\index{globals@{globals}!data\_section\_start@{data\_section\_start}}
-\index{data\_section\_start@{data\_section\_start}!globals@{globals}}
-\doxysubsubsection{\texorpdfstring{data\_section\_start}{data\_section\_start}}
-{\footnotesize\ttfamily unsigned int globals\+::data\+\_\+section\+\_\+start = 0x10000000\hspace{0.3cm}{\ttfamily [extern]}}
-
-\mbox{\Hypertarget{namespaceglobals_a4fb2e27b096375cbfbb54f0118d0c9c4}\label{namespaceglobals_a4fb2e27b096375cbfbb54f0118d0c9c4}} 
+\Hypertarget{namespaceglobals_a4fb2e27b096375cbfbb54f0118d0c9c4}\label{namespaceglobals_a4fb2e27b096375cbfbb54f0118d0c9c4} 
 \index{globals@{globals}!disassembly\_file\_path@{disassembly\_file\_path}}
 \index{disassembly\_file\_path@{disassembly\_file\_path}!globals@{globals}}
 \doxysubsubsection{\texorpdfstring{disassembly\_file\_path}{disassembly\_file\_path}}
-{\footnotesize\ttfamily std\+::filesystem\+::path globals\+::disassembly\+\_\+file\+\_\+path = (std\+::filesystem\+::path(\char`\"{}.\char`\"{})/\char`\"{}vm\+\_\+state\char`\"{}/\char`\"{}disassembly.\+txt\char`\"{})\hspace{0.3cm}{\ttfamily [extern]}}
+{\footnotesize\ttfamily std\+::filesystem\+::path globals\+::disassembly\+\_\+file\+\_\+path = (\mbox{\hyperlink{namespaceglobals_a9e8f7ae299f4cca0042e23cc974dfbc7}{globals\+::invokation\+\_\+path}} / "{}vm\+\_\+state"{} / "{}disassembly.\+txt"{})\hspace{0.3cm}{\ttfamily [extern]}}
 
-\mbox{\Hypertarget{namespaceglobals_a8c793cd30fee5a5830c09f5da66ad597}\label{namespaceglobals_a8c793cd30fee5a5830c09f5da66ad597}} 
+\Hypertarget{namespaceglobals_a8c793cd30fee5a5830c09f5da66ad597}\label{namespaceglobals_a8c793cd30fee5a5830c09f5da66ad597} 
 \index{globals@{globals}!errors\_dump\_file\_path@{errors\_dump\_file\_path}}
 \index{errors\_dump\_file\_path@{errors\_dump\_file\_path}!globals@{globals}}
 \doxysubsubsection{\texorpdfstring{errors\_dump\_file\_path}{errors\_dump\_file\_path}}
-{\footnotesize\ttfamily std\+::filesystem\+::path globals\+::errors\+\_\+dump\+\_\+file\+\_\+path = (std\+::filesystem\+::path(\char`\"{}.\char`\"{})/\char`\"{}vm\+\_\+state\char`\"{}/\char`\"{}errors\+\_\+dump.\+json\char`\"{})\hspace{0.3cm}{\ttfamily [extern]}}
+{\footnotesize\ttfamily std\+::filesystem\+::path globals\+::errors\+\_\+dump\+\_\+file\+\_\+path = (\mbox{\hyperlink{namespaceglobals_a9e8f7ae299f4cca0042e23cc974dfbc7}{globals\+::invokation\+\_\+path}} / "{}vm\+\_\+state"{} / "{}errors\+\_\+dump.\+json"{})\hspace{0.3cm}{\ttfamily [extern]}}
 
-\mbox{\Hypertarget{namespaceglobals_a9268aa42b04405c06946d3386d3b2c14}\label{namespaceglobals_a9268aa42b04405c06946d3386d3b2c14}} 
+\Hypertarget{namespaceglobals_a9e8f7ae299f4cca0042e23cc974dfbc7}\label{namespaceglobals_a9e8f7ae299f4cca0042e23cc974dfbc7} 
+\index{globals@{globals}!invokation\_path@{invokation\_path}}
+\index{invokation\_path@{invokation\_path}!globals@{globals}}
+\doxysubsubsection{\texorpdfstring{invokation\_path}{invokation\_path}}
+{\footnotesize\ttfamily std\+::filesystem\+::path globals\+::invokation\+\_\+path = std\+::filesystem\+::current\+\_\+path()\hspace{0.3cm}{\ttfamily [extern]}}
+
+\Hypertarget{namespaceglobals_a9268aa42b04405c06946d3386d3b2c14}\label{namespaceglobals_a9268aa42b04405c06946d3386d3b2c14} 
 \index{globals@{globals}!memory\_dump\_file\_path@{memory\_dump\_file\_path}}
 \index{memory\_dump\_file\_path@{memory\_dump\_file\_path}!globals@{globals}}
 \doxysubsubsection{\texorpdfstring{memory\_dump\_file\_path}{memory\_dump\_file\_path}}
-{\footnotesize\ttfamily std\+::filesystem\+::path globals\+::memory\+\_\+dump\+\_\+file\+\_\+path = (std\+::filesystem\+::path(\char`\"{}.\char`\"{})/\char`\"{}vm\+\_\+state\char`\"{}/\char`\"{}memory\+\_\+dump.\+json\char`\"{})\hspace{0.3cm}{\ttfamily [extern]}}
+{\footnotesize\ttfamily std\+::filesystem\+::path globals\+::memory\+\_\+dump\+\_\+file\+\_\+path = (\mbox{\hyperlink{namespaceglobals_a9e8f7ae299f4cca0042e23cc974dfbc7}{globals\+::invokation\+\_\+path}} / "{}vm\+\_\+state"{} / "{}memory\+\_\+dump.\+json"{})\hspace{0.3cm}{\ttfamily [extern]}}
 
-\mbox{\Hypertarget{namespaceglobals_a71fe4e87fbec0b990ffe7bc7e592d0d1}\label{namespaceglobals_a71fe4e87fbec0b990ffe7bc7e592d0d1}} 
+\Hypertarget{namespaceglobals_a71fe4e87fbec0b990ffe7bc7e592d0d1}\label{namespaceglobals_a71fe4e87fbec0b990ffe7bc7e592d0d1} 
 \index{globals@{globals}!registers\_dump\_file\_path@{registers\_dump\_file\_path}}
 \index{registers\_dump\_file\_path@{registers\_dump\_file\_path}!globals@{globals}}
 \doxysubsubsection{\texorpdfstring{registers\_dump\_file\_path}{registers\_dump\_file\_path}}
-{\footnotesize\ttfamily std\+::filesystem\+::path globals\+::registers\+\_\+dump\+\_\+file\+\_\+path = (std\+::filesystem\+::path(\char`\"{}.\char`\"{})/\char`\"{}vm\+\_\+state\char`\"{}/\char`\"{}registers\+\_\+dump.\+json\char`\"{})\hspace{0.3cm}{\ttfamily [extern]}}
+{\footnotesize\ttfamily std\+::filesystem\+::path globals\+::registers\+\_\+dump\+\_\+file\+\_\+path = (\mbox{\hyperlink{namespaceglobals_a9e8f7ae299f4cca0042e23cc974dfbc7}{globals\+::invokation\+\_\+path}} / "{}vm\+\_\+state"{} / "{}registers\+\_\+dump.\+json"{})\hspace{0.3cm}{\ttfamily [extern]}}
 
-\mbox{\Hypertarget{namespaceglobals_aeb16734b649eb981c3f2e6cb218106be}\label{namespaceglobals_aeb16734b649eb981c3f2e6cb218106be}} 
+\Hypertarget{namespaceglobals_aeb16734b649eb981c3f2e6cb218106be}\label{namespaceglobals_aeb16734b649eb981c3f2e6cb218106be} 
 \index{globals@{globals}!text\_section\_start@{text\_section\_start}}
 \index{text\_section\_start@{text\_section\_start}!globals@{globals}}
 \doxysubsubsection{\texorpdfstring{text\_section\_start}{text\_section\_start}}
 {\footnotesize\ttfamily unsigned int globals\+::text\+\_\+section\+\_\+start = 0x00000000\hspace{0.3cm}{\ttfamily [extern]}}
 
-\mbox{\Hypertarget{namespaceglobals_a23d4de6e5986a330c86d741c092a94b8}\label{namespaceglobals_a23d4de6e5986a330c86d741c092a94b8}} 
+\Hypertarget{namespaceglobals_a23d4de6e5986a330c86d741c092a94b8}\label{namespaceglobals_a23d4de6e5986a330c86d741c092a94b8} 
 \index{globals@{globals}!verbose\_errors\_print@{verbose\_errors\_print}}
 \index{verbose\_errors\_print@{verbose\_errors\_print}!globals@{globals}}
 \doxysubsubsection{\texorpdfstring{verbose\_errors\_print}{verbose\_errors\_print}}
 {\footnotesize\ttfamily bool globals\+::verbose\+\_\+errors\+\_\+print = false\hspace{0.3cm}{\ttfamily [extern]}}
 
-\mbox{\Hypertarget{namespaceglobals_afa15799ed881a164e64eb167bf6e8a9e}\label{namespaceglobals_afa15799ed881a164e64eb167bf6e8a9e}} 
+\Hypertarget{namespaceglobals_afa15799ed881a164e64eb167bf6e8a9e}\label{namespaceglobals_afa15799ed881a164e64eb167bf6e8a9e} 
 \index{globals@{globals}!verbose\_warnings@{verbose\_warnings}}
 \index{verbose\_warnings@{verbose\_warnings}!globals@{globals}}
 \doxysubsubsection{\texorpdfstring{verbose\_warnings}{verbose\_warnings}}
 {\footnotesize\ttfamily bool globals\+::verbose\+\_\+warnings = false\hspace{0.3cm}{\ttfamily [extern]}}
 
-\mbox{\Hypertarget{namespaceglobals_a3af4ada39791277323bd8a32c3ec6caa}\label{namespaceglobals_a3af4ada39791277323bd8a32c3ec6caa}} 
+\Hypertarget{namespaceglobals_a3af4ada39791277323bd8a32c3ec6caa}\label{namespaceglobals_a3af4ada39791277323bd8a32c3ec6caa} 
 \index{globals@{globals}!vm\_as\_backend@{vm\_as\_backend}}
 \index{vm\_as\_backend@{vm\_as\_backend}!globals@{globals}}
 \doxysubsubsection{\texorpdfstring{vm\_as\_backend}{vm\_as\_backend}}
 {\footnotesize\ttfamily bool globals\+::vm\+\_\+as\+\_\+backend = false\hspace{0.3cm}{\ttfamily [extern]}}
 
-\mbox{\Hypertarget{namespaceglobals_a16938e23c332b0d727322ffa4e5ee660}\label{namespaceglobals_a16938e23c332b0d727322ffa4e5ee660}} 
+\Hypertarget{namespaceglobals_a16938e23c332b0d727322ffa4e5ee660}\label{namespaceglobals_a16938e23c332b0d727322ffa4e5ee660} 
 \index{globals@{globals}!vm\_state\_directory@{vm\_state\_directory}}
 \index{vm\_state\_directory@{vm\_state\_directory}!globals@{globals}}
 \doxysubsubsection{\texorpdfstring{vm\_state\_directory}{vm\_state\_directory}}
-{\footnotesize\ttfamily std\+::filesystem\+::path globals\+::vm\+\_\+state\+\_\+directory = std\+::filesystem\+::path(\char`\"{}.\char`\"{}) / \char`\"{}vm\+\_\+state\char`\"{}\hspace{0.3cm}{\ttfamily [extern]}}
+{\footnotesize\ttfamily std\+::filesystem\+::path globals\+::vm\+\_\+state\+\_\+directory = \mbox{\hyperlink{namespaceglobals_a9e8f7ae299f4cca0042e23cc974dfbc7}{globals\+::invokation\+\_\+path}} / "{}vm\+\_\+state"{}\hspace{0.3cm}{\ttfamily [extern]}}
 
-\mbox{\Hypertarget{namespaceglobals_a15602230069b77cb24d50ab0ea458426}\label{namespaceglobals_a15602230069b77cb24d50ab0ea458426}} 
+\Hypertarget{namespaceglobals_a15602230069b77cb24d50ab0ea458426}\label{namespaceglobals_a15602230069b77cb24d50ab0ea458426} 
 \index{globals@{globals}!vm\_state\_dump\_file\_path@{vm\_state\_dump\_file\_path}}
 \index{vm\_state\_dump\_file\_path@{vm\_state\_dump\_file\_path}!globals@{globals}}
 \doxysubsubsection{\texorpdfstring{vm\_state\_dump\_file\_path}{vm\_state\_dump\_file\_path}}
-{\footnotesize\ttfamily std\+::filesystem\+::path globals\+::vm\+\_\+state\+\_\+dump\+\_\+file\+\_\+path = (std\+::filesystem\+::path(\char`\"{}.\char`\"{})/\char`\"{}vm\+\_\+state\char`\"{}/\char`\"{}vm\+\_\+state\+\_\+dump.\+json\char`\"{})\hspace{0.3cm}{\ttfamily [extern]}}
+{\footnotesize\ttfamily std\+::filesystem\+::path globals\+::vm\+\_\+state\+\_\+dump\+\_\+file\+\_\+path = (\mbox{\hyperlink{namespaceglobals_a9e8f7ae299f4cca0042e23cc974dfbc7}{globals\+::invokation\+\_\+path}} / "{}vm\+\_\+state"{} / "{}vm\+\_\+state\+\_\+dump.\+json"{})\hspace{0.3cm}{\ttfamily [extern]}}
 

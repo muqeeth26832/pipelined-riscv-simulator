@@ -1,0 +1,92 @@
+\doxysection{cache.\+h}
+\hypertarget{cache_8h_source}{}\label{cache_8h_source}\index{include/vm/cache/cache.h@{include/vm/cache/cache.h}}
+\mbox{\hyperlink{cache_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#ifndef\ CACHE\_H}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#define\ CACHE\_H}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <cstdint>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacecache}{cache}}\ \{}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{enum\ class}\ \mbox{\hyperlink{namespacecache_afdbade0aa5657d2124a87a5dbc578c8c}{ReplacementPolicy}}\ \{}
+\DoxyCodeLine{00015\ \ \ \mbox{\hyperlink{namespacecache_afdbade0aa5657d2124a87a5dbc578c8ca875ecb34f6d21d13d4b9fd4980a8b5af}{LRU}},\ \ \ \ }
+\DoxyCodeLine{00016\ \ \ \mbox{\hyperlink{namespacecache_afdbade0aa5657d2124a87a5dbc578c8cac589858dbe1d06c46544266ae4cd2c6f}{FIFO}},\ \ \ }
+\DoxyCodeLine{00017\ \ \ \mbox{\hyperlink{namespacecache_afdbade0aa5657d2124a87a5dbc578c8ca64663f4646781c9c0110838b905daa23}{Random}}\ \ }
+\DoxyCodeLine{00018\ \};}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{enum\ class}\ \mbox{\hyperlink{namespacecache_ae31cc2b6d2558063b5cbcf25e728033b}{CacheType}}\ \{}
+\DoxyCodeLine{00021\ \ \ \mbox{\hyperlink{namespacecache_ae31cc2b6d2558063b5cbcf25e728033bac742c5a36b6307267bb709355feb2c41}{Instruction}},\ }
+\DoxyCodeLine{00022\ \ \ \mbox{\hyperlink{namespacecache_ae31cc2b6d2558063b5cbcf25e728033baf6068daa29dbb05a7ead1e3b5a48bbee}{Data}}\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00023\ \};}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{keyword}{enum\ class}\ \mbox{\hyperlink{namespacecache_a528c5a7abaa3626760c8a7d9fde3504a}{CacheLineState}}\ \{}
+\DoxyCodeLine{00026\ \ \ \mbox{\hyperlink{namespacecache_a528c5a7abaa3626760c8a7d9fde3504aa3ac705f2acd51a4613f9188c05c91d0d}{Valid}},\ \ \ \ \ \ \ }
+\DoxyCodeLine{00027\ \ \ \mbox{\hyperlink{namespacecache_a528c5a7abaa3626760c8a7d9fde3504aa4bbb8f967da6d1a610596d7257179c2b}{Invalid}},\ \ \ \ \ }
+\DoxyCodeLine{00028\ \ \ \mbox{\hyperlink{namespacecache_a528c5a7abaa3626760c8a7d9fde3504aa99feffc57dae9a01652065178fae5b19}{Dirty}}\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00029\ \};}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{keyword}{enum\ class}\ \mbox{\hyperlink{namespacecache_adcc53b3341665657755dcce49e18bff1}{WriteHitPolicy}}\ \{}
+\DoxyCodeLine{00032\ \ \ \mbox{\hyperlink{namespacecache_adcc53b3341665657755dcce49e18bff1aacb7820573f20d69befb56e41f440549}{WriteThrough}},\ }
+\DoxyCodeLine{00033\ \ \ \mbox{\hyperlink{namespacecache_adcc53b3341665657755dcce49e18bff1adf8e90f657c55cab67bfd1f1b91ba573}{WriteBack}}\ \ \ \ \ }
+\DoxyCodeLine{00034\ \};}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{keyword}{enum\ class}\ \mbox{\hyperlink{namespacecache_a96693233da29e228d4c68f157eecc765}{WriteMissPolicy}}\ \{}
+\DoxyCodeLine{00037\ \ \ \mbox{\hyperlink{namespacecache_a96693233da29e228d4c68f157eecc765aed392887039a647270157cc450df5caa}{NoWriteAllocate}},\ }
+\DoxyCodeLine{00038\ \ \ \mbox{\hyperlink{namespacecache_a96693233da29e228d4c68f157eecc765a1a6b4e0b6b341b150140eb67e627f3ad}{WriteAllocate}}\ \ \ \ }
+\DoxyCodeLine{00039\ \};}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structcache_1_1CacheConfig}{CacheConfig}}\ \{}
+\DoxyCodeLine{00042\ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{structcache_1_1CacheConfig_af5d1314be234cb36d5b3c24a8d3234f2}{lines}}\ =\ 0;\ \ }
+\DoxyCodeLine{00043\ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{structcache_1_1CacheConfig_aab905a2f456ce1a8faa31675768d1e29}{associativity}}\ =\ 0;\ }
+\DoxyCodeLine{00044\ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{structcache_1_1CacheConfig_a24cd5020a816c0b0a0dd0151fe02814d}{words\_per\_line}}\ =\ 0;\ }
+\DoxyCodeLine{00045\ \ \ \mbox{\hyperlink{namespacecache_afdbade0aa5657d2124a87a5dbc578c8c}{ReplacementPolicy}}\ \mbox{\hyperlink{structcache_1_1CacheConfig_aafa5f02b7fd2dc75743b42c2a8e22e35}{replacement\_policy}}\ =\ \mbox{\hyperlink{namespacecache_afdbade0aa5657d2124a87a5dbc578c8ca875ecb34f6d21d13d4b9fd4980a8b5af}{ReplacementPolicy::LRU}};\ }
+\DoxyCodeLine{00046\ \ \ \mbox{\hyperlink{namespacecache_ae31cc2b6d2558063b5cbcf25e728033b}{CacheType}}\ \mbox{\hyperlink{structcache_1_1CacheConfig_aa0bfe4fcc991ba6a7b1fd9c618c0390b}{cache\_type}}\ =\ \mbox{\hyperlink{namespacecache_ae31cc2b6d2558063b5cbcf25e728033baf6068daa29dbb05a7ead1e3b5a48bbee}{CacheType::Data}};\ }
+\DoxyCodeLine{00047\ \ \ \mbox{\hyperlink{namespacecache_adcc53b3341665657755dcce49e18bff1}{WriteHitPolicy}}\ \mbox{\hyperlink{structcache_1_1CacheConfig_a9efa1e83e061f58d67ae7e96c3bc9e7f}{write\_hit\_policy}}\ =\ \mbox{\hyperlink{namespacecache_adcc53b3341665657755dcce49e18bff1adf8e90f657c55cab67bfd1f1b91ba573}{WriteHitPolicy::WriteBack}};\ }
+\DoxyCodeLine{00048\ \ \ \mbox{\hyperlink{namespacecache_a96693233da29e228d4c68f157eecc765}{WriteMissPolicy}}\ \mbox{\hyperlink{structcache_1_1CacheConfig_aa22521aeeee565d8edc2138c3dc45211}{write\_miss\_policy}}\ =\ \mbox{\hyperlink{namespacecache_a96693233da29e228d4c68f157eecc765aed392887039a647270157cc450df5caa}{WriteMissPolicy::NoWriteAllocate}};\ }
+\DoxyCodeLine{00049\ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{structcache_1_1CacheConfig_a6fa9aead61a6db5c8c324e87e3f74a99}{size}}\ =\ 0;\ \ \ }
+\DoxyCodeLine{00050\ \};}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structcache_1_1CacheLine}{CacheLine}}\ \{}
+\DoxyCodeLine{00053\ \ \ \mbox{\hyperlink{namespacecache_a528c5a7abaa3626760c8a7d9fde3504a}{CacheLineState}}\ \mbox{\hyperlink{structcache_1_1CacheLine_a71702285457b833cbf7146facf5b51a2}{state}}\ =\ \mbox{\hyperlink{namespacecache_a528c5a7abaa3626760c8a7d9fde3504aa4bbb8f967da6d1a610596d7257179c2b}{CacheLineState::Invalid}};\ }
+\DoxyCodeLine{00054\ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{structcache_1_1CacheLine_a67bbc66a957676ad60984571a23ef536}{tag}}\ =\ 0;\ \ \ \ }
+\DoxyCodeLine{00055\ \ \ std::vector<uint8\_t>\ \mbox{\hyperlink{structcache_1_1CacheLine_aa9ba30f827949611ccd970cc76711568}{data}};\ }
+\DoxyCodeLine{00056\ \ \ }
+\DoxyCodeLine{00057\ \};}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structcache_1_1CacheStats}{CacheStats}}\ \{}
+\DoxyCodeLine{00060\ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{structcache_1_1CacheStats_a9ef119c85015c35923b154291fbacfa0}{accesses}};\ }
+\DoxyCodeLine{00061\ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{structcache_1_1CacheStats_a4c55369a204ad0c946ecdd08375ae0ca}{hits}};\ \ \ \ \ }
+\DoxyCodeLine{00062\ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{structcache_1_1CacheStats_aa5683e4975eda679a0c0d79c5444bbd1}{misses}};\ \ \ }
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \};}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structcache_1_1CacheSet}{CacheSet}}\ \{}
+\DoxyCodeLine{00068\ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{structcache_1_1CacheSet_ae646abcfafd18508cb7e2fb47359e8ab}{associativity}};\ }
+\DoxyCodeLine{00069\ \ \ std::vector<CacheLine>\ \mbox{\hyperlink{structcache_1_1CacheSet_a4034f260fdb6c7925b2fb0ccd1f096c5}{lines}};\ }
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \mbox{\hyperlink{structcache_1_1CacheSet_a83a6e6e240f120eb76c57b87d5ce5457}{CacheSet}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ assoc)}
+\DoxyCodeLine{00072\ \ \ \ \ :\ \mbox{\hyperlink{structcache_1_1CacheSet_ae646abcfafd18508cb7e2fb47359e8ab}{associativity}}(assoc),\ \mbox{\hyperlink{structcache_1_1CacheSet_a4034f260fdb6c7925b2fb0ccd1f096c5}{lines}}(assoc)\ \{\}}
+\DoxyCodeLine{00073\ \};}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcache_1_1Cache}{Cache}}\ \{}
+\DoxyCodeLine{00076\ \ \ \textcolor{keywordtype}{bool}\ enabled;\ }
+\DoxyCodeLine{00077\ \ \ \mbox{\hyperlink{namespacecache_ae31cc2b6d2558063b5cbcf25e728033b}{CacheType}}\ type;\ }
+\DoxyCodeLine{00078\ \ \ \mbox{\hyperlink{structcache_1_1CacheConfig}{CacheConfig}}\ config;\ }
+\DoxyCodeLine{00079\ \ \ \mbox{\hyperlink{structcache_1_1CacheStats}{CacheStats}}\ stats;\ }
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \};}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \}\ \textcolor{comment}{//\ namespace\ cache}}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ CACHE\_H}}
+
+\end{DoxyCode}

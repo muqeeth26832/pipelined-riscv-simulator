@@ -1,4 +1,22 @@
 var searchData=
 [
-  ['j_5ftype_5finstruction_5fencoding_5fmap_1184',['J_type_instruction_encoding_map',['../namespaceinstruction__set.html#a374dcbb396c16fc22f77466bff4f7861',1,'instruction_set']]]
+  ['i1_5ftype_5finstruction_5fencoding_5fmap_0',['I1_type_instruction_encoding_map',['../namespaceinstruction__set.html#ad362b1b3167d50a18c67c280b54012b3',1,'instruction_set']]],
+  ['i2_5ftype_5finstruction_5fencoding_5fmap_1',['I2_type_instruction_encoding_map',['../namespaceinstruction__set.html#a51290da536b0f0b8fad0e76c5d63300c',1,'instruction_set']]],
+  ['i3_5ftype_5finstruction_5fencoding_5fmap_2',['I3_type_instruction_encoding_map',['../namespaceinstruction__set.html#a1e1482a4d9c3475f9750286a89db56ac',1,'instruction_set']]],
+  ['imm_3',['imm',['../structICUnit.html#af49f5da98a756c635f14a0201dee9076',1,'ICUnit']]],
+  ['input_5fcv_5f_4',['input_cv_',['../classVmBase.html#a3f3f7acd3cdc0f509085049ae541f5e1',1,'VmBase']]],
+  ['input_5fmutex_5f_5',['input_mutex_',['../classVmBase.html#adf47d6d0cc8d768751cac1c2d6f11dd9',1,'VmBase']]],
+  ['input_5fqueue_5f_6',['input_queue_',['../classVmBase.html#a413f7f50a3817358470807a248d1d804',1,'VmBase']]],
+  ['instr_7',['instr',['../structinstruction__set_1_1InstructionEncoding.html#a289257809bcb95430bb4d238a2978514',1,'instruction_set::InstructionEncoding']]],
+  ['instruction_5fexecution_5flimit_8',['instruction_execution_limit',['../structvm__config_1_1VmConfig.html#ac0d144a1121e7463a694c58a6c2d12ca',1,'vm_config::VmConfig']]],
+  ['instruction_5findex_9',['instruction_index',['../structICUnit.html#a081ce1e12c3d898aae2c2e42c75a8254',1,'ICUnit']]],
+  ['instruction_5fnumber_5fdisassembly_5fmapping_10',['instruction_number_disassembly_mapping',['../structAssembledProgram.html#aea01dd49d19c5c2a4f1d3581514d57e7',1,'AssembledProgram']]],
+  ['instruction_5fnumber_5fline_5fnumber_5fmapping_11',['instruction_number_line_number_mapping',['../structAssembledProgram.html#ade3312b57abb948a18eee54e64cb4203',1,'AssembledProgram']]],
+  ['instruction_5fstring_5fmap_12',['instruction_string_map',['../namespaceinstruction__set.html#a255c46d8c499cf217f68aee308a3bb04',1,'instruction_set']]],
+  ['instruction_5fsyntax_5fmap_13',['instruction_syntax_map',['../namespaceinstruction__set.html#a5e20a1ab57999f19806854d6ccceeedb',1,'instruction_set']]],
+  ['instructions_5fretired_5f_14',['instructions_retired_',['../classVmBase.html#a7c2b1c72a3420353a658128abfbb5a68',1,'VmBase']]],
+  ['intermediate_5fcode_15',['intermediate_code',['../structAssembledProgram.html#a74bda4728c9cf522dfffb108f9f4af2f',1,'AssembledProgram']]],
+  ['invokation_5fpath_16',['invokation_path',['../namespaceglobals.html#a9e8f7ae299f4cca0042e23cc974dfbc7',1,'globals']]],
+  ['ipc_5f_17',['ipc_',['../classVmBase.html#aaf1754c3ace71973679ec2f9a212d737',1,'VmBase']]],
+  ['isdata_18',['isData',['../structSymbolData.html#a492cfec3ac0ddfa948d5697d461b2d7b',1,'SymbolData']]]
 ];

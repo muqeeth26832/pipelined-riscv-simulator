@@ -1,5 +1,7 @@
 <map id="include/common/rounding_modes.h" name="include/common/rounding_modes.h">
-<area shape="rect" id="node1" title=" " alt="" coords="100,5,291,47"/>
-<area shape="rect" id="node2" href="$lexer_8cpp.html" title="Contains the implementation of the Lexer class for tokenizing source code." alt="" coords="5,102,180,129"/>
-<area shape="rect" id="node3" href="$f__d__formats_8cpp.html" title=" " alt="" coords="205,95,394,136"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="100,5,291,45"/>
+<area shape="rect" id="Node000002" href="$lexer_8cpp.html" title="Contains the implementation of the Lexer class for tokenizing source code." alt="" coords="5,101,180,126"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="164,56,109,102,105,98,160,52"/>
+<area shape="rect" id="Node000003" href="$f__d__formats_8cpp.html" title=" " alt="" coords="205,93,394,133"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="231,52,278,91,275,95,227,56"/>
 </map>

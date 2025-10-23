@@ -1,8 +1,8 @@
-\hypertarget{assembler_8cpp}{}\doxysection{src/assembler/assembler.cpp File Reference}
-\label{assembler_8cpp}\index{src/assembler/assembler.cpp@{src/assembler/assembler.cpp}}
-{\ttfamily \#include \char`\"{}assembler/assembler.\+h\char`\"{}}\newline
-{\ttfamily \#include \char`\"{}utils.\+h\char`\"{}}\newline
-{\ttfamily \#include \char`\"{}globals.\+h\char`\"{}}\newline
+\doxysection{src/assembler/assembler.cpp File Reference}
+\hypertarget{assembler_8cpp}{}\label{assembler_8cpp}\index{src/assembler/assembler.cpp@{src/assembler/assembler.cpp}}
+{\ttfamily \#include "{}assembler/assembler.\+h"{}}\newline
+{\ttfamily \#include "{}utils.\+h"{}}\newline
+{\ttfamily \#include "{}globals.\+h"{}}\newline
 {\ttfamily \#include $<$string$>$}\newline
 {\ttfamily \#include $<$memory$>$}\newline
 {\ttfamily \#include $<$stdexcept$>$}\newline
@@ -18,7 +18,7 @@ Include dependency graph for assembler.\+cpp\+:
 \includegraphics[width=350pt]{assembler_8cpp__incl}
 \end{center}
 \end{figure}
-\doxysubsection*{Functions}
+\doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{structAssembledProgram}{Assembled\+Program}} \mbox{\hyperlink{assembler_8cpp_a8e37bfd2b778ed2eb6c17c251aac6120}{assemble}} (const std\+::string \&filename)
@@ -26,7 +26,7 @@ Include dependency graph for assembler.\+cpp\+:
 
 
 \doxysubsection{Function Documentation}
-\mbox{\Hypertarget{assembler_8cpp_a8e37bfd2b778ed2eb6c17c251aac6120}\label{assembler_8cpp_a8e37bfd2b778ed2eb6c17c251aac6120}} 
+\Hypertarget{assembler_8cpp_a8e37bfd2b778ed2eb6c17c251aac6120}\label{assembler_8cpp_a8e37bfd2b778ed2eb6c17c251aac6120} 
 \index{assembler.cpp@{assembler.cpp}!assemble@{assemble}}
 \index{assemble@{assemble}!assembler.cpp@{assembler.cpp}}
 \doxysubsubsection{\texorpdfstring{assemble()}{assemble()}}
@@ -40,7 +40,7 @@ This function takes a vector of intermediate code blocks and assembles them into
 
 
 \begin{DoxyParams}{Parameters}
-{\em Intermediate\+Code} & A vector of pairs containing \mbox{\hyperlink{structICUnit}{ICUnit}} and a boolean flag. \\
+{\em Intermediate\+Code} & A vector of pairs containing \doxylink{structICUnit}{ICUnit} and a boolean flag. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}

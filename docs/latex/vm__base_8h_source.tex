@@ -1,0 +1,111 @@
+\doxysection{vm\+\_\+base.\+h}
+\hypertarget{vm__base_8h_source}{}\label{vm__base_8h_source}\index{include/vm/vm\_base.h@{include/vm/vm\_base.h}}
+\mbox{\hyperlink{vm__base_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#ifndef\ VM\_BASE\_H}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#define\ VM\_BASE\_H}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{registers_8h}{registers.h}}"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{memory__controller_8h}{memory\_controller.h}}"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{alu_8h}{alu.h}}"{}}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{vm__asm__mw_8h}{vm\_asm\_mw.h}}"{}}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ <filesystem>}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ <cstdint>}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ <mutex>}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ <condition\_variable>}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ <queue>}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ <atomic>}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{vm__base_8h_a0151f3169cfe19daa8c8478396f91765}{SyscallCode}}\ \{}
+\DoxyCodeLine{00026\ \ \ \ \ \mbox{\hyperlink{vm__base_8h_a0151f3169cfe19daa8c8478396f91765ad41b74c705938b0944e19f50bff3607a}{SYSCALL\_PRINT\_INT}}\ =\ 1,}
+\DoxyCodeLine{00027\ \ \ \ \ \mbox{\hyperlink{vm__base_8h_a0151f3169cfe19daa8c8478396f91765a485b6ccf51eb1988c9ed86f21f980174}{SYSCALL\_PRINT\_FLOAT}}\ =\ 2,}
+\DoxyCodeLine{00028\ \ \ \ \ \mbox{\hyperlink{vm__base_8h_a0151f3169cfe19daa8c8478396f91765a036357630a45b24a33dd5ed8c4f4be72}{SYSCALL\_PRINT\_DOUBLE}}\ =\ 3,}
+\DoxyCodeLine{00029\ \ \ \ \ \mbox{\hyperlink{vm__base_8h_a0151f3169cfe19daa8c8478396f91765a3d4bf3b4c92468bb5c5a101d6d656ae2}{SYSCALL\_PRINT\_STRING}}\ =\ 4,}
+\DoxyCodeLine{00030\ \ \ \ \ \mbox{\hyperlink{vm__base_8h_a0151f3169cfe19daa8c8478396f91765a4777b04e1ffe7c43d3bf5173ea6121f7}{SYSCALL\_EXIT}}\ =\ 10,}
+\DoxyCodeLine{00031\ \ \ \ \ \mbox{\hyperlink{vm__base_8h_a0151f3169cfe19daa8c8478396f91765aae28428803bceb12fac6559507142ffc}{SYSCALL\_READ}}\ =\ 63,}
+\DoxyCodeLine{00032\ \ \ \ \ \mbox{\hyperlink{vm__base_8h_a0151f3169cfe19daa8c8478396f91765a39a423648a02c841cfdb884d5d08cbad}{SYSCALL\_WRITE}}\ =\ 64,}
+\DoxyCodeLine{00033\ \};}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classVmBase}{VmBase}}\ \{}
+\DoxyCodeLine{00037\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00038\ \ \ \ \ \mbox{\hyperlink{classVmBase_abf599e805afcf71a94eb6d6d8a68735f}{VmBase}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00039\ \ \ \ \ \mbox{\hyperlink{classVmBase_ad5f25b89e273d54bb85c41b4c4eb438b}{\string~VmBase}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \ \ \mbox{\hyperlink{structAssembledProgram}{AssembledProgram}}\ \mbox{\hyperlink{classVmBase_a8232ad061e0f14d237c83c22a2ef4781}{program\_}};}
+\DoxyCodeLine{00042\ \ \ \ \ std::atomic<bool>\ \mbox{\hyperlink{classVmBase_a88a5d125a77b93c647fe2a375b66dbe2}{stop\_requested\_}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00043\ \ \ \ \ std::mutex\ \mbox{\hyperlink{classVmBase_adf47d6d0cc8d768751cac1c2d6f11dd9}{input\_mutex\_}};}
+\DoxyCodeLine{00044\ \ \ \ \ std::condition\_variable\ \mbox{\hyperlink{classVmBase_a3f3f7acd3cdc0f509085049ae541f5e1}{input\_cv\_}};}
+\DoxyCodeLine{00045\ \ \ \ \ std::queue<std::string>\ \mbox{\hyperlink{classVmBase_a413f7f50a3817358470807a248d1d804}{input\_queue\_}};}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ std::vector<uint64\_t>\ \mbox{\hyperlink{classVmBase_a1ab317e9659f20f6edddad20ec241f98}{breakpoints\_}};}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{classVmBase_a6367cbbce3f5eeb50eb88f38531f5ca0}{current\_instruction\_}}\{\};}
+\DoxyCodeLine{00050\ \ \ \ \ uint64\_t\ \mbox{\hyperlink{classVmBase_a786aa9116a8240f3c80a478fa2c7bed9}{program\_counter\_}}\{\};}
+\DoxyCodeLine{00051\ \ \ \ \ }
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classVmBase_a649f1a05c9804dc8b32c42d0a26bfa67}{cycle\_s\_}}\{\};}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classVmBase_a7c2b1c72a3420353a658128abfbb5a68}{instructions\_retired\_}}\{\};}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classVmBase_afceab6c7108d84224f14c3c0b52c2fe2}{cpi\_}}\{\};}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classVmBase_aaf1754c3ace71973679ec2f9a212d737}{ipc\_}}\{\};}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classVmBase_a38693d7be1698897816ea448231f12b9}{stall\_cycles\_}}\{\};}
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classVmBase_a13c51d85a826a7bea080d8a9ead0913b}{branch\_mispredictions\_}}\{\};}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \ \ std::string\ \mbox{\hyperlink{classVmBase_aa43e33d68e5bd133abb0b519b0e08b6e}{output\_status\_}};}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \ \ }
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ \ \ \mbox{\hyperlink{classMemoryController}{MemoryController}}\ \mbox{\hyperlink{classVmBase_a54b7f11e76ff40b5fa08757fffe0a714}{memory\_controller\_}};}
+\DoxyCodeLine{00066\ \ \ \ \ \mbox{\hyperlink{classRegisterFile}{RegisterFile}}\ \mbox{\hyperlink{classVmBase_a3edc0e9c3765ae9720874b361c58e947}{registers\_}};}
+\DoxyCodeLine{00067\ \ \ \ \ }
+\DoxyCodeLine{00068\ \ \ \ \ \mbox{\hyperlink{classalu_1_1Alu}{alu::Alu}}\ \mbox{\hyperlink{classVmBase_ae3030c966af171bb3a504c55bc53520c}{alu\_}};}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classVmBase_a4d59d9f602948448e72a7f711ac32cbf}{LoadProgram}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structAssembledProgram}{AssembledProgram}}\ \&program);}
+\DoxyCodeLine{00072\ \ \ \ \ uint64\_t\ \mbox{\hyperlink{classVmBase_a95d14315496f42dd5be394f0ab950539}{program\_size\_}}\ =\ 0;}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ \ \ uint64\_t\ \mbox{\hyperlink{classVmBase_ae06d1a2ba1a7a9fbece71f643943dbd2}{GetProgramCounter}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classVmBase_ac40cd15fd5481498cc87f9754d8ac979}{UpdateProgramCounter}}(int64\_t\ value);}
+\DoxyCodeLine{00076\ \ \ \ \ }
+\DoxyCodeLine{00077\ \ \ \ \ int32\_t\ \mbox{\hyperlink{classVmBase_a9199d1c306e603e506cf57f274b9e184}{ImmGenerator}}(uint32\_t\ instruction);}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classVmBase_a572c7bc04834aa6c5e8b81848a449edc}{AddBreakpoint}}(uint64\_t\ val,\ \textcolor{keywordtype}{bool}\ is\_line\ =\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classVmBase_aecc5b0b4fdfa89cfae4c71aff1275210}{RemoveBreakpoint}}(uint64\_t\ val,\ \textcolor{keywordtype}{bool}\ is\_line\ =\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classVmBase_ad3434d5a63ce72dee96db02224b92f04}{CheckBreakpoint}}(uint64\_t\ address);}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{comment}{//\ void\ fetchInstruction();}}
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{comment}{//\ void\ decodeInstruction();}}
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{comment}{//\ void\ executeInstruction();}}
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{comment}{//\ void\ memoryAccess();}}
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{comment}{//\ void\ writeback();}}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{comment}{//\ void\ HandleSyscall();}}
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classVmBase_a555ffdbafc6e76791ac341e347f8399f}{PrintString}}(uint64\_t\ address);}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classVmBase_ab99aff7b91e22e2b041d310791ae0281}{Run}}()\ =\ 0;}
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classVmBase_ac14764bc14c9e4dd41655c9054b1dfa4}{DebugRun}}()\ =\ 0;}
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classVmBase_a78fa2e4cc76ab45ca84e164b7b0af119}{Step}}()\ =\ 0;}
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classVmBase_a141e025834dd6b9d68f08db7959ed391}{Undo}}()\ =\ 0;}
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classVmBase_ab323c0d074c2ceb9885746d1073ed505}{Redo}}()\ =\ 0;}
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classVmBase_ae8262f906074f8e778665b73841b0352}{Reset}}()\ =\ 0;}
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classVmBase_aa4c112996906a10c6e8a27cbd5091c22}{DumpState}}(\textcolor{keyword}{const}\ std::filesystem::path\ \&filename);}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classVmBase_aafff61aba5fac925eb82f5b533b2df4e}{ModifyRegister}}(\textcolor{keyword}{const}\ std::string\ \&reg\_name,\ uint64\_t\ value);}
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classVmBase_a0db003608e0a40ab6a9ef60f756ed49d}{PushInput}}(\textcolor{keyword}{const}\ std::string\&\ input)\ \{}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ std::lock\_guard<std::mutex>\ lock(\mbox{\hyperlink{classVmBase_adf47d6d0cc8d768751cac1c2d6f11dd9}{input\_mutex\_}});}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVmBase_a413f7f50a3817358470807a248d1d804}{input\_queue\_}}.push(input);}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classVmBase_a3f3f7acd3cdc0f509085049ae541f5e1}{input\_cv\_}}.notify\_one();}
+\DoxyCodeLine{00105\ \ \ \ \ \}}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \};}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00109\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ VM\_BASE\_H}}
+
+\end{DoxyCode}

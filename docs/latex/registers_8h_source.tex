@@ -1,0 +1,80 @@
+\doxysection{registers.\+h}
+\hypertarget{registers_8h_source}{}\label{registers_8h_source}\index{include/vm/registers.h@{include/vm/registers.h}}
+\mbox{\hyperlink{registers_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#ifndef\ REGISTERS\_H}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#define\ REGISTERS\_H}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <array>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <unordered\_set>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <unordered\_map>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <cstdint>}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classRegisterFile}{RegisterFile}}\ \{}
+\DoxyCodeLine{00021\ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00022\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{size\_t}\ NUM\_GPR\ =\ 32;\ }
+\DoxyCodeLine{00023\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{size\_t}\ NUM\_FPR\ =\ 32;\ }
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \ \ std::array<uint64\_t,\ NUM\_GPR>\ gpr\_\ =\ \{\};\ }
+\DoxyCodeLine{00026\ \ \ std::array<uint64\_t,\ NUM\_FPR>\ fpr\_\ =\ \{\};\ }
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{size\_t}\ NUM\_CSR\ =\ 4096;\ }
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ std::array<uint64\_t,\ NUM\_CSR>\ csr\_\ =\ \{\};\ }
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00036\ \ \ \textcolor{keyword}{enum\ class}\ \mbox{\hyperlink{classRegisterFile_ad20885f84b337c67fd63b230e11ba230}{RegisterType}}\ \{}
+\DoxyCodeLine{00037\ \ \ \ \ \mbox{\hyperlink{classRegisterFile_ad20885f84b337c67fd63b230e11ba230accc0377a8afbf50e7094f5c23a8af223}{INVALID}},\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00038\ \ \ \ \ \mbox{\hyperlink{classRegisterFile_ad20885f84b337c67fd63b230e11ba230a5d5cd46919fa987731fb2edefe0f2a0c}{INTEGER}},\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00039\ \ \ \ \ \mbox{\hyperlink{classRegisterFile_ad20885f84b337c67fd63b230e11ba230a30ccd51223e55d0a8ce2bd253733f579}{FLOATING\_POINT}},\ \ }
+\DoxyCodeLine{00040\ \ \ \ \ \mbox{\hyperlink{classRegisterFile_ad20885f84b337c67fd63b230e11ba230a87752381b583740610f1dfeb07fdad7e}{VECTOR}},\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00041\ \ \ \ \ \mbox{\hyperlink{classRegisterFile_ad20885f84b337c67fd63b230e11ba230a9dbebbc8de3ea0e81606b05de0fff36d}{CSR}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00042\ \ \ \};}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \mbox{\hyperlink{classRegisterFile_a9513989ee395d14943de66f99ec8014a}{RegisterFile}}();}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classRegisterFile_a70bbec9de8daf3195bc7d1fc827c113c}{Reset}}();}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00053\ \ \ [[nodiscard]]\ uint64\_t\ \mbox{\hyperlink{classRegisterFile_a6704c638818fdc97fc5d432687c94459}{ReadGpr}}(\textcolor{keywordtype}{size\_t}\ reg)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00060\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classRegisterFile_a0ae02cb5fbd777469d1ec353e6b1ba6c}{WriteGpr}}(\textcolor{keywordtype}{size\_t}\ reg,\ uint64\_t\ value);}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00067\ \ \ [[nodiscard]]\ uint64\_t\ \mbox{\hyperlink{classRegisterFile_ab208db6a17dac266e798394febce6c0b}{ReadFpr}}(\textcolor{keywordtype}{size\_t}\ reg)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00074\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classRegisterFile_a1eb99110e6c9be35cb02ada8bda4f846}{WriteFpr}}(\textcolor{keywordtype}{size\_t}\ reg,\ uint64\_t\ value);}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \ \ [[nodiscard]]\ uint64\_t\ \mbox{\hyperlink{classRegisterFile_a864f6e3b6ccc65796223c13c390a8d60}{ReadCsr}}(\textcolor{keywordtype}{size\_t}\ reg)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classRegisterFile_ad703c614dd37205dc11a43272045b6fd}{WriteCsr}}(\textcolor{keywordtype}{size\_t}\ reg,\ uint64\_t\ value);}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00084\ \ \ [[nodiscard]]\ std::vector<uint64\_t>\ \mbox{\hyperlink{classRegisterFile_a106a489cfac656e42303821efc8e1d8d}{GetGprValues}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00090\ \ \ [[nodiscard]]\ std::vector<uint64\_t>\ \mbox{\hyperlink{classRegisterFile_a93f099cce5c1bb800d4a481d2424732c}{GetFprValues}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classRegisterFile_a2fb719f462ce76e7c0839e2cfd853185}{ModifyRegister}}(\textcolor{keyword}{const}\ std::string\ \&reg\_name,\ uint64\_t\ value);}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \};}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ std::unordered\_set<std::string>\ \mbox{\hyperlink{registers_8h_a0528a55c986b4b9e8717e14eeebeb7df}{valid\_general\_purpose\_registers}};}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ std::unordered\_set<std::string>\ \mbox{\hyperlink{registers_8h_ac416af250858196829ea943e606823b7}{valid\_floating\_point\_registers}};}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ std::unordered\_set<std::string>\ \mbox{\hyperlink{registers_8h_ac8b865efc7bd31cca9d4e9b718cd6e46}{valid\_csr\_registers}};}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ std::unordered\_map<std::string,\ int>\ \mbox{\hyperlink{registers_8h_a64b23cb5af0e49d9fb7135500caf6d4f}{csr\_to\_address}};}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00108\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ std::unordered\_map<std::string,\ std::string>\ \mbox{\hyperlink{registers_8h_af4ede5aac2f7597ad13f0a67cb8b13b5}{reg\_alias\_to\_name}};}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{registers_8h_ac5db3171f17fd09e341027d11d438649}{IsValidGeneralPurposeRegister}}(\textcolor{keyword}{const}\ std::string\ \&reg);}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{registers_8h_aa1a257a2fc15d22847dad688c8b3bedd}{IsValidFloatingPointRegister}}(\textcolor{keyword}{const}\ std::string\ \&reg);}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{registers_8h_aca47a0deb2cf271388bcba061c11ba94}{IsValidCsr}}(\textcolor{keyword}{const}\ std::string\ \&reg);}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ REGISTERS\_H}}
+
+\end{DoxyCode}

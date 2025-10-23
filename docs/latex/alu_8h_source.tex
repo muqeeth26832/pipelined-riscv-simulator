@@ -1,0 +1,229 @@
+\doxysection{alu.\+h}
+\hypertarget{alu_8h_source}{}\label{alu_8h_source}\index{include/vm/alu.h@{include/vm/alu.h}}
+\mbox{\hyperlink{alu_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#ifndef\ ALU\_H}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#define\ ALU\_H}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <cfenv>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <cmath>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <cstdint>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <ostream>}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{comment}{//\ \#pragma\ float\_control(precise,\ on)}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ \#pragma\ STDC\ FENV\_ACCESS\ ON}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#pragma\ GCC\ diagnostic\ ignored\ "{}-\/Wstrict-\/aliasing"{}}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#pragma\ GCC\ optimize\ ("{}no-\/fast-\/math"{})\ }}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#define\ FCSR\_INVALID\_OP\ \ \ (1\ <<\ 0)\ \ }\textcolor{comment}{//\ Invalid\ operation}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#define\ FCSR\_DIV\_BY\_ZERO\ \ (1\ <<\ 1)\ \ }\textcolor{comment}{//\ Divide\ by\ zero}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#define\ FCSR\_OVERFLOW\ \ \ \ \ (1\ <<\ 2)\ \ }\textcolor{comment}{//\ Overflow}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#define\ FCSR\_UNDERFLOW\ \ \ \ (1\ <<\ 3)\ \ }\textcolor{comment}{//\ Underflow}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#define\ FCSR\_INEXACT\ \ \ \ \ \ (1\ <<\ 4)\ \ }\textcolor{comment}{//\ Inexact\ result}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacealu}{alu}}\ \{}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{keyword}{enum\ class}\ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985}{AluOp}}\ \{}
+\DoxyCodeLine{00030\ \ \ \ \ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985a35c3ace1970663a16e5c65baa5941b13}{kNone}},\ }
+\DoxyCodeLine{00031\ \ \ \ \ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985aa9130c0c8cfb5cbb3b70c98f89d3d96c}{kAdd}},\ }
+\DoxyCodeLine{00032\ \ \ \ \ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985a5814d472434d44f9306c1933e39dc593}{kAddw}},\ }
+\DoxyCodeLine{00033\ \ \ \ \ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985af66ca3c8e49231635fce6e56fadbc791}{kSub}},\ }
+\DoxyCodeLine{00034\ \ \ \ \ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985a05f1f16b27cc2bded8034f1a173b4f2b}{kSubw}},\ }
+\DoxyCodeLine{00035\ \ \ \ \ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985a622e5142de51765da329dba31d104724}{kMul}},\ }
+\DoxyCodeLine{00036\ \ \ \ \ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985a5d7bd99c5826f29e34f02402beb6f960}{kMulh}},\ }
+\DoxyCodeLine{00037\ \ \ \ \ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985a0d06601dce8967314cc1aa0e8b2226fc}{kMulhsu}},\ }
+\DoxyCodeLine{00038\ \ \ \ \ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985a57fefefa33d3579acd21fe9f12519a8c}{kMulhu}},\ }
+\DoxyCodeLine{00039\ \ \ \ \ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985ade1206f006af1123de14b808ed906d8b}{kMulw}},\ }
+\DoxyCodeLine{00040\ \ \ \ \ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985a62ff1bc26aac2154f97b79366b7a8de4}{kDiv}},\ }
+\DoxyCodeLine{00041\ \ \ \ \ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985a6ad359e329ccf0d3fa3c9bef43a3cb43}{kDivw}},\ }
+\DoxyCodeLine{00042\ \ \ \ \ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985aa1613f20d7277b56317b97526f5ddd59}{kDivu}},\ }
+\DoxyCodeLine{00043\ \ \ \ \ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985a632d0ecd17465c4b5c5735599856805e}{kDivuw}},\ }
+\DoxyCodeLine{00044\ \ \ \ \ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985ad2d8f8a76441cf7839e3b6c354fa3618}{kRem}},\ }
+\DoxyCodeLine{00045\ \ \ \ \ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985a604f0e074a5c731cc24cfceecc9041a7}{kRemw}},\ }
+\DoxyCodeLine{00046\ \ \ \ \ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985ae414eacac092904aeb4235f9eeeadb21}{kRemu}},\ }
+\DoxyCodeLine{00047\ \ \ \ \ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985ac4c5e088c1e06b9f2d33eb0cddcacb38}{kRemuw}},\ }
+\DoxyCodeLine{00048\ \ \ \ \ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985a5c61096a81b3e5cbbde4f43b14c8f0d9}{kAnd}},\ }
+\DoxyCodeLine{00049\ \ \ \ \ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985a5b7e85783b7acdff953371531833aac4}{kOr}},\ }
+\DoxyCodeLine{00050\ \ \ \ \ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985ac045af4c7aaf252049c84e9c06019d6e}{kXor}},\ }
+\DoxyCodeLine{00051\ \ \ \ \ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985a31b2dcb97466607a23d8c7c9d318a345}{kSll}},\ }
+\DoxyCodeLine{00052\ \ \ \ \ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985ab64399991ffdcb426ce1cc67d65d1632}{kSllw}},\ }
+\DoxyCodeLine{00053\ \ \ \ \ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985a946650cdc67e9fee1826aec76398702e}{kSrl}},\ }
+\DoxyCodeLine{00054\ \ \ \ \ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985a8fbc3cd28d2db1ff376c4a9c84f65ccc}{kSrlw}},\ }
+\DoxyCodeLine{00055\ \ \ \ \ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985a6d7ccf5f1a560a20b7721f479d85fced}{kSra}},\ }
+\DoxyCodeLine{00056\ \ \ \ \ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985a0b5f4ddc9dad7457b794921959e6fd81}{kSraw}},\ }
+\DoxyCodeLine{00057\ \ \ \ \ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985a2da53de8e3b9cac5a896c0ad31431b74}{kSlt}},\ }
+\DoxyCodeLine{00058\ \ \ \ \ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985a7114d2dd322d0c6fa4dfd7fdd8410633}{kSltu}},\ }
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{comment}{//\ Floating\ point\ operations}}
+\DoxyCodeLine{00061\ \ \ \ \ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985aba88cf4ea33e830c82290b53346cf700}{kFmadd\_s}},\ }
+\DoxyCodeLine{00062\ \ \ \ \ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985a4e806301e4079ae09e8cee2adb484304}{kFmsub\_s}},\ }
+\DoxyCodeLine{00063\ \ \ \ \ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985a61fc9a2486a3f32a5edd84e103a0d3b2}{kFnmadd\_s}},\ }
+\DoxyCodeLine{00064\ \ \ \ \ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985a4b5adb79a5478a8a1aa1b598bfdda8eb}{kFnmsub\_s}},\ }
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \ \ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985ac107de66ca007fc3fa224d05986cfa08}{FADD\_S}},\ }
+\DoxyCodeLine{00067\ \ \ \ \ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985af9f23b93c8a781a0fc9d7516c14a5955}{FSUB\_S}},\ }
+\DoxyCodeLine{00068\ \ \ \ \ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985a4e1f4b5e737c8b5bbebc5825beed2f56}{FMUL\_S}},\ }
+\DoxyCodeLine{00069\ \ \ \ \ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985a66ab6345455dd20bb88bb282a53e2eb5}{FDIV\_S}},\ }
+\DoxyCodeLine{00070\ \ \ \ \ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985a606f8aedd399fd2a05dd2a6536152f09}{FSQRT\_S}},\ }
+\DoxyCodeLine{00071\ \ \ \ \ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985a46552ee28b754889304793b799c7b80a}{FSGNJ\_S}},\ }
+\DoxyCodeLine{00072\ \ \ \ \ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985a865c8c81a8ab028a1ffc7c12423e8fa1}{FSGNJN\_S}},\ }
+\DoxyCodeLine{00073\ \ \ \ \ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985aefd9f447c49655f44e48651e510792cf}{FSGNJX\_S}},\ }
+\DoxyCodeLine{00074\ \ \ \ \ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985a2c17e161c8f8dd7c6f000dcf1e8761ce}{FMIN\_S}},\ }
+\DoxyCodeLine{00075\ \ \ \ \ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985a0a9ecfa347fcbe8f992c50acbd0e9a81}{FMAX\_S}},\ }
+\DoxyCodeLine{00076\ \ \ \ \ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985a6bc85118b0ed7d3689decc8fcf0223f0}{FEQ\_S}},\ }
+\DoxyCodeLine{00077\ \ \ \ \ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985a51644b97cff6ac7d706cdbda4e85bab7}{FLT\_S}},\ }
+\DoxyCodeLine{00078\ \ \ \ \ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985a57eb9af4807eaf4727adb4169d9d602d}{FLE\_S}},\ }
+\DoxyCodeLine{00079\ \ \ \ \ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985a62b59c003809d74898061e90ce3b4cf8}{FCLASS\_S}},\ }
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \ \ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985a4fbe4dabd25f51231c7e15147c65bf6c}{FCVT\_W\_S}},\ }
+\DoxyCodeLine{00082\ \ \ \ \ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985acdcdc90aa2168f46de6386753b85cae9}{FCVT\_WU\_S}},\ }
+\DoxyCodeLine{00083\ \ \ \ \ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985a649655ec1017a96f517093325d29f29b}{FCVT\_L\_S}},\ }
+\DoxyCodeLine{00084\ \ \ \ \ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985a1e6967b8f50d68a577315db894032088}{FCVT\_LU\_S}},\ }
+\DoxyCodeLine{00085\ \ \ \ \ }
+\DoxyCodeLine{00086\ \ \ \ \ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985a8f48d2c51d6b6988080900463dba2772}{FCVT\_S\_W}},\ }
+\DoxyCodeLine{00087\ \ \ \ \ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985aad5fb824d7659d49cf79a07ac4e5377a}{FCVT\_S\_WU}},\ }
+\DoxyCodeLine{00088\ \ \ \ \ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985a851b0935b7dd8c5040c15fde7663263f}{FCVT\_S\_L}},\ }
+\DoxyCodeLine{00089\ \ \ \ \ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985a0a08a3f2327314f46ac1a1aca24ae8fe}{FCVT\_S\_LU}},\ }
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \ \ \ \ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985a56c1373b3fce3d4cca0299b9869bed2e}{FMV\_X\_W}},\ }
+\DoxyCodeLine{00092\ \ \ \ \ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985a156f79d476ac2489ac5972536339fe60}{FMV\_W\_X}},\ }
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \ \ \ \ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985aa517c0a80bd5d7e9548b32cb1bb4e958}{FMADD\_D}},\ }
+\DoxyCodeLine{00095\ \ \ \ \ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985aadf4b4488c22f5fa2eeef5701ff7de4b}{FMSUB\_D}},\ }
+\DoxyCodeLine{00096\ \ \ \ \ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985acccf68986dbd04ba54b4ebafa276a87c}{FNMADD\_D}},\ }
+\DoxyCodeLine{00097\ \ \ \ \ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985abcf54fa75ec2c6e966fe7762dc5c7dbc}{FNMSUB\_D}},\ }
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \ \ \ \ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985ab8aa91ba3b9470f730fe5cda1592c385}{FADD\_D}},\ }
+\DoxyCodeLine{00100\ \ \ \ \ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985a11b9308c574b725019abcab40946c61c}{FSUB\_D}},\ }
+\DoxyCodeLine{00101\ \ \ \ \ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985af17f07c4991375cad3516e251540e551}{FMUL\_D}},\ }
+\DoxyCodeLine{00102\ \ \ \ \ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985ac5aeef5300baeb32375e88fbbfe64b1d}{FDIV\_D}},\ }
+\DoxyCodeLine{00103\ \ \ \ \ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985a160254873bf6410473aee157220463b4}{FSQRT\_D}},\ }
+\DoxyCodeLine{00104\ \ \ \ \ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985a1a3536cb9a1ceca60e085e0bbf1e919f}{FSGNJ\_D}},\ }
+\DoxyCodeLine{00105\ \ \ \ \ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985af512e409f6dbaf400fff95c054dc3102}{FSGNJN\_D}},\ }
+\DoxyCodeLine{00106\ \ \ \ \ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985ad88c0e59c7f367954cbc623eef26ad6e}{FSGNJX\_D}},\ }
+\DoxyCodeLine{00107\ \ \ \ \ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985a215fa004d889ea4601eb9a3fbfbd4536}{FMIN\_D}},\ }
+\DoxyCodeLine{00108\ \ \ \ \ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985acf31ec465e8f2c8ce90922e8bd9bde67}{FMAX\_D}},\ }
+\DoxyCodeLine{00109\ \ \ \ \ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985ad36deef1de95edc020a46c7d326a6d33}{FEQ\_D}},\ }
+\DoxyCodeLine{00110\ \ \ \ \ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985ae45538bbb6dd3c5f83a894e0bfe6b90b}{FLT\_D}},\ }
+\DoxyCodeLine{00111\ \ \ \ \ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985ad2cd6ea178048ef3af5cf6286a421844}{FLE\_D}},\ }
+\DoxyCodeLine{00112\ \ \ \ \ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985a80963e7f0fba844b89adb5e240e6add1}{FCLASS\_D}},\ }
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \ \ \ \ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985a63c070bfa598011e75b5c7726a311502}{FCVT\_W\_D}},\ }
+\DoxyCodeLine{00115\ \ \ \ \ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985a25bda27e263673b15f1086df68032344}{FCVT\_WU\_D}},\ }
+\DoxyCodeLine{00116\ \ \ \ \ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985a1f4da7b460aed10d391276d3fb339ad3}{FCVT\_L\_D}},\ }
+\DoxyCodeLine{00117\ \ \ \ \ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985acd44034c7d6e503672f4d2605f0d0dbf}{FCVT\_LU\_D}},\ }
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ \ \ \ \ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985ae422def72ae64f315e098c7105f9adf5}{FCVT\_D\_W}},\ }
+\DoxyCodeLine{00120\ \ \ \ \ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985ab0b93a4f794311a71a89198abad1563c}{FCVT\_D\_WU}},\ }
+\DoxyCodeLine{00121\ \ \ \ \ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985a8a0c8c5e9ad233b11f38ccc052d1d7de}{FCVT\_D\_L}},\ }
+\DoxyCodeLine{00122\ \ \ \ \ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985a618206f29785c745ed8dce43a3745b3a}{FCVT\_D\_LU}},\ }
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00124\ \ \ \ \ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985aea810709950fcf2a825dd435d8570d83}{FCVT\_S\_D}},\ }
+\DoxyCodeLine{00125\ \ \ \ \ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985a472d04feb36c85d0c3a02f42b5f32017}{FCVT\_D\_S}},\ }
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00127\ \ \ \ \ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985a1879daa996a14bf6b4526cdccd4d6a7d}{FMV\_D\_X}},\ }
+\DoxyCodeLine{00128\ \ \ \ \ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985a9ae5838e54ed93c698c0b3707bc28cc5}{FMV\_X\_D}},\ }
+\DoxyCodeLine{00129\ \};}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ \textcolor{keyword}{inline}\ std::ostream\&\ \mbox{\hyperlink{namespacealu_ab7f83a4625971791bcb6a5e6ff961564}{operator<<}}(std::ostream\&\ os,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985}{AluOp}}\&\ op)\ \{}
+\DoxyCodeLine{00132\ \ \ \ \ \textcolor{keywordflow}{switch}\ (op)\ \{}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985a35c3ace1970663a16e5c65baa5941b13}{AluOp::kNone}}:\ os\ <<\ \textcolor{stringliteral}{"{}kNone"{}};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985aa9130c0c8cfb5cbb3b70c98f89d3d96c}{AluOp::kAdd}}:\ os\ <<\ \textcolor{stringliteral}{"{}kAdd"{}};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985af66ca3c8e49231635fce6e56fadbc791}{AluOp::kSub}}:\ os\ <<\ \textcolor{stringliteral}{"{}kSub"{}};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985a622e5142de51765da329dba31d104724}{AluOp::kMul}}:\ os\ <<\ \textcolor{stringliteral}{"{}kMul"{}};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985a62ff1bc26aac2154f97b79366b7a8de4}{AluOp::kDiv}}:\ os\ <<\ \textcolor{stringliteral}{"{}kDiv"{}};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985aa1613f20d7277b56317b97526f5ddd59}{AluOp::kDivu}}:\ os\ <<\ \textcolor{stringliteral}{"{}kDivu"{}};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985ad2d8f8a76441cf7839e3b6c354fa3618}{AluOp::kRem}}:\ os\ <<\ \textcolor{stringliteral}{"{}kRem"{}};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985ae414eacac092904aeb4235f9eeeadb21}{AluOp::kRemu}}:\ os\ <<\ \textcolor{stringliteral}{"{}kRemu"{}};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985a5c61096a81b3e5cbbde4f43b14c8f0d9}{AluOp::kAnd}}:\ os\ <<\ \textcolor{stringliteral}{"{}kAnd"{}};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985a5b7e85783b7acdff953371531833aac4}{AluOp::kOr}}:\ os\ <<\ \textcolor{stringliteral}{"{}kOr"{}};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985ac045af4c7aaf252049c84e9c06019d6e}{AluOp::kXor}}:\ os\ <<\ \textcolor{stringliteral}{"{}kXor"{}};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985a31b2dcb97466607a23d8c7c9d318a345}{AluOp::kSll}}:\ os\ <<\ \textcolor{stringliteral}{"{}kSll"{}};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985a946650cdc67e9fee1826aec76398702e}{AluOp::kSrl}}:\ os\ <<\ \textcolor{stringliteral}{"{}kSrl"{}};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985a6d7ccf5f1a560a20b7721f479d85fced}{AluOp::kSra}}:\ os\ <<\ \textcolor{stringliteral}{"{}kSra"{}};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985a2da53de8e3b9cac5a896c0ad31431b74}{AluOp::kSlt}}:\ os\ <<\ \textcolor{stringliteral}{"{}kSlt"{}};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985a7114d2dd322d0c6fa4dfd7fdd8410633}{AluOp::kSltu}}:\ os\ <<\ \textcolor{stringliteral}{"{}kSltu"{}};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985a5814d472434d44f9306c1933e39dc593}{AluOp::kAddw}}:\ os\ <<\ \textcolor{stringliteral}{"{}kAddw"{}};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985a05f1f16b27cc2bded8034f1a173b4f2b}{AluOp::kSubw}}:\ os\ <<\ \textcolor{stringliteral}{"{}kSubw"{}};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985ade1206f006af1123de14b808ed906d8b}{AluOp::kMulw}}:\ os\ <<\ \textcolor{stringliteral}{"{}kMulw"{}};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985a6ad359e329ccf0d3fa3c9bef43a3cb43}{AluOp::kDivw}}:\ os\ <<\ \textcolor{stringliteral}{"{}kDivw"{}};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985a632d0ecd17465c4b5c5735599856805e}{AluOp::kDivuw}}:\ os\ <<\ \textcolor{stringliteral}{"{}kDivuw"{}};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985a604f0e074a5c731cc24cfceecc9041a7}{AluOp::kRemw}}:\ os\ <<\ \textcolor{stringliteral}{"{}kRemw"{}};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985ac4c5e088c1e06b9f2d33eb0cddcacb38}{AluOp::kRemuw}}:\ os\ <<\ \textcolor{stringliteral}{"{}kRemuw"{}};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985a5d7bd99c5826f29e34f02402beb6f960}{AluOp::kMulh}}:\ os\ <<\ \textcolor{stringliteral}{"{}kMulh"{}};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985a0d06601dce8967314cc1aa0e8b2226fc}{AluOp::kMulhsu}}:\ os\ <<\ \textcolor{stringliteral}{"{}kMulhsu"{}};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985a57fefefa33d3579acd21fe9f12519a8c}{AluOp::kMulhu}}:\ os\ <<\ \textcolor{stringliteral}{"{}kMulhu"{}};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985ab64399991ffdcb426ce1cc67d65d1632}{AluOp::kSllw}}:\ os\ <<\ \textcolor{stringliteral}{"{}kSllw"{}};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985a8fbc3cd28d2db1ff376c4a9c84f65ccc}{AluOp::kSrlw}}:\ os\ <<\ \textcolor{stringliteral}{"{}kSrlw"{}};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985a0b5f4ddc9dad7457b794921959e6fd81}{AluOp::kSraw}}:\ os\ <<\ \textcolor{stringliteral}{"{}kSraw"{}};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985aba88cf4ea33e830c82290b53346cf700}{AluOp::kFmadd\_s}}:\ os\ <<\ \textcolor{stringliteral}{"{}kFmadd\_s"{}};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985a4e806301e4079ae09e8cee2adb484304}{AluOp::kFmsub\_s}}:\ os\ <<\ \textcolor{stringliteral}{"{}kFmsub\_s"{}};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985a61fc9a2486a3f32a5edd84e103a0d3b2}{AluOp::kFnmadd\_s}}:\ os\ <<\ \textcolor{stringliteral}{"{}kFnmadd\_s"{}};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985a4b5adb79a5478a8a1aa1b598bfdda8eb}{AluOp::kFnmsub\_s}}:\ os\ <<\ \textcolor{stringliteral}{"{}kFnmsub\_s"{}};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985ac107de66ca007fc3fa224d05986cfa08}{AluOp::FADD\_S}}:\ os\ <<\ \textcolor{stringliteral}{"{}FADD\_S"{}};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985af9f23b93c8a781a0fc9d7516c14a5955}{AluOp::FSUB\_S}}:\ os\ <<\ \textcolor{stringliteral}{"{}FSUB\_S"{}};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985a4e1f4b5e737c8b5bbebc5825beed2f56}{AluOp::FMUL\_S}}:\ os\ <<\ \textcolor{stringliteral}{"{}FMUL\_S"{}};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985a66ab6345455dd20bb88bb282a53e2eb5}{AluOp::FDIV\_S}}:\ os\ <<\ \textcolor{stringliteral}{"{}FDIV\_S"{}};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985a606f8aedd399fd2a05dd2a6536152f09}{AluOp::FSQRT\_S}}:\ os\ <<\ \textcolor{stringliteral}{"{}FSQRT\_S"{}};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985a46552ee28b754889304793b799c7b80a}{AluOp::FSGNJ\_S}}:\ os\ <<\ \textcolor{stringliteral}{"{}FSGNJ\_S"{}};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985a865c8c81a8ab028a1ffc7c12423e8fa1}{AluOp::FSGNJN\_S}}:\ os\ <<\ \textcolor{stringliteral}{"{}FSGNJN\_S"{}};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985aefd9f447c49655f44e48651e510792cf}{AluOp::FSGNJX\_S}}:\ os\ <<\ \textcolor{stringliteral}{"{}FSGNJX\_S"{}};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985a2c17e161c8f8dd7c6f000dcf1e8761ce}{AluOp::FMIN\_S}}:\ os\ <<\ \textcolor{stringliteral}{"{}FMIN\_S"{}};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985a0a9ecfa347fcbe8f992c50acbd0e9a81}{AluOp::FMAX\_S}}:\ os\ <<\ \textcolor{stringliteral}{"{}FMAX\_S"{}};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985a6bc85118b0ed7d3689decc8fcf0223f0}{AluOp::FEQ\_S}}:\ os\ <<\ \textcolor{stringliteral}{"{}FEQ\_S"{}};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985a51644b97cff6ac7d706cdbda4e85bab7}{AluOp::FLT\_S}}:\ os\ <<\ \textcolor{stringliteral}{"{}FLT\_S"{}};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985a57eb9af4807eaf4727adb4169d9d602d}{AluOp::FLE\_S}}:\ os\ <<\ \textcolor{stringliteral}{"{}FLE\_S"{}};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985a62b59c003809d74898061e90ce3b4cf8}{AluOp::FCLASS\_S}}:\ os\ <<\ \textcolor{stringliteral}{"{}FCLASS\_S"{}};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985a4fbe4dabd25f51231c7e15147c65bf6c}{AluOp::FCVT\_W\_S}}:\ os\ <<\ \textcolor{stringliteral}{"{}FCVT\_W\_S"{}};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985acdcdc90aa2168f46de6386753b85cae9}{AluOp::FCVT\_WU\_S}}:\ os\ <<\ \textcolor{stringliteral}{"{}FCVT\_WU\_S"{}};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985a649655ec1017a96f517093325d29f29b}{AluOp::FCVT\_L\_S}}:\ os\ <<\ \textcolor{stringliteral}{"{}FCVT\_L\_S"{}};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985a1e6967b8f50d68a577315db894032088}{AluOp::FCVT\_LU\_S}}:\ os\ <<\ \textcolor{stringliteral}{"{}FCVT\_LU\_S"{}};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985a8f48d2c51d6b6988080900463dba2772}{AluOp::FCVT\_S\_W}}:\ os\ <<\ \textcolor{stringliteral}{"{}FCVT\_S\_W"{}};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985aad5fb824d7659d49cf79a07ac4e5377a}{AluOp::FCVT\_S\_WU}}:\ os\ <<\ \textcolor{stringliteral}{"{}FCVT\_S\_WU"{}};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985a851b0935b7dd8c5040c15fde7663263f}{AluOp::FCVT\_S\_L}}:\ os\ <<\ \textcolor{stringliteral}{"{}FCVT\_S\_L"{}};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985a0a08a3f2327314f46ac1a1aca24ae8fe}{AluOp::FCVT\_S\_LU}}:\ os\ <<\ \textcolor{stringliteral}{"{}FCVT\_S\_LU"{}};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985aa517c0a80bd5d7e9548b32cb1bb4e958}{AluOp::FMADD\_D}}:\ os\ <<\ \textcolor{stringliteral}{"{}FMADD\_D"{}};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985aadf4b4488c22f5fa2eeef5701ff7de4b}{AluOp::FMSUB\_D}}:\ os\ <<\ \textcolor{stringliteral}{"{}FMSUB\_D"{}};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985acccf68986dbd04ba54b4ebafa276a87c}{AluOp::FNMADD\_D}}:\ os\ <<\ \textcolor{stringliteral}{"{}FNMADD\_D"{}};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985abcf54fa75ec2c6e966fe7762dc5c7dbc}{AluOp::FNMSUB\_D}}:\ os\ <<\ \textcolor{stringliteral}{"{}FNMSUB\_D"{}};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985ab8aa91ba3b9470f730fe5cda1592c385}{AluOp::FADD\_D}}:\ os\ <<\ \textcolor{stringliteral}{"{}FADD\_D"{}};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985a11b9308c574b725019abcab40946c61c}{AluOp::FSUB\_D}}:\ os\ <<\ \textcolor{stringliteral}{"{}FSUB\_D"{}};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985af17f07c4991375cad3516e251540e551}{AluOp::FMUL\_D}}:\ os\ <<\ \textcolor{stringliteral}{"{}FMUL\_D"{}};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985ac5aeef5300baeb32375e88fbbfe64b1d}{AluOp::FDIV\_D}}:\ os\ <<\ \textcolor{stringliteral}{"{}FDIV\_D"{}};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985a160254873bf6410473aee157220463b4}{AluOp::FSQRT\_D}}:\ os\ <<\ \textcolor{stringliteral}{"{}FSQRT\_D"{}};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985a1a3536cb9a1ceca60e085e0bbf1e919f}{AluOp::FSGNJ\_D}}:\ os\ <<\ \textcolor{stringliteral}{"{}FSGNJ\_D"{}};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00198\ }
+\DoxyCodeLine{00199\ }
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{default}:\ os\ <<\ \textcolor{stringliteral}{"{}UNKNOWN"{}};\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00201\ \ \ \ \ \}}
+\DoxyCodeLine{00202\ \ \ \ \ \textcolor{keywordflow}{return}\ os;}
+\DoxyCodeLine{00203\ \}}
+\DoxyCodeLine{00207\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classalu_1_1Alu}{Alu}}\ \{}
+\DoxyCodeLine{00208\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00209\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classalu_1_1Alu_a7ec7aef26212e3f4fe92edd4e32e934a}{carry\_}}\ =\ \textcolor{keyword}{false};\ }
+\DoxyCodeLine{00210\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classalu_1_1Alu_a4c2f6bd6ce4f7988c5c5af12c2fa69db}{zero\_}}\ =\ \textcolor{keyword}{false};\ }
+\DoxyCodeLine{00211\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classalu_1_1Alu_aaaa90d3ed3bdadb61ba92da792e37dd2}{negative\_}}\ =\ \textcolor{keyword}{false};\ }
+\DoxyCodeLine{00212\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classalu_1_1Alu_ac6f7ae77babe5d74f8061cfff9b2dbfd}{overflow\_}}\ =\ \textcolor{keyword}{false};\ }
+\DoxyCodeLine{00213\ }
+\DoxyCodeLine{00214\ \ \ \ \ \mbox{\hyperlink{classalu_1_1Alu_ad12647f1d4dbfd04498727e4e44877b2}{Alu}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00215\ \ \ \ \ \mbox{\hyperlink{classalu_1_1Alu_a258f8def8433b1de5b5ae2a88037de5e}{\string~Alu}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00216\ }
+\DoxyCodeLine{00225\ \ \ \ \ [[nodiscard]]\ \textcolor{keyword}{static}\ std::pair<uint64\_t,\ bool>\ \mbox{\hyperlink{classalu_1_1Alu_aa545d94b7e58471fb4d66af9da1ebefe}{execute}}(\mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985}{AluOp}}\ op,\ uint64\_t\ a,\ uint64\_t\ b)\ ;}
+\DoxyCodeLine{00226\ }
+\DoxyCodeLine{00227\ \ \ \ \ \textcolor{comment}{//\ TODO:\ check\ all\ the\ floating\ point\ operations}}
+\DoxyCodeLine{00228\ }
+\DoxyCodeLine{00229\ \ \ \ \ [[nodiscard]]\ \textcolor{keyword}{static}\ std::pair<uint64\_t,\ uint8\_t>\ \mbox{\hyperlink{classalu_1_1Alu_a0c8e729c4658fa7de36a9220bfbef713}{fpexecute}}(\mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985}{AluOp}}\ op,\ uint64\_t\ ina,\ uint64\_t\ inb,\ uint64\_t\ inc,\ uint8\_t\ rm)\ ;}
+\DoxyCodeLine{00230\ }
+\DoxyCodeLine{00231\ \ \ \ \ [[nodiscard]]\ \textcolor{keyword}{static}\ std::pair<uint64\_t,\ bool>\ \mbox{\hyperlink{classalu_1_1Alu_a79516ee000db50fd48dd1a78981a78c4}{dfpexecute}}(\mbox{\hyperlink{namespacealu_a168383e119a615fcfa97506988a23985}{AluOp}}\ op,\ uint64\_t\ ina,\ uint64\_t\ inb,\ uint64\_t\ inc,\ uint8\_t\ rm)\ ;}
+\DoxyCodeLine{00232\ }
+\DoxyCodeLine{00233\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classalu_1_1Alu_a37bb2aac9cb2c8ae05ceee0d6404e5cc}{setFlags}}(\textcolor{keywordtype}{bool}\ carry,\ \textcolor{keywordtype}{bool}\ zero,\ \textcolor{keywordtype}{bool}\ negative,\ \textcolor{keywordtype}{bool}\ overflow);}
+\DoxyCodeLine{00234\ }
+\DoxyCodeLine{00235\ \};}
+\DoxyCodeLine{00236\ \}}
+\DoxyCodeLine{00237\ }
+\DoxyCodeLine{00238\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ ALU\_H}}
+
+\end{DoxyCode}

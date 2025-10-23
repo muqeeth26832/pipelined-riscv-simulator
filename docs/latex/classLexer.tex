@@ -1,5 +1,5 @@
-\hypertarget{classLexer}{}\doxysection{Lexer Class Reference}
-\label{classLexer}\index{Lexer@{Lexer}}
+\doxysection{Lexer Class Reference}
+\hypertarget{classLexer}{}\label{classLexer}\index{Lexer@{Lexer}}
 
 
 A class responsible for tokenizing the input source code.  
@@ -9,12 +9,12 @@ A class responsible for tokenizing the input source code.
 
 {\ttfamily \#include $<$lexer.\+h$>$}
 
-\doxysubsection*{Public Member Functions}
+\doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{classLexer_aae50996944f23853b242120df9fcba1d}{Lexer}} (std\+::string filename)
-\begin{DoxyCompactList}\small\item\em Constructs a \mbox{\hyperlink{classLexer}{Lexer}} object for a given file. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classLexer_ad26a84af23d8d303723e36e83fc4e556}{$\sim$\+Lexer}} ()
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{classLexer}{Lexer} object for a given file. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classLexer_ad26a84af23d8d303723e36e83fc4e556}{\texorpdfstring{$\sim$}{\string~}\+Lexer}} ()
 \begin{DoxyCompactList}\small\item\em Destructor that closes the input file stream. \end{DoxyCompactList}\item 
 std\+::string \mbox{\hyperlink{classLexer_ac9f432d29889532c2930bdb462c906da}{get\+Filename}} () const
 \begin{DoxyCompactList}\small\item\em Retrieves the name of the input file. \end{DoxyCompactList}\item 
@@ -28,7 +28,7 @@ A class responsible for tokenizing the input source code.
 This class reads an input file, processes its contents, and generates a sequence of tokens. It handles various types of tokens such as identifiers, numbers, directives, and string literals. 
 
 \doxysubsection{Constructor \& Destructor Documentation}
-\mbox{\Hypertarget{classLexer_aae50996944f23853b242120df9fcba1d}\label{classLexer_aae50996944f23853b242120df9fcba1d}} 
+\Hypertarget{classLexer_aae50996944f23853b242120df9fcba1d}\label{classLexer_aae50996944f23853b242120df9fcba1d} 
 \index{Lexer@{Lexer}!Lexer@{Lexer}}
 \index{Lexer@{Lexer}!Lexer@{Lexer}}
 \doxysubsubsection{\texorpdfstring{Lexer()}{Lexer()}}
@@ -36,7 +36,7 @@ This class reads an input file, processes its contents, and generates a sequence
 
 
 
-Constructs a \mbox{\hyperlink{classLexer}{Lexer}} object for a given file. 
+Constructs a \doxylink{classLexer}{Lexer} object for a given file. 
 
 This constructor initializes the lexer with the input file, preparing it to process the code.
 
@@ -45,11 +45,11 @@ This constructor initializes the lexer with the input file, preparing it to proc
 {\em filename} & The name of the source code file to be tokenized. \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{classLexer_ad26a84af23d8d303723e36e83fc4e556}\label{classLexer_ad26a84af23d8d303723e36e83fc4e556}} 
-\index{Lexer@{Lexer}!````~Lexer@{$\sim$Lexer}}
-\index{````~Lexer@{$\sim$Lexer}!Lexer@{Lexer}}
-\doxysubsubsection{\texorpdfstring{$\sim$Lexer()}{~Lexer()}}
-{\footnotesize\ttfamily Lexer\+::$\sim$\+Lexer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+\Hypertarget{classLexer_ad26a84af23d8d303723e36e83fc4e556}\label{classLexer_ad26a84af23d8d303723e36e83fc4e556} 
+\index{Lexer@{Lexer}!````~Lexer@{\texorpdfstring{$\sim$}{\string~}Lexer}}
+\index{````~Lexer@{\texorpdfstring{$\sim$}{\string~}Lexer}!Lexer@{Lexer}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Lexer()}{\string~Lexer()}}
+{\footnotesize\ttfamily Lexer\+::\texorpdfstring{$\sim$}{\string~}\+Lexer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 
 
@@ -58,7 +58,7 @@ Destructor that closes the input file stream.
 
 
 \doxysubsection{Member Function Documentation}
-\mbox{\Hypertarget{classLexer_ac9f432d29889532c2930bdb462c906da}\label{classLexer_ac9f432d29889532c2930bdb462c906da}} 
+\Hypertarget{classLexer_ac9f432d29889532c2930bdb462c906da}\label{classLexer_ac9f432d29889532c2930bdb462c906da} 
 \index{Lexer@{Lexer}!getFilename@{getFilename}}
 \index{getFilename@{getFilename}!Lexer@{Lexer}}
 \doxysubsubsection{\texorpdfstring{getFilename()}{getFilename()}}
@@ -73,7 +73,7 @@ This function returns the name of the source code file being processed.
 \begin{DoxyReturn}{Returns}
 The name of the input file. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classLexer_ad66eb14085f3fe976763c53f9bbaf3e8}\label{classLexer_ad66eb14085f3fe976763c53f9bbaf3e8}} 
+\Hypertarget{classLexer_ad66eb14085f3fe976763c53f9bbaf3e8}\label{classLexer_ad66eb14085f3fe976763c53f9bbaf3e8} 
 \index{Lexer@{Lexer}!getTokenList@{getTokenList}}
 \index{getTokenList@{getTokenList}!Lexer@{Lexer}}
 \doxysubsubsection{\texorpdfstring{getTokenList()}{getTokenList()}}

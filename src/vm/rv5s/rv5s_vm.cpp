@@ -39,6 +39,10 @@
 #include <thread>
 #include <chrono>
 #include <sstream>
+#include<mutex>
+
+std::mutex print_mutex_;
+
 using instruction_set::Instruction;
 using instruction_set::get_instr_encoding;
 RV5SVM::RV5SVM() : VmBase() {
@@ -574,6 +578,11 @@ std::string RV5SVM::GetInstructionName(uint32_t instruction) {
     return "UNKNOWN";
 }
 void RV5SVM::PrintPipelineState() {
+    std::lock_guard<std::mutex> lock(print_mutex_);
+    // Save/restore state around prints (or reset at end)
+    auto flags = std::cout.flags();  // Save current flags
+    auto precision = std::cout.precision();
+    auto fill = std::cout.fill();
     // ANSI color codes
     const std::string RESET = "\033[0m";
     const std::string BOLD = "\033[1m";
@@ -689,6 +698,12 @@ void RV5SVM::PrintPipelineState() {
         }
     }
     std::cout << BOLD << CYAN << "╚════════════════════════════════════════════════════════════════════════════╝" << RESET << std::endl;
+    // At very end:
+    std::cout.flags(flags);  // Restore flags (base, etc.)
+    std::cout.precision(precision);
+    std::cout.fill(fill);
+    std::cout << std::dec << std::setfill(' ') << std::resetiosflags(std::ios::fixed | std::ios::scientific | std::ios::hex) << std::nouppercase;
+
 }
 void RV5SVM::Run() {
     ClearStop();
@@ -757,6 +772,12 @@ void RV5SVM::Step() {
     if (program_counter_ < program_size_ ||
         if_id_buf_.valid || id_ex_buf_.valid || ex_mem_buf_.valid || mem_wb_buf_.valid) {
         ExecutePipelineCycle();
+
+        {
+            std::lock_guard<std::mutex> lock(print_mutex_);
+            std::cout << std::dec << std::setfill(' ') << std::resetiosflags(std::ios::fixed | std::ios::scientific | std::ios::hex) << std::nouppercase;
+        }
+
         if (program_counter_ < program_size_ ||
             if_id_buf_.valid || id_ex_buf_.valid || ex_mem_buf_.valid || mem_wb_buf_.valid) {
             std::cout << "VM_STEP_COMPLETED" << std::endl;

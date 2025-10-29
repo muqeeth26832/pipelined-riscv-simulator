@@ -16,7 +16,7 @@
 
 
 int main(int argc, char *argv[]) {
-    std::cout<<"Muq ka program"<<std::endl;
+    std::cout<<"0"<<std::endl;
   if (argc <= 1) {
     std::cerr << "No arguments provided. Use --help for usage information.\n";
     return 1;
@@ -112,17 +112,40 @@ int main(int argc, char *argv[]) {
 
 
   AssembledProgram program;
-  
+
   // Dynamically select VM based on pipelined flag
   VmBase* vm_ptr = nullptr;
   if (globals::use_pipelined_vm) {
     vm_ptr = new RV5SVM();
     std::cout << "Using RV5S Pipelined VM" << std::endl;
+    switch (globals::pipelined_mode) {
+        case 1:
+            std::cout << "Mode 1: Basic pipelining (no hazard detection or forwarding)\n";
+            break;
+        case 2:
+            std::cout << "Mode 2: Pipelining with hazard detection (no forwarding)\n";
+            break;
+        case 3:
+            std::cout << "Mode 3: Pipelining with hazard detection and forwarding\n";
+            break;
+
+        case 4:
+            std::cout << "Mode 4: Pipelining with hazard detection, forwarding, and static branch prediction\n";
+            break;
+
+        case 5:
+            std::cout << "Mode 5: Pipelining with hazard detection, forwarding, and dynamic 1-bit branch prediction\n";
+            break;
+
+        default:
+            std::cerr << "Error: Invalid pipelined mode selected (" << globals::pipelined_mode << ")\n";
+            break;
+    }
   } else {
     vm_ptr = new RVSSVM();
     std::cout << "Using RVSS Single-Cycle VM" << std::endl;
   }
-  
+
   // try {
   //   program = assemble("/home/vis/Desk/codes/assembler/examples/ntest1.s");
   // } catch (const std::runtime_error &e) {
@@ -148,6 +171,17 @@ int main(int argc, char *argv[]) {
 
   std::cout << "VM_STARTED" << std::endl;
   // std::cout << globals::invokation_path << std::endl;
+  //
+  try {
+      std::string test_program_path = "/home/muqeeth26832/Desktop/sem05/Arch/project/using-ai/og/muq-riscv/build/mq.s";
+      program = assemble(test_program_path);
+      vm_ptr->LoadProgram(program);
+      std::cout << "Auto-loaded test program: " << test_program_path << std::endl;
+      vm_ptr->output_status_ = "VM_PARSE_SUCCESS";
+      vm_ptr->DumpState(globals::vm_state_dump_file_path);
+  } catch (const std::runtime_error &e) {
+      std::cerr << "Failed to load test program: " << e.what() << std::endl;
+  }
 
   std::thread vm_thread;
   bool vm_running = false;
@@ -353,6 +387,6 @@ int main(int argc, char *argv[]) {
     delete vm_ptr;
     vm_ptr = nullptr;
   }
-  
+
   return 0;
 }

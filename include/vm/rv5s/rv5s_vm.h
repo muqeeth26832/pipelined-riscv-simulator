@@ -1,109 +1,96 @@
 /**
  * @file rv5s_vm.h
- * @brief RV5S Pipelined VM definition
- * @author Your Name
+ * @brief RV5S Pipelined VM header with multiple pipeline modes
+ * @author
  */
 
 #ifndef RV5S_VM_H
 #define RV5S_VM_H
 
 #include "vm/vm_base.h"
-#include "rv5s_control_unit.h"
-#include <stack>
-#include <vector>
-#include <iostream>
+#include "vm/rv5s/rv5s_control_unit.h"
 #include <cstdint>
+#include <atomic>
 
-// Pipeline stage buffers (IF/ID, ID/EX, EX/MEM, MEM/WB)
-struct IFIDBuffer {
+// Pipeline buffer structures
+struct IF_ID_Buffer {
     uint32_t instruction = 0;
     uint64_t pc = 0;
     bool valid = false;
-    bool stall = false;  // For pipeline control
+    bool is_nop = false;  // For inserted bubbles
 };
 
-struct IDEXBuffer {
+struct ID_EX_Buffer {
     uint32_t instruction = 0;
     uint64_t pc = 0;
     uint8_t opcode = 0;
-    uint8_t rs1 = 0, rs2 = 0, rd = 0;
-    uint32_t imm = 0;
+    uint8_t rs1 = 0;
+    uint8_t rs2 = 0;
+    uint8_t rd = 0;
+    int32_t imm = 0;
     uint64_t rs1_value = 0;
     uint64_t rs2_value = 0;
     bool valid = false;
-    bool stall = false;  // For pipeline control
+    bool is_nop = false;
+
+    // Control signals
+    bool alu_src = false;
+    bool mem_to_reg = false;
+    bool reg_write = false;
+    bool mem_read = false;
+    bool mem_write = false;
+    bool branch = false;
+    bool alu_op = false;
 };
 
-struct EXMEMBuffer {
+struct EX_MEM_Buffer {
     uint32_t instruction = 0;
     uint64_t pc = 0;
-    uint8_t opcode = 0;
     uint8_t rd = 0;
     uint64_t exec_result = 0;
-    uint64_t rs2_value = 0;  // for store operations
+    uint64_t rs2_value = 0;
+    bool valid = false;
+    bool is_nop = false;
+
+    // Control signals
     bool mem_read = false;
     bool mem_write = false;
     bool reg_write = false;
     bool mem_to_reg = false;
     bool branch_taken = false;
     uint64_t branch_target = 0;
-    bool valid = false;
-    bool stall = false;  // For pipeline control
 };
 
-struct MEMWBBuffer {
+struct MEM_WB_Buffer {
     uint32_t instruction = 0;
     uint64_t pc = 0;
     uint8_t rd = 0;
     uint64_t result = 0;
     uint64_t mem_result = 0;
+    bool valid = false;
+    bool is_nop = false;
+
+    // Control signals
     bool reg_write = false;
     bool mem_to_reg = false;
-    bool valid = false;
-    bool stall = false;  // For pipeline control
+};
+
+// Forwarding unit structure
+struct ForwardingUnit {
+    enum ForwardType {
+        NO_FORWARD = 0,
+        FORWARD_FROM_MEM = 1,
+        FORWARD_FROM_WB = 2
+    };
+
+    ForwardType forward_a = NO_FORWARD;
+    ForwardType forward_b = NO_FORWARD;
 };
 
 class RV5SVM : public VmBase {
 public:
-    RV5SControlUnit control_unit_;
-    std::atomic<bool> stop_requested_ = false;
-
-    // Pipeline buffers
-    IFIDBuffer if_id_buf_;
-    IDEXBuffer id_ex_buf_;
-    EXMEMBuffer ex_mem_buf_;
-    MEMWBBuffer mem_wb_buf_;
-
-    // Pipeline control
-    bool pipeline_stall = false;
-    bool pipeline_flush = false;
-    int stall_cycles = 0;
-    
-    // For visualization
-    int cycle_count = 0;
-
-    // intermediate variables for pipeline
-    uint32_t current_instruction_if = 0;  // instruction in IF stage
-    uint32_t current_instruction_id = 0;  // instruction in ID stage
-    uint32_t current_instruction_ex = 0;  // instruction in EX stage
-    uint32_t current_instruction_mem = 0; // instruction in MEM stage
-    uint32_t current_instruction_wb = 0;  // instruction in WB stage
-
-    // Pipeline stage methods
-    void PipelineIF();  // Instruction Fetch
-    void PipelineID();  // Instruction Decode
-    void PipelineEX();  // Execute
-    void PipelineMEM(); // Memory Access
-    void PipelineWB();  // Write Back
-
-    // Combined pipeline execution
-    void ExecutePipelineCycle();
-
-    // Pipeline management
-    void FlushPipeline();
-
     RV5SVM();
-    ~RV5SVM() = default;
+    ~RV5SVM() override = default;
 
     void Run() override;
     void DebugRun() override;
@@ -112,24 +99,69 @@ public:
     void Redo() override;
     void Reset() override;
 
-    void RequestStop() {
-        stop_requested_ = true;
-    }
+    // Implement pure virtual functions from VmBase
+    void RequestStop() override { stop_requested_.store(true); }
+    bool IsStopRequested() const override { return stop_requested_.load(); }
 
-    bool IsStopRequested() const {
-        return stop_requested_;
-    }
-    
-    void ClearStop() {
-        stop_requested_ = false;
-    }
+private:
+    // Clear stop flag
+    void ClearStop() { stop_requested_.store(false); }
 
-    void PrintType() {
-        std::cout << "rv5svm" << std::endl;
-    }
+    // Pipeline stage functions
+    void PipelineIF();
+    void PipelineID();
+    void PipelineEX();
+    void PipelineMEM();
+    void PipelineWB();
 
-    // Visualization method
+    // Execute one complete pipeline cycle
+    void ExecutePipelineCycle();
+
+    // Hazard detection and handling
+    bool DetectDataHazard();
+    bool DetectLoadUseHazard();
+    void HandleDataHazard();
+    void InsertStall();
+
+    // Forwarding
+    ForwardingUnit DetectForwarding();
+    uint64_t GetForwardedValue(uint8_t reg, ForwardingUnit::ForwardType forward_type);
+
+    // Branch handling
+    void HandleBranch();
+    void FlushPipeline();
+
+    // Utility functions
     void PrintPipelineState();
+    void PrintHazardInfo();
+    std::string GetInstructionName(uint32_t instruction);
+
+    // Pipeline buffers
+    IF_ID_Buffer if_id_buf_;
+    ID_EX_Buffer id_ex_buf_;
+    EX_MEM_Buffer ex_mem_buf_;
+    MEM_WB_Buffer mem_wb_buf_;
+
+    // Control unit
+    RV5SControlUnit control_unit_;
+
+    // Pipeline control signals
+    bool pipeline_stall = false;
+    bool pipeline_flush = false;
+
+    // Stop flag
+    std::atomic<bool> stop_requested_{false};
+
+    // Statistics
+    uint64_t cycle_count = 0;
+    uint64_t stall_cycles = 0;
+    uint64_t flush_cycles = 0;
+    uint64_t data_hazards = 0;
+    uint64_t control_hazards = 0;
+
+    // Forwarding paths
+    uint64_t ex_mem_forward_data = 0;
+    uint64_t mem_wb_forward_data = 0;
 };
 
 #endif // RV5S_VM_H

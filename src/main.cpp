@@ -34,7 +34,7 @@ int main(int argc, char *argv[]) {
                   << "  --verbose-errors     Enable verbose error printing\n"
                   << "  --start-vm           Start the VM with the default program\n"
                   << "  --start-vm --vm-as-backend  Start the VM with the default program in backend mode\n"
-                  << "  --pipelined [mode]   Use pipelined VM implementation (0=off, 1=simple pipelining)";
+                  << "  --pielined [mode]   Use pipelined VM implementation (0=off, 1=simple pipelining)";
         return 0;
 
     } else if (arg == "--assemble") {
@@ -176,7 +176,7 @@ int main(int argc, char *argv[]) {
       std::string test_program_path = "/home/muqeeth26832/Desktop/sem05/Arch/project/using-ai/og/muq-riscv/build/mq.s";
       program = assemble(test_program_path);
       vm_ptr->LoadProgram(program);
-      std::cout << "Auto-loaded test program: " << test_program_path << std::endl;
+      // std::cout << "Auto-loaded test program: " << test_program_path << std::endl;
       vm_ptr->output_status_ = "VM_PARSE_SUCCESS";
       vm_ptr->DumpState(globals::vm_state_dump_file_path);
   } catch (const std::runtime_error &e) {

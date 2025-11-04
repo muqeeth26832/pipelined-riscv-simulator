@@ -123,7 +123,7 @@ bool RV5SVM::DetectDataHazard() {
 ForwardingUnit RV5SVM::DetectForwarding() {
     ForwardingUnit fu;
     // Mode 3: Forwarding enabled
-    if (globals::pipelined_mode != 3) {
+    if (globals::pipelined_mode < 3) {
         return fu; // No forwarding
     }
     /**
@@ -220,24 +220,11 @@ void RV5SVM::PipelineID() {
     // Check for load-use hazard (highest priority - occurs between MEM and ID stages)
     // This specifically handles when a load instruction in MEM stage has its result
     // needed by an instruction in ID stage (before the load result is written back)
-    if (DetectLoadUseHazard()) {
-        data_hazards++;
-        if (globals::pipelined_mode >= 2) {
-            // Stall: Insert bubble in EX stage, do not advance instruction from IF to ID
-            InsertStall();
-            pipeline_stall = true; // Stall IF and ID for next cycle
-            return;
-        }
-    }
-    // Also check for general data hazards (not just load-use)
-    // This covers ALU operations where result from EX/MEM stages is needed by ID stage
-    // In Mode 3 with forwarding, this hazard will be resolved via forwarding instead of stalls
-    if (DetectDataHazard() && globals::pipelined_mode == 2) {
-        // In Mode 2 (no forwarding), we need to stall for all data hazards
+    if (DetectLoadUseHazard() || (DetectDataHazard() && globals::pipelined_mode == 2)) {
         data_hazards++;
         InsertStall();
         pipeline_stall = true;
-        return;
+        return;  // Do not advance
     }
     // If we were stalled, clear the stall flag
     if (pipeline_stall) {
@@ -247,7 +234,8 @@ void RV5SVM::PipelineID() {
         id_ex_buf_.instruction = if_id_buf_.instruction;
         id_ex_buf_.pc = if_id_buf_.pc;
         id_ex_buf_.valid = true;
-        id_ex_buf_.is_nop = if_id_buf_.is_nop;
+        // id_ex_buf_.is_nop = if_id_buf_.is_nop;
+         id_ex_buf_.is_nop = false;
         uint32_t instruction = if_id_buf_.instruction;
         id_ex_buf_.opcode = instruction & 0b1111111;
         id_ex_buf_.rs1 = (instruction >> 15) & 0b11111;

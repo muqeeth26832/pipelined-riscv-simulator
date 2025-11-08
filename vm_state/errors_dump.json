@@ -1,0 +1,29 @@
+{
+    "errorCode": 1,
+    "errors": [
+        {
+            "line": 4,
+            "message": "Invalid token: Expected .data, .text, or <opcode> or <label>"
+        },
+        {
+            "line": 4,
+            "message": "Invalid token: Expected .data, .text, or <opcode> or <label>"
+        },
+        {
+            "line": 4,
+            "message": "Invalid token: Expected .data, .text, .bss or <opcode> or <label>"
+        },
+        {
+            "line": 4,
+            "message": "Invalid token: Expected .data, .text, .bss or <opcode> or <label>"
+        },
+        {
+            "line": 15,
+            "message": "Invalid syntax: Expected: j <text label>"
+        },
+        {
+            "line": 21,
+            "message": "Invalid syntax: Expected: j <text label>"
+        }
+    ]
+}

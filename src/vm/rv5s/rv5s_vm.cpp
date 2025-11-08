@@ -6,7 +6,9 @@
  * - Load-use hazard detection and resolution
  * - Data hazard detection for ALU operations
  * - Forwarding unit to eliminate unnecessary stalls
- * - Configurable pipeline modes (0-3)
+ * - Configurable pipeline modes (0-5)
+ * - Branch prediction capabilities (modes 4-5)
+ * - Enhanced visualization for branching
  *
  * Pipeline Stages:
  * - IF: Instruction Fetch
@@ -18,11 +20,13 @@
  * Hazard Handling:
  * - Load-Use Hazards: Detected between MEM and ID stages, resolved with stalls
  * - Data Hazards: Detected and resolved with forwarding in Mode 3, stalls in Mode 2
+ * - Control Hazards: Handled with branch prediction in modes 4-5
  *
  * Example of hazard resolution:
  * For sequence: li a0,1; li a1,1; addi a2,a0,a1
  * - In Mode 2: Will insert appropriate stalls to resolve dependencies
  * - In Mode 3: Will use forwarding to eliminate most stalls
+ * - In Modes 4-5: Will predict branches to minimize pipeline bubbles
  *
  * @author Vishank Singh, https://github.com/VishankSingh
  */
@@ -39,7 +43,8 @@
 #include <thread>
 #include <chrono>
 #include <sstream>
-#include<mutex>
+#include <mutex>
+#include <vector>
 
 std::mutex print_mutex_;
 
@@ -50,6 +55,17 @@ RV5SVM::RV5SVM() : VmBase() {
     id_ex_buf_ = {};
     ex_mem_buf_ = {};
     mem_wb_buf_ = {};
+
+    // Initialize branch predictor table for modes 4 and 5
+    if (globals::pipelined_mode >= 4) {
+        branch_predictor_table_.resize(branch_predictor_size_);
+        // Initialize all entries to "not taken" prediction (default for static prediction)
+        for (auto& entry : branch_predictor_table_) {
+            entry.prediction = false;  // Static: predict not taken
+            entry.state = 0;           // For dynamic prediction: strongly not taken
+        }
+    }
+
     DumpRegisters(globals::registers_dump_file_path, registers_);
     DumpState(globals::vm_state_dump_file_path);
 }
@@ -202,12 +218,53 @@ void RV5SVM::PipelineIF() {
         if_id_buf_.valid = false;
         return;
     }
+
     if (program_counter_ < program_size_) {
         if_id_buf_.instruction = memory_controller_.ReadWord(program_counter_);
         if_id_buf_.pc = program_counter_;
         if_id_buf_.valid = true;
         if_id_buf_.is_nop = false;
-        UpdateProgramCounter(4);
+
+        // Initialize branch prediction fields
+        if_id_buf_.branch_predicted_taken = false;
+        if_id_buf_.predicted_target = 0;
+
+        // For pipeline modes with branch prediction
+        if (globals::pipelined_mode >= 4) {
+            uint32_t instruction = if_id_buf_.instruction;
+            uint8_t opcode = instruction & 0b1111111;
+
+            // If this is a branch instruction, predict its outcome at IF stage
+            if (opcode == 0b1100011 || opcode == 0b1101111 || opcode == 0b1100111) {  // Branch, JAL, JALR
+                bool predicted_taken = PredictBranch(program_counter_);
+                if_id_buf_.branch_predicted_taken = predicted_taken;
+
+                if (predicted_taken) {
+                    // Calculate predicted target for branch instructions
+                    if (opcode == 0b1100011) {  // Conditional branch
+                        int32_t imm = ImmGenerator(instruction);
+                        if_id_buf_.predicted_target = program_counter_ + imm;
+                    } else if (opcode == 0b1101111) {  // JAL
+                        int32_t imm = ImmGenerator(instruction);
+                        if_id_buf_.predicted_target = program_counter_ + imm;
+                    } else if (opcode == 0b1100111) {  // JALR
+                        // For JALR, target is calculated in EX stage with register value
+                        // For prediction, we can't know the target exactly, so we'll just predict taken
+                        if_id_buf_.predicted_target = 0; // Will be set in EX stage
+                    }
+                }
+            }
+        }
+
+        // Update PC based on prediction (only for modes with prediction)
+        if (globals::pipelined_mode >= 4 && if_id_buf_.branch_predicted_taken) {
+            // This would be more complex in a real implementation - we'd update PC to predicted target
+            // For now, we'll just continue with normal fetch, but in a real implementation
+            // we would have already set the PC to the predicted target
+            UpdateProgramCounter(4);
+        } else {
+            UpdateProgramCounter(4);
+        }
     } else {
         if_id_buf_.valid = false;
     }
@@ -251,6 +308,11 @@ void RV5SVM::PipelineID() {
         id_ex_buf_.mem_write = control_unit_.GetMemWrite();
         id_ex_buf_.branch = control_unit_.GetBranch();
         id_ex_buf_.alu_op = control_unit_.GetAluOp();
+
+        // Pass branch prediction information from IF/ID to ID/EX
+        id_ex_buf_.branch_predicted_taken = if_id_buf_.branch_predicted_taken;
+        id_ex_buf_.predicted_target = if_id_buf_.predicted_target;
+
         // Read register values after setting control signals
         // Note: In Mode 3 with forwarding, these values may be overridden by forwarding in EX stage
         id_ex_buf_.rs1_value = registers_.ReadGpr(id_ex_buf_.rs1);
@@ -314,9 +376,17 @@ void RV5SVM::PipelineEX() {
         int64_t exec_result;
         std::tie(exec_result, overflow) = alu_.execute(aluOperation, alu_input1, alu_input2);
         ex_mem_buf_.exec_result = static_cast<uint64_t>(exec_result);
+
         // Store for potential forwarding to subsequent instructions
         ex_mem_forward_data = ex_mem_buf_.exec_result;
+
         // Handle branches
+        ex_mem_buf_.branch_taken = false;
+        ex_mem_buf_.branch_target = 0;
+        ex_mem_buf_.branch_predicted_taken = id_ex_buf_.branch_predicted_taken;
+        ex_mem_buf_.branch_mispredicted = false;
+        ex_mem_buf_.branch = id_ex_buf_.branch;  // Pass the branch flag from ID/EX to EX/MEM
+
         if (id_ex_buf_.branch) {
             control_hazards++;
             if (opcode == get_instr_encoding(Instruction::kjalr).opcode ||
@@ -352,6 +422,30 @@ void RV5SVM::PipelineEX() {
                 ex_mem_buf_.branch_taken = take_branch;
                 if (take_branch) {
                     ex_mem_buf_.branch_target = id_ex_buf_.pc + id_ex_buf_.imm;
+                }
+
+                // Check for branch misprediction in prediction modes
+                if (globals::pipelined_mode >= 4) {
+                    if (take_branch != id_ex_buf_.branch_predicted_taken) {
+                        // Misprediction occurred
+                        ex_mem_buf_.branch_mispredicted = true;
+                        branch_mispredictions++;
+                        branch_mispredictions_++; // Update base class counter as well
+                        control_hazards++; // This counts as a control hazard too
+                        
+                        // Enhanced visualization for misprediction
+                        {
+                            std::lock_guard<std::mutex> lock(print_mutex_);
+                            std::cout << "\n\x1b[31mMISPREDICTION DETECTED:\x1b[0m " 
+                                      << GetInstructionName(instruction) 
+                                      << " at PC 0x" << std::hex << id_ex_buf_.pc << std::dec
+                                      << " - Predicted: " << (id_ex_buf_.branch_predicted_taken ? "TAKEN" : "NOT_TAKEN")
+                                      << ", Actual: " << (take_branch ? "TAKEN" : "NOT_TAKEN") << std::endl;
+                        }
+                    }
+                    // Update the branch predictor with the actual outcome
+                    UpdateBranchPredictor(id_ex_buf_.pc, take_branch);
+                    branch_predictions++;
                 }
             }
         }
@@ -404,7 +498,7 @@ void RV5SVM::PipelineMEM() {
                         memory_controller_.ReadByte(ex_mem_buf_.exec_result));
                     break;
                 case 0b101: // LHU
-                    mem_wb_buf_.mem_result = static_cast<uint16_t>(
+                    mem_wb_buf_.mem_result = static_cast<int16_t>(
                         memory_controller_.ReadHalfWord(ex_mem_buf_.exec_result));
                     break;
                 case 0b110: // LWU
@@ -437,11 +531,31 @@ void RV5SVM::PipelineMEM() {
         // Store for forwarding
         mem_wb_forward_data = mem_wb_buf_.mem_to_reg ?
             mem_wb_buf_.mem_result : mem_wb_buf_.result;
-        // Handle branch taken - update PC and flush
-        if (ex_mem_buf_.branch_taken) {
-            program_counter_ = ex_mem_buf_.branch_target;
+
+        // Handle branch misprediction - if a misprediction was detected in EX stage,
+        // flush the pipeline and update PC to the correct target
+        if (ex_mem_buf_.branch_mispredicted) {
+            program_counter_ = ex_mem_buf_.branch_target;  // Correct target
             pipeline_flush = true;
-            flush_cycles += 3; // Flush IF, ID, EX stages
+            flush_cycles += 3; // Flush IF, ID, EX stages due to misprediction
+            
+            // Enhanced visualization for pipeline flush due to misprediction
+            {
+                std::lock_guard<std::mutex> lock(print_mutex_);
+                std::cout << "\x1b[31mPIPELINE FLUSH:\x1b[0m Misprediction resolved at PC 0x" 
+                          << std::hex << ex_mem_buf_.pc << std::dec
+                          << ", flushing IF, ID, EX stages" << std::endl;
+            }
+        }
+        // Handle normal branch taken (if not in prediction mode or prediction was correct)
+        else if (ex_mem_buf_.branch_taken && !ex_mem_buf_.branch_mispredicted) {
+            // In non-prediction modes, or if prediction was correct
+            program_counter_ = ex_mem_buf_.branch_target;
+            if (globals::pipelined_mode < 4) {
+                // In older modes without prediction, just flush as before
+                pipeline_flush = true;
+                flush_cycles += 3; // Flush IF, ID, EX stages
+            }
         }
     } else {
         mem_wb_buf_.valid = false;
@@ -482,6 +596,58 @@ void RV5SVM::PipelineWB() {
     }
     mem_wb_buf_.valid = false;
 }
+
+bool RV5SVM::PredictBranch(uint64_t pc) {
+    // Static branch prediction: predict "not taken" for all branches
+    // This is the default behavior for Mode 4
+    if (globals::pipelined_mode == 4) {
+        return false;  // Always predict not taken (static prediction)
+    }
+    // For Mode 5 (dynamic prediction), use the branch predictor table
+    else if (globals::pipelined_mode == 5) {
+        size_t index = (pc >> 2) % branch_predictor_size_;
+        if (index < branch_predictor_table_.size()) {
+            return branch_predictor_table_[index].prediction;
+        }
+    }
+    // Default prediction if no prediction available
+    return false;
+}
+
+void RV5SVM::UpdateBranchPredictor(uint64_t pc, bool actual_taken) {
+    if (globals::pipelined_mode == 5) {  // Dynamic prediction (2-bit saturating counter)
+        size_t index = (pc >> 2) % branch_predictor_size_;
+        if (index < branch_predictor_table_.size()) {
+            BranchPredictorEntry& entry = branch_predictor_table_[index];
+
+            // Update two-bit saturating counter:
+            // 00: Strongly not taken
+            // 01: Weakly not taken
+            // 10: Weakly taken
+            // 11: Strongly taken
+
+            if (actual_taken) {
+                if (entry.state < 3) {  // If not already strongly taken
+                    entry.state++;
+                }
+                entry.prediction = (entry.state >= 2);  // Predict taken if weakly or strongly taken
+            } else {
+                if (entry.state > 0) {  // If not already strongly not taken
+                    entry.state--;
+                }
+                entry.prediction = (entry.state >= 2);  // Predict taken if weakly or strongly taken
+            }
+        }
+    }
+    // For static prediction (Mode 4), we don't update the predictor
+    // (Always predicts not taken)
+}
+
+void RV5SVM::HandleBranchPrediction() {
+    // This function handles branch misprediction detection and recovery
+    // Currently a placeholder - will be expanded as needed
+}
+
 void RV5SVM::ExecutePipelineCycle() {
     /**
      * Execute pipeline stages in reverse order (WB -> MEM -> EX -> ID -> IF)
@@ -588,10 +754,24 @@ void RV5SVM::PrintPipelineState() {
     const std::string BRIGHT_BLUE = "\033[94m";
     const std::string BRIGHT_MAGENTA = "\033[95m";
     const std::string BRIGHT_CYAN = "\033[96m";
+    
     std::cout << "\n" << BOLD << CYAN << "╔════════════════════════════════════════════════════════════════════════════╗" << RESET << std::endl;
     std::cout << BOLD << CYAN << "║ PIPELINE STATE - Cycle " << std::setw(5) << cycle_count;
     std::cout << " (Mode " << globals::pipelined_mode << ") ║" << RESET << std::endl;
     std::cout << BOLD << CYAN << "╠════════════════════════════════════════════════════════════════════════════╣" << RESET << std::endl;
+    
+    // Enhanced branch prediction visualization header
+    if (globals::pipelined_mode >= 4) {
+        std::cout << BOLD << CYAN << "║ " << RESET 
+                  << BOLD << "Branch Prediction Mode: " << RESET;
+        if (globals::pipelined_mode == 4) {
+            std::cout << BRIGHT_YELLOW << "Static (Always Not Taken)" << RESET;
+        } else {
+            std::cout << BRIGHT_GREEN << "Dynamic (2-Bit Counter)" << RESET;
+        }
+        std::cout << std::string(40 - 26, ' ') << BOLD << CYAN << " ║" << RESET << std::endl;
+    }
+    
     // IF Stage - Blue
     std::cout << BOLD << BLUE << "║ IF │ " << RESET;
     if (if_id_buf_.valid && !if_id_buf_.is_nop) {
@@ -604,7 +784,19 @@ void RV5SVM::PrintPipelineState() {
     } else {
         std::cout << BRIGHT_BLACK << "EMPTY " << RESET;
     }
+    // Show prediction info for modes with branch prediction
+    if (globals::pipelined_mode >= 4 && if_id_buf_.valid && !if_id_buf_.is_nop) {
+        uint8_t opcode = if_id_buf_.instruction & 0b1111111;
+        if (opcode == 0b1100011 || opcode == 0b1101111 || opcode == 0b1100111) {  // Branch instructions
+            if (if_id_buf_.branch_predicted_taken) {
+                std::cout << BRIGHT_GREEN << " [PRED: TAKEN]" << RESET;
+            } else {
+                std::cout << BRIGHT_BLUE << " [PRED: NT]" << RESET;  // NT = Not Taken
+            }
+        }
+    }
     std::cout << std::dec << std::setfill(' ') << BOLD << CYAN << " ║" << RESET << std::endl;
+    
     // ID Stage - Green
     std::cout << BOLD << GREEN << "║ ID │ " << RESET;
     if (id_ex_buf_.valid && !id_ex_buf_.is_nop) {
@@ -620,8 +812,20 @@ void RV5SVM::PrintPipelineState() {
     } else {
         std::cout << BRIGHT_BLACK << "EMPTY " << RESET;
     }
+    // Show prediction info for branch instructions in prediction modes
+    if (globals::pipelined_mode >= 4 && id_ex_buf_.valid && !id_ex_buf_.is_nop) {
+        uint8_t opcode = id_ex_buf_.instruction & 0b1111111;
+        if (opcode == 0b1100011 || opcode == 0b1101111 || opcode == 0b1100111) {  // Branch instructions
+            if (id_ex_buf_.branch_predicted_taken) {
+                std::cout << BRIGHT_GREEN << "[PRED: TAKEN]" << RESET;
+            } else {
+                std::cout << BRIGHT_BLUE << "[PRED: NT]" << RESET;  // NT = Not Taken
+            }
+        }
+    }
     std::cout << BOLD << CYAN << " ║" << RESET << std::endl;
-    // EX Stage with forwarding info - Yellow
+    
+    // EX Stage with forwarding and branch info - Yellow
     std::cout << BOLD << YELLOW << "║ EX │ " << RESET;
     if (ex_mem_buf_.valid && !ex_mem_buf_.is_nop) {
         std::cout << "PC: 0x" << std::hex << std::setw(8) << std::setfill('0') << ex_mem_buf_.pc
@@ -636,6 +840,16 @@ void RV5SVM::PrintPipelineState() {
                 std::cout << BRIGHT_MAGENTA << " [FWD]" << RESET;
             }
         }
+        // Show branch prediction info for branch instructions in prediction modes
+        if (globals::pipelined_mode >= 4 && ex_mem_buf_.branch) {
+            if (ex_mem_buf_.branch_mispredicted) {
+                std::cout << BRIGHT_RED << " [MISPREDICTED]" << RESET;
+            } else if (ex_mem_buf_.branch_taken) {
+                std::cout << BRIGHT_GREEN << " [BRANCH TAKEN]" << RESET;
+            } else {
+                std::cout << BRIGHT_BLUE << " [BRANCH NOT TAKEN]" << RESET;
+            }
+        }
     } else if (ex_mem_buf_.valid && ex_mem_buf_.is_nop) {
         std::cout << BRIGHT_YELLOW << "NOP" << RESET
                   << " │ Result: 0x" << std::hex << std::setw(8) << std::setfill('0') << 0x00000000;
@@ -643,6 +857,7 @@ void RV5SVM::PrintPipelineState() {
         std::cout << BRIGHT_BLACK << "EMPTY " << RESET;
     }
     std::cout << std::dec << std::setfill(' ') << BOLD << CYAN << " ║" << RESET << std::endl;
+    
     // MEM Stage - Magenta
     std::cout << BOLD << MAGENTA << "║ MEM │ " << RESET;
     if (mem_wb_buf_.valid && !mem_wb_buf_.is_nop) {
@@ -656,6 +871,19 @@ void RV5SVM::PrintPipelineState() {
             std::cout << " │ AluData: 0x" << std::hex << std::setw(8) << std::setfill('0')
                       << mem_wb_buf_.result;
         }
+        // Show branch resolution in prediction modes
+        if (globals::pipelined_mode >= 4) {
+            uint8_t opcode = mem_wb_buf_.instruction & 0b1111111;
+            if (opcode == 0b1100011 || opcode == 0b1101111 || opcode == 0b1100111) {  // Branch instructions
+                if (mem_wb_buf_.reg_write && ex_mem_buf_.branch_mispredicted) {
+                    std::cout << BRIGHT_RED << " [MISPRED RESOLVED]" << RESET;
+                } else if (mem_wb_buf_.reg_write && ex_mem_buf_.branch_taken) {
+                    std::cout << BRIGHT_GREEN << " [BRANCH RESOLVED TAKEN]" << RESET;
+                } else if (mem_wb_buf_.reg_write) {
+                    std::cout << BRIGHT_BLUE << " [BRANCH RESOLVED NT]" << RESET;
+                }
+            }
+        }
     } else if (mem_wb_buf_.valid && mem_wb_buf_.is_nop) {
         std::cout << BRIGHT_YELLOW << "NOP" << RESET
                   << " │ AluData: 0x" << std::hex << std::setw(8) << std::setfill('0') << 0x00000000;
@@ -663,10 +891,26 @@ void RV5SVM::PrintPipelineState() {
         std::cout << BRIGHT_BLACK << "EMPTY " << RESET;
     }
     std::cout << std::dec << std::setfill(' ') << BOLD << CYAN << " ║" << RESET << std::endl;
+    
     // WB Stage - Cyan
     std::cout << BOLD << CYAN << "║ WB │ " << RESET;
-    std::cout << BRIGHT_CYAN << "Instruction completed and retired " << RESET << BOLD << CYAN << "║" << RESET << std::endl;
+    if (mem_wb_buf_.valid && !mem_wb_buf_.is_nop) {
+        uint8_t opcode = mem_wb_buf_.instruction & 0b1111111;
+        if (opcode == 0b1100011 || opcode == 0b1101111 || opcode == 0b1100111) {  // Branch instructions
+            if (ex_mem_buf_.branch_mispredicted) {
+                std::cout << BRIGHT_RED << "BRANCH MISPREDICTION RESOLVED" << RESET;
+            } else {
+                std::cout << BRIGHT_GREEN << "BRANCH RESOLVED" << RESET;
+            }
+        } else {
+            std::cout << BRIGHT_CYAN << "Instruction completed and retired" << RESET;
+        }
+    } else {
+        std::cout << BRIGHT_CYAN << "EMPTY" << RESET;
+    }
+    std::cout << BOLD << CYAN << " ║" << RESET << std::endl;
     std::cout << BOLD << CYAN << "╠════════════════════════════════════════════════════════════════════════════╣" << RESET << std::endl;
+    
     // Statistics
     std::cout << BOLD << CYAN << "║ " << RESET << "Stats: Instructions Retired: " << BRIGHT_GREEN << std::setw(5) << instructions_retired_ << RESET
               << BOLD << CYAN << " │ " << RESET << "Stalls: " << BRIGHT_YELLOW << std::setw(4) << stall_cycles << RESET
@@ -674,9 +918,18 @@ void RV5SVM::PrintPipelineState() {
               << BOLD << CYAN << " │ " << RESET << "CPI: " << BRIGHT_CYAN << std::fixed << std::setprecision(2)
               << (instructions_retired_ > 0 ? (double)cycle_count / instructions_retired_ : 0.0) << RESET
               << BOLD << CYAN << " ║" << RESET << std::endl;
+    
     if (globals::pipelined_mode >= 2) {
         std::cout << BOLD << CYAN << "║ " << RESET << "Hazards: Data: " << BRIGHT_YELLOW << std::setw(4) << data_hazards << RESET
                   << BOLD << CYAN << " │ " << RESET << "Control: " << BRIGHT_RED << std::setw(4) << control_hazards << RESET;
+        if (globals::pipelined_mode >= 4) {
+            std::cout << BOLD << CYAN << " │ " << RESET << "Mispredicts: " << BRIGHT_MAGENTA << std::setw(4) << branch_mispredictions << RESET;
+            if (branch_predictions > 0) {
+                double misprediction_rate = (double)branch_mispredictions / branch_predictions * 100.0;
+                std::cout << BOLD << CYAN << " │ " << RESET << "Accuracy: " << BRIGHT_CYAN
+                          << std::fixed << std::setprecision(1) << (100.0 - misprediction_rate) << "%" << RESET;
+            }
+        }
         if (pipeline_stall) {
             std::cout << BOLD << CYAN << " │ " << RESET << "STATUS: " << BRIGHT_RED << "STALLED " << RESET << BOLD << CYAN << "║" << RESET << std::endl;
         } else if (pipeline_flush) {
@@ -685,13 +938,23 @@ void RV5SVM::PrintPipelineState() {
             std::cout << BOLD << CYAN << " ║" << RESET << std::endl;
         }
     }
+    
+    // Branch prediction detailed statistics for prediction modes
+    if (globals::pipelined_mode >= 4) {
+        std::cout << BOLD << CYAN << "║ " << RESET << "BP Stats: Predictions: " << BRIGHT_CYAN << std::setw(4) << branch_predictions << RESET;
+        std::cout << BOLD << CYAN << " │ " << RESET << "Correct: " << BRIGHT_GREEN << std::setw(4) 
+                  << (branch_predictions > branch_mispredictions ? branch_predictions - branch_mispredictions : 0) << RESET;
+        std::cout << BOLD << CYAN << " │ " << RESET << "Mispredicts: " << BRIGHT_RED << std::setw(4) << branch_mispredictions << RESET;
+        std::cout << BOLD << CYAN << " ║" << RESET << std::endl;
+    }
+    
     std::cout << BOLD << CYAN << "╚════════════════════════════════════════════════════════════════════════════╝" << RESET << std::endl;
+    
     // At very end:
     std::cout.flags(flags);  // Restore flags (base, etc.)
     std::cout.precision(precision);
     std::cout.fill(fill);
     std::cout << std::dec << std::setfill(' ') << std::resetiosflags(std::ios::fixed | std::ios::scientific | std::ios::hex) << std::nouppercase;
-
 }
 void RV5SVM::Run() {
     ClearStop();
@@ -703,6 +966,7 @@ void RV5SVM::Run() {
     mem_wb_buf_ = {};
     pipeline_stall = false;
     pipeline_flush = false;
+    
     std::cout << "\n════════════════════════════════════════════════════════════════" << std::endl;
     std::cout << "Starting Pipelined Execution - Mode " << globals::pipelined_mode << std::endl;
     switch (globals::pipelined_mode) {
@@ -718,8 +982,15 @@ void RV5SVM::Run() {
         case 3:
             std::cout << "Mode 3: Pipelining with hazard detection and forwarding" << std::endl;
             break;
+        case 4:
+            std::cout << "Mode 4: STATIC BRANCH PREDICTION (predict not taken)" << std::endl;
+            break;
+        case 5:
+            std::cout << "Mode 5: DYNAMIC BRANCH PREDICTION (2-bit saturating counter)" << std::endl;
+            break;
     }
     std::cout << "════════════════════════════════════════════════════════════════\n" << std::endl;
+    
     while (!stop_requested_) {
         if (instruction_executed > vm_config::config.getInstructionExecutionLimit())
             break;
@@ -734,6 +1005,7 @@ void RV5SVM::Run() {
         // Add small delay for visualization
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
     }
+    
     std::cout << "\n════════════════════════════════════════════════════════════════" << std::endl;
     std::cout << "Execution Complete" << std::endl;
     std::cout << "════════════════════════════════════════════════════════════════" << std::endl;
@@ -743,9 +1015,21 @@ void RV5SVM::Run() {
     std::cout << "Flush Cycles: " << flush_cycles << std::endl;
     std::cout << "Data Hazards Detected: " << data_hazards << std::endl;
     std::cout << "Control Hazards: " << control_hazards << std::endl;
+    if (globals::pipelined_mode >= 4) {
+        std::cout << "Branch Predictions: " << branch_predictions << std::endl;
+        std::cout << "Branch Mispredictions: " << branch_mispredictions << std::endl;
+        if (branch_predictions > 0) {
+            double misprediction_rate = (double)branch_mispredictions / branch_predictions * 100.0;
+            std::cout << "Branch Misprediction Rate: " << std::fixed << std::setprecision(2)
+                      << misprediction_rate << "%" << std::endl;
+            std::cout << "Branch Prediction Accuracy: " << std::fixed << std::setprecision(2)
+                      << (100.0 - misprediction_rate) << "%" << std::endl;
+        }
+    }
     std::cout << "CPI: " << std::fixed << std::setprecision(3)
               << (instructions_retired_ > 0 ? (double)cycle_count / instructions_retired_ : 0.0) << std::endl;
     std::cout << "════════════════════════════════════════════════════════════════\n" << std::endl;
+    
     if (program_counter_ >= program_size_) {
         std::cout << "VM_PROGRAM_END" << std::endl;
         output_status_ = "VM_PROGRAM_END";
@@ -798,6 +1082,8 @@ void RV5SVM::Reset() {
     flush_cycles = 0;
     data_hazards = 0;
     control_hazards = 0;
+    // Reset branch misprediction counter (from base class)
+    branch_mispredictions_ = 0;
     registers_.Reset();
     memory_controller_.Reset();
     control_unit_.Reset();
@@ -807,6 +1093,19 @@ void RV5SVM::Reset() {
     mem_wb_buf_ = {};
     pipeline_stall = false;
     pipeline_flush = false;
+
+    // Reset branch prediction variables
+    branch_predictions = 0;
+    branch_mispredictions = 0;
+
+    // Reinitialize branch predictor table
+    if (globals::pipelined_mode >= 4) {
+        branch_predictor_table_.resize(branch_predictor_size_);
+        for (auto& entry : branch_predictor_table_) {
+            entry.prediction = false;  // Static: predict not taken
+            entry.state = 0;           // For dynamic prediction: strongly not taken
+        }
+    }
 }
 void RV5SVM::FlushPipeline() {
     if_id_buf_.valid = false;

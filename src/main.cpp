@@ -34,7 +34,7 @@ int main(int argc, char *argv[]) {
                   << "  --verbose-errors     Enable verbose error printing\n"
                   << "  --start-vm           Start the VM with the default program\n"
                   << "  --start-vm --vm-as-backend  Start the VM with the default program in backend mode\n"
-                  << "  --pielined [mode]   Use pipelined VM implementation (0=off, 1=simple pipelining)";
+                  << "  --pipelined [mode]   Use pipelined VM implementation (0=off, 1=simple pipelining, 2-5 for advanced features)";
         return 0;
 
     } else if (arg == "--assemble") {
@@ -147,7 +147,7 @@ int main(int argc, char *argv[]) {
   }
 
   // try {
-  //   program = assemble("/home/vis/Desk/codes/assembler/examples/ntest1.s");
+  //   program = assemble("examples/sample_program.s");  // Use relative path instead of hardcoded absolute path
   // } catch (const std::runtime_error &e) {
   //   std::cerr << e.what() << '\n';
   //   return 0;
@@ -173,14 +173,16 @@ int main(int argc, char *argv[]) {
   // std::cout << globals::invokation_path << std::endl;
   //
   try {
-      std::string test_program_path = "/home/muqeeth26832/Desktop/sem05/Arch/project/using-ai/og/muq-riscv/build/mq.s";
+      // Instead of hardcoded path, use a default example in the examples directory
+      std::string test_program_path = "examples/loop_example.s";  // Use relative path
       program = assemble(test_program_path);
       vm_ptr->LoadProgram(program);
       // std::cout << "Auto-loaded test program: " << test_program_path << std::endl;
       vm_ptr->output_status_ = "VM_PARSE_SUCCESS";
       vm_ptr->DumpState(globals::vm_state_dump_file_path);
   } catch (const std::runtime_error &e) {
-      std::cerr << "Failed to load test program: " << e.what() << std::endl;
+      // If default example doesn't exist, continue without loading a program
+      std::cerr << "Failed to load default example program: " << e.what() << std::endl;
   }
 
   std::thread vm_thread;

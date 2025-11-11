@@ -1,0 +1,12 @@
+0000000000000000 <_start>:
+   0: 00500093             addi x1, x0, 5
+   4: 00100113             addi x2, x0, 1
+
+0000000000000008 <factorial_loop>:
+   8: 00008863             beq x1, x0, 16 <factorial_done>
+   c: 02110133             mul x2, x2, x1
+  10: fff08093             addi x1, x1, -1
+  14: ff5ff06f             jal x0, -12 <factorial_loop>
+
+0000000000000018 <factorial_done>:
+  18: 0000006f             jal x0, 0 <end>

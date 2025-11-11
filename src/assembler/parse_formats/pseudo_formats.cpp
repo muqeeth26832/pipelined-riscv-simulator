@@ -243,6 +243,57 @@ bool Parser::parse_pseudo() {
     return false;
   }
 
+  // j
+  else if (currentToken().value=="j") {
+    if (peekToken(1).line_number==currentToken().line_number
+        && (peekToken(1).type==TokenType::LABEL_REF || peekToken(1).type==TokenType::OPCODE || peekToken(1).type==TokenType::INVALID)
+        && (peekToken(2).type==TokenType::EOF_ || peekToken(2).line_number!=currentToken().line_number)) {
+      // For tokens like 'factorial_loop' that are not preceded by commas, they might not be LABEL_REF type
+      // They may be parsed as OPCODE if they match an instruction name, or INVALID if they are labels
+      // We should accept any identifier-like token as a potential label reference
+      std::string labelValue = peekToken(1).value;
+      
+      // Only accept tokens that look like labels (start with alpha character, contain alphanumeric/underscore/dot)
+      if (std::isalpha(labelValue[0]) || labelValue[0] == '_' || labelValue[0] == '.') {
+        ICUnit block;
+        block.setOpcode("jal");
+        block.setLineNumber(currentToken().line_number);
+        block.setInstructionIndex(instruction_index_);
+        block.setRd("x0");  // destination is x0 (like jal x0, label)
+        block.setLabel(labelValue); // The target label
+        intermediate_code_.emplace_back(block, false);
+        back_patch_.push_back(intermediate_code_.size() - 1);
+        instruction_number_line_number_mapping_[instruction_index_] = block.getLineNumber();
+        instruction_index_++;
+        skipCurrentLine();
+        return true;
+      }
+    }
+    return false;
+  }
+
+  // jr
+  else if (currentToken().value=="jr") {
+    if (peekToken(1).line_number==currentToken().line_number
+        && peekToken(1).type==TokenType::GP_REGISTER
+        && (peekToken(2).type==TokenType::EOF_ || peekToken(2).line_number!=currentToken().line_number)) {
+      ICUnit block;
+      block.setOpcode("jalr");
+      block.setLineNumber(currentToken().line_number);
+      block.setInstructionIndex(instruction_index_);
+      block.setRd("x0");  // destination is x0
+      std::string reg = reg_alias_to_name.at(peekToken(1).value);
+      block.setRs1(reg); // source register
+      block.setImm("0");  // offset is 0
+      intermediate_code_.emplace_back(block, true);
+      instruction_number_line_number_mapping_[instruction_index_] = block.getLineNumber();
+      instruction_index_++;
+      skipCurrentLine();
+      return true;
+    }
+    return false;
+  }
+
   // ret
   else if (currentToken().value=="ret") {
     if (peekToken(1).type==TokenType::EOF_

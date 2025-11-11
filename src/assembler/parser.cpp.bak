@@ -527,54 +527,6 @@ void Parser::parse() {
     } else if (currentToken().value=="bss" && currentToken().type==TokenType::DIRECTIVE) {
       nextToken();
       parseBSSDirective();
-    } else if (currentToken().value=="text" && currentToken().type==TokenType::DIRECTIVE) {
-      nextToken();
-    } else if (currentToken().value=="global" && currentToken().type==TokenType::DIRECTIVE) {
-      // Handle .global directive (e.g., .global _start)
-      // Just skip the directive and the symbol name
-      nextToken(); // skip "global"
-      if (currentToken().type != TokenType::EOF_) {
-        nextToken(); // skip the symbol name
-      }
-    } else if (currentToken().value=="type" && currentToken().type==TokenType::DIRECTIVE) {
-      // Handle .type directive (e.g., .type _start, @function)
-      // Skip the directive, symbol name, and type information
-      nextToken(); // skip "type"
-      // Skip until end of line or next directive
-      unsigned int currLine = currentToken().line_number;
-      while (currentToken().line_number == currLine && currentToken().type != TokenType::EOF_) {
-        nextToken();
-      }
-    } else if (currentToken().value=="align" && currentToken().type==TokenType::DIRECTIVE) {
-      // Handle .align directive (e.g., .align 2)
-      nextToken(); // skip "align"
-      if (currentToken().type == TokenType::NUM) {
-        nextToken(); // skip the alignment value
-      }
-    } else if (currentToken().value=="size" && currentToken().type==TokenType::DIRECTIVE) {
-      // Handle .size directive (e.g., .size _start, .-_start)
-      nextToken(); // skip "size"
-      // Skip until end of line or next directive
-      unsigned int currLine = currentToken().line_number;
-      while (currentToken().line_number == currLine && currentToken().type != TokenType::EOF_) {
-        nextToken();
-      }
-    } else if (currentToken().value=="file" && currentToken().type==TokenType::DIRECTIVE) {
-      // Handle .file directive, skip it
-      nextToken(); // skip "file"
-      // Skip until end of line or next directive
-      unsigned int currLine = currentToken().line_number;
-      while (currentToken().line_number == currLine && currentToken().type != TokenType::EOF_) {
-        nextToken();
-      }
-    } else if (currentToken().value=="ident" && currentToken().type==TokenType::DIRECTIVE) {
-      // Handle .ident directive, skip it
-      nextToken(); // skip "ident"
-      // Skip until end of line or next directive
-      unsigned int currLine = currentToken().line_number;
-      while (currentToken().line_number == currLine && currentToken().type != TokenType::EOF_) {
-        nextToken();
-      }
     }
     
     
@@ -615,55 +567,6 @@ void Parser::parse() {
       }
     } else if (currentToken().value=="bss" && currentToken().type==TokenType::DIRECTIVE) {
       while (currentToken().type!=TokenType::EOF_ && currentToken().value!="text") {
-        nextToken();
-      }
-    } else if (currentToken().value=="text" && currentToken().type==TokenType::DIRECTIVE) {
-      nextToken();
-      parseTextDirective();
-    } else if (currentToken().value=="global" && currentToken().type==TokenType::DIRECTIVE) {
-      // Handle .global directive (e.g., .global _start)
-      // Just skip the directive and the symbol name
-      nextToken(); // skip "global"
-      if (currentToken().type != TokenType::EOF_) {
-        nextToken(); // skip the symbol name
-      }
-    } else if (currentToken().value=="type" && currentToken().type==TokenType::DIRECTIVE) {
-      // Handle .type directive (e.g., .type _start, @function)
-      // Skip the directive, symbol name, and type information
-      nextToken(); // skip "type"
-      // Skip until end of line or next directive
-      unsigned int currLine = currentToken().line_number;
-      while (currentToken().line_number == currLine && currentToken().type != TokenType::EOF_) {
-        nextToken();
-      }
-    } else if (currentToken().value=="align" && currentToken().type==TokenType::DIRECTIVE) {
-      // Handle .align directive (e.g., .align 2)
-      nextToken(); // skip "align"
-      if (currentToken().type == TokenType::NUM) {
-        nextToken(); // skip the alignment value
-      }
-    } else if (currentToken().value=="size" && currentToken().type==TokenType::DIRECTIVE) {
-      // Handle .size directive (e.g., .size _start, .-_start)
-      nextToken(); // skip "size"
-      // Skip until end of line or next directive
-      unsigned int currLine = currentToken().line_number;
-      while (currentToken().line_number == currLine && currentToken().type != TokenType::EOF_) {
-        nextToken();
-      }
-    } else if (currentToken().value=="file" && currentToken().type==TokenType::DIRECTIVE) {
-      // Handle .file directive, skip it
-      nextToken(); // skip "file"
-      // Skip until end of line or next directive
-      unsigned int currLine = currentToken().line_number;
-      while (currentToken().line_number == currLine && currentToken().type != TokenType::EOF_) {
-        nextToken();
-      }
-    } else if (currentToken().value=="ident" && currentToken().type==TokenType::DIRECTIVE) {
-      // Handle .ident directive, skip it
-      nextToken(); // skip "ident"
-      // Skip until end of line or next directive
-      unsigned int currLine = currentToken().line_number;
-      while (currentToken().line_number == currLine && currentToken().type != TokenType::EOF_) {
         nextToken();
       }
     }

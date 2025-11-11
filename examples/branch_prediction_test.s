@@ -14,7 +14,7 @@ loop:
     bgt x1, x3, branch_taken    # Branch if x1 > x3 (x1 > 5)
     # If not taken path
     addi x2, x2, 1     # increment sum by 1
-    j continue
+    jal x0, continue
 
 branch_taken:
     # If taken path
@@ -26,4 +26,4 @@ continue:
 
 # End program - infinite loop
 end:
-    j end
+    jal x0, end

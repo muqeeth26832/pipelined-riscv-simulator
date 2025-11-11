@@ -516,11 +516,15 @@ void Parser::parseBSSDirective() {
 void Parser::parse() {
   instruction_index_ = 0;
   data_index_ = 0;
-
   // first pass: skip sections and directives and collect labels in data section and bss section
   while (currentToken().type!=TokenType::EOF_) {
     if (currentToken().value == "section" && currentToken().type == TokenType::DIRECTIVE) {
       nextToken();
+      // Handle .section directive by skipping the section name and continuing
+      // e.g. .section .data -> skip ".data", nextToken() to get to actual content
+      if (currentToken().type != TokenType::EOF_) {
+        nextToken();
+      }
     } else if (currentToken().value=="data" && currentToken().type==TokenType::DIRECTIVE) {
       nextToken();
       parseDataDirective();
@@ -550,7 +554,6 @@ void Parser::parse() {
       nextToken(); // skip "align"
       if (currentToken().type == TokenType::NUM) {
         nextToken(); // skip the alignment value
-      }
     } else if (currentToken().value=="size" && currentToken().type==TokenType::DIRECTIVE) {
       // Handle .size directive (e.g., .size _start, .-_start)
       nextToken(); // skip "size"
@@ -575,114 +578,14 @@ void Parser::parse() {
       while (currentToken().line_number == currLine && currentToken().type != TokenType::EOF_) {
         nextToken();
       }
-    }
-    
-    
-    
-    
-    
-    else if ((currentToken().value=="text" && currentToken().type==TokenType::DIRECTIVE) 
-          || (currentToken().type==TokenType::LABEL || currentToken().type==TokenType::OPCODE)) {
-      while (currentToken().type!=TokenType::EOF_ && currentToken().value!="data" && currentToken().value!="section" && currentToken().value!="bss") {
-        nextToken();
-      }
-    }
-      
-    else {
-      errors_.count++;
-      recordError(ParseError(currentToken().line_number,
-                             "Invalid token: Expected .data, .text, or <opcode> or <label>"));
-      errors_.all_errors.emplace_back(
-          errors::SyntaxError("Invalid token", "Expected: .data, .text, or <opcode> or <label>",
-                              filename_,
-                              currentToken().line_number,
-                              currentToken().column_number,
-                              GetLineFromFile(filename_, currentToken().line_number)));
+    } else if (currentToken().value=="section" && currentToken().type==TokenType::DIRECTIVE) {
+      // This case handles if section appears again
       nextToken();
-    }
-  }
-
-  // second pass: parse text section and generate intermediate code
-  pos_ = 0; // reset position to start parsing text section
-  instruction_index_ = 0; // reset instruction index for text section
-
-  while (currentToken().type!=TokenType::EOF_) {
-    if (currentToken().value == "section" && currentToken().type == TokenType::DIRECTIVE) {
-      nextToken();
-    } else if (currentToken().value=="data" && currentToken().type==TokenType::DIRECTIVE) {
-      while (currentToken().type!=TokenType::EOF_ && currentToken().value!="text") {
-        nextToken();
-      }
-    } else if (currentToken().value=="bss" && currentToken().type==TokenType::DIRECTIVE) {
-      while (currentToken().type!=TokenType::EOF_ && currentToken().value!="text") {
-        nextToken();
-      }
-    } else if (currentToken().value=="text" && currentToken().type==TokenType::DIRECTIVE) {
-      nextToken();
-      parseTextDirective();
-    } else if (currentToken().value=="global" && currentToken().type==TokenType::DIRECTIVE) {
-      // Handle .global directive (e.g., .global _start)
-      // Just skip the directive and the symbol name
-      nextToken(); // skip "global"
+      // Skip the section name
       if (currentToken().type != TokenType::EOF_) {
-        nextToken(); // skip the symbol name
-      }
-    } else if (currentToken().value=="type" && currentToken().type==TokenType::DIRECTIVE) {
-      // Handle .type directive (e.g., .type _start, @function)
-      // Skip the directive, symbol name, and type information
-      nextToken(); // skip "type"
-      // Skip until end of line or next directive
-      unsigned int currLine = currentToken().line_number;
-      while (currentToken().line_number == currLine && currentToken().type != TokenType::EOF_) {
-        nextToken();
-      }
-    } else if (currentToken().value=="align" && currentToken().type==TokenType::DIRECTIVE) {
-      // Handle .align directive (e.g., .align 2)
-      nextToken(); // skip "align"
-      if (currentToken().type == TokenType::NUM) {
-        nextToken(); // skip the alignment value
-      }
-    } else if (currentToken().value=="size" && currentToken().type==TokenType::DIRECTIVE) {
-      // Handle .size directive (e.g., .size _start, .-_start)
-      nextToken(); // skip "size"
-      // Skip until end of line or next directive
-      unsigned int currLine = currentToken().line_number;
-      while (currentToken().line_number == currLine && currentToken().type != TokenType::EOF_) {
-        nextToken();
-      }
-    } else if (currentToken().value=="file" && currentToken().type==TokenType::DIRECTIVE) {
-      // Handle .file directive, skip it
-      nextToken(); // skip "file"
-      // Skip until end of line or next directive
-      unsigned int currLine = currentToken().line_number;
-      while (currentToken().line_number == currLine && currentToken().type != TokenType::EOF_) {
-        nextToken();
-      }
-    } else if (currentToken().value=="ident" && currentToken().type==TokenType::DIRECTIVE) {
-      // Handle .ident directive, skip it
-      nextToken(); // skip "ident"
-      // Skip until end of line or next directive
-      unsigned int currLine = currentToken().line_number;
-      while (currentToken().line_number == currLine && currentToken().type != TokenType::EOF_) {
         nextToken();
       }
     }
-    
-    else if (currentToken().value=="text" && currentToken().type==TokenType::DIRECTIVE) {
-      nextToken();
-      parseTextDirective();
-    }
-    else if (currentToken().type==TokenType::LABEL || currentToken().type==TokenType::OPCODE) {
-      parseTextDirective();
-    } else {
-      errors_.count++;
-      recordError(ParseError(currentToken().line_number,
-                             "Invalid token: Expected .data, .text, .bss or <opcode> or <label>"));
-      errors_.all_errors.emplace_back(
-          errors::SyntaxError("Invalid token", "Expected: .data, .text, .bss or <opcode> or <label>",
-                              filename_,
-                              currentToken().line_number,
-                              currentToken().column_number,
                               GetLineFromFile(filename_, currentToken().line_number)));
       nextToken();
     }

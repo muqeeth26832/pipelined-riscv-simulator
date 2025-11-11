@@ -88,73 +88,72 @@ bool RV5SVM::DetectDataHazard() {
     if (globals::pipelined_mode == 1) {
         return false;
     }
+
     /**
      * Data hazard detection:
      * Check for RAW (Read After Write) hazards where an instruction in ID stage
      * needs to read a register that will be written by instructions in EX or MEM stages.
-     *
-     * In a properly implemented pipeline:
-     * - EX stage instruction (now in EX/MEM buffer after EX): will write back in 2 cycles
-     * - MEM stage instruction (now in MEM/WB buffer after MEM): will write back in 1 cycle
-     * - We check if the ID stage instruction needs registers that will be written by EX/MEM
-     * - In Mode 2 (no forwarding), stall until the write-back occurs before the read
      */
     if (!if_id_buf_.valid || if_id_buf_.is_nop) {
         return false;
     }
+
     uint32_t id_instr = if_id_buf_.instruction;
     uint8_t rs1 = (id_instr >> 15) & 0b11111;
     uint8_t rs2 = (id_instr >> 20) & 0b11111;
     bool hazard = false;
-    // Check EX stage instruction (now in ex_mem_buf_ after EX, going to MEM)
-    if (ex_mem_buf_.valid && ex_mem_buf_.reg_write && ex_mem_buf_.rd != 0) {
-        if (ex_mem_buf_.rd == rs1 || ex_mem_buf_.rd == rs2) {
-            hazard = true;
+
+    // Mode 2: Stall for all data hazards (no forwarding)
+    if (globals::pipelined_mode == 2) {
+        // Check EX stage instruction (now in ex_mem_buf_ after EX, going to MEM)
+        if (ex_mem_buf_.valid && ex_mem_buf_.reg_write && ex_mem_buf_.rd != 0) {
+            if (ex_mem_buf_.rd == rs1 || ex_mem_buf_.rd == rs2) {
+                hazard = true;
+            }
+        }
+        // Check MEM stage instruction (now in mem_wb_buf_ after MEM, going to WB)
+        if (mem_wb_buf_.valid && mem_wb_buf_.reg_write && mem_wb_buf_.rd != 0) {
+            if (mem_wb_buf_.rd == rs1 || mem_wb_buf_.rd == rs2) {
+                hazard = true;
+            }
         }
     }
-    // Check MEM stage instruction (now in mem_wb_buf_ after MEM, going to WB)
-    if (mem_wb_buf_.valid && mem_wb_buf_.reg_write && mem_wb_buf_.rd != 0) {
-        if (mem_wb_buf_.rd == rs1 || mem_wb_buf_.rd == rs2) {
-            hazard = true;
-        }
+    // Mode 3+: Only detect load-use hazards, data hazards handled by forwarding
+    else if (globals::pipelined_mode >= 3) {
+        // Only load-use hazards need stalling even with forwarding
+        // This is already handled in DetectLoadUseHazard()
+        hazard = false;
     }
+
     return hazard;
 }
 ForwardingUnit RV5SVM::DetectForwarding() {
     ForwardingUnit fu;
-    // Mode 3: Forwarding enabled
+
+    // Only enable forwarding for modes 3 and above
     if (globals::pipelined_mode < 3) {
-        return fu; // No forwarding
+        return fu; // No forwarding for modes 1-2
     }
-    /**
-     * Forwarding Unit Logic:
-     * We want to forward results from later pipeline stages to the EX stage
-     * to avoid unnecessary stalls for data hazards:
-     *
-     * - Forward from MEM stage (EX/MEM buffer) to EX stage
-     * - Forward from WB stage (MEM/WB buffer) to EX stage
-     *
-     * Priority: MEM stage > WB stage (MEM is more recent)
-     *
-     * For the instruction in EX stage (id_ex_buf_), we check if its source
-     * registers (rs1 and rs2) match destination registers of instructions
-     * in MEM or WB stages that will write to registers.
-     */
+
+    // Rest of the forwarding logic remains the same...
     if (!id_ex_buf_.valid || id_ex_buf_.is_nop) {
         return fu;
     }
+
     uint8_t rs1 = id_ex_buf_.rs1;
     uint8_t rs2 = id_ex_buf_.rs2;
+
     // Forward from MEM stage (higher priority) to EX stage
     if (ex_mem_buf_.valid && ex_mem_buf_.reg_write && ex_mem_buf_.rd != 0) {
         if (ex_mem_buf_.rd == rs1) {
             fu.forward_a = ForwardingUnit::FORWARD_FROM_MEM;
         }
         if (ex_mem_buf_.rd == rs2) {
-            fu.forward_b = ForwardingUnit::FORWARD_FROM_MEM;
+            fu.forward_b = ForwardingUnit::FORWARD_FROM_WB;
         }
     }
-    // Forward from WB stage (lower priority) to EX stage - only if not already forwarding from MEM
+
+    // Forward from WB stage (lower priority) to EX stage
     if (mem_wb_buf_.valid && mem_wb_buf_.reg_write && mem_wb_buf_.rd != 0) {
         if (mem_wb_buf_.rd == rs1 && fu.forward_a == ForwardingUnit::NO_FORWARD) {
             fu.forward_a = ForwardingUnit::FORWARD_FROM_WB;
@@ -163,6 +162,7 @@ ForwardingUnit RV5SVM::DetectForwarding() {
             fu.forward_b = ForwardingUnit::FORWARD_FROM_WB;
         }
     }
+
     return fu;
 }
 uint64_t RV5SVM::GetForwardedValue(uint8_t reg, ForwardingUnit::ForwardType forward_type) {
@@ -194,20 +194,62 @@ void RV5SVM::InsertStall() {
     id_ex_buf_.branch = false;
     stall_cycles++;
 }
+
 void RV5SVM::PipelineIF() {
     if (pipeline_stall) {
         return; // Hold PC and don't fetch
     }
+
+    // Handle branch misprediction recovery (for modes 4-5)
+    if (branch_mispredicted_) {
+        program_counter_ = correct_branch_target_;
+        branch_mispredicted_ = false;
+        return; // Don't fetch this cycle, just update PC
+    }
+
     if (pipeline_flush) {
         if_id_buf_.valid = false;
         return;
     }
+
     if (program_counter_ < program_size_) {
-        if_id_buf_.instruction = memory_controller_.ReadWord(program_counter_);
+        uint32_t instruction = memory_controller_.ReadWord(program_counter_);
+
+        if_id_buf_.instruction = instruction;
         if_id_buf_.pc = program_counter_;
         if_id_buf_.valid = true;
         if_id_buf_.is_nop = false;
-        UpdateProgramCounter(4);
+
+        // Branch prediction for modes 4-5
+        if (globals::pipelined_mode >= 4) {
+            uint8_t opcode = instruction & 0b1111111;
+            bool is_branch = (opcode == 0b1100011); // Conditional branches only
+            bool is_jal = (opcode == get_instr_encoding(Instruction::kjal).opcode);
+            bool is_jalr = (opcode == get_instr_encoding(Instruction::kjalr).opcode);
+
+            if (is_jal) {
+                // JAL: Always taken, calculate target
+                int32_t imm = ImmGenerator(instruction);
+                program_counter_ = program_counter_ + imm;
+            } else if (is_jalr) {
+                // JALR: Can't predict target in IF, just increment
+                program_counter_ += 4;
+            } else if (is_branch) {
+                // Conditional branch: use predictor
+                bool predict_taken = PredictBranch(program_counter_, instruction);
+                if (predict_taken) {
+                    int32_t imm = ImmGenerator(instruction);
+                    program_counter_ = program_counter_ + imm;
+                } else {
+                    program_counter_ += 4;
+                }
+            } else {
+                program_counter_ += 4;
+            }
+        } else {
+            // Modes 2-3: Always predict not-taken (PC+4)
+            program_counter_ += 4;
+        }
     } else {
         if_id_buf_.valid = false;
     }
@@ -217,32 +259,32 @@ void RV5SVM::PipelineID() {
         id_ex_buf_.valid = false;
         return;
     }
-    // Check for load-use hazard (highest priority - occurs between MEM and ID stages)
-    // This specifically handles when a load instruction in MEM stage has its result
-    // needed by an instruction in ID stage (before the load result is written back)
+
+    // Check for hazards
     if (DetectLoadUseHazard() || (DetectDataHazard() && globals::pipelined_mode == 2)) {
         data_hazards++;
         InsertStall();
         pipeline_stall = true;
-        return;  // Do not advance
+        return;
     }
-    // If we were stalled, clear the stall flag
+
     if (pipeline_stall) {
         pipeline_stall = false;
     }
+
     if (if_id_buf_.valid) {
         id_ex_buf_.instruction = if_id_buf_.instruction;
         id_ex_buf_.pc = if_id_buf_.pc;
         id_ex_buf_.valid = true;
-        // id_ex_buf_.is_nop = if_id_buf_.is_nop;
-         id_ex_buf_.is_nop = false;
+        id_ex_buf_.is_nop = false;
+
         uint32_t instruction = if_id_buf_.instruction;
         id_ex_buf_.opcode = instruction & 0b1111111;
         id_ex_buf_.rs1 = (instruction >> 15) & 0b11111;
         id_ex_buf_.rs2 = (instruction >> 20) & 0b11111;
         id_ex_buf_.rd = (instruction >> 7) & 0b11111;
         id_ex_buf_.imm = ImmGenerator(instruction);
-        // Set control signals before reading registers (needed for proper ALU operations)
+
         control_unit_.SetControlSignals(instruction);
         id_ex_buf_.alu_src = control_unit_.GetAluSrc();
         id_ex_buf_.mem_to_reg = control_unit_.GetMemToReg();
@@ -251,8 +293,7 @@ void RV5SVM::PipelineID() {
         id_ex_buf_.mem_write = control_unit_.GetMemWrite();
         id_ex_buf_.branch = control_unit_.GetBranch();
         id_ex_buf_.alu_op = control_unit_.GetAluOp();
-        // Read register values after setting control signals
-        // Note: In Mode 3 with forwarding, these values may be overridden by forwarding in EX stage
+
         id_ex_buf_.rs1_value = registers_.ReadGpr(id_ex_buf_.rs1);
         id_ex_buf_.rs2_value = registers_.ReadGpr(id_ex_buf_.rs2);
     } else {
@@ -265,94 +306,107 @@ void RV5SVM::PipelineEX() {
         ex_mem_buf_.valid = false;
         return;
     }
+
     if (id_ex_buf_.valid) {
         ex_mem_buf_.instruction = id_ex_buf_.instruction;
         ex_mem_buf_.pc = id_ex_buf_.pc;
         ex_mem_buf_.rd = id_ex_buf_.rd;
         ex_mem_buf_.valid = true;
         ex_mem_buf_.is_nop = id_ex_buf_.is_nop;
+
         uint32_t instruction = id_ex_buf_.instruction;
         uint8_t opcode = id_ex_buf_.opcode;
         uint8_t funct3 = (instruction >> 12) & 0b111;
+
         // Copy control signals
         ex_mem_buf_.mem_read = id_ex_buf_.mem_read;
         ex_mem_buf_.mem_write = id_ex_buf_.mem_write;
         ex_mem_buf_.reg_write = id_ex_buf_.reg_write;
         ex_mem_buf_.mem_to_reg = id_ex_buf_.mem_to_reg;
         ex_mem_buf_.branch_taken = false;
+
         // Skip execution for NOPs
         if (id_ex_buf_.is_nop) {
             ex_mem_buf_.exec_result = 0;
             id_ex_buf_.valid = false;
             return;
         }
-        /**
-         * Forwarding Implementation:
-         * Before executing ALU operations, check if we can forward values from
-         * MEM or WB stages to avoid stalls.
-         *
-         * Forwarding paths:
-         * - From MEM stage result (ex_mem_buf_.exec_result)
-         * - From WB stage result (mem_wb_buf_.mem_result or mem_wb_buf_.result)
-         *
-         * This eliminates many data hazards without stalling.
-         */
-        // Detect forwarding opportunities for this instruction in EX stage
+
+        // Detect forwarding opportunities
         ForwardingUnit fu = DetectForwarding();
-        // Get potentially forwarded values for ALU operations
         uint64_t alu_input1 = (id_ex_buf_.rs1 != 0) ? GetForwardedValue(id_ex_buf_.rs1, fu.forward_a) : 0;
         uint64_t alu_input2 = (id_ex_buf_.rs2 != 0) ? GetForwardedValue(id_ex_buf_.rs2, fu.forward_b) : 0;
-        // Store original rs2 value for stores (may need forwarding)
+
         ex_mem_buf_.rs2_value = alu_input2;
-        // Apply ALU source control - if immediate, use sign-extended immediate instead of rs2
+
         if (id_ex_buf_.alu_src) {
             alu_input2 = static_cast<uint64_t>(static_cast<int64_t>(id_ex_buf_.imm));
         }
-        // Get ALU operation and execute
+
+        // Execute ALU operation
         alu::AluOp aluOperation = control_unit_.GetAluSignal(instruction, id_ex_buf_.alu_op);
         bool overflow = false;
         int64_t exec_result;
         std::tie(exec_result, overflow) = alu_.execute(aluOperation, alu_input1, alu_input2);
         ex_mem_buf_.exec_result = static_cast<uint64_t>(exec_result);
-        // Store for potential forwarding to subsequent instructions
         ex_mem_forward_data = ex_mem_buf_.exec_result;
+
         // Handle branches
         if (id_ex_buf_.branch) {
             control_hazards++;
-            if (opcode == get_instr_encoding(Instruction::kjalr).opcode ||
-                opcode == get_instr_encoding(Instruction::kjal).opcode) {
-                ex_mem_buf_.branch_taken = true;
-                if (opcode == get_instr_encoding(Instruction::kjalr).opcode) {
-                    ex_mem_buf_.branch_target = exec_result & ~1ULL; // Clear LSB for JALR
-                } else {
-                    ex_mem_buf_.branch_target = id_ex_buf_.pc + id_ex_buf_.imm;
-                }
+            bool actually_taken = false;
+            uint64_t actual_target = 0;
+
+            // Determine if branch should be taken
+            if (opcode == get_instr_encoding(Instruction::kjalr).opcode) {
+                actually_taken = true;
+                actual_target = exec_result & ~1ULL;
+            } else if (opcode == get_instr_encoding(Instruction::kjal).opcode) {
+                actually_taken = true;
+                actual_target = id_ex_buf_.pc + id_ex_buf_.imm;
             } else if (opcode == 0b1100011) { // Conditional branches
                 bool take_branch = false;
                 switch (funct3) {
-                    case 0b000: // BEQ
-                        take_branch = (alu_input1 == alu_input2);
-                        break;
-                    case 0b001: // BNE
-                        take_branch = (alu_input1 != alu_input2);
-                        break;
-                    case 0b100: // BLT
-                        take_branch = (static_cast<int64_t>(alu_input1) < static_cast<int64_t>(alu_input2));
-                        break;
-                    case 0b101: // BGE
-                        take_branch = (static_cast<int64_t>(alu_input1) >= static_cast<int64_t>(alu_input2));
-                        break;
-                    case 0b110: // BLTU
-                        take_branch = (alu_input1 < alu_input2);
-                        break;
-                    case 0b111: // BGEU
-                        take_branch = (alu_input1 >= alu_input2);
-                        break;
+                    case 0b000: take_branch = (alu_input1 == alu_input2); break; // BEQ
+                    case 0b001: take_branch = (alu_input1 != alu_input2); break; // BNE
+                    case 0b100: take_branch = (static_cast<int64_t>(alu_input1) < static_cast<int64_t>(alu_input2)); break; // BLT
+                    case 0b101: take_branch = (static_cast<int64_t>(alu_input1) >= static_cast<int64_t>(alu_input2)); break; // BGE
+                    case 0b110: take_branch = (alu_input1 < alu_input2); break; // BLTU
+                    case 0b111: take_branch = (alu_input1 >= alu_input2); break; // BGEU
                 }
-                ex_mem_buf_.branch_taken = take_branch;
-                if (take_branch) {
-                    ex_mem_buf_.branch_target = id_ex_buf_.pc + id_ex_buf_.imm;
+                actually_taken = take_branch;
+                actual_target = take_branch ? (id_ex_buf_.pc + id_ex_buf_.imm) : (id_ex_buf_.pc + 4);
+            }
+
+            ex_mem_buf_.branch_taken = actually_taken;
+            ex_mem_buf_.branch_target = actual_target;
+
+            // Mode-specific branch handling
+            if (globals::pipelined_mode >= 4) {
+                // Modes 4-5: Predict and flush only on misprediction
+                bool was_predicted_taken = PredictBranch(id_ex_buf_.pc, id_ex_buf_.instruction);
+                bool mispredicted = (was_predicted_taken != actually_taken);
+
+                if (mispredicted) {
+                    // Misprediction: need to correct
+                    branch_mispredicted_ = true;
+                    correct_branch_target_ = actual_target;
+                    flush_cycles += 2; // Flush IF and ID stages
+                    pipeline_flush = true;
+
+                    // Update predictor for mode 5
+                    if (globals::pipelined_mode == 5) {
+                        UpdateBranchPredictor(id_ex_buf_.pc, actually_taken);
+                    }
                 }
+                // If correctly predicted, no flush needed
+            } else {
+                // Modes 2-3: ALWAYS flush when branch is resolved (no prediction)
+                pipeline_flush = true;
+                flush_cycles += 2; // Flush IF and ID stages
+
+                // Update PC to correct target
+                program_counter_ = actual_target;
             }
         }
     } else {
@@ -365,6 +419,7 @@ void RV5SVM::PipelineMEM() {
         mem_wb_buf_.valid = false;
         return;
     }
+
     if (ex_mem_buf_.valid) {
         mem_wb_buf_.instruction = ex_mem_buf_.instruction;
         mem_wb_buf_.pc = ex_mem_buf_.pc;
@@ -374,90 +429,51 @@ void RV5SVM::PipelineMEM() {
         mem_wb_buf_.reg_write = ex_mem_buf_.reg_write;
         mem_wb_buf_.mem_to_reg = ex_mem_buf_.mem_to_reg;
         mem_wb_buf_.result = ex_mem_buf_.exec_result;
+
         uint32_t instruction = ex_mem_buf_.instruction;
         uint8_t funct3 = (instruction >> 12) & 0b111;
+
         // Skip memory operations for NOPs
         if (ex_mem_buf_.is_nop) {
             ex_mem_buf_.valid = false;
             return;
         }
+
         // Handle memory reads
         if (ex_mem_buf_.mem_read) {
             switch (funct3) {
-                case 0b000: // LB
-                    mem_wb_buf_.mem_result = static_cast<int8_t>(
-                        memory_controller_.ReadByte(ex_mem_buf_.exec_result));
-                    break;
-                case 0b001: // LH
-                    mem_wb_buf_.mem_result = static_cast<int16_t>(
-                        memory_controller_.ReadHalfWord(ex_mem_buf_.exec_result));
-                    break;
-                case 0b010: // LW
-                    mem_wb_buf_.mem_result = static_cast<int32_t>(
-                        memory_controller_.ReadWord(ex_mem_buf_.exec_result));
-                    break;
-                case 0b011: // LD
-                    mem_wb_buf_.mem_result = memory_controller_.ReadDoubleWord(ex_mem_buf_.exec_result);
-                    break;
-                case 0b100: // LBU
-                    mem_wb_buf_.mem_result = static_cast<uint8_t>(
-                        memory_controller_.ReadByte(ex_mem_buf_.exec_result));
-                    break;
-                case 0b101: // LHU
-                    mem_wb_buf_.mem_result = static_cast<uint16_t>(
-                        memory_controller_.ReadHalfWord(ex_mem_buf_.exec_result));
-                    break;
-                case 0b110: // LWU
-                    mem_wb_buf_.mem_result = static_cast<uint32_t>(
-                        memory_controller_.ReadWord(ex_mem_buf_.exec_result));
-                    break;
+                case 0b000: mem_wb_buf_.mem_result = static_cast<int8_t>(memory_controller_.ReadByte(ex_mem_buf_.exec_result)); break;
+                case 0b001: mem_wb_buf_.mem_result = static_cast<int16_t>(memory_controller_.ReadHalfWord(ex_mem_buf_.exec_result)); break;
+                case 0b010: mem_wb_buf_.mem_result = static_cast<int32_t>(memory_controller_.ReadWord(ex_mem_buf_.exec_result)); break;
+                case 0b011: mem_wb_buf_.mem_result = memory_controller_.ReadDoubleWord(ex_mem_buf_.exec_result); break;
+                case 0b100: mem_wb_buf_.mem_result = static_cast<uint8_t>(memory_controller_.ReadByte(ex_mem_buf_.exec_result)); break;
+                case 0b101: mem_wb_buf_.mem_result = static_cast<uint16_t>(memory_controller_.ReadHalfWord(ex_mem_buf_.exec_result)); break;
+                case 0b110: mem_wb_buf_.mem_result = static_cast<uint32_t>(memory_controller_.ReadWord(ex_mem_buf_.exec_result)); break;
             }
         }
+
         // Handle memory writes
         if (ex_mem_buf_.mem_write) {
             switch (funct3) {
-                case 0b000: // SB
-                    memory_controller_.WriteByte(ex_mem_buf_.exec_result,
-                        ex_mem_buf_.rs2_value & 0xFF);
-                    break;
-                case 0b001: // SH
-                    memory_controller_.WriteHalfWord(ex_mem_buf_.exec_result,
-                        ex_mem_buf_.rs2_value & 0xFFFF);
-                    break;
-                case 0b010: // SW
-                    memory_controller_.WriteWord(ex_mem_buf_.exec_result,
-                        ex_mem_buf_.rs2_value & 0xFFFFFFFF);
-                    break;
-                case 0b011: // SD
-                    memory_controller_.WriteDoubleWord(ex_mem_buf_.exec_result,
-                        ex_mem_buf_.rs2_value);
-                    break;
+                case 0b000: memory_controller_.WriteByte(ex_mem_buf_.exec_result, ex_mem_buf_.rs2_value & 0xFF); break;
+                case 0b001: memory_controller_.WriteHalfWord(ex_mem_buf_.exec_result, ex_mem_buf_.rs2_value & 0xFFFF); break;
+                case 0b010: memory_controller_.WriteWord(ex_mem_buf_.exec_result, ex_mem_buf_.rs2_value & 0xFFFFFFFF); break;
+                case 0b011: memory_controller_.WriteDoubleWord(ex_mem_buf_.exec_result, ex_mem_buf_.rs2_value); break;
             }
         }
-        // Store for forwarding
-        mem_wb_forward_data = mem_wb_buf_.mem_to_reg ?
-            mem_wb_buf_.mem_result : mem_wb_buf_.result;
-        // Handle branch taken - update PC and flush
-        if (ex_mem_buf_.branch_taken) {
-            program_counter_ = ex_mem_buf_.branch_target;
-            pipeline_flush = true;
-            flush_cycles += 3; // Flush IF, ID, EX stages
-        }
+
+        mem_wb_forward_data = mem_wb_buf_.mem_to_reg ? mem_wb_buf_.mem_result : mem_wb_buf_.result;
     } else {
         mem_wb_buf_.valid = false;
     }
     ex_mem_buf_.valid = false;
 }
 void RV5SVM::PipelineWB() {
-    if (pipeline_flush) {
-        mem_wb_buf_.valid = false;
-        pipeline_flush = false; // Clear flush flag after handling
-        return;
-    }
     if (mem_wb_buf_.valid && !mem_wb_buf_.is_nop) {
         uint32_t instruction = mem_wb_buf_.instruction;
         uint8_t opcode = instruction & 0b1111111;
         uint8_t rd = mem_wb_buf_.rd;
+
         if (mem_wb_buf_.reg_write && rd != 0) {
             uint64_t write_value;
             if (mem_wb_buf_.mem_to_reg) {
@@ -465,6 +481,7 @@ void RV5SVM::PipelineWB() {
             } else {
                 write_value = mem_wb_buf_.result;
             }
+
             // Handle special instructions
             if (opcode == get_instr_encoding(Instruction::kjal).opcode ||
                 opcode == get_instr_encoding(Instruction::kjalr).opcode) {
@@ -476,30 +493,30 @@ void RV5SVM::PipelineWB() {
                 int32_t imm = ImmGenerator(instruction);
                 write_value = mem_wb_buf_.pc + (static_cast<uint64_t>(imm) << 12);
             }
+
             registers_.WriteGpr(rd, write_value);
-            instructions_retired_++;
         }
+        instructions_retired_++;
     }
+
     mem_wb_buf_.valid = false;
 }
 void RV5SVM::ExecutePipelineCycle() {
-    /**
-     * Execute pipeline stages in reverse order (WB -> MEM -> EX -> ID -> IF)
-     * This order is critical for correctness:
-     * - WB: Write results to register file (happens before any reads)
-     * - MEM: Access memory, prepare results for WB
-     * - EX: Execute ALU operations, prepare results for MEM
-     * - ID: Decode instruction, read registers (after WB writes)
-     * - IF: Fetch instruction (after PC updates from branches)
-     *
-     * This ensures register write-backs complete before subsequent instructions read them,
-     * and PC updates from branches are handled correctly before the next fetch.
-     */
+    // Clear pipeline_flush flag at start of cycle (it will be set again if needed)
+    bool current_flush = pipeline_flush;
+    pipeline_flush = false;
+
     PipelineWB();
     PipelineMEM();
     PipelineEX();
     PipelineID();
     PipelineIF();
+
+    // Re-apply flush for next cycle if it was set during this cycle
+    if (current_flush || pipeline_flush) {
+        pipeline_flush = true;
+    }
+
     cycle_s_++;
     cycle_count++;
     PrintPipelineState();
@@ -703,6 +720,12 @@ void RV5SVM::Run() {
     mem_wb_buf_ = {};
     pipeline_stall = false;
     pipeline_flush = false;
+
+    //Initialize branch predictor for mode 5
+    if (globals::pipelined_mode == 5) {
+        branch_predictor_.clear();
+    }
+
     std::cout << "\n════════════════════════════════════════════════════════════════" << std::endl;
     std::cout << "Starting Pipelined Execution - Mode " << globals::pipelined_mode << std::endl;
     switch (globals::pipelined_mode) {
@@ -717,6 +740,12 @@ void RV5SVM::Run() {
             break;
         case 3:
             std::cout << "Mode 3: Pipelining with hazard detection and forwarding" << std::endl;
+            break;
+        case 4:
+                std::cout << "Mode 4: Pipelining with hazard detection, forwarding, and static branch prediction" << std::endl;
+                break;
+        case 5:
+            std::cout << "Mode 5: Pipelining with hazard detection, forwarding, and dynamic 1-bit branch prediction" << std::endl;
             break;
     }
     std::cout << "════════════════════════════════════════════════════════════════\n" << std::endl;
@@ -813,4 +842,36 @@ void RV5SVM::FlushPipeline() {
     id_ex_buf_.valid = false;
     ex_mem_buf_.valid = false;
     pipeline_flush = false;
+}
+
+bool RV5SVM::PredictBranch(uint64_t pc, uint32_t instruction) {
+    uint8_t opcode = instruction & 0b1111111;
+
+    // For unconditional jumps, always predict taken
+    if (opcode == get_instr_encoding(Instruction::kjal).opcode ||
+        opcode == get_instr_encoding(Instruction::kjalr).opcode) {
+        return true;
+    }
+
+    // Mode 4: Static branch prediction (always not taken for conditional branches)
+    if (globals::pipelined_mode == 4) {
+        return false;
+    }
+
+    // Mode 5: Dynamic 1-bit branch prediction
+    if (globals::pipelined_mode == 5) {
+        if (branch_predictor_.find(pc) == branch_predictor_.end()) {
+            branch_predictor_[pc] = false; // Initialize to not taken
+        }
+        return branch_predictor_[pc];
+    }
+
+    // Modes 2-3: No prediction (always assume not taken)
+    return false;
+}
+
+void RV5SVM::UpdateBranchPredictor(uint64_t pc, bool taken) {
+    if (globals::pipelined_mode == 5) {
+        branch_predictor_[pc] = taken;
+    }
 }

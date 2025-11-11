@@ -11,6 +11,7 @@
 #include "vm/rv5s/rv5s_control_unit.h"
 #include <cstdint>
 #include <atomic>
+#include <unordered_map>
 
 // Pipeline buffer structures
 struct IF_ID_Buffer {
@@ -104,6 +105,17 @@ public:
     bool IsStopRequested() const override { return stop_requested_.load(); }
 
 private:
+// Branch prediction for mode 4 and 5
+   std::unordered_map<uint64_t, bool> branch_predictor_; // 1-bit predictor (mode 5)
+   bool static_always_not_taken_ = true; // For mode 4 static prediction
+
+   // Pipeline control
+   bool branch_mispredicted_ = false;
+   uint64_t correct_branch_target_ = 0;
+
+   bool PredictBranch(uint64_t pc, uint32_t instruction);
+   void UpdateBranchPredictor(uint64_t pc, bool taken);
+
     // Clear stop flag
     void ClearStop() { stop_requested_.store(false); }
 

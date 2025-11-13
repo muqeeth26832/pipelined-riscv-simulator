@@ -268,8 +268,17 @@ void RV5SVM::PipelineID() {
     }
 
     // Check for hazards
-    if (DetectLoadUseHazard() || (DetectDataHazard() && globals::pipelined_mode == 2)) {
+    bool loadUseHazard = DetectLoadUseHazard();
+    bool dataHazard = DetectDataHazard();
+
+    if (loadUseHazard || (dataHazard && globals::pipelined_mode == 2)) {
         data_hazards++;
+        if (loadUseHazard) {
+            // Load-use hazard detected - insert stall with NOP
+        }
+        if (dataHazard && globals::pipelined_mode == 2) {
+            // Data hazard in mode 2 - insert stall with NOP (no forwarding)
+        }
         InsertStall();
         pipeline_stall = true;
         return;
@@ -405,7 +414,24 @@ void RV5SVM::PipelineEX() {
                 flush_cycles += 2; // Flush IF and ID stages (instructions already in those stages)
             }
         }
-    } else {
+    }
+    else if (id_ex_buf_.valid && id_ex_buf_.is_nop) {
+        // Propagate NOP as a bubble
+        ex_mem_buf_.instruction = 0;
+        ex_mem_buf_.pc = 0;
+        ex_mem_buf_.rd = 0;
+        ex_mem_buf_.valid = true;
+        ex_mem_buf_.is_nop = true;
+        ex_mem_buf_.exec_result = 0;
+        ex_mem_buf_.rs2_value = 0;
+        ex_mem_buf_.mem_read = false;
+        ex_mem_buf_.mem_write = false;
+        ex_mem_buf_.reg_write = false;
+        ex_mem_buf_.mem_to_reg = false;
+        ex_mem_buf_.branch_taken = false;
+        ex_mem_buf_.branch_target = 0;
+    }
+    else {
         ex_mem_buf_.valid = false;
     }
     id_ex_buf_.valid = false;
@@ -450,7 +476,20 @@ void RV5SVM::PipelineMEM() {
         }
 
         mem_wb_forward_data = mem_wb_buf_.mem_to_reg ? mem_wb_buf_.mem_result : mem_wb_buf_.result;
-    } else {
+    }
+    else if (ex_mem_buf_.valid && ex_mem_buf_.is_nop) {
+        // Propagate NOP as a bubble
+        mem_wb_buf_.instruction = 0;
+        mem_wb_buf_.pc = 0;
+        mem_wb_buf_.rd = 0;
+        mem_wb_buf_.valid = true;
+        mem_wb_buf_.is_nop = true;
+        mem_wb_buf_.result = 0;
+        mem_wb_buf_.mem_result = 0;
+        mem_wb_buf_.reg_write = false;
+        mem_wb_buf_.mem_to_reg = false;
+    }
+    else {
         mem_wb_buf_.valid = false;
     }
     ex_mem_buf_.valid = false;
@@ -603,7 +642,7 @@ void RV5SVM::PrintPipelineState() {
                   << BRIGHT_BLUE << GetInstructionName(if_id_buf_.instruction) << RESET
                   << " │ 0x" << std::hex << std::setw(8) << std::setfill('0') << if_id_buf_.instruction;
     } else if (if_id_buf_.valid && if_id_buf_.is_nop) {
-        std::cout << BRIGHT_YELLOW << "NOP" << RESET << " │ 0x" << std::hex << std::setw(8) << std::setfill('0') << 0x00000000;
+        std::cout << BRIGHT_YELLOW << "**NOP**" << RESET << " │ 0x" << std::hex << std::setw(8) << std::setfill('0') << 0x00000000;
     } else {
         std::cout << BRIGHT_BLACK << "EMPTY " << RESET;
     }
@@ -618,7 +657,7 @@ void RV5SVM::PrintPipelineState() {
                   << " rs2:x" << std::setw(2) << (int)id_ex_buf_.rs2
                   << " rd:x" << std::setw(2) << (int)id_ex_buf_.rd << " ";
     } else if (id_ex_buf_.valid && id_ex_buf_.is_nop) {
-        std::cout << BRIGHT_YELLOW << "NOP" << RESET
+        std::cout << BRIGHT_YELLOW << "**NOP**" << RESET
                   << " │ rs1:x00 rs2:x00 rd:x00 ";
     } else {
         std::cout << BRIGHT_BLACK << "EMPTY " << RESET;
@@ -632,7 +671,7 @@ void RV5SVM::PrintPipelineState() {
                   << BRIGHT_YELLOW << GetInstructionName(ex_mem_buf_.instruction) << RESET
                   << " │ Result: 0x" << std::hex << std::setw(8) << std::setfill('0')
                   << ex_mem_buf_.exec_result;
-        if (globals::pipelined_mode == 3) {
+        if (globals::pipelined_mode >= 3) {
             ForwardingUnit fu = DetectForwarding();
             if (fu.forward_a != ForwardingUnit::NO_FORWARD ||
                 fu.forward_b != ForwardingUnit::NO_FORWARD) {
@@ -640,7 +679,7 @@ void RV5SVM::PrintPipelineState() {
             }
         }
     } else if (ex_mem_buf_.valid && ex_mem_buf_.is_nop) {
-        std::cout << BRIGHT_YELLOW << "NOP" << RESET
+        std::cout << BRIGHT_YELLOW << "**NOP**" << RESET
                   << " │ Result: 0x" << std::hex << std::setw(8) << std::setfill('0') << 0x00000000;
     } else {
         std::cout << BRIGHT_BLACK << "EMPTY " << RESET;
@@ -660,7 +699,7 @@ void RV5SVM::PrintPipelineState() {
                       << mem_wb_buf_.result;
         }
     } else if (mem_wb_buf_.valid && mem_wb_buf_.is_nop) {
-        std::cout << BRIGHT_YELLOW << "NOP" << RESET
+        std::cout << BRIGHT_YELLOW << "**NOP**" << RESET
                   << " │ AluData: 0x" << std::hex << std::setw(8) << std::setfill('0') << 0x00000000;
     } else {
         std::cout << BRIGHT_BLACK << "EMPTY " << RESET;
@@ -681,7 +720,7 @@ void RV5SVM::PrintPipelineState() {
         std::cout << BOLD << CYAN << "║ " << RESET << "Hazards: Data: " << BRIGHT_YELLOW << std::setw(4) << data_hazards << RESET
                   << BOLD << CYAN << " │ " << RESET << "Control: " << BRIGHT_RED << std::setw(4) << control_hazards << RESET;
         if (pipeline_stall) {
-            std::cout << BOLD << CYAN << " │ " << RESET << "STATUS: " << BRIGHT_RED << "STALLED " << RESET << BOLD << CYAN << "║" << RESET << std::endl;
+            std::cout << BOLD << CYAN << " │ " << RESET << "STATUS: " << BRIGHT_RED << "STALL INSERTED (NOP)" << RESET << BOLD << CYAN << " ║" << RESET << std::endl;
         } else if (pipeline_flush) {
             std::cout << BOLD << CYAN << " │ " << RESET << "STATUS: " << BRIGHT_MAGENTA << "FLUSHING " << RESET << BOLD << CYAN << "║" << RESET << std::endl;
         } else {

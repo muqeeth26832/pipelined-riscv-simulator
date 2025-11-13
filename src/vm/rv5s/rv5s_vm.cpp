@@ -194,22 +194,26 @@ void RV5SVM::InsertStall() {
     id_ex_buf_.branch = false;
     stall_cycles++;
 }
-
 void RV5SVM::PipelineIF() {
     if (pipeline_stall) {
         return; // Hold PC and don't fetch
     }
 
     // Handle branch misprediction recovery (for modes 4-5)
-    if (branch_mispredicted_) {
-        program_counter_ = correct_branch_target_;
-        branch_mispredicted_ = false;
-        return; // Don't fetch this cycle, just update PC
-    }
+    // if (branch_mispredicted_) {
+    //     if_id_buf_.instruction = memory_controller_.ReadWord(correct_branch_target_);
+    //     if_id_buf_.pc = correct_branch_target_;
+    //     if_id_buf_.valid = true;
+    //     if_id_buf_.is_nop = false;
+    //     program_counter_ = correct_branch_target_ + 4;
+    //     branch_mispredicted_ = false;
+    //     return;
+    // }
 
     if (pipeline_flush) {
         if_id_buf_.valid = false;
-        return;
+        if_id_buf_.is_nop = false;
+        return; // Don't fetch this cycle, PC already updated
     }
 
     if (program_counter_ < program_size_) {
@@ -223,7 +227,7 @@ void RV5SVM::PipelineIF() {
         // Branch prediction for modes 4-5
         if (globals::pipelined_mode >= 4) {
             uint8_t opcode = instruction & 0b1111111;
-            bool is_branch = (opcode == 0b1100011); // Conditional branches only
+            bool is_branch = (opcode == 0b1100011); // Conditional branches
             bool is_jal = (opcode == get_instr_encoding(Instruction::kjal).opcode);
             bool is_jalr = (opcode == get_instr_encoding(Instruction::kjalr).opcode);
 
@@ -238,9 +242,11 @@ void RV5SVM::PipelineIF() {
                 // Conditional branch: use predictor
                 bool predict_taken = PredictBranch(program_counter_, instruction);
                 if (predict_taken) {
+                    // Mode 5 might predict taken
                     int32_t imm = ImmGenerator(instruction);
                     program_counter_ = program_counter_ + imm;
                 } else {
+                    // Mode 4 always predicts not-taken
                     program_counter_ += 4;
                 }
             } else {
@@ -257,6 +263,7 @@ void RV5SVM::PipelineIF() {
 void RV5SVM::PipelineID() {
     if (pipeline_flush) {
         id_ex_buf_.valid = false;
+        id_ex_buf_.is_nop = false;
         return;
     }
 
@@ -272,7 +279,7 @@ void RV5SVM::PipelineID() {
         pipeline_stall = false;
     }
 
-    if (if_id_buf_.valid) {
+    if (if_id_buf_.valid && !if_id_buf_.is_nop) {
         id_ex_buf_.instruction = if_id_buf_.instruction;
         id_ex_buf_.pc = if_id_buf_.pc;
         id_ex_buf_.valid = true;
@@ -302,17 +309,14 @@ void RV5SVM::PipelineID() {
     if_id_buf_.valid = false;
 }
 void RV5SVM::PipelineEX() {
-    if (pipeline_flush) {
-        ex_mem_buf_.valid = false;
-        return;
-    }
+    // NO flush check - branch must complete through pipeline
 
-    if (id_ex_buf_.valid) {
+    if (id_ex_buf_.valid && !id_ex_buf_.is_nop) {
         ex_mem_buf_.instruction = id_ex_buf_.instruction;
         ex_mem_buf_.pc = id_ex_buf_.pc;
         ex_mem_buf_.rd = id_ex_buf_.rd;
         ex_mem_buf_.valid = true;
-        ex_mem_buf_.is_nop = id_ex_buf_.is_nop;
+        ex_mem_buf_.is_nop = false;
 
         uint32_t instruction = id_ex_buf_.instruction;
         uint8_t opcode = id_ex_buf_.opcode;
@@ -324,13 +328,6 @@ void RV5SVM::PipelineEX() {
         ex_mem_buf_.reg_write = id_ex_buf_.reg_write;
         ex_mem_buf_.mem_to_reg = id_ex_buf_.mem_to_reg;
         ex_mem_buf_.branch_taken = false;
-
-        // Skip execution for NOPs
-        if (id_ex_buf_.is_nop) {
-            ex_mem_buf_.exec_result = 0;
-            id_ex_buf_.valid = false;
-            return;
-        }
 
         // Detect forwarding opportunities
         ForwardingUnit fu = DetectForwarding();
@@ -388,25 +385,24 @@ void RV5SVM::PipelineEX() {
                 bool mispredicted = (was_predicted_taken != actually_taken);
 
                 if (mispredicted) {
-                    // Misprediction: need to correct
-                    branch_mispredicted_ = true;
+                    // Misprediction: need to correct and flush
+                    // branch_mispredicted_ = true;
                     correct_branch_target_ = actual_target;
-                    flush_cycles += 2; // Flush IF and ID stages
                     pipeline_flush = true;
+                    flush_cycles += 2; // Flush IF and ID stages
 
                     // Update predictor for mode 5
                     if (globals::pipelined_mode == 5) {
                         UpdateBranchPredictor(id_ex_buf_.pc, actually_taken);
                     }
                 }
-                // If correctly predicted, no flush needed
+                // If correctly predicted, no flush needed - pipeline continues normally
             } else {
                 // Modes 2-3: ALWAYS flush when branch is resolved (no prediction)
-                pipeline_flush = true;
-                flush_cycles += 2; // Flush IF and ID stages
-
-                // Update PC to correct target
+                // Update PC immediately so next IF can fetch correct instruction
                 program_counter_ = actual_target;
+                pipeline_flush = true;
+                flush_cycles += 2; // Flush IF and ID stages (instructions already in those stages)
             }
         }
     } else {
@@ -415,29 +411,20 @@ void RV5SVM::PipelineEX() {
     id_ex_buf_.valid = false;
 }
 void RV5SVM::PipelineMEM() {
-    if (pipeline_flush) {
-        mem_wb_buf_.valid = false;
-        return;
-    }
+    // NO flush check - instructions must complete
 
-    if (ex_mem_buf_.valid) {
+    if (ex_mem_buf_.valid && !ex_mem_buf_.is_nop) {
         mem_wb_buf_.instruction = ex_mem_buf_.instruction;
         mem_wb_buf_.pc = ex_mem_buf_.pc;
         mem_wb_buf_.rd = ex_mem_buf_.rd;
         mem_wb_buf_.valid = true;
-        mem_wb_buf_.is_nop = ex_mem_buf_.is_nop;
+        mem_wb_buf_.is_nop = false;
         mem_wb_buf_.reg_write = ex_mem_buf_.reg_write;
         mem_wb_buf_.mem_to_reg = ex_mem_buf_.mem_to_reg;
         mem_wb_buf_.result = ex_mem_buf_.exec_result;
 
         uint32_t instruction = ex_mem_buf_.instruction;
         uint8_t funct3 = (instruction >> 12) & 0b111;
-
-        // Skip memory operations for NOPs
-        if (ex_mem_buf_.is_nop) {
-            ex_mem_buf_.valid = false;
-            return;
-        }
 
         // Handle memory reads
         if (ex_mem_buf_.mem_read) {
@@ -502,19 +489,18 @@ void RV5SVM::PipelineWB() {
     mem_wb_buf_.valid = false;
 }
 void RV5SVM::ExecutePipelineCycle() {
-    // Clear pipeline_flush flag at start of cycle (it will be set again if needed)
-    bool current_flush = pipeline_flush;
-    pipeline_flush = false;
-
+    // Execute all stages - flush flag is checked within stages
     PipelineWB();
     PipelineMEM();
-    PipelineEX();
-    PipelineID();
-    PipelineIF();
+    PipelineEX();    // May set pipeline_flush = true
+    PipelineID();    // Will see flush and clear itself
+    PipelineIF();    // Will see flush and clear itself
 
-    // Re-apply flush for next cycle if it was set during this cycle
-    if (current_flush || pipeline_flush) {
-        pipeline_flush = true;
+    // Clear flush flag AFTER all stages have seen it
+    // This ensures flush affects IF and ID in THIS cycle
+    // Then next cycle they can fetch/decode new instructions
+    if (pipeline_flush) {
+        pipeline_flush = false;
     }
 
     cycle_s_++;
@@ -853,9 +839,14 @@ bool RV5SVM::PredictBranch(uint64_t pc, uint32_t instruction) {
         return true;
     }
 
+    // Only for conditional branches (0b1100011)
+    if (opcode != 0b1100011) {
+        return false;
+    }
+
     // Mode 4: Static branch prediction (always not taken for conditional branches)
     if (globals::pipelined_mode == 4) {
-        return false;
+        return false; // Always predict NOT TAKEN
     }
 
     // Mode 5: Dynamic 1-bit branch prediction
@@ -866,7 +857,7 @@ bool RV5SVM::PredictBranch(uint64_t pc, uint32_t instruction) {
         return branch_predictor_[pc];
     }
 
-    // Modes 2-3: No prediction (always assume not taken)
+    // Modes 2-3: No prediction (doesn't matter, always flush)
     return false;
 }
 

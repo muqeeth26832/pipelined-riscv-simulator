@@ -200,15 +200,15 @@ void RV5SVM::PipelineIF() {
     }
 
     // Handle branch misprediction recovery (for modes 4-5)
-    // if (branch_mispredicted_) {
-    //     if_id_buf_.instruction = memory_controller_.ReadWord(correct_branch_target_);
-    //     if_id_buf_.pc = correct_branch_target_;
-    //     if_id_buf_.valid = true;
-    //     if_id_buf_.is_nop = false;
-    //     program_counter_ = correct_branch_target_ + 4;
-    //     branch_mispredicted_ = false;
-    //     return;
-    // }
+    if (branch_mispredicted_) {
+        if_id_buf_.instruction = memory_controller_.ReadWord(correct_branch_target_);
+        if_id_buf_.pc = correct_branch_target_;
+        if_id_buf_.valid = true;
+        if_id_buf_.is_nop = false;
+        program_counter_ = correct_branch_target_ + 4;
+        branch_mispredicted_ = false;
+        return;
+    }
 
     if (pipeline_flush) {
         if_id_buf_.valid = false;
@@ -395,7 +395,7 @@ void RV5SVM::PipelineEX() {
 
                 if (mispredicted) {
                     // Misprediction: need to correct and flush
-                    // branch_mispredicted_ = true;
+                    branch_mispredicted_ = true;
                     correct_branch_target_ = actual_target;
                     pipeline_flush = true;
                     flush_cycles += 2; // Flush IF and ID stages
